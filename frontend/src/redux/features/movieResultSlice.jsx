@@ -5,6 +5,7 @@ import axios from 'axios';
 const initialState = {
   movieResults: [],
   searchStatus: null,
+  searchedKeyword: '',
 };
 
 export const moviesSearch = createAsyncThunk(
@@ -16,9 +17,10 @@ export const moviesSearch = createAsyncThunk(
       const response = await axios.get(
         `http://localhost:4000/api/v1/search?query=${searchValue}`
       );
-
+      console.log('response:', response);
       const values = response.data;
-      return values;
+      const searchKeyword = searchValue;
+      return { values, searchKeyword };
       //   console.log('search data', values);
     } catch (error) {
       const errorMsg = error.response.data.message;
@@ -42,12 +44,15 @@ const movieSlice = createSlice({
 
     // when loadUser function result is 'fullfilled'
     builder.addCase(moviesSearch.fulfilled, (state, action) => {
-      if (action.payload) {
-        // console.log(action.payload);
+      if (action.payload.values) {
+        console.log('action.payload:', action.payload);
         return {
           ...state,
-          movieResults: action.payload,
+          // movieResults : data
+          // searchedKeyword : searched keyword
+          movieResults: action.payload.values,
           searchStatus: 'success',
+          searchedKeyword: action.payload.searchKeyword,
         };
       } else return state;
     });
