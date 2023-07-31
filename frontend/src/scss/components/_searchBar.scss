@@ -1,0 +1,30 @@
+.search__wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.search__input {
+  border-radius: 20px;
+  border-color: transparent;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 11px;
+  padding: 4px 5px 1px 10px;
+  outline: none;
+}
+
+.search__input:focus::placeholder {
+  color: transparent;
+}
+
+.search__btn {
+  border: none;
+  background: none;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  cursor: pointer;
+  span {
+    font-size: 22px;
+  }
+}

@@ -1,0 +1,35 @@
+@import '../abstracts/_variables.scss';
+
+.navbar {
+  width: 100%;
+  height: 12rem;
+  // background-color: rgb(100, 242, 204);
+  // display: flex;
+  // align-items: center;
+  // justify-content: space-between;
+}
+
+.nav-wrap {
+  width: 100%;
+  height: 100%;
+  // background-color: rgb(221, 144, 204);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3rem;
+
+  .logowrap {
+    img {
+      width: 18rem;
+    }
+  }
+
+  .linkwrap {
+    // background-color: paleturquoise;
+    display: flex;
+    align-items: center;
+    a {
+      margin-right: 1rem;
+    }
+  }
+}
