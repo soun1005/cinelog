@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
+// import { useDispatch, useSelector } from '@reduxjs/toolkit';
+import { useSelector, useDispatch } from 'react-redux';
+import { moviesSearch } from '../redux/features/movieResultSlice';
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  // initialise dispatch
+  const dispatch = useDispatch();
+  const storedData = useSelector((state) => state.search.movieResults);
 
-  const handleSearch = async () => {
-    try {
-      const response = await axios.get(
-        `http://localhost:4000/api/v1/search?query=${searchTerm}`
-      );
-      console.log('search data', response.data);
-    } catch (error) {
-      console.error('Error searching movies:', error);
-    }
+  const handleSearch = () => {
+    dispatch(moviesSearch(searchTerm));
   };
-
+  console.log('stored data:', storedData);
   return (
     <div className="search__wrap">
       <input
