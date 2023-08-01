@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 // import axios from 'axios';
 // import { useDispatch, useSelector } from '@reduxjs/toolkit';
 // import { useSelector, useDispatch } from 'react-redux';
@@ -10,6 +10,8 @@ const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState('');
   // initialise dispatch
   const dispatch = useDispatch();
+  // initialise navigate
+  const navigate = useNavigate();
   // const storedData = useSelector((state) => state.search.movieResults);
 
   const handleSearch = () => {
@@ -20,6 +22,7 @@ const SearchBar = () => {
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       setSearchTerm(e.target.value);
+      navigate('/search');
       handleSearch(searchTerm);
     }
   };

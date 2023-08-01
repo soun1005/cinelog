@@ -1,0 +1,33 @@
+.btnStyle {
+  border: transparent;
+  border-radius: 8px;
+  height: 2.5rem;
+  cursor: pointer;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  span {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 1px;
+  }
+}
+
+// for basic btns like save, confirm
+.basicBtn {
+  width: 45%;
+  background-color: $blackColor;
+  span {
+    color: $blueColor;
+    text-shadow: 1px 1px 0px $yellowColor;
+  }
+}
+
+// special button!
+.specialBtn {
+  width: 45%;
+  background-color: $yellowColor;
+  span {
+    color: $blackColor;
+    text-shadow: 1px 1px 0px $blueColor;
+  }
+}
