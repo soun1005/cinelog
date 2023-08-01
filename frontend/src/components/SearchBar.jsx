@@ -16,13 +16,21 @@ const SearchBar = () => {
     dispatch(moviesSearch(searchTerm));
     setSearchTerm('');
   };
-  // console.log('stored data:', storedData);
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      setSearchTerm(e.target.value);
+      handleSearch(searchTerm);
+    }
+  };
+
   return (
     <div className="search__wrap">
       <input
         type="text"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
+        onKeyDown={handleKeyDown}
         className="search__input"
         placeholder="search"
       />
