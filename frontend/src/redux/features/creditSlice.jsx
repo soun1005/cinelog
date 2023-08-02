@@ -3,8 +3,9 @@ import axios from 'axios';
 
 // initial state
 const initialState = {
-  movieCredit: [],
-  searchStatus: null,
+  movieCrew: [],
+  movieCast: [],
+  dataStatus: null,
 };
 
 const base = 'http://localhost:4000/api/v1';
@@ -17,11 +18,11 @@ export const movieDetail = createAsyncThunk(
     try {
       const response = await axios.get(`${base}/${id}`);
       // console.log('response:', response);
-
       // two filtered data (cast, crew)
       const movieCast = response.data.filteredCast;
       const movieCrew = response.data.filteredCrew;
-      console.log('movieCast:', movieCast, 'movieCrew:', movieCrew);
+      // console.log('asyncThunk movieCast:', movieCast, 'movieCrew:', movieCrew);
+
       return { movieCast, movieCrew };
     } catch (error) {
       const errorMsg = error.response.data.message;
@@ -40,17 +41,21 @@ const creditSlice = createSlice({
   extraReducers: (builder) => {
     // movie detail
     builder.addCase(movieDetail.pending, (state, action) => {
-      return { ...state, searchStatus: 'pending' };
+      // console.log('creditSlice = action.payload:', action.payload);
+      return { ...state, dataStatus: 'pending' };
     });
 
     builder.addCase(movieDetail.fulfilled, (state, action) => {
-      if (action.payload.values) {
-        console.log('credit action.payload:', action.payload);
+      // console.log('credit action.payload:', action.payload);
+      if (action.payload) {
         return {
           ...state,
-          movieCredit: action.payload.values,
-          searchStatus: 'success',
+          // movieCredit: action.payload.values,
+          // searchStatus: 'success',
           // searchedKeyword: action.payload.searchKeyword,
+          movieCast: action.payload.movieCast,
+          movieCrew: action.payload.movieCrew,
+          dataStatus: 'success',
         };
       } else return state;
     });
