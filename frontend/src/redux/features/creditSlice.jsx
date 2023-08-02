@@ -16,10 +16,13 @@ export const movieDetail = createAsyncThunk(
     // console.log(searchValue);
     try {
       const response = await axios.get(`${base}/${id}`);
-      console.log('response:', response);
-      const movieCredit = response.data;
-      console.log('movie credit', movieCredit);
-      return { movieCredit };
+      // console.log('response:', response);
+
+      // two filtered data (cast, crew)
+      const movieCast = response.data.filteredCast;
+      const movieCrew = response.data.filteredCrew;
+      console.log('movieCast:', movieCast, 'movieCrew:', movieCrew);
+      return { movieCast, movieCrew };
     } catch (error) {
       const errorMsg = error.response.data.message;
       // leads to 'builder.addcase rejected'
@@ -45,7 +48,6 @@ const creditSlice = createSlice({
         console.log('credit action.payload:', action.payload);
         return {
           ...state,
-          // movieCredit : data
           movieCredit: action.payload.values,
           searchStatus: 'success',
           // searchedKeyword: action.payload.searchKeyword,
