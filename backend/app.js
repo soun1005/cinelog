@@ -15,6 +15,7 @@ app.use(cookieParser());
 
 // api/v1 으로 scope해주면 앞에 계속 이 주소가 붙음(없애도 됨)
 // 현재 search기능 api = /api/v1/search
+// credit기능 api = /api/v1/:id
 app.use('/api/v1', routes);
 
 const port = process.env.PORT || 4000;

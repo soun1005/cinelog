@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { movieDetail } from '../redux/features/creditSlice';
 
 const MovieInfoPage = () => {
+  const dispatch = useDispatch();
+  const storedData = useSelector((state) => console.log(state));
+  console.log(storedData);
+
   // to get movie id
   const { id } = useParams();
   // console.log(id);
 
-  // backend에서 api만들기
-  // 1. 여기에서 받은 id로 tmdb에서 credit자료 요청
-  // 2. 이것도 리덕스인가..썅..
-  // 3. 리덕스에서 asyncThunk로 영화정보 저장, 여기랑 리뷰 페이지에서 dispatch하기
+  useEffect(() => {
+    dispatch(movieDetail(id));
+  }, [dispatch, id]);
 
   return <div>hiya this movie id is : {id} </div>;
 };
