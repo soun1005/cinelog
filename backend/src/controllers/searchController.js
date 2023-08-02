@@ -2,6 +2,7 @@
 import responseHandler from '../handlers/response.handler.js';
 import fetchDataFromApi from '../resolver/fetchDataFromApi.js';
 import fetchCreditFromApi from '../resolver/fetchCreditFromApi.js';
+import fetchMovieInfoById from '../resolver/fetchMovieInfoById.js';
 
 const getSearchResult = async (req, res) => {
   const data = await fetchDataFromApi(req.query.query);
@@ -13,13 +14,15 @@ const getSearchResult = async (req, res) => {
   }
 };
 
-const getCredit = async (req, res) => {
+const getMovie = async (req, res) => {
+  // first one for credit, second one for movie info
   const creditData = await fetchCreditFromApi(req.params.id);
+  const movieData = await fetchMovieInfoById(req.params.id);
   // console.log('movie id', req.params.id);
   // console.log(creditData);
 
-  if (creditData) {
-    res.json(creditData);
+  if (creditData && movieData) {
+    res.json({ creditData, movieData });
   } else {
     responseHandler.error(res);
   }
@@ -27,5 +30,5 @@ const getCredit = async (req, res) => {
 
 export default {
   getSearchResult,
-  getCredit,
+  getMovie,
 };

@@ -5,13 +5,14 @@ import axios from 'axios';
 const initialState = {
   movieCrew: [],
   movieCast: [],
+  movieInfo: [],
   dataStatus: null,
 };
 
 const base = 'http://localhost:4000/api/v1';
 
-export const movieDetail = createAsyncThunk(
-  'movies/detail',
+export const movieInfo = createAsyncThunk(
+  'movies/info',
   //   searchValue as paramaeter -> keyword given in SearchBar component
   async (id, { rejectWithValue }) => {
     // console.log(searchValue);
@@ -19,11 +20,13 @@ export const movieDetail = createAsyncThunk(
       const response = await axios.get(`${base}/${id}`);
       // console.log('response:', response);
       // two filtered data (cast, crew)
-      const movieCast = response.data.filteredCast;
-      const movieCrew = response.data.filteredCrew;
+      const movieInfo = response.data.movieData;
+      const movieCast = response.data.creditData.filteredCast;
+      const movieCrew = response.data.creditData.filteredCrew;
+
       // console.log('asyncThunk movieCast:', movieCast, 'movieCrew:', movieCrew);
 
-      return { movieCast, movieCrew };
+      return { movieInfo, movieCast, movieCrew };
     } catch (error) {
       const errorMsg = error.response.data.message;
       // leads to 'builder.addcase rejected'
@@ -32,35 +35,34 @@ export const movieDetail = createAsyncThunk(
   }
 );
 
-const creditSlice = createSlice({
-  name: 'credit',
+const movieInfoSlice = createSlice({
+  name: 'info',
   initialState,
   reducers: {},
 
   // extra reducers to handle http request with promise
   extraReducers: (builder) => {
     // movie detail
-    builder.addCase(movieDetail.pending, (state, action) => {
+    builder.addCase(movieInfo.pending, (state, action) => {
       // console.log('creditSlice = action.payload:', action.payload);
       return { ...state, dataStatus: 'pending' };
     });
 
-    builder.addCase(movieDetail.fulfilled, (state, action) => {
+    builder.addCase(movieInfo.fulfilled, (state, action) => {
       // console.log('credit action.payload:', action.payload);
       if (action.payload) {
         return {
           ...state,
           // movieCredit: action.payload.values,
-          // searchStatus: 'success',
-          // searchedKeyword: action.payload.searchKeyword,
+          movieInfo: action.payload.movieInfo,
           movieCast: action.payload.movieCast,
-          movieCrew: action.payload.movieCrew,
+          movieCrew: action.payload.movieCrew[0],
           dataStatus: 'success',
         };
       } else return state;
     });
 
-    builder.addCase(movieDetail.rejected, (state, action) => {
+    builder.addCase(movieInfo.rejected, (state, action) => {
       return {
         ...state,
         searchStatus: 'rejected',
@@ -69,4 +71,4 @@ const creditSlice = createSlice({
   },
 });
 
-export default creditSlice.reducer;
+export default movieInfoSlice.reducer;
