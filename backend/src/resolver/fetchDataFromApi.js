@@ -3,7 +3,7 @@
 
 import responseHandler from '../handlers/response.handler.js';
 import axios from 'axios';
-import movieDataFormat from '../dataFormat/movieDataFormat.js';
+import { moviesDataFormat } from '../dataFormat/movieDataFormat.js';
 
 const baseUrl = process.env.TMDB_BASE_URL;
 const key = process.env.TMDB_API_KEY;
@@ -19,7 +19,7 @@ const fetchDataFromApi = async (query) => {
     console.log('fetchDataFromApi called');
 
     // format data and pass formatted data to front
-    const formattedMovieData = movieDataFormat(response.data);
+    const formattedMovieData = moviesDataFormat(response.data);
     return formattedMovieData;
 
     // This will return the data received from the API

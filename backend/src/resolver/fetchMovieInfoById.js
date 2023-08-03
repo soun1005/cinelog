@@ -3,7 +3,7 @@
 
 import responseHandler from '../handlers/response.handler.js';
 import axios from 'axios';
-// import creditDataFormat from '../dataFormat/creditDataFormat.js';
+import { movieDataFormat } from '../dataFormat/movieDataFormat.js';
 
 const baseUrl = process.env.TMDB_BASE_URL;
 const key = process.env.TMDB_API_KEY;
@@ -23,9 +23,9 @@ const fetchMovieInfoById = async (idQuery) => {
     // console.log(response.data);
 
     // This will return the data that is formatted after receiving them from the TMDB API
-    return response.data;
-    // const formattedData = creditDataFormat(response.data);
-    // return formattedData;
+    // return response.data;
+    const formattedData = movieDataFormat(response.data);
+    return formattedData;
 
     // handle error
   } catch (error) {

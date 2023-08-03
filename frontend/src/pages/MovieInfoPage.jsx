@@ -1,9 +1,8 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-// import { useDispatch } from 'react-redux';
 import { movieInfo } from '../redux/features/movieInfoSlice';
+import CustomBtns from '../components/CustomBtns';
 
 const MovieInfoPage = () => {
   // to get movie id
@@ -11,55 +10,75 @@ const MovieInfoPage = () => {
   // const idToNum = parseInt(id, 10);
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(movieInfo(id));
-  }, []);
+  }, [dispatch, id]);
+
   // get redux state
-  // 총 두개의 state -> credit, search (=state.credit, state.search)
-  // state.credit.movieCast, state.credit.movieCrew
-  // state.search.movieResults
+  // 총 두개의 state -> search, info
+  // 두개중, info만 사용할 것임
+  // state.info.movieInfo,  state.info.movieCast,  state.info.movieCrew
   const movieData = useSelector((state) => {
-    console.log('state:', state);
+    return state.info;
   });
-  console.log('state:', movieData);
-  // const movieData = useSelector((state) => {
-  //   return state.search.movieResults;
-  // });
-  // console.log(creditData, movieData);
 
-  // actor list(array), director name
-  // const actorsList = creditData.movieCast;
-  // const director = creditData.movieCrew[0]?.name || '';
-  // const directorName = director.name;
-  // console.log(director);
-
-  // const findMovie = movieData.filter((movie) => movie.id === idToNum);
-  // const pickedMovie = findMovie[0];
-
-  // const movieTitle = pickedMovie.title;
-  // const poster = pickedMovie.poster;
-  // const releasedDate = pickedMovie.releasedDate;
-  // console.log(poster, releasedDate, movieTitle);
+  // the datas to display
+  const movieInformation = movieData.movieInfo;
+  const title = movieInformation.title;
+  const releasedYear = movieInformation.releasedDate;
+  const genre = movieInformation.genre;
+  const poster = movieInformation.poster;
+  const movieCast = movieData.movieCast;
+  const movieDirector = movieData.movieCrew.name;
 
   return (
     <div className="info__container">
-      {/* <span>hiya this movie id is : {id}</span>
+      {/* <span className="temporary"> movie id : {id}</span> */}
       <div className="info__wrap">
         <div className="poster-wrap">
-          <img src={poster} alt={movieTitle} />
+          <img src={poster} alt={title} className="movieInfo-poster" />
         </div>
         <div className="main-wrap">
           <div className="main-wrap__info">
-            <span>
-              {movieTitle} ({releasedDate})
-            </span>
-            <span>Directed by </span>
-            <span>Starring Kilian Murphy Florence Pugh</span>
-            <span>Genre Bio thriller</span>
+            <div className="main-wrap__info-subWrap">
+              <span className="fontAccent movieTitle">{title} </span>
+              <span className="fontThin">({releasedYear})</span>
+            </div>
+            {/* movie infos */}
+            <div className="main-wrap__info-subWrap subInfo">
+              <span className="fontThin">Directed by </span>
+              <span className="fontAccent2">{movieDirector}</span>
+            </div>
+            <div className="main-wrap__info-subWrap subInfo">
+              <span className="fontThin">Starring </span>
+              <span className="fontAccent2">
+                {movieCast.map((cast) => {
+                  return (
+                    <span className="movieCast" key={cast.id}>
+                      {cast.name}
+                    </span>
+                  );
+                })}
+              </span>
+            </div>
+            <div className="main-wrap__info-subWrap subInfo">
+              <span className="fontThin">Genre</span>{' '}
+              <span className="fontAccent2"> {genre}</span>
+            </div>
           </div>
-          <div className="main-wrap__button-wrap">two buttons here</div>
+          <div className="main-wrap__buttonWrap">
+            <CustomBtns
+              text="Review this movie"
+              className="main-wrap__btn basicBtn"
+            />
+            <CustomBtns
+              text="+ Add to my list"
+              className="main-wrap__btn basicBtn"
+            />
+          </div>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };

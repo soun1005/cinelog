@@ -1,0 +1,58 @@
+.info__container {
+  //   height = 100vh - nav height + margin on bottom
+  height: calc(100vh - 25rem);
+  display: flex;
+  align-items: center;
+}
+
+.temporary {
+  font-size: 20px;
+  color: rgb(206, 74, 125);
+  font-weight: 800;
+}
+
+.info__wrap {
+  display: flex;
+  height: 65%;
+  padding: 0 2rem;
+  img {
+    height: 100%;
+    width: fit-content;
+  }
+}
+
+.main-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 5rem;
+  width: 100%;
+  &__btn {
+    width: 12rem;
+    margin-right: 1.5rem;
+  }
+}
+
+.main-wrap__info {
+  .movieTitle {
+    font-size: 1.5rem;
+    letter-spacing: 0.8px;
+  }
+  &-subWrap {
+    margin-bottom: 5px;
+    .fontThin,
+    .fontAccent {
+      letter-spacing: 0.8px;
+    }
+    .fontThin {
+      color: $darkGreyColor;
+    }
+  }
+
+  // director, cast, genre
+  .subInfo {
+    span {
+      margin-right: 7px;
+    }
+  }
+}
