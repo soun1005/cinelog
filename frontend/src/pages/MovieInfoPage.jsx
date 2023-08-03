@@ -22,11 +22,20 @@ const MovieInfoPage = () => {
   const movieData = useSelector((state) => {
     return state.info;
   });
-
+  console.log(movieData);
+  if (movieData.dataStatus !== 'success') {
+    // need to put loader
+    // this is temporary
+    return null;
+  }
   // the datas to display
   const movieInformation = movieData.movieInfo;
   const title = movieInformation.title;
-  const releasedYear = movieInformation.releasedDate;
+
+  const releasedDate = movieInformation.releasedDate;
+  const releasedYear = releasedDate.slice(0, 4);
+  console.log(releasedDate, releasedYear);
+
   const genre = movieInformation.genre;
   const poster = movieInformation.poster;
   const movieCast = movieData.movieCast;
