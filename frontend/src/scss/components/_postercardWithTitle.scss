@@ -1,0 +1,28 @@
+.postercard-title__container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  // title and year
+  &-infoWrap {
+    letter-spacing: $letterSpacing;
+    span:first-of-type {
+      font-size: $title;
+      font-weight: $titleWeight;
+    }
+
+    span:nth-child(2) {
+      font-weight: 400;
+      font-size: $xSmall;
+      color: $darkGreyColor;
+    }
+  }
+
+  // poster
+  &-posterWrap {
+    img {
+      width: 8rem;
+    }
+  }
+}

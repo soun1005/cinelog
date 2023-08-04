@@ -5,12 +5,6 @@
   align-items: center;
 }
 
-.temporary {
-  font-size: 20px;
-  color: rgb(206, 74, 125);
-  font-weight: 800;
-}
-
 .info__wrap {
   display: flex;
   height: 65%;
@@ -36,23 +30,33 @@
 .main-wrap__info {
   .movieTitle {
     font-size: 1.5rem;
-    letter-spacing: 0.8px;
+    letter-spacing: $letterSpacing;
+    font-weight: $titleWeight;
+  }
+  .movieYear {
+    font-weight: 400;
+    font-size: $xSmall;
   }
   &-subWrap {
     margin-bottom: 5px;
-    .fontThin,
-    .fontAccent {
-      letter-spacing: 0.8px;
-    }
-    .fontThin {
-      color: $darkGreyColor;
-    }
+    letter-spacing: $letterSpacing;
   }
 
-  // director, cast, genre
+  // info without title(year)
   .subInfo {
+    .movieCast {
+      margin-right: 10px;
+    }
     span {
       margin-right: 7px;
+    }
+    // subInfo의 첫번째 span들
+    span:first-of-type:not(.movieCast) {
+      color: $darkGreyColor;
+      font-size: $xSmall;
+    }
+    span:nth-child(2) {
+      font-weight: $subTitleWeight;
     }
   }
 }

@@ -21,19 +21,6 @@ button {
   padding: 0;
 }
 
-.fontAccent {
-  font-weight: 800;
-}
-
-.fontAccent2 {
-  font-weight: 600;
-}
-
-.fontThin {
-  font-weight: 400;
-  font-size: 13px;
-}
-
 .navbar {
   width: 100%;
   height: 15rem;
@@ -201,12 +188,6 @@ button {
           align-items: center;
 }
 
-.temporary {
-  font-size: 20px;
-  color: rgb(206, 74, 125);
-  font-weight: 800;
-}
-
 .info__wrap {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -243,17 +224,55 @@ button {
 .main-wrap__info .movieTitle {
   font-size: 1.5rem;
   letter-spacing: 0.8px;
+  font-weight: 800;
+}
+.main-wrap__info .movieYear {
+  font-weight: 400;
+  font-size: 13px;
 }
 .main-wrap__info-subWrap {
   margin-bottom: 5px;
-}
-.main-wrap__info-subWrap .fontThin,
-.main-wrap__info-subWrap .fontAccent {
   letter-spacing: 0.8px;
 }
-.main-wrap__info-subWrap .fontThin {
-  color: rgb(55, 55, 55) 0;
+.main-wrap__info .subInfo .movieCast {
+  margin-right: 10px;
 }
 .main-wrap__info .subInfo span {
   margin-right: 7px;
+}
+.main-wrap__info .subInfo span:first-of-type:not(.movieCast) {
+  color: rgb(55, 55, 55) 0;
+  font-size: 13px;
+}
+.main-wrap__info .subInfo span:nth-child(2) {
+  font-weight: 600;
+}
+
+.postercard-title__container {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.postercard-title__container-infoWrap {
+  letter-spacing: 0.8px;
+}
+.postercard-title__container-infoWrap span:first-of-type {
+  font-size: 26px;
+  font-weight: 800;
+}
+.postercard-title__container-infoWrap span:nth-child(2) {
+  font-weight: 400;
+  font-size: 13px;
+  color: rgb(55, 55, 55) 0;
+}
+.postercard-title__container-posterWrap img {
+  width: 8rem;
 }

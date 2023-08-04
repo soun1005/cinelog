@@ -22,24 +22,19 @@ const MovieInfoPage = () => {
   const movieData = useSelector((state) => {
     return state.info;
   });
-  console.log(movieData);
+  // console.log(movieData);
   if (movieData.dataStatus !== 'success') {
     // need to put loader
     // this is temporary
     return null;
   }
   // the datas to display
-  const movieInformation = movieData.movieInfo;
-  const title = movieInformation.title;
-
-  const releasedDate = movieInformation.releasedDate;
+  const { title, releasedDate, genre, poster } = movieData.movieInfo;
   const releasedYear = releasedDate.slice(0, 4);
-  console.log(releasedDate, releasedYear);
+  // console.log(releasedDate, releasedYear);
 
-  const genre = movieInformation.genre;
-  const poster = movieInformation.poster;
-  const movieCast = movieData.movieCast;
-  const movieDirector = movieData.movieCrew.name;
+  const { movieCast, movieCrew } = movieData;
+  const movieDirector = movieCrew.name;
 
   return (
     <div className="info__container">
@@ -51,17 +46,19 @@ const MovieInfoPage = () => {
         <div className="main-wrap">
           <div className="main-wrap__info">
             <div className="main-wrap__info-subWrap">
-              <span className="fontAccent movieTitle">{title} </span>
-              <span className="fontThin">({releasedYear})</span>
+              <span className="movieTitle">{title} </span>
+              <span className="movieYear">({releasedYear})</span>
             </div>
+
             {/* movie infos */}
             <div className="main-wrap__info-subWrap subInfo">
-              <span className="fontThin">Directed by </span>
-              <span className="fontAccent2">{movieDirector}</span>
+              <span>Directed by </span>
+              <span>{movieDirector}</span>
             </div>
+
             <div className="main-wrap__info-subWrap subInfo">
-              <span className="fontThin">Starring </span>
-              <span className="fontAccent2">
+              <span>Starring </span>
+              <span>
                 {movieCast.map((cast) => {
                   return (
                     <span className="movieCast" key={cast.id}>
@@ -71,15 +68,17 @@ const MovieInfoPage = () => {
                 })}
               </span>
             </div>
+
             <div className="main-wrap__info-subWrap subInfo">
-              <span className="fontThin">Genre</span>{' '}
-              <span className="fontAccent2"> {genre}</span>
+              <span>Genre</span>
+              <span> {genre}</span>
             </div>
           </div>
           <div className="main-wrap__buttonWrap">
             <CustomBtns
               text="Review this movie"
               className="main-wrap__btn basicBtn"
+              path={`/review/${id}_${title}`}
             />
             <CustomBtns
               text="+ Add to my list"
