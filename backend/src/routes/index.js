@@ -1,8 +1,8 @@
 // combine all routes here and export to app.js (the main file)
 
 import express from 'express';
-import searchMovieRoutes from './searchMovieRoutes.js';
-import userRoutes from './userRoutes.js';
+import searchMovieRoutes from './searchMovie.routes.js';
+import userRoutes from './user.routes.js';
 
 const router = express.Router();
 
