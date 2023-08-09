@@ -9,6 +9,29 @@ const createToken = (_id) => {
   return jwt.sign({ _id }, process.env.SECRET, { expiresIn: '3d' });
 };
 
+// signup user
+const signupUser = async (req, res) => {
+  const { email, password, username, firstname, lastname } = req.body;
+
+  try {
+    // the model that i created
+    const user = await User.signup(
+      email,
+      password,
+      firstname,
+      lastname,
+      username
+    );
+
+    const token = createToken(user._id);
+
+    // when it succeed, set status as 200 and json data(which are email and user)
+    res.status(200).json({ email, token, firstname, lastname, username });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 // login user
 const loginUser = async (req, res) => {
   // grab email and pw from request
@@ -21,23 +44,6 @@ const loginUser = async (req, res) => {
 
     // when it succeed, set status as 200 and json data(which are email and user)
     res.status(200).json({ email, token });
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-};
-
-// signup user
-const signupUser = async (req, res) => {
-  const { email, password, name, username } = req.body;
-
-  try {
-    // the model that i created
-    const user = await User.signup(email, password, name, username);
-
-    const token = createToken(user._id);
-
-    // when it succeed, set status as 200 and json data(which are email and user)
-    res.status(200).json({ email, token, name, username });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

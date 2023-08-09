@@ -15,22 +15,32 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  name: {
-    type: String,
-    required: true,
-  },
   username: {
     type: String,
     required: true,
     unique: true,
   },
+  firstname: {
+    type: String,
+    required: true,
+  },
+  lastname: {
+    type: String,
+    required: true,
+  },
 });
 
 // static signup method
 // 'this' doesnt work with const so need to use function!
-userSchema.statics.signup = async function (email, password, name, username) {
+userSchema.statics.signup = async function (
+  email,
+  password,
+  username,
+  firstname,
+  lastname
+) {
   // validation
-  if (!email || !password || !name || !username) {
+  if (!email || !password || !firstname || !lastname || !username) {
     // 이 이러들은 나중에 userController의 catch문에서 에러 메시지로 뜨게된다
     throw Error('All fields must be filled');
   }
@@ -62,7 +72,13 @@ userSchema.statics.signup = async function (email, password, name, username) {
   // first argument is password that user type
   const hash = await bcrypt.hash(password, salt);
 
-  const user = await this.create({ email, password: hash, name, username });
+  const user = await this.create({
+    email,
+    password: hash,
+    username,
+    firstname,
+    lastname,
+  });
 
   return user;
 };
