@@ -11,23 +11,31 @@ const initialState = {
   userLoaded: isUserLoaded,
 };
 
-// main function to call API to login
+const base = 'http://localhost:4000/api/v1';
+
+// to call API to login
 export const loginUser = createAsyncThunk(
   'auth/loginUser',
   // promise
   async (user, { rejectWithValue }) => {
+    // console.log('hello');
     try {
-      const res = await axios.post('http://localhost:3001/api/v1/user/login', {
+      const res = await axios.post(`${base}/login`, {
         email: user.email,
         password: user.password,
       });
+      console.log(res);
       // token location : data.body.token(info in Swagger)
-      const token = res.data.body.token;
+      console.log(res.data);
+      const token = res.data.token;
       localStorage.setItem('token', token);
+      console.log('logged in');
       // will be saved in the 'action.payload'
       return token;
     } catch (error) {
-      const errorMsg = error.response.data.message;
+      console.log(error);
+      const errorMsg = error.response.data.error;
+      // leads to 'builder.addcase rejected'
       return rejectWithValue(errorMsg);
     }
   }
@@ -52,7 +60,7 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     // when loginUser function result is 'pending'
     builder.addCase(loginUser.pending, (state, action) => {
-      return { ...state, loginStatus: 'pending' };
+      return { ...state, loginStatus: 'pending', userLoaded: false };
     });
     // when loginUser function result is 'fullfilled'
     builder.addCase(loginUser.fulfilled, (state, action) => {
