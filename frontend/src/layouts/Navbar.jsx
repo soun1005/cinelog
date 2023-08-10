@@ -9,7 +9,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
 
-  console.log(auth);
+  // console.log(auth);
 
   const logIn = (
     <div className="linkwrap">
