@@ -1,14 +1,16 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 // import { useAuthContext } from './useAuthContext'
 
 export const useSignup = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
+  const navigate = useNavigate();
   //   const { dispatch } = useAuthContext()
 
   const base = 'http://localhost:4000/api/v1';
 
-  const signup = async (email, password, username, firstname, lastname) => {
+  const signup = async ({ email, password, username, firstname, lastname }) => {
     setIsLoading(true);
     setError(null);
 
@@ -26,6 +28,7 @@ export const useSignup = () => {
     if (response.ok) {
       console.log(response);
       // update loading state
+      navigate('/login');
       setIsLoading(false);
     }
   };

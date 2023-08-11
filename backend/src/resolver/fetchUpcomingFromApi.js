@@ -11,7 +11,7 @@ const fetchUpcomingFromApi = async (query) => {
       `${baseUrl}/movie/upcoming?language=en-US&page=1?query=${query}&api_key=${key}`
     );
     console.log('fetchUpcomingFromApi called');
-    console.log(response.data);
+    // console.log(response.data);
     // format data and pass formatted data to front
     const formattedMovieData = moviesDataFormat(response.data);
     return formattedMovieData;
