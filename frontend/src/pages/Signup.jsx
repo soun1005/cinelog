@@ -16,9 +16,9 @@ const schema = yup
       message:
         'Min 5 characters, 1 upper case letter, 1 lower case letter, 1 numeric digit.',
     }),
-    // confirmPassword: string()
-    //   .oneOf([yup.ref('password'), null], 'Passwords must match')
-    //   .required('Required'),
+    confirmPassword: string()
+      .required('Required')
+      .oneOf([yup.ref('password'), null], 'Passwords must match'),
     username: string()
       .required('Required')
       .min(2, 'Too Short!')
@@ -45,20 +45,17 @@ const Signup = () => {
 
   const { signup, error, isLoading } = useSignup();
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   await signup(email, password, username, firstname, lastname);
-  //   // console.log(email, password);
-  // };
-
   const onSubmit = async (data) => {
     await signup(data);
     console.log('data:', data);
   };
 
+  if (error) {
+    console.log(error);
+  }
+
   return (
-    <div className="singup__container">
+    <div className="singup__container form">
       <div className="form-container">
         <h2 className="form-title">Sign up</h2>
 
@@ -67,7 +64,8 @@ const Signup = () => {
             <label className="form-label">Email</label>
             <input
               className="form-input"
-              type="email"
+              type="Email"
+              placeholder="email"
               {...register('email')}
               // onChange={(e) => setEmail(e.target.value)}
               // value={email}
@@ -84,6 +82,7 @@ const Signup = () => {
             <input
               className="form-input"
               type="password"
+              placeholder="Password"
               {...register('password')}
               // onChange={(e) => setPassword(e.target.value)}
               // value={password}
@@ -95,25 +94,29 @@ const Signup = () => {
               : ''}
           </div>
 
-          {/* <div>
+          <div>
             <label className="form-label">Confirm password</label>
             <input
               className="form-input"
               type="password"
-              {...register('confirmpw')}
+              placeholder="Confirm password"
+              {...register('confirmPassword')}
               // onChange={(e) => setPassword(e.target.value)}
               // value={password}
             />
           </div>
-          {formState.errors.confirmpw?.message !== undefined
-            ? `${formState.errors.confirmpw?.message}`
-            : ''} */}
+          <div className="error">
+            {formState.errors.confirmPassword?.message !== undefined
+              ? `${formState.errors.confirmPassword?.message}`
+              : ''}
+          </div>
 
           <div>
             <label className="form-label">Username</label>
             <input
               type="text"
               className="form-input"
+              placeholder="Username"
               {...register('username')}
               // onChange={(e) => setUsername(e.target.value)}
               // value={username}
@@ -130,6 +133,7 @@ const Signup = () => {
             <input
               type="text"
               className="form-input"
+              placeholder="Firstname"
               {...register('firstname')}
               // onChange={(e) => setFirstname(e.target.value)}
               // value={firstname}
@@ -146,6 +150,7 @@ const Signup = () => {
             <input
               type="text"
               className="form-input"
+              placeholder="Lastname"
               {...register('lastname')}
               // onChange={(e) => setLastname(e.target.value)}
               // value={lastname}

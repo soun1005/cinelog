@@ -10,7 +10,14 @@ export const useSignup = () => {
 
   const base = 'http://localhost:4000/api/v1';
 
-  const signup = async ({ email, password, username, firstname, lastname }) => {
+  const signup = async ({
+    email,
+    password,
+    confirmPassword,
+    username,
+    firstname,
+    lastname,
+  }) => {
     setIsLoading(true);
     setError(null);
 
@@ -20,13 +27,15 @@ export const useSignup = () => {
       body: JSON.stringify({ email, password, username, firstname, lastname }),
     });
     const json = await response.json();
+    console.log(json);
 
     if (!response.ok) {
       setIsLoading(false);
       setError(json.error);
+      console.log(json);
     }
     if (response.ok) {
-      console.log(response);
+      // console.log(response);
       // update loading state
       navigate('/login');
       setIsLoading(false);

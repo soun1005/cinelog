@@ -49,7 +49,7 @@ const Login = () => {
   const tokenExist = token;
 
   return (
-    <div className="login__container">
+    <div className="login__container  form">
       <div className="form-container">
         <h2 className="form-title">Log in</h2>
         <form

@@ -11,13 +11,15 @@ const createToken = (_id) => {
 
 // signup user
 const signupUser = async (req, res) => {
-  const { email, password, username, firstname, lastname } = req.body;
+  const { email, password, confirmPassword, username, firstname, lastname } =
+    req.body;
 
   try {
     // the model that i created
     const user = await User.signup(
       email,
       password,
+      confirmPassword,
       username,
       firstname,
       lastname
