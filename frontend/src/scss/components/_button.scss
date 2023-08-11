@@ -1,3 +1,5 @@
+@import '../abstracts/mixins';
+
 .btnStyle {
   border: transparent;
   border-radius: 8px;
@@ -17,8 +19,7 @@
   width: 45%;
   background-color: $blackColor;
   span {
-    color: $blueColor;
-    text-shadow: 1px 1px 0px $yellowColor;
+    color: $whiteColor;
   }
 }
 
@@ -27,7 +28,6 @@
   width: 45%;
   background-color: $yellowColor;
   span {
-    color: $blackColor;
-    text-shadow: 1px 1px 0px $blueColor;
+    color: $whiteColor;
   }
 }

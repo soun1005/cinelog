@@ -19,57 +19,66 @@ const Signup = () => {
 
   return (
     <div className="singup__container">
-      <h2>Sign up</h2>
+      <div className="form-container">
+        <h2 className="form-title">Sign up</h2>
 
-      {/* <form className="signup__form"> */}
-      <form className="signup__form" onSubmit={handleSubmit}>
-        <div>
-          <label>Email :</label>
-          <input
-            type="email"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-          />
-        </div>
-        <div>
-          <label>Password :</label>
-          <input
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-          />
-        </div>
-        {/* <div>
+        {/* <form className="signup__form"> */}
+        <form className="signup__form" onSubmit={handleSubmit}>
+          <div>
+            <label className="form-label">Email</label>
+            <input
+              className="form-input"
+              type="email"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+            />
+          </div>
+          <div>
+            <label className="form-label">Password</label>
+            <input
+              className="form-input"
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+            />
+          </div>
+          {/* <div>
           <label>Confirm password :</label>
           <input type="password" />
         </div> */}
-        <div>
-          <label>Username :</label>
-          <input
-            type="text"
-            onChange={(e) => setUsername(e.target.value)}
-            value={username}
-          />
-        </div>
-        <div>
-          <label>First name :</label>
-          <input
-            type="text"
-            onChange={(e) => setFirstname(e.target.value)}
-            value={firstname}
-          />
-        </div>
-        <div>
-          <label>Last name :</label>
-          <input
-            type="text"
-            onChange={(e) => setLastname(e.target.value)}
-            value={lastname}
-          />
-        </div>
-        <button disabled={isLoading}>Sign up</button>
-        {error && <div>{error}</div>}
-      </form>
+          <div>
+            <label className="form-label">Username</label>
+            <input
+              type="text"
+              className="form-input"
+              onChange={(e) => setUsername(e.target.value)}
+              value={username}
+            />
+          </div>
+          <div>
+            <label className="form-label">First name</label>
+            <input
+              type="text"
+              className="form-input"
+              onChange={(e) => setFirstname(e.target.value)}
+              value={firstname}
+            />
+          </div>
+          <div>
+            <label className="form-label">Last name</label>
+            <input
+              type="text"
+              className="form-input"
+              onChange={(e) => setLastname(e.target.value)}
+              value={lastname}
+            />
+          </div>
+          <button disabled={isLoading} className="form-btn btnStyle basicBtn">
+            <span>Sign up</span>
+          </button>
+          {error && <div>{error}</div>}
+        </form>
+      </div>
     </div>
   );
 };

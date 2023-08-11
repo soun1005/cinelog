@@ -35,25 +35,31 @@ const Login = () => {
 
   return (
     <div className="login__container">
-      <h2>Log in</h2>
-      <form className="login__form" onSubmit={handleSubmit}>
-        <div>
-          <label>Email :</label>
-          <input
-            type="text"
-            onChange={(e) => setUser({ ...user, email: e.target.value })}
-          />
-        </div>
-        <div>
-          <label>Password :</label>
-          <input
-            type="password"
-            onChange={(e) => setUser({ ...user, password: e.target.value })}
-          />
-        </div>
-        <button disabled={tokenExist}>Log in</button>
-        {loginStatus === 'rejected' ? <p>{loginError}</p> : null}
-      </form>
+      <div className="form-container">
+        <h2 className="form-title">Log in</h2>
+        <form className="login__form form-wrap" onSubmit={handleSubmit}>
+          <div>
+            <label className="form-label">Email</label>
+            <input
+              type="text"
+              className="form-input"
+              onChange={(e) => setUser({ ...user, email: e.target.value })}
+            />
+          </div>
+          <div>
+            <label className="form-label">Password</label>
+            <input
+              type="password"
+              className="form-input"
+              onChange={(e) => setUser({ ...user, password: e.target.value })}
+            />
+          </div>
+          <button disabled={tokenExist} className="form-btn btnStyle basicBtn">
+            <span>Log in</span>
+          </button>
+          {loginStatus === 'rejected' ? <p>{loginError}</p> : null}
+        </form>
+      </div>
     </div>
   );
 };
