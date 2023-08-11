@@ -21,6 +21,11 @@ button {
   padding: 0;
 }
 
+.wrap {
+  width: 100%;
+  height: 100vh;
+}
+
 .navbar {
   width: 100%;
   height: 15rem;
@@ -275,4 +280,32 @@ button {
 }
 .postercard-title__container-posterWrap img {
   width: 8rem;
+}
+
+.main__movie-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.main__movie-container {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+.main__movie-container .section-title {
+  font-size: 1.4rem;
+}
+.main__movie-container__link {
+  width: 12%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-top: 1rem;
 }

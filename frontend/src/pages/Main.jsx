@@ -15,7 +15,7 @@ const Main = () => {
   const upcomingData = upcomingRes.data;
 
   return (
-    <div>
+    <>
       {nowPlayingData && (
         <MainMovieDisplay
           data={nowPlayingData}
@@ -25,10 +25,10 @@ const Main = () => {
       {upcomingData && (
         <MainMovieDisplay
           data={upcomingData}
-          title="Now Playing"
+          title="Upcoming"
         ></MainMovieDisplay>
       )}
-    </div>
+    </>
   );
 };
 
