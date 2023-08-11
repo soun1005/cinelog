@@ -12,12 +12,10 @@ const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 
 const schema = yup
   .object({
-    email: string()
-      .email('This is not a validate email')
-      .required('Email is required'),
-    password: string()
-      .matches(passwordRules, { message: 'Please check your password' })
-      .required('Required'),
+    email: string().required('Required').email('This is not a validate email'),
+    password: string().required('Required').matches(passwordRules, {
+      message: 'Password incorrect',
+    }),
   })
   .required();
 
@@ -63,14 +61,14 @@ const Login = () => {
             <input
               {...register('email')}
               placeholder="Email"
-              // type="text"
               className="form-input"
-              // onChange={(e) => setUser({ ...user, email: e.target.value })}
             />
           </div>
-          {formState.errors.email?.message !== undefined
-            ? `${formState.errors.email?.message}`
-            : ''}
+          <div className="error">
+            {formState.errors.email?.message !== undefined
+              ? `${formState.errors.email?.message}`
+              : ''}
+          </div>
 
           <div>
             <label className="form-label">Password</label>
@@ -79,11 +77,12 @@ const Login = () => {
               className="form-input"
               {...register('password')}
               placeholder="password"
-              // onChange={(e) => setUser({ ...user, password: e.target.value })}
             />
-            {formState.errors.password?.message !== undefined
-              ? `${formState.errors.password?.message}`
-              : ''}
+            <div className="error">
+              {formState.errors.password?.message !== undefined
+                ? `${formState.errors.password?.message}`
+                : ''}
+            </div>
           </div>
           <button disabled={tokenExist} className="form-btn btnStyle basicBtn">
             <span>Log in</span>

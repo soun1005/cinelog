@@ -11,27 +11,26 @@ const nameRules = /^[A-Za-z]+$/;
 
 const schema = yup
   .object({
-    email: string()
-      .required('Email is required')
-      .email('This is not a validate email'),
-    password: string()
-      .required('Required')
-      .matches(passwordRules, { message: 'Please check your password' }),
+    email: string().required('Required').email('This is not a validate email'),
+    password: string().required('Required').matches(passwordRules, {
+      message:
+        'Min 5 characters, 1 upper case letter, 1 lower case letter, 1 numeric digit.',
+    }),
     // confirmPassword: string()
     //   .oneOf([yup.ref('password'), null], 'Passwords must match')
     //   .required('Required'),
     username: string()
-      .required('Username is required   ')
+      .required('Required')
       .min(2, 'Too Short!')
       .max(50, 'Too Long!')
       .matches(usernameRules, { message: 'Incorrect form of username!' }),
     firstname: string()
-      .required('Firstname is required   ')
+      .required('Required')
       .min(2, 'Too Short!')
       .max(50, 'Too Long!')
       .matches(nameRules, { message: 'Name should only contain alphabets' }),
     lastname: string()
-      .required('Lastname is required   ')
+      .required('Required')
       .min(2, 'Too Short!')
       .max(50, 'Too Long!')
       .matches(nameRules, { message: 'Name should only contain alphabets' }),
@@ -39,12 +38,7 @@ const schema = yup
   .required();
 
 const Signup = () => {
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
-  // const [username, setUsername] = useState('');
-  // const [firstname, setFirstname] = useState('');
-  // const [lastname, setLastname] = useState('');
-
+  // React hook form
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(schema),
   });
@@ -57,6 +51,7 @@ const Signup = () => {
   //   await signup(email, password, username, firstname, lastname);
   //   // console.log(email, password);
   // };
+
   const onSubmit = async (data) => {
     await signup(data);
     console.log('data:', data);
@@ -67,7 +62,6 @@ const Signup = () => {
       <div className="form-container">
         <h2 className="form-title">Sign up</h2>
 
-        {/* <form className="signup__form"> */}
         <form className="signup__form" onSubmit={handleSubmit(onSubmit)}>
           <div>
             <label className="form-label">Email</label>
@@ -79,9 +73,11 @@ const Signup = () => {
               // value={email}
             />
           </div>
-          {formState.errors.email?.message !== undefined
-            ? `${formState.errors.email?.message}`
-            : ''}
+          <div className="error">
+            {formState.errors.email?.message !== undefined
+              ? `${formState.errors.email?.message}`
+              : ''}
+          </div>
 
           <div>
             <label className="form-label">Password</label>
@@ -93,9 +89,11 @@ const Signup = () => {
               // value={password}
             />
           </div>
-          {formState.errors.password?.message !== undefined
-            ? `${formState.errors.password?.message}`
-            : ''}
+          <div className="error">
+            {formState.errors.password?.message !== undefined
+              ? `${formState.errors.password?.message}`
+              : ''}
+          </div>
 
           {/* <div>
             <label className="form-label">Confirm password</label>
@@ -122,9 +120,11 @@ const Signup = () => {
             />
           </div>
           <div>
-            {formState.errors.username?.message !== undefined
-              ? `${formState.errors.username?.message}`
-              : ''}
+            <div className="error">
+              {formState.errors.username?.message !== undefined
+                ? `${formState.errors.username?.message}`
+                : ''}
+            </div>
 
             <label className="form-label">First name</label>
             <input
@@ -135,9 +135,11 @@ const Signup = () => {
               // value={firstname}
             />
           </div>
-          {formState.errors.firstname?.message !== undefined
-            ? `${formState.errors.firstname?.message}`
-            : ''}
+          <div className="error">
+            {formState.errors.firstname?.message !== undefined
+              ? `${formState.errors.firstname?.message}`
+              : ''}
+          </div>
 
           <div>
             <label className="form-label">Last name</label>
@@ -149,9 +151,11 @@ const Signup = () => {
               // value={lastname}
             />
           </div>
-          {formState.errors.lastname?.message !== undefined
-            ? `${formState.errors.lastname?.message}`
-            : ''}
+          <div className="error">
+            {formState.errors.lastname?.message !== undefined
+              ? `${formState.errors.lastname?.message}`
+              : ''}
+          </div>
 
           <button disabled={isLoading} className="form-btn btnStyle basicBtn">
             <span>Sign up</span>

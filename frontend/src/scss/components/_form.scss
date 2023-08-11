@@ -17,12 +17,13 @@
 }
 
 .form-label {
+  display: block;
   font-size: 13px;
+  margin-top: 1.5rem;
 }
 
 .form-input {
   width: 100%;
-  margin-bottom: 1rem;
   border: 1px solid #ddd;
   border-radius: 4px;
   display: block;
