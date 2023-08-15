@@ -3,7 +3,12 @@ import mongoose from 'mongoose';
 
 // create a review
 const createReview = async (req, res) => {
-  const { title, date, comment, ratings, mediaId, userId } = req.body;
+  const { title, date, comment, ratings, mediaId } = req.body;
+
+  const userId = req.user._id;
+
+  // console.log(userId);
+  // return;
 
   let emptyFields = [];
 
@@ -21,9 +26,6 @@ const createReview = async (req, res) => {
   }
   if (!mediaId) {
     emptyFields.push('mediaId');
-  }
-  if (!userId) {
-    emptyFields.push('userId');
   }
 
   if (emptyFields.length > 0) {

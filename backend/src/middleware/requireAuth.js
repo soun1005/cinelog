@@ -1,11 +1,12 @@
 import jwt from 'jsonwebtoken';
-import User from '../models/userModel';
+import User from '../models/user.model.js';
 
 export const requireAuth = async (req, res, next) => {
   // 'next' function to move onto next middleware
 
   // 1. verify authentication
   // grab auth property from header 헤더에서 토큰을 겟!!!
+  console.log(req.headers);
   const { authorization } = req.headers;
   // the 'authorization' result will be string like this 'Bearer deslkgalsdjaglaks'
   // so we need to split the string, second one is token

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { useAuthContext } from './useAuthContext'
+import axios from 'axios';
 
 export const useSignup = () => {
   const [error, setError] = useState(null);
@@ -20,25 +20,29 @@ export const useSignup = () => {
   }) => {
     setIsLoading(true);
     setError(null);
+    try {
+      const response = await axios.post(
+        `${base}/signup`,
+        {
+          email,
+          password,
+          username,
+          firstname,
+          lastname,
+        },
+        {
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
 
-    const response = await fetch(`${base}/signup`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password, username, firstname, lastname }),
-    });
-    const json = await response.json();
-    console.log(json);
-
-    if (!response.ok) {
+      console.log(response.data);
+      if (response.status === 200) {
+        navigate('/login');
+        setIsLoading(false);
+      }
+    } catch (error) {
       setIsLoading(false);
-      setError(json.error);
-      console.log(json);
-    }
-    if (response.ok) {
-      // console.log(response);
-      // update loading state
-      navigate('/login');
-      setIsLoading(false);
+      setError(error.response.data.error);
     }
   };
 

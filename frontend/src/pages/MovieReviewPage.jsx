@@ -11,18 +11,22 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { string } from 'yup';
 import ReactStars from 'react-rating-stars-component';
+import { postReview } from '../redux/features/reviewSlice';
 
 const schema = yup
   .object({
     title: string().required('Required'),
     date: string().required('Required'),
     comment: string().required('Required'),
-    rating: string().required('Required'),
+    ratings: string().required('Required'),
   })
   .required();
 
 const MovieReviewPage = () => {
   const { id_title: idTitle } = useParams();
+  // movie id to get poster information
+  const id = idTitle.split('_')[0];
+
   const dispatch = useDispatch();
 
   const { register, handleSubmit, formState, control } = useForm({
@@ -30,27 +34,36 @@ const MovieReviewPage = () => {
   });
 
   const onSubmit = (data) => {
-    // dispatch(loginUser(data));
+    // dispatch(postReview(data));
     // here dispatch with redux to save review
     // all form datas that are registered!
-    console.log('data:', data);
-  };
+    // console.log('data:', data);
+    // setFinalData(data);
+    // 객체 안의 것들을 끄집어내서 다시 useState에 넣기 위한 작업
+    // const { title, date, comment, ratings } = data;
 
-  // movie id to get poster information
-  const id = idTitle.split('_')[0];
+    // Create a new object with the existing data and the new property
+    // const updatedData = {
+    //   ...finalData, // Spread the existing data
+    //   title: title,
+    //   date: date,
+    //   comment: comment,
+    //   ratings: ratings,
+    // };
+    dispatch(postReview({ ...data, mediaId: id }));
+
+    // setFinalData(updatedData); // Update the state
+  };
 
   useEffect(() => {
     // to fetch movie poster, title and year
     dispatch(movieInfo(id));
+    // Object.assign(finalData, { mediaId: id });
   }, [dispatch, id]);
 
   const movieData = useSelector((state) => {
     return state.info;
   });
-
-  const ratingChanged = (newRating) => {
-    console.log(newRating);
-  };
 
   if (movieData.dataStatus !== 'success') {
     // need to put loader
@@ -137,10 +150,10 @@ const MovieReviewPage = () => {
             {/********** Rating ***********/}
             {/* make component for this? */}
             <div>
-              <label className="form-label">Rating</label>
+              <label className="form-label">Ratings</label>
               <Controller
                 control={control}
-                name="rating"
+                name="ratings"
                 render={({ field }) => (
                   <ReactStars
                     count={5}
@@ -153,8 +166,8 @@ const MovieReviewPage = () => {
               />
             </div>
             <div className="error">
-              {formState.errors.rating?.message !== undefined
-                ? `${formState.errors.rating?.message}`
+              {formState.errors.ratings?.message !== undefined
+                ? `${formState.errors.ratings?.message}`
                 : ''}
             </div>
             {/*  */}
