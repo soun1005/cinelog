@@ -1,19 +1,8 @@
 import DatePicker from 'react-datepicker';
 
-const dateFormat = (date) => date.toLocaleDateString('us-US');
+// const dateFormat = (date) => date.toLocaleDateString('us-US');
 
-const SelectDate = ({
-  label,
-  onChange,
-  selected,
-  name,
-  filterDate,
-  className,
-}) => {
-  const handleOnChange = (date) => {
-    onChange(name, dateFormat(date));
-  };
-
+const SelectDate = ({ label, onChange, selected, filterDate, className }) => {
   const selectedDate = selected ? new Date(selected) : null;
 
   return (
@@ -23,7 +12,7 @@ const SelectDate = ({
         className={`selectDate ${className}`}
         selected={selectedDate}
         dateFormat="dd/MM/yyyy"
-        onChange={handleOnChange}
+        onChange={onChange}
         closeOnScroll={true}
         todayButton="Today"
         filterDate={filterDate}

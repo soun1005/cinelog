@@ -6,40 +6,41 @@ import { movieInfo } from '../redux/features/movieInfoSlice';
 // import CustomBtns from '../components/CustomBtns';
 import SelectDate from '../components/SelectDate';
 import PostercardWithTitle from '../components/PostercardWithTitle';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { string } from 'yup';
+import ReactStars from 'react-rating-stars-component';
 
-// 리덕스(moiveInfoSlice) 있는 정보 꺼내와서 포스터랑 제목 정보 가져오기
 const schema = yup
   .object({
     title: string().required('Required'),
+    date: string().required('Required'),
     comment: string().required('Required'),
+    rating: string().required('Required'),
   })
   .required();
 
 const MovieReviewPage = () => {
-  // const idTitle = useParams()['id-title'];
   const { id_title: idTitle } = useParams();
   const dispatch = useDispatch();
 
-  const { register, handleSubmit, formState } = useForm({
+  const { register, handleSubmit, formState, control } = useForm({
     resolver: yupResolver(schema),
   });
 
   const onSubmit = (data) => {
     // dispatch(loginUser(data));
     // here dispatch with redux to save review
+    // all form datas that are registered!
     console.log('data:', data);
   };
 
   // movie id to get poster information
   const id = idTitle.split('_')[0];
 
-  console.log(id);
-
   useEffect(() => {
+    // to fetch movie poster, title and year
     dispatch(movieInfo(id));
   }, [dispatch, id]);
 
@@ -47,7 +48,10 @@ const MovieReviewPage = () => {
     return state.info;
   });
 
-  console.log(movieData);
+  const ratingChanged = (newRating) => {
+    console.log(newRating);
+  };
+
   if (movieData.dataStatus !== 'success') {
     // need to put loader
     // this is temporary
@@ -56,7 +60,6 @@ const MovieReviewPage = () => {
 
   const { title, releasedDate, poster } = movieData.movieInfo;
   const releasedYear = releasedDate.slice(0, 4);
-  console.log(releasedYear);
 
   return (
     <div>
@@ -86,38 +89,35 @@ const MovieReviewPage = () => {
               />
             </div>
             <div className="error">
-              {formState.errors.email?.message !== undefined
-                ? `${formState.errors.email?.message}`
+              {formState.errors.title?.message !== undefined
+                ? `${formState.errors.title?.message}`
                 : ''}
             </div>
 
             <div>
-              {/* <label className="form-label">Watched on...</label> */}
               {/********** watched on (date) ***********/}
               <div>
-                <SelectDate
-                  label="Watched on..."
-                  className="date-picker"
-                  // onChange={onChange}
-                  // selected={values.birthDate}
-                  name="watched"
-                  filterDate={(d) => {
-                    return new Date() > d;
-                  }}
+                <Controller
+                  control={control}
+                  name="date"
+                  render={({ field }) => (
+                    <SelectDate
+                      label="Watched on..."
+                      className="date-picker"
+                      onChange={(date) => field.onChange(date)}
+                      selected={field.value}
+                      filterDate={(d) => {
+                        return new Date() > d;
+                      }}
+                    />
+                  )}
                 />
               </div>
-              {/* here date picker */}
-              {/* <input
-                type="password"
-                className="form-input"
-                {...register('password')}
-                placeholder="password"
-              />
               <div className="error">
-                {formState.errors.password?.message !== undefined
-                  ? `${formState.errors.password?.message}`
+                {formState.errors.date?.message !== undefined
+                  ? `${formState.errors.date?.message}`
                   : ''}
-              </div> */}
+              </div>
             </div>
             {/********** Comment ***********/}
             <div>
@@ -129,14 +129,36 @@ const MovieReviewPage = () => {
               />
             </div>
             <div className="error">
-              {formState.errors.email?.message !== undefined
-                ? `${formState.errors.email?.message}`
+              {formState.errors.comment?.message !== undefined
+                ? `${formState.errors.comment?.message}`
                 : ''}
             </div>
 
             {/********** Rating ***********/}
             {/* make component for this? */}
-
+            <div>
+              <label className="form-label">Rating</label>
+              <Controller
+                control={control}
+                name="rating"
+                render={({ field }) => (
+                  <ReactStars
+                    count={5}
+                    onChange={(star) => field.onChange(star)}
+                    size={24}
+                    activeColor="#ffd700"
+                    isHalf={true}
+                  />
+                )}
+              />
+            </div>
+            <div className="error">
+              {formState.errors.rating?.message !== undefined
+                ? `${formState.errors.rating?.message}`
+                : ''}
+            </div>
+            {/*  */}
+            <div></div>
             {/* change this to button component */}
             <button
               // disabled={tokenExist}
