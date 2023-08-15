@@ -1,17 +1,16 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
-export default mongoose.model(
-  'Movie',
-  mongoose.Schema({
-    reviewTitle: {
+const reviewSchema = new mongoose.Schema(
+  {
+    title: {
       type: String,
       required: true,
     },
-    reviewDate: {
-      type: String,
+    date: {
+      type: Date,
       required: true,
     },
-    reviewComment: {
+    comment: {
       type: String,
       required: true,
     },
@@ -23,14 +22,13 @@ export default mongoose.model(
       type: String,
       required: true,
     },
-    mediaTitle: {
+    userId: {
       type: String,
       required: true,
     },
-    mediaPoster: {
-      type: String,
-      required: true,
-    },
-  }),
+  },
   { timestamps: true }
 );
+
+const reviewModel = mongoose.model('Review', reviewSchema);
+export default reviewModel;
