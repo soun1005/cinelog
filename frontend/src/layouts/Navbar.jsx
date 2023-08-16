@@ -23,7 +23,7 @@ const Navbar = () => {
 
   const logOut = (
     <div className="linkwrap">
-      <NavLink to={'/'}>Profile</NavLink>
+      <NavLink to={'/profile'}>Profile</NavLink>
       <NavLink
         to={'/login'}
         onClick={() => {

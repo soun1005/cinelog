@@ -1,4 +1,3 @@
-import React from 'react';
 import MainMovieDisplay from '../components/MainMovieDisplay';
 import useApiFetch from '../hooks/useApiFetch';
 
@@ -7,11 +6,11 @@ const Main = () => {
   const upcomingEndpoint = 'http://localhost:4000/api/v1/movies/upcoming';
 
   // now playing
-  const nowPlayingRes = useApiFetch(nowPlayingEndpoint);
+  const nowPlayingRes = useApiFetch(nowPlayingEndpoint, 16);
   const nowPlayingData = nowPlayingRes.data;
 
   // upcoming
-  const upcomingRes = useApiFetch(upcomingEndpoint);
+  const upcomingRes = useApiFetch(upcomingEndpoint, 16);
   const upcomingData = upcomingRes.data;
 
   return (

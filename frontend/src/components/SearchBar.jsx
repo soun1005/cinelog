@@ -35,7 +35,7 @@ const SearchBar = () => {
         onChange={(e) => setSearchTerm(e.target.value)}
         onKeyDown={handleKeyDown}
         className="search__input"
-        placeholder="search"
+        placeholder="Search movies"
       />
       <NavLink to={'search'} className="search__btnWrap">
         <button className="search__btn" onClick={handleSearch}>

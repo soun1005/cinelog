@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MovieReviewPage from './pages/MovieReviewPage';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Profile from './pages/Profile';
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
             <Route path="/search" element={<SearchResult />} />
             <Route path="/movie/:id" element={<MovieInfoPage />} />
             <Route path="/review/:id_title" element={<MovieReviewPage />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </div>
       </BrowserRouter>
