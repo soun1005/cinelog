@@ -32,7 +32,7 @@ export const usePostReview = () => {
 
       console.log(response.data);
       if (response.status === 200) {
-        navigate('/movie');
+        navigate(`/movie/${mediaId}`);
         setIsLoading(false);
       }
     } catch (error) {
