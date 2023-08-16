@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 import { useEffect } from 'react';
+import { usePostReview } from '../hooks/usePostReview';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { movieInfo } from '../redux/features/movieInfoSlice';
@@ -11,7 +12,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { string } from 'yup';
 import ReactStars from 'react-rating-stars-component';
-import { postReview } from '../redux/features/reviewSlice';
+// import { postReview } from '../redux/features/reviewSlice';
 
 const schema = yup
   .object({
@@ -23,6 +24,8 @@ const schema = yup
   .required();
 
 const MovieReviewPage = () => {
+  // initialising
+
   const { id_title: idTitle } = useParams();
   // movie id to get poster information
   const id = idTitle.split('_')[0];
@@ -33,27 +36,18 @@ const MovieReviewPage = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data) => {
-    // dispatch(postReview(data));
-    // here dispatch with redux to save review
-    // all form datas that are registered!
-    // console.log('data:', data);
-    // setFinalData(data);
-    // 객체 안의 것들을 끄집어내서 다시 useState에 넣기 위한 작업
-    // const { title, date, comment, ratings } = data;
+  const { review, error, isLoading } = usePostReview();
 
-    // Create a new object with the existing data and the new property
-    // const updatedData = {
-    //   ...finalData, // Spread the existing data
-    //   title: title,
-    //   date: date,
-    //   comment: comment,
-    //   ratings: ratings,
-    // };
-    dispatch(postReview({ ...data, mediaId: id }));
-
+  // functions
+  const onSubmit = async (data) => {
+    // dispatch(postReview({ ...data, mediaId: id }));
+    await review({ ...data, mediaId: id });
     // setFinalData(updatedData); // Update the state
   };
+
+  if (error) {
+    console.log(error);
+  }
 
   useEffect(() => {
     // to fetch movie poster, title and year
@@ -173,10 +167,7 @@ const MovieReviewPage = () => {
             {/*  */}
             <div></div>
             {/* change this to button component */}
-            <button
-              // disabled={tokenExist}
-              className="form-btn btnStyle basicBtn"
-            >
+            <button disabled={isLoading} className="form-btn btnStyle basicBtn">
               <span>Save</span>
             </button>
             <button
