@@ -7,5 +7,6 @@ const router = express.Router({ mergeParams: true });
 router.use(requireAuth);
 // GET user information to load them on profile page
 router.post('/profile', profileController.loadUser);
+router.post('/profile/reviews', profileController.loadReviews);
 
 export default router;

@@ -45,6 +45,37 @@ export const loadUser = createAsyncThunk(
   }
 );
 
+// load reviews
+// main function to call API to login
+export const loadReviews = createAsyncThunk(
+  'profile/loadReviews',
+  // promise
+  async (_, { rejectWithValue }) => {
+    try {
+      const token = localStorage.getItem('token');
+      if (token) {
+        const res = await axios.post(
+          `${base}/profile/reviews`,
+          {},
+          // the value that user send to DB by API
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        // console.log(res.data);
+        const reviews = res.data;
+
+        // will be saved in the 'action.payload'
+        // the data that is received by API -> to display on profile
+        return { reviews };
+      }
+    } catch (error) {
+      const errorMsg = error.response.data.message;
+      return rejectWithValue(errorMsg);
+    }
+  }
+);
+
 const profileSlice = createSlice({
   name: 'profile',
   initialState,
@@ -59,7 +90,7 @@ const profileSlice = createSlice({
 
     // when loadUser function result is 'fullfilled'
     builder.addCase(loadUser.fulfilled, (state, action) => {
-      console.log(action.payload);
+      // console.log(action.payload);
       if (action.payload) {
         return {
           ...state,
@@ -71,6 +102,31 @@ const profileSlice = createSlice({
 
     // when loadUser function result is 'rejected'
     builder.addCase(loadUser.rejected, (state, action) => {
+      return {
+        ...state,
+        profileStatus: 'rejected',
+      };
+    });
+
+    //**********load reviews *************
+    builder.addCase(loadReviews.pending, (state, action) => {
+      return { ...state, profileStatus: 'pending' };
+    });
+
+    // when loadUser function result is 'fullfilled'
+    builder.addCase(loadReviews.fulfilled, (state, action) => {
+      console.log(action.payload);
+      if (action.payload) {
+        return {
+          ...state,
+          reviews: action.payload.reviews,
+          profileStatus: 'success',
+        };
+      } else return state;
+    });
+
+    // when loadUser function result is 'rejected'
+    builder.addCase(loadReviews.rejected, (state, action) => {
       return {
         ...state,
         profileStatus: 'rejected',
