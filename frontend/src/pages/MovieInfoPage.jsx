@@ -1,38 +1,18 @@
-import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { movieInfo } from '../redux/features/movieInfoSlice';
 import CustomBtns from '../components/CustomBtns';
+import useMovieInfo from '../hooks/useMovieInfo';
 
 const MovieInfoPage = () => {
   // to get movie id
   const { id } = useParams();
-  const dispatch = useDispatch();
+  const movieInfo = useMovieInfo(id);
 
-  useEffect(() => {
-    dispatch(movieInfo(id));
-  }, [dispatch, id]);
-
-  // get redux state
-  // 총 두개의 state -> search, info
-  // 두개중, info만 사용할 것임
-  // state.info.movieInfo,  state.info.movieCast,  state.info.movieCrew
-  const movieData = useSelector((state) => {
-    return state.info;
-  });
-  // console.log(movieData);
-  if (movieData.dataStatus !== 'success') {
-    // need to put loader
-    // this is temporary
+  if (!movieInfo) {
+    // display loader here or error
     return null;
   }
-  // the datas to display
-  const { title, releasedDate, genre, poster } = movieData.movieInfo;
-  const releasedYear = releasedDate.slice(0, 4);
-  // console.log(releasedDate, releasedYear);
 
-  const { movieCast, movieCrew } = movieData;
-  const movieDirector = movieCrew.name;
+  const { title, releasedYear, genre, poster, movieCast, name } = movieInfo;
 
   return (
     <div className="info__container">
@@ -51,7 +31,7 @@ const MovieInfoPage = () => {
             {/* movie infos */}
             <div className="main-wrap__info-subWrap subInfo">
               <span>Directed by </span>
-              <span>{movieDirector}</span>
+              <span>{name}</span>
             </div>
 
             <div className="main-wrap__info-subWrap subInfo">

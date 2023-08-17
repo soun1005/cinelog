@@ -1,10 +1,5 @@
-/* eslint-disable no-undef */
-import { useEffect } from 'react';
 import { usePostReview } from '../hooks/usePostReview';
 import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { movieInfo } from '../redux/features/movieInfoSlice';
-// import CustomBtns from '../components/CustomBtns';
 import SelectDate from '../components/SelectDate';
 import PostercardWithTitle from '../components/PostercardWithTitle';
 import { Controller, useForm } from 'react-hook-form';
@@ -12,7 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { string } from 'yup';
 import ReactStars from 'react-rating-stars-component';
-// import { postReview } from '../redux/features/reviewSlice';
+import useMovieInfo from '../hooks/useMovieInfo';
 
 const schema = yup
   .object({
@@ -24,13 +19,9 @@ const schema = yup
   .required();
 
 const MovieReviewPage = () => {
-  // initialising
-
-  const { id_title: idTitle } = useParams();
   // movie id to get poster information
+  const { id_title: idTitle } = useParams();
   const id = idTitle.split('_')[0];
-
-  const dispatch = useDispatch();
 
   const { register, handleSubmit, formState, control } = useForm({
     resolver: yupResolver(schema),
@@ -49,24 +40,13 @@ const MovieReviewPage = () => {
     console.log(error);
   }
 
-  useEffect(() => {
-    // to fetch movie poster, title and year
-    dispatch(movieInfo(id));
-    // Object.assign(finalData, { mediaId: id });
-  }, [dispatch, id]);
-
-  const movieData = useSelector((state) => {
-    return state.info;
-  });
-
-  if (movieData.dataStatus !== 'success') {
-    // need to put loader
-    // this is temporary
+  // custom hook to get movie info
+  const movieInfo = useMovieInfo(id);
+  if (!movieInfo) {
+    // display loader here or error
     return null;
   }
-
-  const { title, releasedDate, poster } = movieData.movieInfo;
-  const releasedYear = releasedDate.slice(0, 4);
+  const { title, releasedYear, poster } = movieInfo;
 
   return (
     <div>

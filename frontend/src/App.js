@@ -9,6 +9,7 @@ import MovieReviewPage from './pages/MovieReviewPage';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Profile from './pages/Profile';
+import Test from './pages/Test';
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
             <Route path="/movie/:id" element={<MovieInfoPage />} />
             <Route path="/review/:id_title" element={<MovieReviewPage />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/test" element={<Test />} />
           </Routes>
         </div>
       </BrowserRouter>
