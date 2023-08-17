@@ -7,8 +7,6 @@ import CustomBtns from '../components/CustomBtns';
 const MovieInfoPage = () => {
   // to get movie id
   const { id } = useParams();
-  // const idToNum = parseInt(id, 10);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
