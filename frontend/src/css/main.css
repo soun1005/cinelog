@@ -665,3 +665,13 @@ input:focus {
       flex-basis: auto;
   gap: 4rem;
 }
+
+.star {
+  fill: #ecb400;
+  width: 10px;
+}
+
+.emptyStar {
+  fill: #808080;
+  width: 10px;
+}

@@ -134,7 +134,7 @@ const MovieReviewPage = () => {
                     onChange={(star) => field.onChange(star)}
                     size={24}
                     activeColor="#ffd700"
-                    isHalf={true}
+                    // isHalf={true}
                   />
                 )}
               />

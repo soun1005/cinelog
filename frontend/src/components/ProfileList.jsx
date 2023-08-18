@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import fallback from '../assets/fallback_img.png';
-// import useMovieInfo from '../hooks/useMovieInfo';
+import RatingStars from '../components/RatingStars';
 
 const ProfileList = ({ data, listTitle }) => {
   const cardsList = data.map((movie) => {
@@ -34,7 +34,7 @@ const ProfileList = ({ data, listTitle }) => {
             </div>
 
             <div className="profile-list__card-wrap__info-wrap__ratings">
-              {ratings}
+              <RatingStars rating={ratings} />
             </div>
           </div>
           {/* <div className="profile-list__card-wrap__info-wrap__button-wrap">
@@ -46,12 +46,18 @@ const ProfileList = ({ data, listTitle }) => {
     );
   });
 
+  console.log('data length', data.length);
+
   return (
     <div className="profile-list__container">
       <div className="profile-list__title-wrap">
         <span>{listTitle}</span> <button>More</button>
       </div>
-      <div className="profile-list__card-container">{cardsList}</div>
+      {data.length === 0 ? (
+        <p>No {listTitle} movies yet!</p>
+      ) : (
+        <div className="profile-list__card-container">{cardsList}</div>
+      )}
     </div>
   );
 };
