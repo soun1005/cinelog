@@ -10,14 +10,14 @@ export const usePostReview = () => {
   const base = 'http://localhost:4000/api/v1';
   //   const token = localStorage.getItem('token');
 
-  const review = async ({ title, date, comment, ratings, mediaId }) => {
+  const review = async ({ reviewTitle, date, comment, ratings, mediaId }) => {
     setIsLoading(true);
     setError(null);
     try {
       const response = await axios.post(
         `${base}/review`,
         {
-          title,
+          reviewTitle,
           date,
           comment,
           ratings,

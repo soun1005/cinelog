@@ -18,7 +18,7 @@ export const movieDataFormat = ({
   overview,
   genres,
 }) => ({
-  id: id,
+  mediaId: id.toString(),
   title: original_title,
   poster: `https://image.tmdb.org/t/p/w500${poster_path}`,
   releasedDate: release_date,

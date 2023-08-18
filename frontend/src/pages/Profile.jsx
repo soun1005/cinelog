@@ -1,13 +1,16 @@
 import { useEffect } from 'react';
 import { loadUser, loadReviews } from '../redux/features/profileSlice';
 import { useDispatch, useSelector } from 'react-redux';
-// import { NavLink } from 'react-router-dom';
 import ProfileList from '../components/ProfileList';
 
 const Profile = () => {
   const dispatch = useDispatch();
   // reviews = array
-  const { userName, reviews } = useSelector((state) => state.profile);
+  const { userName, reviews, movieData } = useSelector(
+    (state) => state.profile
+  );
+
+  // console.log(movieCrew);
 
   // To dispatch loadUser reducer
   useEffect(() => {
@@ -15,15 +18,30 @@ const Profile = () => {
     dispatch(loadReviews());
   }, [dispatch]);
 
-  if (!reviews) {
+  if (!reviews || !movieData) {
     return null;
   }
+  console.log(movieData, reviews);
+
+  const mergedData = movieData.map((movie) => {
+    const matchingReview = reviews.find(
+      (review) => review.mediaId === movie.mediaId
+    );
+
+    if (matchingReview) {
+      // If a matching review is found, create a new merged object
+      return { ...movie, ...matchingReview };
+    }
+
+    return movie;
+  });
+
+  console.log('mergedData:', mergedData);
 
   return (
     <div>
       {userName ? <p>Welcome, {userName}!</p> : <p>Loading user data...</p>}
-      {/* <div className="review__container">{reviewBox}</div> */}
-      <ProfileList listTitle="Reviewed" data={reviews} />
+      <ProfileList listTitle="Reviewed" data={mergedData} />
     </div>
   );
 };

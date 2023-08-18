@@ -2,7 +2,7 @@ import mongoose, { Schema } from 'mongoose';
 
 const reviewSchema = new mongoose.Schema(
   {
-    title: {
+    reviewTitle: {
       type: String,
       required: true,
     },

@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 
 // create a review
 const createReview = async (req, res) => {
-  const { title, date, comment, ratings, mediaId } = req.body;
+  const { reviewTitle, date, comment, ratings, mediaId } = req.body;
 
   const userId = req.user._id;
 
@@ -12,8 +12,8 @@ const createReview = async (req, res) => {
 
   let emptyFields = [];
 
-  if (!title) {
-    emptyFields.push('title');
+  if (!reviewTitle) {
+    emptyFields.push('reviewTitle');
   }
   if (!date) {
     emptyFields.push('date');
@@ -37,7 +37,7 @@ const createReview = async (req, res) => {
   // add data to db
   try {
     const review = await ReviewModel.create({
-      title,
+      reviewTitle,
       date,
       comment,
       ratings,

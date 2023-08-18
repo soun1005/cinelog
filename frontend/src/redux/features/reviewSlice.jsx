@@ -19,11 +19,12 @@ export const postReview = createAsyncThunk(
   'review/create',
   // promise
   async (review, { rejectWithValue }) => {
+    console.log(review);
     try {
       await axios.post(
         `${base}/review`,
         {
-          title: review.title,
+          reviewTitle: review.reviewTitle,
           date: review.date,
           comment: review.comment,
           ratings: review.ratings,

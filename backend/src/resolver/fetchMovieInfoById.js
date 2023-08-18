@@ -11,10 +11,6 @@ const key = process.env.TMDB_API_KEY;
 // receive ID as param from front
 const fetchMovieInfoById = async (idQuery) => {
   try {
-    // console.log(
-    //   `${baseUrl}/search/movie/${idQuery}/credits?api_key=${key}`
-    // );
-
     // endpoint from TMDB to get credit data
     const response = await axios.get(
       `${baseUrl}/movie/${idQuery}?api_key=${key}`

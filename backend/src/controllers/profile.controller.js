@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import User from '../models/user.model.js';
 import Review from '../models/review.model.js';
 import fetchMovieInfoById from '../resolver/fetchMovieInfoById.js';
+// import fetchCreditFromApi from '../resolver/fetchCreditFromApi.js';
 
 // load user
 const loadUser = async (req, res) => {
@@ -25,6 +26,7 @@ const loadUser = async (req, res) => {
 };
 
 // load reviews and the movie info that matches the review by id
+// fetch movie information and credit here when it's called
 const loadReviews = async (req, res) => {
   try {
     // grab token from request
@@ -44,7 +46,9 @@ const loadReviews = async (req, res) => {
       );
 
       const movieData = await Promise.all(movieDataPromises);
-      return res.status(200).json({ reviews: review, movieData });
+
+      console.log(movieData);
+      return res.status(200).json({ reviews: review, movieData, movieCredit });
     } else {
       res.status(404).json({ error: 'Reviews not found' });
     }

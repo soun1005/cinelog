@@ -63,7 +63,6 @@ export const loadReviews = createAsyncThunk(
             headers: { Authorization: `Bearer ${token}` },
           }
         );
-        // console.log(res.data);
         const reviews = res.data.reviews;
         const movieData = res.data.movieData;
 
@@ -117,7 +116,7 @@ const profileSlice = createSlice({
 
     // when loadUser function result is 'fullfilled'
     builder.addCase(loadReviews.fulfilled, (state, action) => {
-      console.log(action.payload);
+      // console.log(action.payload);
       if (action.payload) {
         return {
           ...state,

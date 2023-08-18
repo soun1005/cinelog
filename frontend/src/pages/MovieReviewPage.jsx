@@ -11,7 +11,7 @@ import useMovieInfo from '../hooks/useMovieInfo';
 
 const schema = yup
   .object({
-    title: string().required('Required'),
+    reviewTitle: string().required('Required'),
     date: string().required('Required'),
     comment: string().required('Required'),
     ratings: string().required('Required'),
@@ -70,14 +70,14 @@ const MovieReviewPage = () => {
               {/* title */}
               <label className="form-label">Title</label>
               <input
-                {...register('title')}
+                {...register('reviewTitle')}
                 placeholder="Title"
                 className="form-input"
               />
             </div>
             <div className="error">
-              {formState.errors.title?.message !== undefined
-                ? `${formState.errors.title?.message}`
+              {formState.errors.reviewTitle?.message !== undefined
+                ? `${formState.errors.reviewTitle?.message}`
                 : ''}
             </div>
 
