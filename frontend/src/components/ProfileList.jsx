@@ -1,13 +1,14 @@
 import { NavLink } from 'react-router-dom';
 // import fallback from '../assets/fallback_img.png';
+// import useMovieInfo from '../hooks/useMovieInfo';
 
 const ProfileList = ({ data, listTitle }) => {
   const cardsList = data.map((movie) => {
-    // const { poster, releasedDate, director, reviewedDate, id, title } = movie;
     const { createdAt, _id, ratings } = movie;
     // const posterSrc = poster.includes('null') ? fallback : poster;
 
-    // useMovieInfo 사용해서 id에 맞는 영화를 찾아 정보 넣기
+    // React Hook "useMovieInfo" cannot be called inside a callback?
+    // const movieInfo = useMovieInfo(mediaId);
 
     return (
       // each page's URL set to redirect to review page

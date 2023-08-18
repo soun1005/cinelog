@@ -11,6 +11,7 @@ const initialState = {
   id: '',
   profileStatus: isUserLoaded,
   profileUpdated: null,
+  movieData: '',
 };
 
 const base = 'http://localhost:4000/api/v1';
@@ -63,11 +64,12 @@ export const loadReviews = createAsyncThunk(
           }
         );
         // console.log(res.data);
-        const reviews = res.data;
+        const reviews = res.data.reviews;
+        const movieData = res.data.movieData;
 
         // will be saved in the 'action.payload'
         // the data that is received by API -> to display on profile
-        return { reviews };
+        return { reviews, movieData };
       }
     } catch (error) {
       const errorMsg = error.response.data.message;
@@ -120,6 +122,7 @@ const profileSlice = createSlice({
         return {
           ...state,
           reviews: action.payload.reviews,
+          movieData: action.payload.movieData,
           profileStatus: 'success',
         };
       } else return state;
