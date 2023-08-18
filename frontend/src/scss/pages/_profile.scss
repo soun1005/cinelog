@@ -1,0 +1,15 @@
+.profile__user-wrap {
+  background-color: rgb(243, 217, 221);
+  display: flex;
+  height: 10rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.list__container {
+  width: 100%;
+  //   background-color: red;
+  display: flex;
+  flex-basis: auto;
+  gap: 4rem;
+}

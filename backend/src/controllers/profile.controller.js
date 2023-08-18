@@ -48,7 +48,7 @@ const loadReviews = async (req, res) => {
       const movieData = await Promise.all(movieDataPromises);
 
       console.log(movieData);
-      return res.status(200).json({ reviews: review, movieData, movieCredit });
+      return res.status(200).json({ reviews: review, movieData });
     } else {
       res.status(404).json({ error: 'Reviews not found' });
     }

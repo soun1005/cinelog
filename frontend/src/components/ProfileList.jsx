@@ -7,37 +7,51 @@ const ProfileList = ({ data, listTitle }) => {
     const { createdAt, ratings, poster, _id, title, releasedDate } = movie;
     const posterSrc = poster.includes('null') ? fallback : poster;
 
-    // React Hook "useMovieInfo" cannot be called inside a callback?
-    // const movieInfo = useMovieInfo(mediaId);
+    const releasedYear = releasedDate.slice(0, 4);
+    const reviewedDate = createdAt.slice(0, 10);
 
     return (
       // each page's URL set to redirect to review page
-      <NavLink to={`/movie/${_id}/review`} key={_id} className="poster__link">
-        {
-          <div className="profile-list__card-wrap-poster">
-            <img src={posterSrc} alt={title} />
-          </div>
-        }
-        {
-          <div className="profile-list__card-wrap-title">
-            <span>{title} </span>
-            <span>({releasedDate})</span>
-          </div>
-        }
-
-        <div className="profile-list__card-wrap-reviewDate">
-          <span>Reviewed on</span>
-          <span>{createdAt}</span>
+      <NavLink
+        to={`/movie/${_id}/review`}
+        key={_id}
+        className="profile-list__card-wrap"
+      >
+        {/* poster wrap */}
+        <div className="profile-list__card-wrap__poster">
+          <img src={posterSrc} alt={title} />
         </div>
-        <div className="profile-list__card-wrap-ratings">{ratings}</div>
+        {/* information wrap */}
+        <div className="profile-list__card-wrap__info">
+          <div className="profile-list__card-wrap__info-wrap">
+            <div className="profile-list__card-wrap__info-wrap__title">
+              <span>{title} </span>
+              <span>({releasedYear})</span>
+            </div>
+            <div className="profile-list__card-wrap__info-wrap__reviewDate">
+              <span>Reviewed on</span>
+              <span>{reviewedDate}</span>
+            </div>
+
+            <div className="profile-list__card-wrap__info-wrap__ratings">
+              {ratings}
+            </div>
+          </div>
+          {/* <div className="profile-list__card-wrap__info-wrap__button-wrap">
+            <button>Delete</button>
+            <button>Edit</button>
+          </div> */}
+        </div>
       </NavLink>
     );
   });
 
   return (
     <div className="profile-list__container">
-      <span>{listTitle}</span>
-      <div className="profile-list__card-wrap">{cardsList}</div>
+      <div className="profile-list__title-wrap">
+        <span>{listTitle}</span> <button>More</button>
+      </div>
+      <div className="profile-list__card-container">{cardsList}</div>
     </div>
   );
 };

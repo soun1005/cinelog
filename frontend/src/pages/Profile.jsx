@@ -40,8 +40,13 @@ const Profile = () => {
 
   return (
     <div>
-      {userName ? <p>Welcome, {userName}!</p> : <p>Loading user data...</p>}
-      <ProfileList listTitle="Reviewed" data={mergedData} />
+      <div className="profile__user-wrap">
+        {userName ? <p>Welcome, {userName}!</p> : <p>Loading user data...</p>}
+      </div>
+      <div className="list__container">
+        <ProfileList listTitle="Reviewed" data={mergedData} />
+        <ProfileList listTitle="Reviewed" data={mergedData} />
+      </div>
     </div>
   );
 };

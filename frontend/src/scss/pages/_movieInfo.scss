@@ -27,15 +27,13 @@
   }
 }
 
+// movie info main style
 .main-wrap__info {
   .movieTitle {
-    font-size: 1.5rem;
-    letter-spacing: $letterSpacing;
-    font-weight: $titleWeight;
+    @include movieTitle(1.5rem);
   }
   .movieYear {
-    font-weight: 400;
-    font-size: $xSmall;
+    @include movieYear(12px);
   }
   &-subWrap {
     margin-bottom: 5px;

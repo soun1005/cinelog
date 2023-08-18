@@ -1,3 +1,14 @@
+@mixin movieTitle($fontSize) {
+  font-size: $fontSize;
+  letter-spacing: $letterSpacing;
+  font-weight: $titleWeight;
+}
+
+@mixin movieYear($fontSize) {
+  font-size: $fontSize;
+  font-weight: 400;
+}
+
 @keyframes slideUp {
   0% {
     transform: translateY(100px);
