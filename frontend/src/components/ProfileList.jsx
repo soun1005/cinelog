@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import fallback from '../assets/fallback_img.png';
 import RatingStars from '../components/RatingStars';
 
-const ProfileList = ({ data, listTitle, noDataMsg, userId }) => {
+const ProfileList = ({ data, listTitle, noDataMsg }) => {
   const cardsList = data.map((movie) => {
     const { createdAt, ratings, poster, _id, title, releasedDate, mediaId } =
       movie;
@@ -48,15 +48,18 @@ const ProfileList = ({ data, listTitle, noDataMsg, userId }) => {
     );
   });
 
-  console.log('data length', data.length);
+  // console.log('data length', data.length);
 
   return (
     <div className="profile-list__container">
       <div className="profile-list__title-wrap">
         <span>{listTitle}</span>
-        <NavLink to={`/profile/reviews/${userId}`}>
-          <button>More</button>
-        </NavLink>
+        {data.length !==
+        (
+          <NavLink to={`/profile/reviews`}>
+            <button>More</button>
+          </NavLink>
+        )}
       </div>
       {data.length === 0 ? (
         <p>{noDataMsg}</p>

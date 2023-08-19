@@ -1,0 +1,22 @@
+.review-page {
+  //   background-color: greenyellow;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  &__wrap {
+    width: 450px;
+    margin-bottom: 3rem;
+    padding: 14px;
+    box-shadow: $reviewDetailShadow;
+
+    .btn-wrap {
+      padding: 2rem;
+      //   background-color: pink;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

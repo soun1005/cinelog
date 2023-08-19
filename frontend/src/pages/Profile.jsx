@@ -6,7 +6,7 @@ import ProfileList from '../components/ProfileList';
 const Profile = () => {
   const dispatch = useDispatch();
   // reviews = array
-  const { userName, reviews, movieData, userId } = useSelector(
+  const { userName, reviews, movieData } = useSelector(
     (state) => state.profile
   );
 
@@ -18,10 +18,9 @@ const Profile = () => {
     dispatch(loadReviews());
   }, [dispatch]);
 
-  if (!reviews || !movieData || !userName || !userId) {
+  if (!reviews || !movieData || !userName) {
     return null;
   }
-  // console.log('userId', userId);
 
   const mergedData = movieData.map((movie) => {
     const matchingReview = reviews.find(
@@ -36,7 +35,7 @@ const Profile = () => {
     return movie;
   });
 
-  console.log('mergedData:', mergedData);
+  // console.log('mergedData:', mergedData);
 
   return (
     <div>
@@ -48,13 +47,11 @@ const Profile = () => {
           listTitle="My reviews"
           data={mergedData}
           noDataMsg="No reviews yet!"
-          userId={userId}
         />
         <ProfileList
           listTitle="My favourites"
           data={mergedData}
           noDataMsg="No reviews yet!"
-          userId={userId}
         />
       </div>
     </div>

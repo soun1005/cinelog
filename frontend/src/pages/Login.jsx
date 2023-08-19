@@ -29,7 +29,7 @@ const Login = () => {
 
   const onSubmit = (data) => {
     dispatch(loginUser(data));
-    console.log('data:', data);
+    // console.log('data:', data);
   };
 
   // console.log(watch('email')); // watch input value by passing the name of it
