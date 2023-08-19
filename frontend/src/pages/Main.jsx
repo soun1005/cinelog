@@ -6,6 +6,7 @@ const Main = () => {
   const upcomingEndpoint = 'http://localhost:4000/api/v1/movies/upcoming';
 
   // now playing
+  // number of movies that I wanna display on second arguement
   const nowPlayingRes = useApiFetch(nowPlayingEndpoint, 16);
   const nowPlayingData = nowPlayingRes.data;
 

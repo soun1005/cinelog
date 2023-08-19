@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import fallback from '../assets/fallback_img.png';
 import RatingStars from '../components/RatingStars';
 
-const ProfileList = ({ data, listTitle }) => {
+const ProfileList = ({ data, listTitle, noDataMsg }) => {
   const cardsList = data.map((movie) => {
     const { createdAt, ratings, poster, _id, title, releasedDate } = movie;
     const posterSrc = poster.includes('null') ? fallback : poster;
@@ -54,7 +54,7 @@ const ProfileList = ({ data, listTitle }) => {
         <span>{listTitle}</span> <button>More</button>
       </div>
       {data.length === 0 ? (
-        <p>No {listTitle} movies yet!</p>
+        <p>{noDataMsg}</p>
       ) : (
         <div className="profile-list__card-container">{cardsList}</div>
       )}

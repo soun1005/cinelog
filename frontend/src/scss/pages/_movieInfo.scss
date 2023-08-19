@@ -7,11 +7,15 @@
 
 .info__wrap {
   display: flex;
-  height: 65%;
+  // height: 75%;
   padding: 0 2rem;
+
+  .poster-wrap {
+    width: 30%;
+  }
   img {
-    height: 100%;
-    width: fit-content;
+    width: 100%;
+    box-shadow: $basicShadow;
   }
 }
 
