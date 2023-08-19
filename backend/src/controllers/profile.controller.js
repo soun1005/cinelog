@@ -14,7 +14,7 @@ const loadUser = async (req, res) => {
     if (user) {
       // userName
       // userName 반환 -> 프론트에서 가져가는 내용
-      res.status(200).json(user.username);
+      res.status(200).json({ username: user.username, userId: user._id });
     } else {
       res.status(404).json({ error: 'User not found' });
     }
@@ -47,7 +47,6 @@ const loadReviews = async (req, res) => {
 
       const movieData = await Promise.all(movieDataPromises);
 
-      console.log(movieData);
       return res.status(200).json({ reviews: review, movieData });
     } else {
       res.status(404).json({ error: 'Reviews not found' });

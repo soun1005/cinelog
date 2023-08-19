@@ -1,15 +1,23 @@
-import React from 'react';
+// import { useEffect } from 'react';
 import logo from '../assets/cineloglogo.png';
 import { NavLink } from 'react-router-dom';
 import SearchBar from '../components/SearchBar';
 import { logoutUser } from '../redux/features/authSlice';
+// import { loadUser } from '../redux/features/profileSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
 const Navbar = () => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
+  // if (auth) {
+  //   dispatch(loadUser());
+  // }
 
-  // console.log(auth);
+  // const userId = useSelector((state) => state.profile);
+
+  // useEffect(() => {
+
+  // }, [userId])
 
   const logIn = (
     <div className="linkwrap">
@@ -23,7 +31,7 @@ const Navbar = () => {
 
   const logOut = (
     <div className="linkwrap">
-      <NavLink to={'/profile'}>Profile</NavLink>
+      <NavLink to={`/profile`}>Profile</NavLink>
       <NavLink
         to={'/login'}
         onClick={() => {

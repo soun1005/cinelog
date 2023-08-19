@@ -8,7 +8,8 @@ const initialState = {
   email: '',
   firstName: '',
   lastName: '',
-  id: '',
+  userId: '',
+  userName: '',
   profileStatus: isUserLoaded,
   profileUpdated: null,
   movieData: '',
@@ -33,11 +34,13 @@ export const loadUser = createAsyncThunk(
           }
         );
         // console.log(res.data);
-        const userName = res.data;
+        const userName = res.data.username;
+        const userId = res.data.userId;
+        // const userId = res.data;
 
         // will be saved in the 'action.payload'
         // the data that is received by API -> to display on profile
-        return { userName };
+        return { userName, userId };
       }
     } catch (error) {
       const errorMsg = error.response.data.message;
@@ -93,9 +96,11 @@ const profileSlice = createSlice({
     builder.addCase(loadUser.fulfilled, (state, action) => {
       // console.log(action.payload);
       if (action.payload) {
+        // console.log('action payload', action.payload);
         return {
           ...state,
           userName: action.payload.userName,
+          userId: action.payload.userId,
           profileStatus: 'success',
         };
       } else return state;

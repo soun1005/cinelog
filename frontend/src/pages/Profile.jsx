@@ -6,11 +6,11 @@ import ProfileList from '../components/ProfileList';
 const Profile = () => {
   const dispatch = useDispatch();
   // reviews = array
-  const { userName, reviews, movieData } = useSelector(
+  const { userName, reviews, movieData, userId } = useSelector(
     (state) => state.profile
   );
 
-  // console.log(movieCrew);
+  // const profile = useSelector((state) => console.log(state.profile));
 
   // To dispatch loadUser reducer
   useEffect(() => {
@@ -18,10 +18,10 @@ const Profile = () => {
     dispatch(loadReviews());
   }, [dispatch]);
 
-  if (!reviews || !movieData) {
+  if (!reviews || !movieData || !userName || !userId) {
     return null;
   }
-  console.log(movieData, reviews);
+  // console.log('userId', userId);
 
   const mergedData = movieData.map((movie) => {
     const matchingReview = reviews.find(
@@ -48,11 +48,13 @@ const Profile = () => {
           listTitle="My reviews"
           data={mergedData}
           noDataMsg="No reviews yet!"
+          userId={userId}
         />
         <ProfileList
           listTitle="My favourites"
           data={mergedData}
           noDataMsg="No reviews yet!"
+          userId={userId}
         />
       </div>
     </div>

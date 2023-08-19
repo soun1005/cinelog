@@ -2,9 +2,10 @@ import { NavLink } from 'react-router-dom';
 import fallback from '../assets/fallback_img.png';
 import RatingStars from '../components/RatingStars';
 
-const ProfileList = ({ data, listTitle, noDataMsg }) => {
+const ProfileList = ({ data, listTitle, noDataMsg, userId }) => {
   const cardsList = data.map((movie) => {
-    const { createdAt, ratings, poster, _id, title, releasedDate } = movie;
+    const { createdAt, ratings, poster, _id, title, releasedDate, mediaId } =
+      movie;
     const posterSrc = poster.includes('null') ? fallback : poster;
 
     const releasedYear = releasedDate.slice(0, 4);
@@ -12,8 +13,9 @@ const ProfileList = ({ data, listTitle, noDataMsg }) => {
 
     return (
       // each page's URL set to redirect to review page
+
       <NavLink
-        to={`/movie/${_id}/review`}
+        to={`/profile/review/${mediaId}`}
         key={_id}
         className="profile-list__card-wrap"
       >
@@ -51,7 +53,10 @@ const ProfileList = ({ data, listTitle, noDataMsg }) => {
   return (
     <div className="profile-list__container">
       <div className="profile-list__title-wrap">
-        <span>{listTitle}</span> <button>More</button>
+        <span>{listTitle}</span>
+        <NavLink to={`/profile/reviews/${userId}`}>
+          <button>More</button>
+        </NavLink>
       </div>
       {data.length === 0 ? (
         <p>{noDataMsg}</p>
