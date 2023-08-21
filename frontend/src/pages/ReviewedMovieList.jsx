@@ -8,7 +8,7 @@ const ReviewedMovieList = () => {
     // display loader here or error
     return null;
   }
-  console.log(data);
+  // console.log(data);
 
   return (
     <div>

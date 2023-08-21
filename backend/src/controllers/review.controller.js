@@ -1,4 +1,4 @@
-import ReviewModel from '../models/review.model.js';
+import Review from '../models/review.model.js';
 import mongoose from 'mongoose';
 
 // create a review
@@ -36,7 +36,7 @@ const createReview = async (req, res) => {
 
   // add data to db
   try {
-    const review = await ReviewModel.create({
+    const review = await Review.create({
       reviewTitle,
       date,
       comment,
@@ -50,12 +50,27 @@ const createReview = async (req, res) => {
   }
 };
 
-// get all reviews
-
-// get a single review
-
 // delete a review
+const deleteReview = async (req, res) => {
+  console.log(typeof req.params.id);
+
+  try {
+    const { id: mediaId } = req.params;
+    const result = await Review.deleteOne({ mediaId: mediaId });
+
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ error: 'No such review' });
+    }
+
+    res.status(200).json({ message: 'Review deleted successfully' });
+  } catch (error) {
+    res.status(404).json({ error: 'No such review' });
+  }
+};
+
+// edit review
 
 export default {
   createReview,
+  deleteReview,
 };

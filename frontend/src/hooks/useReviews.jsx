@@ -10,6 +10,8 @@ export const useReviews = () => {
 
   // const profile = useSelector((state) => console.log(state.profile));
 
+  // console.log(reviews, movieData);
+
   // To dispatch loadUser reducer
   useEffect(() => {
     dispatch(loadReviews());
@@ -31,6 +33,7 @@ export const useReviews = () => {
 
     return movie;
   });
+
   return mergedData;
 };
 

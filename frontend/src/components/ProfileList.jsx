@@ -3,6 +3,8 @@ import fallback from '../assets/fallback_img.png';
 import RatingStars from '../components/RatingStars';
 import BtnWithLink from '../components/BtnWithLink';
 import BtnWithEvent from '../components/BtnWithEvent';
+import { useDispatch } from 'react-redux';
+import { deleteReview } from '../redux/features/profileSlice';
 
 const ProfileList = ({
   data,
@@ -11,6 +13,8 @@ const ProfileList = ({
   moreBtn = true,
   buttons = false,
 }) => {
+  const dispatch = useDispatch();
+  console.log(data);
   const cardsList = data.map((movie) => {
     const { createdAt, ratings, poster, _id, title, releasedDate, mediaId } =
       movie;
@@ -19,8 +23,9 @@ const ProfileList = ({
     const releasedYear = releasedDate.slice(0, 4);
     const reviewedDate = createdAt.slice(0, 10);
 
-    const onClick = () => {
+    const handleClick = () => {
       console.log('deleted');
+      dispatch(deleteReview(movie.mediaId));
     };
 
     return (
@@ -63,7 +68,7 @@ const ProfileList = ({
             <BtnWithEvent
               text="Delete"
               className="btnStyle specialBtn reviewBtns"
-              onClick={onClick}
+              onClick={handleClick}
             />
           </div>
         ) : (

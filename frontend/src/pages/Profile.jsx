@@ -21,7 +21,7 @@ const Profile = () => {
     return null;
   }
 
-  console.log('Data:', userName, data);
+  // console.log('Data:', userName, data);
 
   return (
     <div>

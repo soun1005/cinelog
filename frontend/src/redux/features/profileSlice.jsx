@@ -13,6 +13,7 @@ const initialState = {
   profileStatus: isUserLoaded,
   profileUpdated: null,
   movieData: '',
+  reviews: '',
 };
 
 const base = 'http://localhost:4000/api/v1';
@@ -80,6 +81,29 @@ export const loadReviews = createAsyncThunk(
   }
 );
 
+// delete reviews
+export const deleteReview = createAsyncThunk(
+  `profile/deleteReview`,
+  // promise
+  async (reviewId, { rejectWithValue }) => {
+    // console.log(review);
+    try {
+      const token = localStorage.getItem('token');
+      if (token) {
+        await axios.delete(`${base}/review/${reviewId}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        return reviewId;
+      }
+    } catch (error) {
+      console.log(error);
+      const errorMsg = error.response.data.error;
+      // leads to 'builder.addcase rejected'
+      return rejectWithValue(errorMsg);
+    }
+  }
+);
+
 const profileSlice = createSlice({
   name: 'profile',
   initialState,
@@ -137,6 +161,37 @@ const profileSlice = createSlice({
       return {
         ...state,
         profileStatus: 'rejected',
+      };
+    });
+
+    //*************delete review*************
+    builder.addCase(deleteReview.pending, (state, action) => {
+      return { ...state, deleteReviewStatus: 'pending' };
+    });
+    // when loginUser function result is 'fullfilled'
+    builder.addCase(deleteReview.fulfilled, (state, action) => {
+      // console.log('action.payload', action.payload);
+      const deletedReviewId = action.payload;
+      // Update state to remove the deleted review
+      console.log('initialState.reviews', state.reviews);
+      const updatedReviews = state.reviews.filter(
+        (review) => review.mediaId !== deletedReviewId
+      );
+      const updatedMovieData = state.movieData.filter(
+        (movie) => movie.mediaId !== deletedReviewId
+      );
+      return {
+        ...state,
+        reviews: updatedReviews,
+        movieData: updatedMovieData,
+        deleteReviewStatus: 'success',
+      };
+    });
+    builder.addCase(deleteReview.rejected, (state, action) => {
+      return {
+        ...state,
+        reviewError: action.payload,
+        deleteReviewStatus: 'failed',
       };
     });
   },

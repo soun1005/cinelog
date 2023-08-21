@@ -7,5 +7,6 @@ const router = express.Router({ mergeParams: true });
 router.use(requireAuth);
 // POST a new review
 router.post('/review', reviewController.createReview);
+router.delete('/review/:id', reviewController.deleteReview);
 
 export default router;

@@ -3,19 +3,17 @@ import { loadReviews } from '../redux/features/profileSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import ReviewDetailComponent from '../components/ReviewDetailComponent';
-// import { NavLink } from 'react-router-dom';
 import BtnWithLink from '../components/BtnWithLink';
 import BtnWithEvent from '../components/BtnWithEvent';
+import { deleteReview } from '../redux/features/profileSlice';
+import { useNavigate } from 'react-router-dom';
 
 const ReviewDetail = () => {
-  // 1. get movie id from the URL
-  // 2. get movie info(by hook) & get review from back (make route)
-
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   // reviews = array
   const { reviews, movieData } = useSelector((state) => state.profile);
   const { id } = useParams();
-  console.log(id);
 
   useEffect(() => {
     dispatch(loadReviews());
@@ -34,15 +32,18 @@ const ReviewDetail = () => {
       // If a matching review is found, create a new merged object
       return { ...movie, ...matchingReview };
     }
-
     return movie;
   });
-
-  // console.log(mergedData);
 
   const matchedMedia = mergedData.find((obj) => obj.mediaId === id);
 
   console.log(matchedMedia);
+
+  const handleClick = () => {
+    console.log('hi');
+    dispatch(deleteReview(matchedMedia.mediaId));
+    navigate('/profile');
+  };
 
   return (
     <div className="review-page">
@@ -57,11 +58,8 @@ const ReviewDetail = () => {
           <BtnWithEvent
             text="Delete"
             className="btnStyle specialBtn"
-            path={'/'}
+            onClick={handleClick}
           />
-
-          {/* <NavLink>EDIT</NavLink>
-          <NavLink>DELETE</NavLink> */}
         </div>
       </div>
     </div>

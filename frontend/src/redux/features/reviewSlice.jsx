@@ -10,11 +10,11 @@ const initialState = {
   reviewError: '',
   isUserLoggedIn: loggedIn,
   postReviewStatus: '',
+  deleteReviewStatus: '',
 };
 
 const base = 'http://localhost:4000/api/v1';
 
-// to call API to login
 export const postReview = createAsyncThunk(
   'review/create',
   // promise
