@@ -9,6 +9,14 @@
   font-weight: 400;
 }
 
+@mixin btnStyle($bgColor, $fontColor, $width) {
+  width: $width;
+  background-color: $bgColor;
+  span {
+    color: $fontColor;
+  }
+}
+
 @keyframes slideUp {
   0% {
     transform: translateY(100px);

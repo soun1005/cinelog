@@ -1,7 +1,6 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const CustomBtn = ({ text, className, path, disabled = false }) => {
+const BtnWithLink = ({ text, className, path, disabled = false }) => {
   return (
     <NavLink to={path}>
       <button className={`btnStyle ${className}`} disabled={disabled}>
@@ -11,4 +10,4 @@ const CustomBtn = ({ text, className, path, disabled = false }) => {
   );
 };
 
-export default CustomBtn;
+export default BtnWithLink;

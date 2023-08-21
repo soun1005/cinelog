@@ -54,7 +54,7 @@
     }
     // subInfo의 첫번째 span들
     span:first-of-type:not(.movieCast) {
-      color: $darkGreyColor;
+      color: $darkGray;
       font-size: $xSmall;
     }
     span:nth-child(2) {

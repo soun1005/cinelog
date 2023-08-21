@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import CustomBtns from '../components/CustomBtns';
+import BtnWithLink from '../components/BtnWithLink';
 import useMovieInfo from '../hooks/useMovieInfo';
 
 const MovieInfoPage = () => {
@@ -53,14 +53,14 @@ const MovieInfoPage = () => {
             </div>
           </div>
           <div className="main-wrap__buttonWrap">
-            <CustomBtns
+            <BtnWithLink
               text="Review this movie"
               className="main-wrap__btn basicBtn"
               path={`/review/${id}_${title}`}
             />
-            <CustomBtns
+            <BtnWithLink
               text="+ Add to my list"
-              className="main-wrap__btn basicBtn"
+              className="main-wrap__btn specialBtn"
             />
           </div>
         </div>

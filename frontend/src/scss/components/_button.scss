@@ -1,5 +1,12 @@
 @import '../abstracts/mixins';
 
+.btnWrap {
+  margin: 1.2rem 0 4rem 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
 .btnStyle {
   border: transparent;
   border-radius: 8px;
@@ -16,18 +23,10 @@
 
 // for basic btns like save, confirm
 .basicBtn {
-  width: 45%;
-  background-color: $blackColor;
-  span {
-    color: $whiteColor;
-  }
+  @include btnStyle($blackColor, $whiteColor, 170px);
 }
 
-// special button!
+// special btns like cancel, delete
 .specialBtn {
-  width: 45%;
-  background-color: $yellowColor;
-  span {
-    color: $whiteColor;
-  }
+  @include btnStyle($yellowColor, $blackColor, 170px);
 }

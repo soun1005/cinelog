@@ -8,6 +8,8 @@ import * as yup from 'yup';
 import { string } from 'yup';
 import ReactStars from 'react-rating-stars-component';
 import useMovieInfo from '../hooks/useMovieInfo';
+import BtnWithEvent from '../components/BtnWithEvent';
+import BtnWithLink from '../components/BtnWithLink';
 
 const schema = yup
   .object({
@@ -34,6 +36,10 @@ const MovieReviewPage = () => {
     // dispatch(postReview({ ...data, mediaId: id }));
     await review({ ...data, mediaId: id });
     // setFinalData(updatedData); // Update the state
+  };
+
+  const onClickEvent = () => {
+    console.log('the review is saved -> modal띄우기');
   };
 
   if (error) {
@@ -112,7 +118,7 @@ const MovieReviewPage = () => {
               <input
                 {...register('comment')}
                 placeholder="Write your comments about this movie"
-                className="form-input"
+                className="form-input comment-form"
               />
             </div>
             <div className="error">
@@ -144,18 +150,21 @@ const MovieReviewPage = () => {
                 ? `${formState.errors.ratings?.message}`
                 : ''}
             </div>
-            {/*  */}
-            <div></div>
-            {/* change this to button component */}
-            <button disabled={isLoading} className="form-btn btnStyle basicBtn">
-              <span>Save</span>
-            </button>
-            <button
-              // disabled={tokenExist}
-              className="form-btn btnStyle basicBtn"
-            >
-              <span>Cancel</span>
-            </button>
+
+            <div className="btnWrap">
+              <BtnWithEvent
+                text="Save review"
+                className="btnStyle basicBtn"
+                disabled={isLoading}
+                onClick={onClickEvent}
+              />
+              <BtnWithLink
+                text="Cancel"
+                className="btnStyle specialBtn"
+                path={`/movie/${id}`}
+              />
+            </div>
+
             {/* {loginStatus === 'rejected' ? <p>{loginError}</p> : null} */}
           </form>
         </div>

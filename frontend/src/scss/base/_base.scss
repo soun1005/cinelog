@@ -133,3 +133,10 @@ input:focus::placeholder {
 input:focus {
   outline: none;
 }
+
+.react-datepicker-wrapper {
+  width: 100%;
+  input {
+    background-color: $lightGray;
+  }
+}
