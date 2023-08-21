@@ -1,5 +1,10 @@
-.profile-list__container {
+.profile-list__btn-container {
   // background-color: rgb(72, 172, 222);
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.profile-list__container {
   width: 100%;
 }
 
@@ -22,8 +27,6 @@
 
 .profile-list__card-wrap {
   display: flex;
-  // background-color: lime;
-  margin-bottom: 1rem;
 
   &__poster {
     img {

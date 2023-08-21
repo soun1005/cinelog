@@ -1,41 +1,27 @@
 import { useEffect } from 'react';
-import { loadUser, loadReviews } from '../redux/features/profileSlice';
+import { loadUser } from '../redux/features/profileSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import ProfileList from '../components/ProfileList';
+import useReviews from '../hooks/useReviews';
 
 const Profile = () => {
   const dispatch = useDispatch();
-  // reviews = array
-  const { userName, reviews, movieData } = useSelector(
-    (state) => state.profile
-  );
+  const data = useReviews();
+  // // const profile = useSelector((state) => console.log(state.profile));
 
-  // const profile = useSelector((state) => console.log(state.profile));
-
-  // To dispatch loadUser reducer
+  // // To dispatch loadUser reducer
   useEffect(() => {
     dispatch(loadUser());
-    dispatch(loadReviews());
   }, [dispatch]);
 
-  if (!reviews || !movieData || !userName) {
+  const { userName } = useSelector((state) => state.profile);
+
+  if (!userName || !data) {
+    // display loader here or error
     return null;
   }
 
-  const mergedData = movieData.map((movie) => {
-    const matchingReview = reviews.find(
-      (review) => review.mediaId === movie.mediaId
-    );
-
-    if (matchingReview) {
-      // If a matching review is found, create a new merged object
-      return { ...movie, ...matchingReview };
-    }
-
-    return movie;
-  });
-
-  // console.log('mergedData:', mergedData);
+  console.log('Data:', userName, data);
 
   return (
     <div>
@@ -45,12 +31,12 @@ const Profile = () => {
       <div className="list__container">
         <ProfileList
           listTitle="My reviews"
-          data={mergedData}
+          data={data}
           noDataMsg="No reviews yet!"
         />
         <ProfileList
           listTitle="My favourites"
-          data={mergedData}
+          data={data}
           noDataMsg="No reviews yet!"
         />
       </div>
