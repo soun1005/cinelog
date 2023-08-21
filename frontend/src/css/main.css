@@ -336,7 +336,7 @@ input:focus {
   }
 }
 .btnWrap {
-  margin: 1.2rem 0 4rem 0;
+  margin: 1rem 0;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;

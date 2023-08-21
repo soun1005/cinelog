@@ -1,5 +1,6 @@
 import PostercardWithTitle from './PostercardWithTitle';
 import RatingStars from './RatingStars';
+import dayjs from 'dayjs';
 
 const ReviewDetailComponent = ({ data }) => {
   const {
@@ -15,6 +16,9 @@ const ReviewDetailComponent = ({ data }) => {
 
   const releasedYear = releasedDate.slice(0, 4);
 
+  const updatedAtFormatted = dayjs(updatedAt).format('HH:MM DD/MM/YYYY'); // '25/01/2019'
+  const watchedOnFormatted = dayjs(date).format('DD/MM/YYYY');
+
   return (
     <div className="review-detail__container">
       <PostercardWithTitle poster={poster} title={title} date={releasedYear} />
@@ -25,7 +29,7 @@ const ReviewDetailComponent = ({ data }) => {
         </div>
         <div className="review-detail__date-wrap detail-wrap">
           <span>Watched on</span>
-          <span>{date}</span>
+          <span>{watchedOnFormatted}</span>
         </div>
         <div className="review-detail__comment-wrap detail-wrap">
           <span>Comment</span>
@@ -39,7 +43,7 @@ const ReviewDetailComponent = ({ data }) => {
         </div>
         <div className="review-detail__editedDate-wrap detail-wrap">
           <span>Last edited</span>
-          <span>{updatedAt}</span>
+          <span>{updatedAtFormatted}</span>
         </div>
       </div>
     </div>

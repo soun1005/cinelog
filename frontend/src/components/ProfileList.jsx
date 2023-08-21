@@ -54,8 +54,7 @@ const ProfileList = ({ data, listTitle, noDataMsg }) => {
     <div className="profile-list__container">
       <div className="profile-list__title-wrap">
         <span>{listTitle}</span>
-        {data.length !==
-        (
+        {data && (
           <NavLink to={`/profile/reviews`}>
             <button>More</button>
           </NavLink>
