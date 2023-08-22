@@ -14,6 +14,7 @@ const ReviewDetailComponent = ({ data }) => {
     poster,
   } = data;
 
+  // console.log(data);
   const releasedYear = releasedDate.slice(0, 4);
 
   const updatedAtFormatted = dayjs(updatedAt).format('HH:MM DD/MM/YYYY'); // '25/01/2019'

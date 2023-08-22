@@ -11,6 +11,7 @@ import BtnWithLink from '../components/BtnWithLink';
 import useReviews from '../hooks/useReviews';
 import { useDispatch } from 'react-redux';
 import { editReview } from '../redux/features/profileSlice';
+import { useNavigate } from 'react-router';
 
 const schema = yup
   .object({
@@ -22,35 +23,37 @@ const schema = yup
   .required();
 
 // onChange to change useState's state(isEditing)
-const EditReview = ({ mediaId, onChange }) => {
+const EditReview = ({ mediaId }) => {
   const { register, handleSubmit, formState, control } = useForm({
     resolver: yupResolver(schema),
   });
 
-  const reviews = useReviews();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  // custom hooks to get redux states
+  const reviews = useReviews();
+  const movieInfo = useMovieInfo(mediaId);
+
+  if (!reviews || !movieInfo) {
+    // display loader here or error
+    return null;
+  }
 
   const movieReview = reviews.filter((review) => review.mediaId === mediaId);
-
-  // console.log(mediaId);
 
   const { reviewTitle, date, comment, ratings } = movieReview[0];
   //   console.log(date);
 
   // functions
-  const onSubmit = async (data) => {
+  const onSubmit = (data) => {
     // await review({ ...data, mediaId: mediaId });
     // here with new API to update both DB and redux with data
     // console.log('data:', data);
     dispatch(editReview({ data, mediaId: mediaId }));
+    navigate(`/profile/review/${mediaId}`);
   };
 
-  // custom hook to get movie info
-  const movieInfo = useMovieInfo(mediaId);
-  if (!movieInfo) {
-    // display loader here or error
-    return null;
-  }
   const { title, releasedYear, poster } = movieInfo;
 
   return (
@@ -155,16 +158,16 @@ const EditReview = ({ mediaId, onChange }) => {
             </div>
 
             <div className="btnWrap">
-              <BtnWithLink
+              <BtnWithEvent
                 text="Save"
                 className="btnStyle basicBtn"
                 type="submit"
               />
 
-              <BtnWithEvent
+              <BtnWithLink
                 text="Cancel"
                 className="btnStyle specialBtn"
-                onClick={onChange}
+                path={`/profile/review/${mediaId}`}
               />
             </div>
           </form>

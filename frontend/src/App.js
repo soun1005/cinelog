@@ -11,6 +11,7 @@ import Signup from './pages/Signup';
 import Profile from './pages/Profile';
 import ReviewDetail from './pages/ReviewDetail';
 import ReviewedMovieList from './pages/ReviewedMovieList';
+import EditReviewPage from './pages/EditReviewPage';
 
 const App = () => {
   return (
@@ -28,6 +29,10 @@ const App = () => {
             <Route path="/profile" element={<Profile />} />
             <Route path="/profile/review/:id" element={<ReviewDetail />} />
             <Route path="/profile/reviews" element={<ReviewedMovieList />} />
+            <Route
+              path="/profile/review/edit/:id"
+              element={<EditReviewPage />}
+            />
           </Routes>
         </div>
       </BrowserRouter>
