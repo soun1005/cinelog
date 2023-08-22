@@ -14,11 +14,12 @@ const initialState = {
   profileUpdated: null,
   movieData: '',
   reviews: '',
+  reviewUpdate: '',
 };
 
 const base = 'http://localhost:4000/api/v1';
 
-// main function to call API to login
+// LOGIN
 export const loadUser = createAsyncThunk(
   'profile/loadUser',
   // promise
@@ -50,7 +51,7 @@ export const loadUser = createAsyncThunk(
   }
 );
 
-// load reviews
+// GET reviews
 // main function to call API to login
 export const loadReviews = createAsyncThunk(
   'profile/loadReviews',
@@ -81,7 +82,7 @@ export const loadReviews = createAsyncThunk(
   }
 );
 
-// delete reviews
+// DELETE reviews
 export const deleteReview = createAsyncThunk(
   `profile/deleteReview`,
   // promise
@@ -99,6 +100,42 @@ export const deleteReview = createAsyncThunk(
       console.log(error);
       const errorMsg = error.response.data.error;
       // leads to 'builder.addcase rejected'
+      return rejectWithValue(errorMsg);
+    }
+  }
+);
+
+// EDIT review
+export const editReview = createAsyncThunk(
+  'profileEdit/editName',
+  // promise
+  async (review, { rejectWithValue }) => {
+    console.log(review);
+    try {
+      const token = localStorage.getItem('token');
+      if (token) {
+        const res = await axios.put(
+          `${base}/review/${review.mediaId}`,
+          {
+            // the value that user send to DB by API
+            // request body
+            reviewTitle: review.data.reviewTitle,
+            date: review.data.date,
+            comment: review.data.comment,
+            ratings: review.data.ratings,
+            mediaId: review.mediaId,
+          },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        const { reviewTitle, date, comment, ratings, mediaId } = res.data;
+        return { reviewTitle, date, comment, ratings, mediaId };
+        // return res;
+      }
+    } catch (error) {
+      console.log(error);
+      const errorMsg = error.response.data.message;
       return rejectWithValue(errorMsg);
     }
   }
@@ -173,7 +210,7 @@ const profileSlice = createSlice({
       // console.log('action.payload', action.payload);
       const deletedReviewId = action.payload;
       // Update state to remove the deleted review
-      console.log('initialState.reviews', state.reviews);
+      // console.log('initialState.reviews', state.reviews);
       const updatedReviews = state.reviews.filter(
         (review) => review.mediaId !== deletedReviewId
       );
@@ -192,6 +229,35 @@ const profileSlice = createSlice({
         ...state,
         reviewError: action.payload,
         deleteReviewStatus: 'failed',
+      };
+    });
+
+    //*************edit review*************
+    builder.addCase(editReview.pending, (state, action) => {
+      return { ...state, reviewUpdate: 'pending' };
+    });
+    // when loginUser function result is 'fullfilled'
+    builder.addCase(editReview.fulfilled, (state, action) => {
+      console.log('redux action.payload', action.payload);
+      const editedReviewId = action.payload.mediaId;
+      const updatedReview = state.reviews.filter(
+        (review) => review.mediaId === editedReviewId
+      );
+      const updatedMovieData = state.movieData.filter(
+        (movie) => movie.mediaId === editedReviewId
+      );
+      return {
+        ...state,
+        reviews: updatedReview,
+        movieData: updatedMovieData,
+        deleteReviewStatus: 'success',
+      };
+    });
+    builder.addCase(editReview.rejected, (state, action) => {
+      return {
+        ...state,
+        reviewError: action.payload,
+        reviewUpdate: 'failed',
       };
     });
   },

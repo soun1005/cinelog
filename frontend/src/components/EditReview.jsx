@@ -7,8 +7,9 @@ import { string } from 'yup';
 import ReactStars from 'react-rating-stars-component';
 import useMovieInfo from '../hooks/useMovieInfo';
 import BtnWithEvent from '../components/BtnWithEvent';
-// import BtnWithLink from '../components/BtnWithLink';
 import useReviews from '../hooks/useReviews';
+import { useDispatch } from 'react-redux';
+import { editReview } from '../redux/features/profileSlice';
 
 const schema = yup
   .object({
@@ -26,6 +27,8 @@ const EditReview = ({ mediaId, onChange }) => {
   });
 
   const reviews = useReviews();
+  const dispatch = useDispatch();
+
   const movieReview = reviews.filter((review) => review.mediaId === mediaId);
 
   // console.log(mediaId);
@@ -34,13 +37,12 @@ const EditReview = ({ mediaId, onChange }) => {
   //   console.log(date);
 
   // functions
-  const onSubmit = async (data) => {
+  const onSubmit = (data) => {
     // await review({ ...data, mediaId: mediaId });
     // here with new API to update both DB and redux with data
-  };
-
-  const onClickEvent = () => {
-    alert('Movie review is edited');
+    // console.log('data:', data);
+    console.log('data:', data);
+    dispatch(editReview({ data, mediaId: mediaId }));
   };
 
   // custom hook to get movie info
@@ -89,6 +91,7 @@ const EditReview = ({ mediaId, onChange }) => {
                 <Controller
                   control={control}
                   name="date"
+                  defaultValue={date}
                   render={({ field }) => (
                     <SelectDate
                       label="Watched on..."
@@ -132,6 +135,7 @@ const EditReview = ({ mediaId, onChange }) => {
               <Controller
                 control={control}
                 name="ratings"
+                defaultValue={ratings}
                 render={({ field }) => (
                   <ReactStars
                     count={5}
@@ -139,6 +143,7 @@ const EditReview = ({ mediaId, onChange }) => {
                     size={24}
                     activeColor="#ffd700"
                     value={ratings}
+                    defaultValue={ratings}
                   />
                 )}
               />
@@ -150,12 +155,7 @@ const EditReview = ({ mediaId, onChange }) => {
             </div>
 
             <div className="btnWrap">
-              <BtnWithEvent
-                text="Save"
-                className="btnStyle basicBtn"
-                // disabled={isLoading}
-                onClick={onClickEvent}
-              />
+              <BtnWithEvent text="Save" className="btnStyle basicBtn" />
 
               <BtnWithEvent
                 text="Cancel"

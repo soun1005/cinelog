@@ -38,7 +38,7 @@ const ReviewDetail = () => {
 
   const matchedMedia = mergedData.find((obj) => obj.mediaId === id);
 
-  console.log(matchedMedia);
+  // console.log(matchedMedia);
 
   const handleClick = () => {
     // here write logics to edit review

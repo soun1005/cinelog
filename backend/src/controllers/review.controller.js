@@ -69,8 +69,53 @@ const deleteReview = async (req, res) => {
 };
 
 // edit review
+const editReview = async (req, res) => {
+  // console.log(req.body);
+
+  try {
+    // movie id
+    const { id } = req.params;
+    console.log(id);
+    const result = await Review.findOneAndUpdate({ mediaId: id }, req.body, {
+      new: true,
+    });
+    res.status(200).json(result);
+    console.log('Update succeeded');
+  } catch (error) {
+    res.status(404).json({ error: 'Review update failed' });
+    console.log(error);
+  }
+};
+
+/* 
+module.exports.updateUserProfile = async serviceData => {
+  try {
+    const jwtToken = serviceData.headers.authorization.split('Bearer')[1].trim()
+    const decodedJwtToken = jwt.decode(jwtToken)
+    const user = await User.findOneAndUpdate(
+      { _id: decodedJwtToken.id },
+      {
+        firstName: serviceData.body.firstName,
+        lastName: serviceData.body.lastName
+      },
+      { new: true }
+    )
+
+    if (!user) {
+      throw new Error('User not found!')
+    }
+
+    return user.toObject()
+  } catch (error) {
+    console.error('Error in userService.js', error)
+    throw new Error(error)
+  }
+}
+
+*/
 
 export default {
   createReview,
   deleteReview,
+  editReview,
 };

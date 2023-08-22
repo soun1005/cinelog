@@ -8,5 +8,6 @@ router.use(requireAuth);
 // POST a new review
 router.post('/review', reviewController.createReview);
 router.delete('/review/:id', reviewController.deleteReview);
+router.put('/review/:id', reviewController.editReview);
 
 export default router;
