@@ -7,6 +7,7 @@ import { string } from 'yup';
 import ReactStars from 'react-rating-stars-component';
 import useMovieInfo from '../hooks/useMovieInfo';
 import BtnWithEvent from '../components/BtnWithEvent';
+import BtnWithLink from '../components/BtnWithLink';
 import useReviews from '../hooks/useReviews';
 import { useDispatch } from 'react-redux';
 import { editReview } from '../redux/features/profileSlice';
@@ -37,11 +38,10 @@ const EditReview = ({ mediaId, onChange }) => {
   //   console.log(date);
 
   // functions
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     // await review({ ...data, mediaId: mediaId });
     // here with new API to update both DB and redux with data
     // console.log('data:', data);
-    console.log('data:', data);
     dispatch(editReview({ data, mediaId: mediaId }));
   };
 
@@ -155,7 +155,11 @@ const EditReview = ({ mediaId, onChange }) => {
             </div>
 
             <div className="btnWrap">
-              <BtnWithEvent text="Save" className="btnStyle basicBtn" />
+              <BtnWithLink
+                text="Save"
+                className="btnStyle basicBtn"
+                type="submit"
+              />
 
               <BtnWithEvent
                 text="Cancel"
