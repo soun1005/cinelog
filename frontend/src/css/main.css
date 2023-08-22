@@ -591,13 +591,18 @@ input:focus {
   width: 100%;
 }
 
+.review-page__container {
+  width: 25rem;
+  margin: 0 auto;
+}
+
 .review__form {
-  width: 50%;
+  width: 100%;
   margin: 0 auto;
 }
 
 .comment-form {
-  line-height: 6rem;
+  line-height: 2rem;
 }
 
 .profile-list__btn-container {
@@ -721,7 +726,7 @@ input:focus {
   width: 100%;
 }
 .review-page__wrap {
-  width: 450px;
+  width: 37rem;
   margin-bottom: 3rem;
   padding: 14px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;

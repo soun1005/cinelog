@@ -1,5 +1,3 @@
-import { usePostReview } from '../hooks/usePostReview';
-import { useParams } from 'react-router-dom';
 import SelectDate from '../components/SelectDate';
 import PostercardWithTitle from '../components/PostercardWithTitle';
 import { Controller, useForm } from 'react-hook-form';
@@ -9,7 +7,8 @@ import { string } from 'yup';
 import ReactStars from 'react-rating-stars-component';
 import useMovieInfo from '../hooks/useMovieInfo';
 import BtnWithEvent from '../components/BtnWithEvent';
-import BtnWithLink from '../components/BtnWithLink';
+// import BtnWithLink from '../components/BtnWithLink';
+import useReviews from '../hooks/useReviews';
 
 const schema = yup
   .object({
@@ -20,34 +19,32 @@ const schema = yup
   })
   .required();
 
-const MovieReviewPage = () => {
-  // movie id to get poster information
-  const { id_title: idTitle } = useParams();
-  const id = idTitle.split('_')[0];
-
+// onChange to change useState's state(isEditing)
+const EditReview = ({ mediaId, onChange }) => {
   const { register, handleSubmit, formState, control } = useForm({
     resolver: yupResolver(schema),
   });
 
-  const { review, error, isLoading } = usePostReview();
+  const reviews = useReviews();
+  const movieReview = reviews.filter((review) => review.mediaId === mediaId);
+
+  // console.log(mediaId);
+
+  const { reviewTitle, date, comment, ratings } = movieReview[0];
+  //   console.log(date);
 
   // functions
   const onSubmit = async (data) => {
-    // dispatch(postReview({ ...data, mediaId: id }));
-    await review({ ...data, mediaId: id });
-    // setFinalData(updatedData); // Update the state
+    // await review({ ...data, mediaId: mediaId });
+    // here with new API to update both DB and redux with data
   };
 
   const onClickEvent = () => {
-    alert('Movie review is saved');
+    alert('Movie review is edited');
   };
 
-  if (error) {
-    console.log(error);
-  }
-
   // custom hook to get movie info
-  const movieInfo = useMovieInfo(id);
+  const movieInfo = useMovieInfo(mediaId);
   if (!movieInfo) {
     // display loader here or error
     return null;
@@ -55,7 +52,7 @@ const MovieReviewPage = () => {
   const { title, releasedYear, poster } = movieInfo;
 
   return (
-    <div className="review-page">
+    <div>
       <div className="posterContainer">
         <PostercardWithTitle
           poster={poster}
@@ -67,7 +64,6 @@ const MovieReviewPage = () => {
       {/************ form ***********/}
       <div className="form">
         <div>
-          {/* <h2 className="form-title">Log in</h2> */}
           <form
             className="review__form form-wrap"
             onSubmit={handleSubmit(onSubmit)}
@@ -77,7 +73,7 @@ const MovieReviewPage = () => {
               <label className="form-label">Title</label>
               <input
                 {...register('reviewTitle')}
-                placeholder="Title"
+                defaultValue={reviewTitle}
                 className="form-input"
               />
             </div>
@@ -98,7 +94,7 @@ const MovieReviewPage = () => {
                       label="Watched on..."
                       className="date-picker"
                       onChange={(date) => field.onChange(date)}
-                      selected={field.value}
+                      selected={date}
                       filterDate={(d) => {
                         return new Date() > d;
                       }}
@@ -117,8 +113,10 @@ const MovieReviewPage = () => {
               <label className="form-label">Comment</label>
               <textarea
                 {...register('comment')}
-                placeholder="Write your comments about this movie"
+                defaultValue={comment}
                 className="form-input comment-form"
+                rows="5"
+                cols="50"
               />
             </div>
             <div className="error">
@@ -140,7 +138,7 @@ const MovieReviewPage = () => {
                     onChange={(star) => field.onChange(star)}
                     size={24}
                     activeColor="#ffd700"
-                    // isHalf={true}
+                    value={ratings}
                   />
                 )}
               />
@@ -155,18 +153,16 @@ const MovieReviewPage = () => {
               <BtnWithEvent
                 text="Save"
                 className="btnStyle basicBtn"
-                disabled={isLoading}
+                // disabled={isLoading}
                 onClick={onClickEvent}
               />
 
-              <BtnWithLink
+              <BtnWithEvent
                 text="Cancel"
                 className="btnStyle specialBtn"
-                path={`/movie/${id}`}
+                onClick={onChange}
               />
             </div>
-
-            {/* {loginStatus === 'rejected' ? <p>{loginError}</p> : null} */}
           </form>
         </div>
       </div>
@@ -174,4 +170,4 @@ const MovieReviewPage = () => {
   );
 };
 
-export default MovieReviewPage;
+export default EditReview;

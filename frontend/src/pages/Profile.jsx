@@ -7,7 +7,6 @@ import useReviews from '../hooks/useReviews';
 const Profile = () => {
   const dispatch = useDispatch();
   const data = useReviews();
-  // // const profile = useSelector((state) => console.log(state.profile));
 
   // // To dispatch loadUser reducer
   useEffect(() => {

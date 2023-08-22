@@ -14,7 +14,7 @@ const ProfileList = ({
   buttons = false,
 }) => {
   const dispatch = useDispatch();
-  console.log(data);
+  // console.log(data);
   const cardsList = data.map((movie) => {
     const { createdAt, ratings, poster, _id, title, releasedDate, mediaId } =
       movie;

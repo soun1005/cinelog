@@ -1,8 +1,16 @@
-.review__form {
-  width: 50%;
+// review page width
+.review-page__container {
+  width: 25rem;
   margin: 0 auto;
 }
 
+// form container
+.review__form {
+  width: 100%;
+  margin: 0 auto;
+}
+
+// comment input size
 .comment-form {
-  line-height: 6rem;
+  line-height: 2rem;
 }

@@ -8,10 +8,6 @@ export const useReviews = () => {
   // reviews = array
   const { reviews, movieData } = useSelector((state) => state.profile);
 
-  // const profile = useSelector((state) => console.log(state.profile));
-
-  // console.log(reviews, movieData);
-
   // To dispatch loadUser reducer
   useEffect(() => {
     dispatch(loadReviews());
