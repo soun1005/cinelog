@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { apiEndpoint } from '../constant/api';
 
 export const useSignup = () => {
   const [error, setError] = useState(null);
@@ -8,7 +9,7 @@ export const useSignup = () => {
   const navigate = useNavigate();
   //   const { dispatch } = useAuthContext()
 
-  const base = 'http://localhost:4000/api/v1';
+  const base = apiEndpoint;
 
   const signup = async ({ email, password, username, firstname, lastname }) => {
     setIsLoading(true);

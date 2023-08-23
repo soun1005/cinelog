@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { apiEndpoint } from '../../constant/api';
 
 // initial state
 const initialState = {
@@ -9,7 +10,7 @@ const initialState = {
   dataStatus: null,
 };
 
-const base = 'http://localhost:4000/api/v1';
+const base = apiEndpoint;
 
 export const movieInfo = createAsyncThunk(
   'movies/info',

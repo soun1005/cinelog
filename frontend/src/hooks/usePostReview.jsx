@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { apiEndpoint } from '../constant/api';
 
 export const usePostReview = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
   const navigate = useNavigate();
 
-  const base = 'http://localhost:4000/api/v1';
+  const base = apiEndpoint;
   //   const token = localStorage.getItem('token');
 
   const review = async ({ reviewTitle, date, comment, ratings, mediaId }) => {

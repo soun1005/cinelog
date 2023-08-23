@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { apiEndpoint } from '../../constant/api';
 
 const isUserLoaded = !!localStorage.getItem('token');
 
@@ -11,7 +12,7 @@ const initialState = {
   userLoaded: isUserLoaded,
 };
 
-const base = 'http://localhost:4000/api/v1';
+const base = apiEndpoint;
 
 // to call API to login
 export const loginUser = createAsyncThunk(

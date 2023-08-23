@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { apiEndpoint } from '../../constant/api';
 
 const isUserLoaded = !!localStorage.getItem('token');
 
@@ -17,7 +18,7 @@ const initialState = {
   reviewUpdate: '',
 };
 
-const base = 'http://localhost:4000/api/v1';
+const base = apiEndpoint;
 
 // LOGIN
 export const loadUser = createAsyncThunk(
