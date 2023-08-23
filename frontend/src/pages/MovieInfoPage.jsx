@@ -1,11 +1,12 @@
 import { useParams } from 'react-router-dom';
 import BtnWithLink from '../components/BtnWithLink';
 import useMovieInfo from '../hooks/useMovieInfo';
+import useToken from '../hooks/useToken';
 
 const MovieInfoPage = () => {
-  // to get movie id
   const { id } = useParams();
   const movieInfo = useMovieInfo(id);
+  const token = useToken();
 
   if (!movieInfo) {
     // display loader here or error
@@ -16,7 +17,6 @@ const MovieInfoPage = () => {
 
   return (
     <div className="info__container">
-      {/* <span className="temporary"> movie id : {id}</span> */}
       <div className="info__wrap">
         <div className="poster-wrap">
           <img src={poster} alt={title} className="movieInfo-poster" />
@@ -58,10 +58,19 @@ const MovieInfoPage = () => {
               className="main-wrap__btn basicBtn"
               path={`/review/${id}_${title}`}
             />
-            <BtnWithLink
-              text="+ Add to my list"
-              className="main-wrap__btn specialBtn"
-            />
+
+            {token ? (
+              <BtnWithLink
+                text="+ Add to my list"
+                className="main-wrap__btn specialBtn"
+              />
+            ) : (
+              <BtnWithLink
+                text="+ Add to my list"
+                className="main-wrap__btn specialBtn"
+                path={'/login'}
+              />
+            )}
           </div>
         </div>
       </div>

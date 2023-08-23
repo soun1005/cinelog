@@ -12,6 +12,7 @@ import Profile from './pages/Profile';
 import ReviewDetail from './pages/ReviewDetail';
 import ReviewedMovieList from './pages/ReviewedMovieList';
 import EditReviewPage from './pages/EditReviewPage';
+import PrivateRoutes from './privateRoutes';
 
 const App = () => {
   return (
@@ -25,14 +26,16 @@ const App = () => {
             <Route path="/signup" element={<Signup />} />
             <Route path="/search" element={<SearchResult />} />
             <Route path="/movie/:id" element={<MovieInfoPage />} />
-            <Route path="/review/:id_title" element={<MovieReviewPage />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/profile/review/:id" element={<ReviewDetail />} />
-            <Route path="/profile/reviews" element={<ReviewedMovieList />} />
-            <Route
-              path="/profile/review/edit/:id"
-              element={<EditReviewPage />}
-            />
+            <Route element={<PrivateRoutes />}>
+              <Route path="/review/:id_title" element={<MovieReviewPage />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/profile/review/:id" element={<ReviewDetail />} />
+              <Route path="/profile/reviews" element={<ReviewedMovieList />} />
+              <Route
+                path="/profile/review/edit/:id"
+                element={<EditReviewPage />}
+              />
+            </Route>
           </Routes>
         </div>
       </BrowserRouter>
