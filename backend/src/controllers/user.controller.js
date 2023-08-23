@@ -15,11 +15,10 @@ const signupUser = async (req, res) => {
     req.body;
 
   try {
-    // the model that i created
+    // User = the model that i created
     const user = await User.signup(
       email,
       password,
-      confirmPassword,
       username,
       firstname,
       lastname
@@ -27,7 +26,6 @@ const signupUser = async (req, res) => {
 
     const token = createToken(user._id);
 
-    // when it succeed, set status as 200 and json data(which are email and user)
     res.status(200).json({ email, token, username, firstname, lastname });
   } catch (error) {
     res.status(400).json({ error: error.message });

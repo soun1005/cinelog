@@ -38,9 +38,9 @@ const MovieReviewPage = () => {
     // setFinalData(updatedData); // Update the state
   };
 
-  const onClickEvent = () => {
-    alert('Movie review is saved');
-  };
+  // const onClickEvent = () => {
+  //   alert('Movie review is saved');
+  // };
 
   if (error) {
     console.log(error);
@@ -156,7 +156,7 @@ const MovieReviewPage = () => {
                 text="Save"
                 className="btnStyle basicBtn"
                 disabled={isLoading}
-                onClick={onClickEvent}
+                type="onSubmit"
               />
 
               <BtnWithLink

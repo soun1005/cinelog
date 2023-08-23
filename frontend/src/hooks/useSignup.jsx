@@ -10,14 +10,7 @@ export const useSignup = () => {
 
   const base = 'http://localhost:4000/api/v1';
 
-  const signup = async ({
-    email,
-    password,
-    confirmPassword,
-    username,
-    firstname,
-    lastname,
-  }) => {
+  const signup = async ({ email, password, username, firstname, lastname }) => {
     setIsLoading(true);
     setError(null);
     try {
@@ -35,7 +28,7 @@ export const useSignup = () => {
         }
       );
 
-      console.log(response.data);
+      // console.log(response.data);
       if (response.status === 200) {
         navigate('/login');
         setIsLoading(false);
