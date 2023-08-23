@@ -50,18 +50,18 @@ const ReviewDetail = () => {
   };
 
   return (
-    <div className="review-page">
+    <div className="review-page page">
       <div className="review-page__wrap">
         <ReviewDetailComponent data={matchedMedia} />
-        <div className="btnWrap">
+        <div className="btn-wrap">
           <BtnWithLink
             text="Edit review"
-            className="btnStyle basicBtn"
+            className="review-detail-btn btnStyle basicBtn"
             path={`/profile/review/edit/${id}`}
           />
           <BtnWithEvent
             text="Delete"
-            className="btnStyle specialBtn"
+            className="review-detail-btn btnStyle specialBtn"
             onClick={handleDelete}
           />
         </div>

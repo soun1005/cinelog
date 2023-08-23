@@ -11,7 +11,7 @@ const ReviewedMovieList = () => {
   // console.log(data);
 
   return (
-    <div>
+    <div className="review-list-page page">
       <div>My reviews</div>
 
       <ProfileList

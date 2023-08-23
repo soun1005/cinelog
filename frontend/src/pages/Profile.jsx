@@ -23,7 +23,7 @@ const Profile = () => {
   // console.log('Data:', userName, data);
 
   return (
-    <div>
+    <div className="profile-page page">
       <div className="profile__user-wrap">
         {userName ? <p>Welcome, {userName}!</p> : <p>Loading user data...</p>}
       </div>

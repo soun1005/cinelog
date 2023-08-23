@@ -85,9 +85,9 @@ select {
 }
 
 body {
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 0 2rem;
+  // max-width: 1600px;
+  // margin: 0 auto;
+  // padding: 0 2rem;
   box-sizing: border-box;
 }
 
@@ -139,4 +139,16 @@ input:focus {
   input {
     background-color: $lightGray;
   }
+}
+
+// each pages have 2rem margin from footer
+.page {
+  margin-bottom: 2rem;
+}
+
+.navbar,
+.page {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }

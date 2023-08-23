@@ -9,8 +9,7 @@
   font-weight: 400;
 }
 
-@mixin btnStyle($bgColor, $fontColor, $width) {
-  width: $width;
+@mixin btnStyle($bgColor, $fontColor) {
   background-color: $bgColor;
   span {
     color: $fontColor;

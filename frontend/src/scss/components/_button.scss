@@ -1,11 +1,22 @@
 @import '../abstracts/mixins';
 
-.btnWrap {
-  // margin: 1rem 0 2rem 0;
-  margin: 1rem 0;
-  width: 100%;
+// .btnWrap {
+//   margin: 1rem 0;
+//   width: 100%;
+//   display: flex;
+//   justify-content: space-between;
+// }
+
+.btn-wrap {
+  padding-top: 1rem;
   display: flex;
   justify-content: space-between;
+  gap: 2rem;
+  // flex-basis: auto;
+  button,
+  a {
+    width: 100%;
+  }
 }
 
 .btnStyle {
@@ -24,10 +35,10 @@
 
 // for basic btns like save, confirm
 .basicBtn {
-  @include btnStyle($blackColor, $whiteColor, 170px);
+  @include btnStyle($blackColor, $whiteColor);
 }
 
 // special btns like cancel, delete
 .specialBtn {
-  @include btnStyle($yellowColor, $blackColor, 170px);
+  @include btnStyle($yellowColor, $blackColor);
 }

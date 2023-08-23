@@ -55,7 +55,7 @@ const Signup = () => {
   }
 
   return (
-    <div className="singup__container form">
+    <div className="singup__container form page">
       <div className="form-container">
         <h2 className="form-title">Sign up</h2>
 

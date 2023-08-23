@@ -1,8 +1,7 @@
 .info__container {
-  //   height = 100vh - nav height + margin on bottom
-  height: calc(100vh - 25rem);
   display: flex;
   align-items: center;
+  height: $fullHeight;
 }
 
 .info__wrap {

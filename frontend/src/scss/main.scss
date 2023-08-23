@@ -1,7 +1,17 @@
-@import './abstracts/variables', './base/base', './layouts/navbar',
-  './components/searchBar', './components/posterCard', './pages/searchResult',
-  './components/button', './pages/movieInfo', './components/postercardWithTitle',
-  './components/mainMovieDisplay', './abstracts/mixins', './components/form',
-  './components/datePicker', './pages/movieReview', './components/profileList',
-  './pages/profile', './components/ratings', './pages/reviewDetail',
-  './components/reviewDetailComponent', './pages/reviewList';
+@import // base
+  './base/base',
+  // abstractss
+  './abstracts/variables',
+  './abstracts/mixins',
+  // pages
+  './pages/movieInfo',
+  './pages/profile', './pages/reviewList', './pages/login',
+  './pages/reviewDetail',
+  // layouts
+  './layouts/navbar',
+  './layouts/footer',
+  // components
+  './components/postercardWithTitle',
+  './components/mainMovieDisplay', './components/form', './components/searchBar',
+  './components/posterCard', './pages/searchResult', './components/button',
+  './components/datePicker', './components/profileList', './components/ratings';

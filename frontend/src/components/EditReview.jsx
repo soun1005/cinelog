@@ -70,7 +70,7 @@ const EditReview = ({ mediaId }) => {
       <div className="form">
         <div>
           <form
-            className="review__form form-wrap"
+            className="review-form form-wrap"
             onSubmit={handleSubmit(onSubmit)}
           >
             <div>
@@ -157,7 +157,7 @@ const EditReview = ({ mediaId }) => {
                 : ''}
             </div>
 
-            <div className="btnWrap">
+            <div className="btn-wrap">
               <BtnWithEvent
                 text="Save"
                 className="btnStyle basicBtn"

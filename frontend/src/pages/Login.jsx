@@ -49,7 +49,7 @@ const Login = () => {
   const tokenExist = token;
 
   return (
-    <div className="login__container  form">
+    <div className="login__container form page">
       <div className="form-container">
         <h2 className="form-title">Log in</h2>
         <form
@@ -84,7 +84,10 @@ const Login = () => {
                 : ''}
             </div>
           </div>
-          <button disabled={tokenExist} className="form-btn btnStyle basicBtn">
+          <button
+            disabled={tokenExist}
+            className="login-btn btnStyle specialBtn"
+          >
             <span>Log in</span>
           </button>
           {loginStatus === 'rejected' ? <p>{loginError}</p> : null}

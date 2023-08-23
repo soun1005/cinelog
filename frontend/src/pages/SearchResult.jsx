@@ -8,7 +8,7 @@ const SearchResult = () => {
   //   console.log(searchResult);
 
   return (
-    <div>
+    <div className="page">
       {searchResult.length > 0 && (
         <span className="searchResultFor">
           Search results for : "{searchKeyword}"

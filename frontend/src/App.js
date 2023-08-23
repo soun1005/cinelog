@@ -13,6 +13,7 @@ import ReviewDetail from './pages/ReviewDetail';
 import ReviewedMovieList from './pages/ReviewedMovieList';
 import EditReviewPage from './pages/EditReviewPage';
 import PrivateRoutes from './privateRoutes';
+import Footer from './layouts/Footer';
 
 const App = () => {
   return (
@@ -37,6 +38,7 @@ const App = () => {
               />
             </Route>
           </Routes>
+          <Footer />
         </div>
       </BrowserRouter>
     </>

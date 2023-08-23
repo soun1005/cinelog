@@ -55,7 +55,7 @@ const MovieReviewPage = () => {
   const { title, releasedYear, poster } = movieInfo;
 
   return (
-    <div className="review-page">
+    <div className="review-page page">
       <div className="posterContainer">
         <PostercardWithTitle
           poster={poster}
@@ -66,10 +66,10 @@ const MovieReviewPage = () => {
 
       {/************ form ***********/}
       <div className="form">
-        <div>
+        <div className="review-form">
           {/* <h2 className="form-title">Log in</h2> */}
           <form
-            className="review__form form-wrap"
+            className="review-form__wrap form-wrap"
             onSubmit={handleSubmit(onSubmit)}
           >
             <div>
@@ -151,7 +151,7 @@ const MovieReviewPage = () => {
                 : ''}
             </div>
 
-            <div className="btnWrap">
+            <div className="btn-wrap">
               <BtnWithEvent
                 text="Save"
                 className="btnStyle basicBtn"

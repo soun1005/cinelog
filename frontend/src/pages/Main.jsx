@@ -15,7 +15,7 @@ const Main = () => {
   const upcomingData = upcomingRes.data;
 
   return (
-    <>
+    <div className="page">
       {nowPlayingData && (
         <MainMovieDisplay
           data={nowPlayingData}
@@ -28,7 +28,7 @@ const Main = () => {
           title="Upcoming"
         ></MainMovieDisplay>
       )}
-    </>
+    </div>
   );
 };
 

@@ -16,7 +16,7 @@ const MovieInfoPage = () => {
   const { title, releasedYear, genre, poster, movieCast, name } = movieInfo;
 
   return (
-    <div className="info__container">
+    <div className="info__container page">
       <div className="info__wrap">
         <div className="poster-wrap">
           <img src={poster} alt={title} className="movieInfo-poster" />

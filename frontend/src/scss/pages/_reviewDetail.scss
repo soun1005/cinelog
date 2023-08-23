@@ -5,18 +5,81 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  margin-bottom: 2rem;
 
   &__wrap {
     width: 37rem;
     margin-bottom: 3rem;
-    padding: 14px;
+    padding: 2rem;
     box-shadow: $reviewDetailShadow;
 
+    // btn wrap default
     .btn-wrap {
-      padding: 2rem;
-      //   background-color: pink;
+      padding-top: 1rem;
       display: flex;
       justify-content: space-between;
+      gap: 2rem;
+      // flex-basis: auto;
+      button,
+      a {
+        width: 100%;
+      }
     }
   }
+}
+
+.review-detail {
+  margin-top: 3rem;
+
+  // each div has bottom margin
+  // this div contains each div of elements
+  div:not(.review-detail__rating-wrap) {
+    margin-bottom: 10px;
+  }
+
+  &__container {
+    //   background-color: red;
+    width: 100%;
+  }
+
+  // each wrap of contents
+  .detail-wrap {
+    // first spans of each div
+    span:first-of-type {
+      display: inline-block;
+      width: 100px;
+      font-weight: 600;
+    }
+
+    // second spans
+    span:nth-child(2) {
+      font-weight: 400;
+      color: $darkGray;
+    }
+  }
+
+  //   &__title-wrap {
+  //     // background-color: blue;
+  //   }
+
+  //   &__date-wrap {
+  //     // background-color: rgb(62, 226, 117);
+  //   }
+
+  &__comment-wrap {
+    display: flex;
+    // distance between 'comment' and the contents
+    span:nth-child(2) {
+      margin-left: 2rem;
+    }
+  }
+
+  &__rating-wrap {
+    // background-color: rgb(162, 0, 255);
+    display: flex;
+  }
+
+  //   &__editedDate-wrap {
+  //     // background-color: rgb(0, 162, 255);
+  //   }
 }

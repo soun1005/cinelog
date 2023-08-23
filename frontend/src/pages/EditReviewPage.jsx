@@ -40,7 +40,7 @@ const EditReviewPage = () => {
   // const { poster, title, releasedYear } = matchedMedia;
 
   return (
-    <div className="review-edit-page">
+    <div className="review-edit-page page">
       {/* <ReviewDetailComponent data={matchedMedia} /> */}
       {/* <PostercardWithTitle poster={poster} title={title} date={releasedYear} /> */}
       <div>
