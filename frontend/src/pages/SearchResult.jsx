@@ -9,9 +9,13 @@ const SearchResult = () => {
 
   return (
     <div className="page">
-      {searchResult.length > 0 && (
+      {searchResult.length > 0 ? (
         <span className="searchResultFor">
           Search results for : "{searchKeyword}"
+        </span>
+      ) : (
+        <span className="searchResultFor">
+          No results for : "{searchKeyword}"
         </span>
       )}
       <PosterCard data={searchResult} />
