@@ -1,7 +1,23 @@
 .footer {
-  height: 15rem;
   background-color: $blackColor;
-  span {
-    color: $whiteColor;
+  .page {
+    // space between footer and the page containers
+    margin-top: 5rem;
+    height: 15rem;
+    background-color: $blackColor;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    justify-content: space-between;
+    img {
+      width: 15rem;
+    }
+    span {
+      color: $whiteColor;
+      margin-left: 2rem;
+      margin-right: 1.4rem;
+      font-weight: 600;
+      font-size: 18px;
+    }
   }
 }

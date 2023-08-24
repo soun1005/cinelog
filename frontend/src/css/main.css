@@ -442,7 +442,7 @@ input:focus {
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
-.nav-wrap .logowrap img {
+.nav-wrap .logo-wrap img {
   width: 14rem;
 }
 .nav-wrap .linkwrap {
@@ -458,11 +458,32 @@ input:focus {
 }
 
 .footer {
-  height: 15rem;
   background-color: #0f0f0f;
 }
-.footer span {
+.footer .page {
+  margin-top: 5rem;
+  height: 15rem;
+  background-color: #0f0f0f;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.footer .page img {
+  width: 15rem;
+}
+.footer .page span {
   color: #f1f1f1;
+  margin-left: 2rem;
+  margin-right: 1.4rem;
+  font-weight: 600;
+  font-size: 18px;
 }
 
 .postercard-title__container {

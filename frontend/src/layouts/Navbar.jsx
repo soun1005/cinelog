@@ -49,7 +49,7 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="nav-wrap">
-        <NavLink to={'/'} className="logowrap">
+        <NavLink to={'/'} className="logo-wrap">
           <img src={logo} alt="logo" />
         </NavLink>
 
