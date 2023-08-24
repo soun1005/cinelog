@@ -31,7 +31,7 @@ const useCheckStatus = (type, mediaId, userId) => {
           setHasReview(false);
         }
       } catch (error) {
-        console.error(error);
+        console.log(error);
         setHasReview(false);
       }
     };

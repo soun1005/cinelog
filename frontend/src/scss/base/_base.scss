@@ -146,6 +146,10 @@ input:focus {
   margin-bottom: 2rem;
 }
 
+.fullPage {
+  height: $fullHeight;
+}
+
 .navbar,
 .page {
   max-width: 1600px;

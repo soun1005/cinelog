@@ -55,7 +55,7 @@ const Signup = () => {
   }
 
   return (
-    <div className="singup__container form page">
+    <div className="signup__container form page">
       <div className="form-container">
         <h2 className="form-title">Sign up</h2>
 
@@ -152,8 +152,6 @@ const Signup = () => {
               className="form-input"
               placeholder="Lastname"
               {...register('lastname')}
-              // onChange={(e) => setLastname(e.target.value)}
-              // value={lastname}
             />
           </div>
           <div className="error">
@@ -162,7 +160,7 @@ const Signup = () => {
               : ''}
           </div>
 
-          <button disabled={isLoading} className="form-btn btnStyle basicBtn">
+          <button disabled={isLoading} className="form-btn btnStyle specialBtn">
             <span>Sign up</span>
           </button>
           {error && <div>{error}</div>}

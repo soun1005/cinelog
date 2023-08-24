@@ -21,14 +21,16 @@ const MovieInfoPage = () => {
   const { userId } = useSelector((state) => state.profile);
 
   const hasReview = useCheckStatus('review', id, userId);
-
-  if (!userId || !movieInfo) {
+  console.log(hasReview);
+  // const hasReview = false;
+  // console.log(userId, movieInfo);
+  if (!movieInfo) {
     // display loader here or error
     return null;
   }
 
   const { title, releasedYear, genre, poster, movieCast, name } = movieInfo;
-  console.log(hasReview);
+  // console.log(movieInfo);
 
   return (
     <div className="info__container page">
@@ -68,13 +70,22 @@ const MovieInfoPage = () => {
             </div>
           </div>
           <div className="main-wrap__buttonWrap">
-            {!hasReview ? (
+            {!token && (
+              <BtnWithLink
+                text="Login to write review"
+                className="main-wrap__btn basicBtn"
+                path={`/login`}
+              />
+            )}
+
+            {token && !hasReview && (
               <BtnWithLink
                 text="Review this movie"
                 className="main-wrap__btn basicBtn"
                 path={`/review/${id}_${title}`}
               />
-            ) : (
+            )}
+            {token && hasReview && (
               <BtnWithLink
                 text="Check my review"
                 className="main-wrap__btn basicBtn"
