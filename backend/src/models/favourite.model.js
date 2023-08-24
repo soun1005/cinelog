@@ -7,16 +7,24 @@ export default mongoose.model(
       type: String,
       required: true,
     },
-    mediaTitle: {
+    title: {
       type: String,
       required: true,
     },
-    mediaPoster: {
+    poster: {
       type: String,
       required: true,
     },
-    mediaRatings: {
-      type: Number,
+    ratings: {
+      type: String,
+      required: true,
+    },
+    favorite: {
+      type: Boolean,
+      required: true,
+    },
+    userId: {
+      type: String,
       required: true,
     },
   }),

@@ -50,6 +50,28 @@ const createReview = async (req, res) => {
   }
 };
 
+// check if review already exist
+const checkReviewStatus = async (req, res) => {
+  const { mediaId } = req.body;
+  const userId = req.user._id;
+
+  // add data to db
+  try {
+    const review = await Review.findOne({
+      mediaId,
+      userId,
+    });
+
+    if (review) {
+      res.status(200).json({ hasReview: true });
+    } else {
+      res.status(200).json({ hasReview: false });
+    }
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+};
+
 // delete a review
 const deleteReview = async (req, res) => {
   console.log(typeof req.params.id);
@@ -87,35 +109,9 @@ const editReview = async (req, res) => {
   }
 };
 
-/* 
-module.exports.updateUserProfile = async serviceData => {
-  try {
-    const jwtToken = serviceData.headers.authorization.split('Bearer')[1].trim()
-    const decodedJwtToken = jwt.decode(jwtToken)
-    const user = await User.findOneAndUpdate(
-      { _id: decodedJwtToken.id },
-      {
-        firstName: serviceData.body.firstName,
-        lastName: serviceData.body.lastName
-      },
-      { new: true }
-    )
-
-    if (!user) {
-      throw new Error('User not found!')
-    }
-
-    return user.toObject()
-  } catch (error) {
-    console.error('Error in userService.js', error)
-    throw new Error(error)
-  }
-}
-
-*/
-
 export default {
   createReview,
+  checkReviewStatus,
   deleteReview,
   editReview,
 };

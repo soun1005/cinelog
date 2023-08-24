@@ -1,19 +1,34 @@
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import BtnWithLink from '../components/BtnWithLink';
 import useMovieInfo from '../hooks/useMovieInfo';
 import useToken from '../hooks/useToken';
+import useCheckStatus from '../hooks/useCheckStatus';
+import { loadUser } from '../redux/features/profileSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const MovieInfoPage = () => {
   const { id } = useParams();
   const movieInfo = useMovieInfo(id);
   const token = useToken();
+  const dispatch = useDispatch();
 
-  if (!movieInfo) {
+  // // To dispatch loadUser reducer
+  useEffect(() => {
+    dispatch(loadUser());
+  }, [dispatch]);
+
+  const { userId } = useSelector((state) => state.profile);
+
+  const hasReview = useCheckStatus('review', id, userId);
+
+  if (!userId || !movieInfo) {
     // display loader here or error
     return null;
   }
 
   const { title, releasedYear, genre, poster, movieCast, name } = movieInfo;
+  console.log(hasReview);
 
   return (
     <div className="info__container page">
@@ -53,11 +68,19 @@ const MovieInfoPage = () => {
             </div>
           </div>
           <div className="main-wrap__buttonWrap">
-            <BtnWithLink
-              text="Review this movie"
-              className="main-wrap__btn basicBtn"
-              path={`/review/${id}_${title}`}
-            />
+            {!hasReview ? (
+              <BtnWithLink
+                text="Review this movie"
+                className="main-wrap__btn basicBtn"
+                path={`/review/${id}_${title}`}
+              />
+            ) : (
+              <BtnWithLink
+                text="Check my review"
+                className="main-wrap__btn basicBtn"
+                path={`/profile/review/${id}`}
+              />
+            )}
 
             {token ? (
               <BtnWithLink
