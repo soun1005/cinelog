@@ -19,6 +19,7 @@ const signupUser = async (req, res) => {
     const user = await User.signup(
       email,
       password,
+      confirmPassword,
       username,
       firstname,
       lastname
