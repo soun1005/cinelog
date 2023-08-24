@@ -16,9 +16,9 @@ export default function Ratings({ rating }) {
   }
 
   return (
-    <div>
+    <>
       {starIcons}
       {emptyStarIcons}
-    </div>
+    </>
   );
 }

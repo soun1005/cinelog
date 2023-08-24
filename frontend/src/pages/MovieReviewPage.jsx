@@ -138,7 +138,7 @@ const MovieReviewPage = () => {
                   <ReactStars
                     count={5}
                     onChange={(star) => field.onChange(star)}
-                    size={24}
+                    size={40}
                     activeColor="#ffd700"
                     // isHalf={true}
                   />

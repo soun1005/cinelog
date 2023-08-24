@@ -1,9 +1,12 @@
 .star {
   fill: $yellowColor;
-  width: 10px;
 }
 
 .emptyStar {
   fill: $grayColor;
-  width: 10px;
+}
+
+.star,
+.emptyStar {
+  width: 18px;
 }

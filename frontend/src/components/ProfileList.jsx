@@ -51,10 +51,9 @@ const ProfileList = ({
                 <span>Reviewed on</span>
                 <span>{reviewedDate}</span>
               </div>
-
-              <div className="profile-list__card-wrap__info-wrap__ratings">
-                <RatingStars rating={ratings} />
-              </div>
+            </div>
+            <div className="profile-list__card-wrap__info-wrap__ratings">
+              <RatingStars rating={ratings} />
             </div>
           </div>
         </NavLink>

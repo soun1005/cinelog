@@ -343,6 +343,10 @@ input:focus {
   min-height: calc(100vh - 15rem);
 }
 
+.profile-list__card-wrap__info-wrap__button-wrap {
+  width: 30%;
+}
+
 .login-btn {
   margin-top: 1.5rem;
   background-color: red;
@@ -391,8 +395,8 @@ input:focus {
 .review-detail {
   margin-top: 3rem;
 }
-.review-detail div:not(.review-detail__rating-wrap) {
-  margin-bottom: 10px;
+.review-detail div {
+  margin-bottom: 15px;
 }
 .review-detail__container {
   width: 100%;
@@ -412,7 +416,8 @@ input:focus {
   display: flex;
 }
 .review-detail__comment-wrap span:nth-child(2) {
-  margin-left: 2rem;
+  display: inline-block;
+  width: 80%;
 }
 .review-detail__rating-wrap {
   display: -webkit-box;
@@ -802,18 +807,23 @@ input:focus {
 }
 
 .profile-list__card-wrap {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-.profile-list__card-wrap__poster img {
-  width: 80px;
-}
-.profile-list__card-wrap__info {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+.profile-list__card-wrap__poster {
+  width: 10%;
+}
+.profile-list__card-wrap__info {
+  width: 70%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -846,10 +856,13 @@ input:focus {
 
 .star {
   fill: #ecb400;
-  width: 10px;
 }
 
 .emptyStar {
   fill: #808080;
-  width: 10px;
+}
+
+.star,
+.emptyStar {
+  width: 18px;
 }

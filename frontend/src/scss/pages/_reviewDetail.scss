@@ -31,10 +31,12 @@
 .review-detail {
   margin-top: 3rem;
 
-  // each div has bottom margin
   // this div contains each div of elements
-  div:not(.review-detail__rating-wrap) {
-    margin-bottom: 10px;
+  // div:not(.review-detail__rating-wrap) {
+  //   margin-bottom: 10px;
+  // }
+  div {
+    margin-bottom: 15px;
   }
 
   &__container {
@@ -69,8 +71,11 @@
   &__comment-wrap {
     display: flex;
     // distance between 'comment' and the contents
+
     span:nth-child(2) {
-      margin-left: 2rem;
+      // margin-left: 2rem;
+      display: inline-block;
+      width: 80%;
     }
   }
 

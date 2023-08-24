@@ -122,7 +122,7 @@ const EditReview = ({ mediaId }) => {
                 defaultValue={comment}
                 className="form-input comment-form"
                 rows="5"
-                cols="50"
+                cols="30"
               />
             </div>
             <div className="error">
