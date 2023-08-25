@@ -10,6 +10,7 @@ const initialState = {
   favouriteStatus: '',
   favouriteStatusError: '',
   favouriteStatusLoaded: '',
+  favouritedList: '',
 };
 
 const base = apiEndpoint;
@@ -100,19 +101,19 @@ export const loadFavouritedList = createAsyncThunk(
       const token = localStorage.getItem('token');
       if (token) {
         const res = await axios.post(
-          `${base}/profile/reviews`,
+          `${base}/favourites`,
           {},
           // the value that user send to DB by API
           {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
-        const reviews = res.data.reviews;
+        const favouritedList = res.data.favouritedList;
         const movieData = res.data.movieData;
 
         // will be saved in the 'action.payload'
         // the data that is received by API -> to display on profile
-        return { reviews, movieData };
+        return { favouritedList, movieData };
       }
     } catch (error) {
       const errorMsg = error.response.data.message;

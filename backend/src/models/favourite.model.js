@@ -14,5 +14,5 @@ const favouriteSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const FavouriteModel = mongoose.model('favourite', favouriteSchema);
+const FavouriteModel = mongoose.model('Favourite', favouriteSchema);
 export default FavouriteModel;

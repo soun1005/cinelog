@@ -9,5 +9,6 @@ router.use(requireAuth);
 router.post('/favourite', favouriteController.createFavourite);
 router.post('/favourite/status', favouriteController.checkFavouriteStatus);
 router.delete('/favourite/:id', favouriteController.deleteFavourite);
+router.post('/favourites', favouriteController.loadFavouritedList);
 
 export default router;

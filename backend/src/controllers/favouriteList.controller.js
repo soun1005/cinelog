@@ -1,5 +1,6 @@
 import Favourite from '../models/favourite.model.js';
-import mongoose from 'mongoose';
+import fetchMovieInfoById from '../resolver/fetchMovieInfoById.js';
+import jwt from 'jsonwebtoken';
 
 // create favourite list
 const createFavourite = async (req, res) => {
@@ -69,7 +70,7 @@ const loadFavouritedList = async (req, res) => {
     const token = req.headers.authorization.split('Bearer')[1].trim();
     const decodedToken = jwt.decode(token);
     const favourited = await Favourite.find({ userId: decodedToken });
-    // console.log(review);
+    console.log(favourited);
     if (favourited) {
       // const reviews = res.status(200).json(review);
 

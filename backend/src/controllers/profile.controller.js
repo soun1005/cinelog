@@ -1,8 +1,5 @@
 import jwt from 'jsonwebtoken';
 import User from '../models/user.model.js';
-import Review from '../models/review.model.js';
-import fetchMovieInfoById from '../resolver/fetchMovieInfoById.js';
-import Favourite from '../models/favourite.model.js';
 
 // load user
 const loadUser = async (req, res) => {
