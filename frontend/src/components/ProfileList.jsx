@@ -10,6 +10,8 @@ const ProfileList = ({
   data,
   listTitle,
   noDataMsg,
+  dateLabel,
+  // path,
   moreBtn = true,
   buttons = false,
 }) => {
@@ -32,8 +34,9 @@ const ProfileList = ({
       <div key={_id} className="profile-list__btn-container">
         {/* // each page's URL set to redirect to review page */}
         <NavLink
+          // to={path}
           to={`/profile/review/${mediaId}`}
-          // key={_id}
+          key={createdAt}
           className="profile-list__card-wrap"
         >
           {/* poster wrap */}
@@ -48,7 +51,7 @@ const ProfileList = ({
                 <span>({releasedYear})</span>
               </div>
               <div className="profile-list__card-wrap__info-wrap__reviewDate">
-                <span>Reviewed on</span>
+                <span>{dateLabel}</span>
                 <span>{reviewedDate}</span>
               </div>
             </div>

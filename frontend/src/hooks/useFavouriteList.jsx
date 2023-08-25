@@ -3,22 +3,24 @@ import { useEffect } from 'react';
 import { loadFavouritedList } from '../redux/features/favouriteListSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
-export const useReviews = () => {
+export const useFavouriteList = () => {
   const dispatch = useDispatch();
   // reviews = array
 
-  // To dispatch loadUser reducer
   useEffect(() => {
     dispatch(loadFavouritedList());
   }, [dispatch]);
-  const { favouriteList, movieData } = useSelector((state) => state.review);
-  console.log(favouriteList, movieData);
-  if (!favouriteList || !movieData) {
+
+  const { favouritedList, movieData } = useSelector((state) => state.favourite);
+  console.log('개빡치네', favouritedList, movieData);
+
+  console.log(favouritedList, movieData);
+  if (!favouritedList || !movieData) {
     return null;
   }
 
   const mergedData = movieData.map((movie) => {
-    const matchingData = favouriteList.find(
+    const matchingData = favouritedList.find(
       (data) => data.mediaId === movie.mediaId
     );
 
@@ -31,6 +33,7 @@ export const useReviews = () => {
   });
 
   return mergedData;
+  // return { favouriteList, movieData };
 };
 
-export default useReviews;
+export default useFavouriteList;

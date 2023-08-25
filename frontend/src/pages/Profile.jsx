@@ -3,10 +3,14 @@ import { loadUser } from '../redux/features/profileSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import ProfileList from '../components/ProfileList';
 import useReviews from '../hooks/useReviews';
+import useFavouriteList from '../hooks/useFavouriteList';
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const data = useReviews();
+  const reviews = useReviews();
+  const favourite = useFavouriteList();
+
+  // console.log(favourite);
 
   // // To dispatch loadUser reducer
   useEffect(() => {
@@ -15,9 +19,7 @@ const Profile = () => {
 
   const { userName } = useSelector((state) => state.profile);
 
-  console.log(data);
-
-  if (!userName || !data) {
+  if (!userName || !reviews || !favourite) {
     // display loader here or error
     return null;
   }
@@ -32,13 +34,16 @@ const Profile = () => {
       <div className="list__container">
         <ProfileList
           listTitle="My reviews"
-          data={data}
+          dateLabel="Revied on"
+          data={reviews}
           noDataMsg="No reviews yet!"
+          // path={`/profile/review/${mediaId}`}
         />
         <ProfileList
           listTitle="My favourites"
-          data={data}
-          noDataMsg="No reviews yet!"
+          dateLabel="Added on"
+          data={favourite}
+          noDataMsg="No favourited movies yet!"
         />
       </div>
     </div>

@@ -11,6 +11,8 @@ const initialState = {
   favouriteStatusError: '',
   favouriteStatusLoaded: '',
   favouritedList: '',
+  favouritedListError: '',
+  favouritedListLoaded: '',
 };
 
 const base = apiEndpoint;
@@ -94,7 +96,7 @@ export const favouriteStatus = createAsyncThunk(
 
 /***********load movies that are favourited***********/
 export const loadFavouritedList = createAsyncThunk(
-  'review/loadReviews',
+  'favourite/loadReviews',
   // promise
   async (_, { rejectWithValue }) => {
     try {
@@ -108,6 +110,7 @@ export const loadFavouritedList = createAsyncThunk(
             headers: { Authorization: `Bearer ${token}` },
           }
         );
+        // console.log('slice response', res);
         const favouritedList = res.data.favouritedList;
         const movieData = res.data.movieData;
 
@@ -170,6 +173,31 @@ const favouriteListSlice = createSlice({
         ...state,
         reviewError: action.payload,
         favouriteStatusError: 'failed',
+      };
+    });
+
+    /************load favourited movies*************/
+    builder.addCase(loadFavouritedList.pending, (state, action) => {
+      return {
+        ...state,
+        favouritedListLoaded: 'pending',
+      };
+    });
+    // when loginUser function result is 'fullfilled'
+    builder.addCase(loadFavouritedList.fulfilled, (state, action) => {
+      // console.log(action.payload);
+      return {
+        ...state,
+        favouritedList: action.payload.favouritedList,
+        movieData: action.payload.movieData,
+        favouritedListLoaded: 'success',
+      };
+    });
+    builder.addCase(loadFavouritedList.rejected, (state, action) => {
+      return {
+        ...state,
+        favouritedListError: action.payload,
+        favouritedListLoaded: 'failed',
       };
     });
   },
