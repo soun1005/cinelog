@@ -1,14 +1,10 @@
 import Review from '../models/review.model.js';
-import mongoose from 'mongoose';
 
 // create a review
 const createReview = async (req, res) => {
   const { reviewTitle, date, comment, ratings, mediaId } = req.body;
 
   const userId = req.user._id;
-
-  // console.log(userId);
-  // return;
 
   let emptyFields = [];
 

@@ -4,6 +4,7 @@ import movieInfoSlice from './features/movieInfoSlice';
 import authSlice from './features/authSlice';
 import createReviewSlice from './features/createReviewSlice';
 import profileSlice from './features/profileSlice';
+import createFavouriteSlice from './features/createFavouriteSlice';
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     auth: authSlice,
     review: createReviewSlice,
     profile: profileSlice,
+    favourite: createFavouriteSlice,
   },
 });
 

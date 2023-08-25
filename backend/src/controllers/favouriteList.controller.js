@@ -13,6 +13,7 @@ const createFavourite = async (req, res) => {
       userId,
     });
     res.status(200).json(favourite);
+    console.log('posted movie as favourite');
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
@@ -30,7 +31,7 @@ const checkFavouriteStatus = async (req, res) => {
       userId,
     });
 
-    if (review) {
+    if (favourite) {
       res.status(200).json({ favourited: true });
     } else {
       res.status(200).json({ favourited: false });

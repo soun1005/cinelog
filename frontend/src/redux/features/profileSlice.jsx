@@ -2,8 +2,6 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { apiEndpoint } from '../../constant/api';
 
-const isUserLoaded = !!localStorage.getItem('token');
-
 // initial state
 const initialState = {
   email: '',
@@ -11,11 +9,11 @@ const initialState = {
   lastName: '',
   userId: '',
   userName: '',
-  profileStatus: isUserLoaded,
   profileUpdated: null,
   movieData: '',
   reviews: '',
   reviewUpdate: '',
+  profileStatus: '',
 };
 
 const base = apiEndpoint;

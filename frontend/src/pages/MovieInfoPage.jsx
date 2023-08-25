@@ -5,30 +5,31 @@ import useMovieInfo from '../hooks/useMovieInfo';
 import useToken from '../hooks/useToken';
 import useCheckStatus from '../hooks/useCheckStatus';
 import { loadUser } from '../redux/features/profileSlice';
+import { favouriteStatus } from '../redux/features/createFavouriteSlice';
+import { postFavouriteList } from '../redux/features/createFavouriteSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import useReviews from '../hooks/useReviews';
+// import useReviews from '../hooks/useReviews';
+import BtnWithEvent from '../components/BtnWithEvent';
 
 const MovieInfoPage = () => {
   const { id } = useParams();
   const movieInfo = useMovieInfo(id);
   const token = useToken();
   const dispatch = useDispatch();
-  const reviews = useReviews();
-  console.log(reviews);
-  // const matchingReview = reviews.find((review) => review.mediaId === id);
-  // // console.log(matchingReview);
-  // if (matchingReview === undefined) {
-  //   console.log('no review yet');
-  // }
+  const { userId } = useSelector((state) => state.profile);
+  const favourited = useSelector((state) => state.favourite.favouriteStatus);
 
-  // // To dispatch loadUser reducer
+  const handleFavourite = () => {
+    dispatch(postFavouriteList({ mediaId: id, userId: userId }));
+  };
+
   useEffect(() => {
     dispatch(loadUser());
-  }, [dispatch]);
+    dispatch(favouriteStatus({ mediaId: id, userId: userId }));
+  }, [dispatch, id, userId, favourited]);
 
-  const { userId } = useSelector((state) => state.profile);
-
-  const hasReview = useCheckStatus('review', id, userId);
+  const hasReview = useCheckStatus('review', id, userId).hasReview;
+  // console.log('hasReview?', hasReview);
 
   if (!movieInfo) {
     // display loader here or error
@@ -97,17 +98,34 @@ const MovieInfoPage = () => {
                 path={`/profile/review/${id}`}
               />
             )}
-
+            {/* 
             {token ? (
-              <BtnWithLink
+              <BtnWithEvent
                 text="+ Add to my list"
                 className="main-wrap__btn specialBtn"
+                onClick={handleFavourite}
               />
             ) : (
               <BtnWithLink
                 text="+ Add to my list"
                 className="main-wrap__btn specialBtn"
                 path={'/login'}
+              />
+            )} */}
+
+            {token && favourited && (
+              <BtnWithEvent
+                text="heart Aready added"
+                className="main-wrap__btn specialBtn"
+                path={'/profile'}
+              />
+            )}
+
+            {token && !favourited && (
+              <BtnWithEvent
+                text="Add favourite"
+                className="main-wrap__btn specialBtn"
+                onClick={handleFavourite}
               />
             )}
           </div>

@@ -3,10 +3,11 @@ import { apiEndpoint } from '../constant/api';
 import { useEffect, useState } from 'react';
 
 const base = apiEndpoint;
-const endpoint = { review: 'reviewStatus' };
+const endpoint = { review: 'review/status' };
 
 const useCheckStatus = (type, mediaId, userId) => {
   const [hasReview, setHasReview] = useState(false);
+
   const path = endpoint[type];
 
   useEffect(() => {
@@ -25,6 +26,7 @@ const useCheckStatus = (type, mediaId, userId) => {
           }
         );
         const data = response.data;
+
         if (data.hasReview) {
           setHasReview(true);
         } else {
@@ -32,13 +34,13 @@ const useCheckStatus = (type, mediaId, userId) => {
         }
       } catch (error) {
         console.log(error);
-        setHasReview(false);
+        // setFavourited(false);
       }
     };
     checkStatus();
   }, [mediaId, path, userId]);
 
-  return hasReview;
+  return { hasReview };
 };
 
 export default useCheckStatus;

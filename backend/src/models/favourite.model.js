@@ -1,8 +1,7 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
-export default mongoose.model(
-  'Favourite',
-  mongoose.Schema({
+const favouriteSchema = new mongoose.Schema(
+  {
     mediaId: {
       type: String,
       required: true,
@@ -11,6 +10,9 @@ export default mongoose.model(
       type: String,
       required: true,
     },
-  }),
+  },
   { timestamps: true }
 );
+
+const FavouriteModel = mongoose.model('favourite', favouriteSchema);
+export default FavouriteModel;
