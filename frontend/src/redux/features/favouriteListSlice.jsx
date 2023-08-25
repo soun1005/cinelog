@@ -91,6 +91,36 @@ export const favouriteStatus = createAsyncThunk(
   }
 );
 
+/***********load movies that are favourited***********/
+export const loadFavouritedList = createAsyncThunk(
+  'review/loadReviews',
+  // promise
+  async (_, { rejectWithValue }) => {
+    try {
+      const token = localStorage.getItem('token');
+      if (token) {
+        const res = await axios.post(
+          `${base}/profile/reviews`,
+          {},
+          // the value that user send to DB by API
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        const reviews = res.data.reviews;
+        const movieData = res.data.movieData;
+
+        // will be saved in the 'action.payload'
+        // the data that is received by API -> to display on profile
+        return { reviews, movieData };
+      }
+    } catch (error) {
+      const errorMsg = error.response.data.message;
+      return rejectWithValue(errorMsg);
+    }
+  }
+);
+
 const favouriteListSlice = createSlice({
   name: 'favourite',
   initialState,

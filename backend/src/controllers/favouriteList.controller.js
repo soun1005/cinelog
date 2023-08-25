@@ -61,8 +61,42 @@ const deleteFavourite = async (req, res) => {
   }
 };
 
+// load reviews and the movie info that matches the review by id
+// fetch movie information and credit here when it's called
+const loadFavouritedList = async (req, res) => {
+  try {
+    // grab token from request
+    const token = req.headers.authorization.split('Bearer')[1].trim();
+    const decodedToken = jwt.decode(token);
+    const favourited = await Favourite.find({ userId: decodedToken });
+    // console.log(review);
+    if (favourited) {
+      // const reviews = res.status(200).json(review);
+
+      const movieId = favourited.map((movie) => {
+        return movie.mediaId;
+      });
+
+      const movieDataPromises = movieId.map(
+        async (movieId) => await fetchMovieInfoById(movieId)
+      );
+
+      const movieData = await Promise.all(movieDataPromises);
+
+      return res.status(200).json({ favouritedList: favourited, movieData });
+    } else {
+      res.status(404).json({ error: 'Favourited list not found' });
+    }
+    // res.body = user.toObject()
+    // res.status(200).json({ userName });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 export default {
   createFavourite,
   checkFavouriteStatus,
   deleteFavourite,
+  loadFavouritedList,
 };

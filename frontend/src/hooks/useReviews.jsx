@@ -6,13 +6,13 @@ import { useDispatch, useSelector } from 'react-redux';
 export const useReviews = () => {
   const dispatch = useDispatch();
   // reviews = array
-  const { reviews, movieData } = useSelector((state) => state.profile);
 
   // To dispatch loadUser reducer
   useEffect(() => {
     dispatch(loadReviews());
   }, [dispatch]);
-
+  const { reviews, movieData } = useSelector((state) => state.review);
+  console.log(reviews, movieData);
   if (!reviews || !movieData) {
     return null;
   }

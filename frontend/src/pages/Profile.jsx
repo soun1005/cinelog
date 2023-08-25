@@ -15,6 +15,8 @@ const Profile = () => {
 
   const { userName } = useSelector((state) => state.profile);
 
+  console.log(data);
+
   if (!userName || !data) {
     // display loader here or error
     return null;

@@ -8,13 +8,13 @@ const loggedIn = !!localStorage.getItem('token');
 // initial state
 const initialState = {
   token: localStorage.getItem('token'),
-  reviewError: '',
   isUserLoggedIn: loggedIn,
-  postReviewStatus: '',
-  deleteReviewStatus: '',
   movieData: '',
   reviews: '',
   reviewUpdate: '',
+  reviewError: '',
+  postReviewStatus: '',
+  deleteReviewStatus: '',
 };
 
 const base = apiEndpoint;
@@ -23,7 +23,6 @@ export const postReview = createAsyncThunk(
   'review/create',
   // promise
   async (review, { rejectWithValue }) => {
-    console.log(review);
     try {
       await axios.post(
         `${base}/review`,

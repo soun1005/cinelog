@@ -10,5 +10,6 @@ router.post('/review', reviewController.createReview);
 router.post('/review/status', reviewController.checkReviewStatus);
 router.delete('/review/:id', reviewController.deleteReview);
 router.put('/review/:id', reviewController.editReview);
+router.post('/profile/reviews', reviewController.loadReviews);
 
 export default router;

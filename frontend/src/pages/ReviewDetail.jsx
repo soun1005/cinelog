@@ -18,7 +18,8 @@ const ReviewDetail = () => {
     dispatch(loadReviews());
   }, [dispatch]);
 
-  const { reviews, movieData } = useSelector((state) => state.profile);
+  const { reviews, movieData } = useSelector((state) => state.review);
+
   const { id } = useParams();
 
   if (!reviews || !movieData) {
