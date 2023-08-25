@@ -4,7 +4,7 @@ import RatingStars from '../components/RatingStars';
 import BtnWithLink from '../components/BtnWithLink';
 import BtnWithEvent from '../components/BtnWithEvent';
 import { useDispatch } from 'react-redux';
-import { deleteReview } from '../redux/features/profileSlice';
+import { deleteReview } from '../redux/features/reviewSlice';
 
 const ProfileList = ({
   data,

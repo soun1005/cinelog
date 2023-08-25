@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
-import { loadReviews } from '../redux/features/profileSlice';
+import { loadReviews } from '../redux/features/reviewSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import ReviewDetailComponent from '../components/ReviewDetailComponent';
 import BtnWithEvent from '../components/BtnWithEvent';
 import BtnWithLink from '../components/BtnWithLink';
-import { deleteReview } from '../redux/features/profileSlice';
+import { deleteReview } from '../redux/features/reviewSlice';
 import { useNavigate } from 'react-router-dom';
 
 const ReviewDetail = () => {

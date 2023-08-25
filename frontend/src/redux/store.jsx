@@ -2,18 +2,18 @@ import { configureStore } from '@reduxjs/toolkit';
 import movieResultSlice from './features/movieResultSlice';
 import movieInfoSlice from './features/movieInfoSlice';
 import authSlice from './features/authSlice';
-import createReviewSlice from './features/createReviewSlice';
+import reviewSlice from './features/reviewSlice';
 import profileSlice from './features/profileSlice';
-import createFavouriteSlice from './features/createFavouriteSlice';
+import favouriteListSlice from './features/favouriteListSlice';
 
 const store = configureStore({
   reducer: {
     search: movieResultSlice,
     info: movieInfoSlice,
     auth: authSlice,
-    review: createReviewSlice,
+    review: reviewSlice,
     profile: profileSlice,
-    favourite: createFavouriteSlice,
+    favourite: favouriteListSlice,
   },
 });
 

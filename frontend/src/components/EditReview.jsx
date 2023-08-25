@@ -10,7 +10,7 @@ import BtnWithEvent from '../components/BtnWithEvent';
 import BtnWithLink from '../components/BtnWithLink';
 import useReviews from '../hooks/useReviews';
 import { useDispatch } from 'react-redux';
-import { editReview } from '../redux/features/profileSlice';
+import { editReview } from '../redux/features/reviewSlice';
 import { useNavigate } from 'react-router';
 
 const schema = yup

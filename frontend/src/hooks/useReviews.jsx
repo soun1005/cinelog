@@ -1,6 +1,6 @@
 // this hook is used to get all reviews of the user
 import { useEffect } from 'react';
-import { loadReviews } from '../redux/features/profileSlice';
+import { loadReviews } from '../redux/features/reviewSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 export const useReviews = () => {
