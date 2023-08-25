@@ -6,12 +6,20 @@ import useToken from '../hooks/useToken';
 import useCheckStatus from '../hooks/useCheckStatus';
 import { loadUser } from '../redux/features/profileSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import useReviews from '../hooks/useReviews';
 
 const MovieInfoPage = () => {
   const { id } = useParams();
   const movieInfo = useMovieInfo(id);
   const token = useToken();
   const dispatch = useDispatch();
+  const reviews = useReviews();
+  console.log(reviews);
+  // const matchingReview = reviews.find((review) => review.mediaId === id);
+  // // console.log(matchingReview);
+  // if (matchingReview === undefined) {
+  //   console.log('no review yet');
+  // }
 
   // // To dispatch loadUser reducer
   useEffect(() => {
@@ -21,16 +29,13 @@ const MovieInfoPage = () => {
   const { userId } = useSelector((state) => state.profile);
 
   const hasReview = useCheckStatus('review', id, userId);
-  console.log(hasReview);
-  // const hasReview = false;
-  // console.log(userId, movieInfo);
+
   if (!movieInfo) {
     // display loader here or error
     return null;
   }
 
   const { title, releasedYear, genre, poster, movieCast, name } = movieInfo;
-  // console.log(movieInfo);
 
   return (
     <div className="info__container page">

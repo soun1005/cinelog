@@ -239,7 +239,7 @@ const profileSlice = createSlice({
     });
     // when loginUser function result is 'fullfilled'
     builder.addCase(editReview.fulfilled, (state, action) => {
-      console.log('redux action.payload', action.payload);
+      // console.log('redux action.payload', action.payload);
       const editedReviewId = action.payload.mediaId;
       const updatedReview = state.reviews.filter(
         (review) => review.mediaId === editedReviewId

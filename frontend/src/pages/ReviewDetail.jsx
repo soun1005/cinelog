@@ -13,14 +13,13 @@ const ReviewDetail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // reviews = array
-  const { reviews, movieData } = useSelector((state) => state.profile);
-  const { id } = useParams();
-
-  // console.log('movieData:', movieData);
 
   useEffect(() => {
     dispatch(loadReviews());
   }, [dispatch]);
+
+  const { reviews, movieData } = useSelector((state) => state.profile);
+  const { id } = useParams();
 
   if (!reviews || !movieData) {
     return null;
@@ -37,14 +36,14 @@ const ReviewDetail = () => {
     }
     return movie;
   });
-  // console.log(mergedData);
+
+  console.log(mergedData);
 
   const matchedMedia = mergedData.find((obj) => obj.mediaId === id);
 
-  // console.log(matchedMedia);
+  console.log(matchedMedia);
 
   const handleDelete = () => {
-    console.log('hi');
     dispatch(deleteReview(matchedMedia.mediaId));
     navigate('/profile');
   };
