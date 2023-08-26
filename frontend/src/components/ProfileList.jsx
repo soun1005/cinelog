@@ -113,7 +113,7 @@ const ProfileList = ({
         )}
         {buttons && !isReview && (
           <BtnWithEvent
-            text="Remove from heart"
+            text="Delete"
             className="btnStyle specialBtn reviewBtns"
             onClick={handleDeleteFavourite}
           />

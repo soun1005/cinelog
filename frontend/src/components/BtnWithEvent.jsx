@@ -3,6 +3,9 @@ const BtnWithEvent = ({
   className,
   disabled = false,
   onClick,
+  heartIcon,
+  heartIconClass,
+  heartAdded = true,
   type = 'button',
 }) => {
   return (
@@ -12,7 +15,17 @@ const BtnWithEvent = ({
       onClick={onClick}
       type={type}
     >
-      <span>{text}</span>
+      {heartAdded ? (
+        <div className="btn-label">
+          <span className={heartIconClass}>{heartIcon}</span>
+          <span> {text}</span>
+        </div>
+      ) : (
+        <div className="btn-label">
+          <span> {text}</span>
+          <span className={heartIconClass}>{heartIcon}</span>
+        </div>
+      )}
     </button>
   );
 };

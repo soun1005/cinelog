@@ -185,6 +185,10 @@ input:focus {
   padding: 0 2rem;
 }
 
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 1, "wght" 600, "GRAD" -25, "opsz" 48;
+}
+
 @-webkit-keyframes slideUp {
   0% {
     -webkit-transform: translateY(100px);
@@ -754,6 +758,30 @@ input:focus {
   font-size: 14px;
   font-weight: 800;
   letter-spacing: 1px;
+}
+
+.btn-label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.btn-label span:nth-child(1) {
+  margin-right: 6px;
+}
+
+.main-wrap__buttonWrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .basicBtn {

@@ -8,7 +8,6 @@ import { loadUser } from '../redux/features/profileSlice';
 import { favouriteStatus } from '../redux/features/favouriteListSlice';
 import { postFavouriteList } from '../redux/features/favouriteListSlice';
 import { useDispatch, useSelector } from 'react-redux';
-// import useReviews from '../hooks/useReviews';
 import BtnWithEvent from '../components/BtnWithEvent';
 
 const MovieInfoPage = () => {
@@ -77,11 +76,20 @@ const MovieInfoPage = () => {
           </div>
           <div className="main-wrap__buttonWrap">
             {!token && (
-              <BtnWithLink
-                text="Login to write review"
-                className="main-wrap__btn basicBtn"
-                path={`/login`}
-              />
+              <div className="main-wrap__buttonWrap">
+                <BtnWithLink
+                  text="Review this movie"
+                  className="main-wrap__btn basicBtn"
+                  path={`/login`}
+                />
+                <BtnWithLink
+                  className="main-wrap__btn specialBtn"
+                  text="Add"
+                  heartIcon="favorite"
+                  heartIconClass="material-symbols-outlined"
+                  path={`/login`}
+                />
+              </div>
             )}
 
             {token && !hasReview && (
@@ -98,32 +106,23 @@ const MovieInfoPage = () => {
                 path={`/profile/review/${id}`}
               />
             )}
-            {/* 
-            {token ? (
-              <BtnWithEvent
-                text="+ Add to my list"
-                className="main-wrap__btn specialBtn"
-                onClick={handleFavourite}
-              />
-            ) : (
-              <BtnWithLink
-                text="+ Add to my list"
-                className="main-wrap__btn specialBtn"
-                path={'/login'}
-              />
-            )} */}
 
             {token && favourited && (
-              <BtnWithEvent
-                text="heart Aready added"
-                className="main-wrap__btn specialBtn"
-                path={'/profile'}
+              <BtnWithLink
+                heartIcon="favorite"
+                heartIconClass="material-symbols-outlined"
+                text="added"
+                className=" main-wrap__btn specialBtn"
+                path={'/profile/favourites'}
               />
             )}
 
             {token && !favourited && (
               <BtnWithEvent
-                text="Add favourite"
+                heartAdded={false}
+                text="Add"
+                heartIcon="favorite"
+                heartIconClass="material-symbols-outlined"
                 className="main-wrap__btn specialBtn"
                 onClick={handleFavourite}
               />

@@ -12,11 +12,9 @@ const ReviewedMovieList = () => {
 
   return (
     <div className="review-list-page page">
-      <div>My reviews</div>
-
       <ProfileList
         data={data}
-        listTitle=""
+        listTitle="My reviews"
         noDataMsg="No reviews yet"
         buttons={true}
         moreBtn={false}

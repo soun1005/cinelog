@@ -8,12 +8,10 @@ const FavouritedMovieList = () => {
     return null;
   }
   return (
-    <div>
-      <div>My favourites</div>
-
+    <div className="favourite-list-page page">
       <ProfileList
         data={favourite}
-        listTitle=""
+        listTitle="My favourites"
         noDataMsg="No favourited movies yet"
         buttons={true}
         moreBtn={false}
