@@ -9,18 +9,15 @@ import { deleteReview } from '../redux/features/reviewSlice';
 import { useNavigate } from 'react-router-dom';
 
 const ReviewDetail = () => {
-  // const [isEditing, setIsEditing] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // reviews = array
+
+  const { reviews, movieData } = useSelector((state) => state.review);
+  const { id } = useParams();
 
   useEffect(() => {
     dispatch(loadReviews());
   }, [dispatch]);
-
-  const { reviews, movieData } = useSelector((state) => state.review);
-
-  const { id } = useParams();
 
   if (!reviews || !movieData) {
     return null;
@@ -45,8 +42,13 @@ const ReviewDetail = () => {
   console.log(matchedMedia);
 
   const handleDelete = () => {
-    dispatch(deleteReview(matchedMedia.mediaId));
-    navigate('/profile');
+    const confirmBox = window.confirm(
+      'Do you really want to delete this review?'
+    );
+    if (confirmBox === true) {
+      dispatch(deleteReview(matchedMedia.mediaId));
+      navigate('/profile');
+    }
   };
 
   return (

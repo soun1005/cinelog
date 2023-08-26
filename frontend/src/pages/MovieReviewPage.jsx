@@ -33,14 +33,11 @@ const MovieReviewPage = () => {
 
   // functions
   const onSubmit = async (data) => {
-    // dispatch(postReview({ ...data, mediaId: id }));
-    await review({ ...data, mediaId: id });
-    // setFinalData(updatedData); // Update the state
+    const confirmBox = window.confirm('Do you want to save this review?');
+    if (confirmBox === true) {
+      await review({ ...data, mediaId: id });
+    }
   };
-
-  // const onClickEvent = () => {
-  //   alert('Movie review is saved');
-  // };
 
   if (error) {
     console.log(error);

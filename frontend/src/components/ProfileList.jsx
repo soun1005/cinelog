@@ -27,15 +27,20 @@ const ProfileList = ({
     const releasedYear = releasedDate.slice(0, 4);
     const reviewedDate = createdAt.slice(0, 10);
 
-    const handleClick = () => {
-      console.log('deleted');
-      dispatch(deleteReview(movie.mediaId));
+    const handleDeleteReview = () => {
+      const confirmBox = window.confirm(
+        'Do you really want to delete this review?'
+      );
+      if (confirmBox === true) {
+        dispatch(deleteReview(movie.mediaId));
+      }
     };
 
     const handleDeleteFavourite = () => {
-      // here to delete favourite
-      dispatch(deleteFavourite(movie.mediaId));
-      console.log('deleted');
+      const confirmBox = window.confirm('Do you really want to delete this?');
+      if (confirmBox === true) {
+        dispatch(deleteFavourite(movie.mediaId));
+      }
     };
 
     return (
@@ -107,7 +112,7 @@ const ProfileList = ({
             <BtnWithEvent
               text="Delete"
               className="btnStyle specialBtn reviewBtns"
-              onClick={handleClick}
+              onClick={handleDeleteReview}
             />
           </div>
         )}
