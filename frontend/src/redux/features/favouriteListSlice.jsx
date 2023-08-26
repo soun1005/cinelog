@@ -13,6 +13,8 @@ const initialState = {
   favouritedList: '',
   favouritedListError: '',
   favouritedListLoaded: '',
+  deleteFavouriteStatus: '',
+  movieData: '',
 };
 
 const base = apiEndpoint;
@@ -49,7 +51,7 @@ export const deleteFavourite = createAsyncThunk(
   `favourite/deleteFavourite`,
   // promise
   async (movieId, { rejectWithValue }) => {
-    // console.log(review);
+    // console.log(movieId);
     try {
       const token = localStorage.getItem('token');
       if (token) {
@@ -132,7 +134,7 @@ const favouriteListSlice = createSlice({
 
   //   extra reducers to handle http request
   extraReducers: (builder) => {
-    // when loginUser function result is 'pending'
+    // CREATE favourite
     builder.addCase(postFavouriteList.pending, (state, action) => {
       return { ...state, postFavouriteStatus: 'pending' };
     });
@@ -149,6 +151,37 @@ const favouriteListSlice = createSlice({
         ...state,
         reviewError: action.payload,
         postFavouriteStatus: 'failed',
+      };
+    });
+
+    //*************delete favourite*************
+    builder.addCase(deleteFavourite.pending, (state, action) => {
+      return { ...state, deleteFavouriteStatus: 'pending' };
+    });
+    // when loginUser function result is 'fullfilled'
+    builder.addCase(deleteFavourite.fulfilled, (state, action) => {
+      // console.log('action.payload', action.payload);
+      const deletedMediaId = action.payload;
+      // Update state to remove the deleted review
+      // console.log('initialState.reviews', state.reviews);
+      const updatedMedia = state.favouritedList.filter(
+        (media) => media.mediaId !== deletedMediaId
+      );
+      const updatedMovieData = state.movieData.filter(
+        (movie) => movie.mediaId !== deletedMediaId
+      );
+      return {
+        ...state,
+        favouritedList: updatedMedia,
+        movieData: updatedMovieData,
+        deleteFavouriteStatus: 'success',
+      };
+    });
+    builder.addCase(deleteFavourite.rejected, (state, action) => {
+      return {
+        ...state,
+        reviewError: action.payload,
+        deleteFavouriteStatus: 'failed',
       };
     });
 

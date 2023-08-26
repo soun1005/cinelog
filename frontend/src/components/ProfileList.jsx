@@ -5,6 +5,7 @@ import BtnWithLink from '../components/BtnWithLink';
 import BtnWithEvent from '../components/BtnWithEvent';
 import { useDispatch } from 'react-redux';
 import { deleteReview } from '../redux/features/reviewSlice';
+import { deleteFavourite } from '../redux/features/favouriteListSlice';
 
 const ProfileList = ({
   data,
@@ -33,6 +34,7 @@ const ProfileList = ({
 
     const handleDeleteFavourite = () => {
       // here to delete favourite
+      dispatch(deleteFavourite(movie.mediaId));
       console.log('deleted');
     };
 
