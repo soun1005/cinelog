@@ -13,6 +13,7 @@ import ReviewDetail from './pages/ReviewDetail';
 import ReviewedMovieList from './pages/ReviewedMovieList';
 import EditReviewPage from './pages/EditReviewPage';
 import PrivateRoutes from './privateRoutes';
+import FavouritedMovieList from './pages/FavouritedMovieList';
 import Footer from './layouts/Footer';
 
 const App = () => {
@@ -32,6 +33,10 @@ const App = () => {
               <Route path="/profile" element={<Profile />} />
               <Route path="/profile/review/:id" element={<ReviewDetail />} />
               <Route path="/profile/reviews" element={<ReviewedMovieList />} />
+              <Route
+                path="/profile/favourites"
+                element={<FavouritedMovieList />}
+              />
               <Route
                 path="/profile/review/edit/:id"
                 element={<EditReviewPage />}

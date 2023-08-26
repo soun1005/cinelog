@@ -37,13 +37,16 @@ const Profile = () => {
           dateLabel="Revied on"
           data={reviews}
           noDataMsg="No reviews yet!"
-          // path={`/profile/review/${mediaId}`}
+          pagePath={'/profile/reviews'}
         />
         <ProfileList
           listTitle="My favourites"
           dateLabel="Added on"
           data={favourite}
           noDataMsg="No favourited movies yet!"
+          isReview={false}
+          buttons={false}
+          pagePath={'/profile/favourites'}
         />
       </div>
     </div>

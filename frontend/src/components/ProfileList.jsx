@@ -11,7 +11,8 @@ const ProfileList = ({
   listTitle,
   noDataMsg,
   dateLabel,
-  // path,
+  pagePath,
+  isReview = true,
   moreBtn = true,
   buttons = false,
 }) => {
@@ -30,37 +31,71 @@ const ProfileList = ({
       dispatch(deleteReview(movie.mediaId));
     };
 
+    const handleDeleteFavourite = () => {
+      // here to delete favourite
+      console.log('deleted');
+    };
+
     return (
       <div key={_id} className="profile-list__btn-container">
         {/* // each page's URL set to redirect to review page */}
-        <NavLink
-          // to={path}
-          to={`/profile/review/${mediaId}`}
-          key={createdAt}
-          className="profile-list__card-wrap"
-        >
-          {/* poster wrap */}
-          <div className="profile-list__card-wrap__poster">
-            <img src={posterSrc} alt={title} />
-          </div>
-          {/* information wrap */}
-          <div className="profile-list__card-wrap__info">
-            <div className="profile-list__card-wrap__info-wrap">
-              <div className="profile-list__card-wrap__info-wrap__title">
-                <span>{title} </span>
-                <span>({releasedYear})</span>
+        {isReview ? (
+          <NavLink
+            to={`/profile/review/${mediaId}`}
+            key={createdAt}
+            className="profile-list__card-wrap"
+          >
+            {/* poster wrap */}
+            <div className="profile-list__card-wrap__poster">
+              <img src={posterSrc} alt={title} />
+            </div>
+            {/* information wrap */}
+            <div className="profile-list__card-wrap__info">
+              <div className="profile-list__card-wrap__info-wrap">
+                <div className="profile-list__card-wrap__info-wrap__title">
+                  <span>{title} </span>
+                  <span>({releasedYear})</span>
+                </div>
+                <div className="profile-list__card-wrap__info-wrap__reviewDate">
+                  <span>{dateLabel}</span>
+                  <span>{reviewedDate}</span>
+                </div>
               </div>
-              <div className="profile-list__card-wrap__info-wrap__reviewDate">
-                <span>{dateLabel}</span>
-                <span>{reviewedDate}</span>
+              <div className="profile-list__card-wrap__info-wrap__ratings">
+                <RatingStars rating={ratings} />
               </div>
             </div>
-            <div className="profile-list__card-wrap__info-wrap__ratings">
-              <RatingStars rating={ratings} />
+          </NavLink>
+        ) : (
+          <NavLink
+            to={`/movie/${mediaId}`}
+            key={createdAt}
+            className="profile-list__card-wrap"
+          >
+            {/* poster wrap */}
+            <div className="profile-list__card-wrap__poster">
+              <img src={posterSrc} alt={title} />
             </div>
-          </div>
-        </NavLink>
-        {buttons ? (
+            {/* information wrap */}
+            <div className="profile-list__card-wrap__info">
+              <div className="profile-list__card-wrap__info-wrap">
+                <div className="profile-list__card-wrap__info-wrap__title">
+                  <span>{title} </span>
+                  <span>({releasedYear})</span>
+                </div>
+                <div className="profile-list__card-wrap__info-wrap__reviewDate">
+                  <span>{dateLabel}</span>
+                  <span>{reviewedDate}</span>
+                </div>
+              </div>
+              <div className="profile-list__card-wrap__info-wrap__ratings">
+                <RatingStars rating={ratings} />
+              </div>
+            </div>
+          </NavLink>
+        )}
+
+        {buttons && isReview && (
           <div className="profile-list__card-wrap__info-wrap__button-wrap">
             <BtnWithLink
               text="Edit"
@@ -73,8 +108,13 @@ const ProfileList = ({
               onClick={handleClick}
             />
           </div>
-        ) : (
-          ''
+        )}
+        {buttons && !isReview && (
+          <BtnWithEvent
+            text="Remove from heart"
+            className="btnStyle specialBtn reviewBtns"
+            onClick={handleDeleteFavourite}
+          />
         )}
       </div>
     );
@@ -85,7 +125,7 @@ const ProfileList = ({
       <div className="profile-list__title-wrap">
         <span>{listTitle}</span>
         {data && moreBtn && (
-          <NavLink to={'/profile/reviews'}>
+          <NavLink to={pagePath}>
             <button>More</button>
           </NavLink>
         )}
