@@ -8,7 +8,7 @@ const key = process.env.TMDB_API_KEY;
 const fetchUpcomingFromApi = async (query) => {
   try {
     const response = await axios.get(
-      `${baseUrl}/movie/upcoming?language=en-US&page=1?query=${query}&api_key=${key}`
+      `${baseUrl}/movie/upcoming?region=FR&language=en-US?query=${query}&api_key=${key}`
     );
     console.log('fetchUpcomingFromApi called');
     // console.log(response.data);

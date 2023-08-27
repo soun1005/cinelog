@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { string } from 'yup';
+import BtnWithLink from '../components/BtnWithLink';
 
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 // min 5 characters, 1 upper case letter, 1 lower case letter, 1 numeric digit.
@@ -84,12 +85,20 @@ const Login = () => {
                 : ''}
             </div>
           </div>
+
           <button
             disabled={tokenExist}
             className="login-btn btnStyle specialBtn"
           >
             <span>Log in</span>
           </button>
+          <div className="login-signup-wrap">
+            <BtnWithLink
+              text="No account yet? Sign up here"
+              className="login-signup-btn"
+              path={'/signup'}
+            />
+          </div>
           {loginStatus === 'rejected' ? <p>{loginError}</p> : null}
         </form>
       </div>
