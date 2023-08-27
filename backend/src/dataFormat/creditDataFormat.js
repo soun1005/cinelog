@@ -3,9 +3,10 @@
 // 2. from [crew] array -> filter and return only one who is Director
 
 const creditDataFormat = (data) => {
-  const filteredCast = [data.cast[0], data.cast[1]];
-  // filteredCast.push(data.crew[0], data.crew[1])
+  const filteredCast = [data.cast[0], data.cast[1], data.cast[2]];
   const filteredCrew = data.crew.filter((crew) => crew.job === 'Director');
+
+  // returns first 3 actors and director data
   return { filteredCast, filteredCrew };
 };
 

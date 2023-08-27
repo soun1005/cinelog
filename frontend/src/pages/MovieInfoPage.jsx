@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import BtnWithLink from '../components/BtnWithLink';
 import useMovieInfo from '../hooks/useMovieInfo';
 import useToken from '../hooks/useToken';
@@ -35,7 +35,16 @@ const MovieInfoPage = () => {
     return null;
   }
 
-  const { title, releasedYear, genre, poster, movieCast, name } = movieInfo;
+  const {
+    title,
+    releasedYear,
+    genre,
+    poster,
+    movieCast,
+    name,
+    overview,
+    releasedDate,
+  } = movieInfo;
 
   return (
     <div className="info__container page">
@@ -51,27 +60,46 @@ const MovieInfoPage = () => {
             </div>
 
             {/* movie infos */}
+            {/* director */}
             <div className="main-wrap__info-subWrap subInfo">
-              <span>Directed by </span>
-              <span>{name}</span>
+              <NavLink to={'/'}>
+                <span>Directed by </span>
+                <span className="director">{name}</span>
+              </NavLink>
             </div>
 
+            {/* cast */}
             <div className="main-wrap__info-subWrap subInfo">
               <span>Starring </span>
               <span>
                 {movieCast.map((cast) => {
                   return (
-                    <span className="movieCast" key={cast.id}>
-                      {cast.name}
-                    </span>
+                    <NavLink to={'/'}>
+                      <span className="movieCast" key={cast.id}>
+                        {cast.name}
+                      </span>
+                    </NavLink>
                   );
                 })}
               </span>
             </div>
 
+            {/* genre */}
             <div className="main-wrap__info-subWrap subInfo">
               <span>Genre</span>
               <span> {genre}</span>
+            </div>
+
+            {/* releasedDate */}
+            <div className="main-wrap__info-subWrap subInfo">
+              <span>Released Date</span>
+              <span> {releasedDate}</span>
+            </div>
+
+            {/* overview */}
+            <div className="main-wrap__info-subWrap subInfo info-overview">
+              <span>Overview</span>
+              <span> {overview}</span>
             </div>
           </div>
           <div className="main-wrap__buttonWrap">

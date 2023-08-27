@@ -22,10 +22,11 @@ export const movieInfo = createAsyncThunk(
       // console.log('response:', response);
       // two filtered data (cast, crew)
       const movieInfo = response.data.movieData;
+      // cast data has all information
       const movieCast = response.data.creditData.filteredCast;
       const movieCrew = response.data.creditData.filteredCrew;
 
-      // console.log('asyncThunk movieCast:', movieCast, 'movieCrew:', movieCrew);
+      console.log('asyncThunk movieCast:', movieCast, 'movieCrew:', movieCrew);
 
       return { movieInfo, movieCast, movieCrew };
     } catch (error) {

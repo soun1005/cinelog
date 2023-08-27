@@ -10,11 +10,13 @@
   padding: 0 2rem;
 
   .poster-wrap {
-    width: 30%;
+    width: 40%;
   }
   img {
     width: 100%;
     box-shadow: $basicShadow;
+    height: 100%;
+    object-fit: cover;
   }
 }
 
@@ -43,10 +45,27 @@
     letter-spacing: $letterSpacing;
   }
 
+  .info-overview {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    max-width: 450px;
+    // border-top: 0.5px solid gray;
+  }
+
   // info without title(year)
   .subInfo {
+    .director {
+      &:hover {
+        background-color: $yellowColor;
+      }
+    }
     .movieCast {
       margin-right: 10px;
+      &:hover {
+        background-color: $yellowColor;
+      }
     }
     span {
       margin-right: 7px;

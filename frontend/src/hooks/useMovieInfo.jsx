@@ -1,5 +1,6 @@
 // this hook helps to retrieve the states of multiple redux slice
 // pass movie id as param and get all data I need from the movie
+import dayjs from 'dayjs';
 
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -36,11 +37,14 @@ const useMovieInfo = (movieId) => {
   // extract only year from a date
   const releasedYear = releasedDate.slice(0, 4);
 
+  const formattedDate = dayjs(releasedDate).format('DD/MM/YYYY');
+
   return {
     id,
     overview,
     title,
     releasedYear,
+    releasedDate: formattedDate,
     genre,
     poster,
     movieCast,
