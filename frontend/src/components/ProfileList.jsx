@@ -106,7 +106,7 @@ const ProfileList = ({
           <div className="profile-list__card-wrap__info-wrap__button-wrap">
             <BtnWithLink
               text="Edit"
-              path={'/review/edit'}
+              path={`/profile/review/edit/${mediaId}`}
               className="btnStyle basicBtn reviewBtns"
             />
             <BtnWithEvent

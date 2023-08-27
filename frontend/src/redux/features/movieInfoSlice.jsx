@@ -57,6 +57,7 @@ const movieInfoSlice = createSlice({
           ...state,
           // movieCredit: action.payload.values,
           movieInfo: action.payload.movieInfo,
+          // movieCast.id = actor/actress's id for their info page
           movieCast: action.payload.movieCast,
           movieCrew: action.payload.movieCrew[0],
           dataStatus: 'success',
