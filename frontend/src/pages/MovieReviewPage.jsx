@@ -1,5 +1,5 @@
-import { usePostReview } from '../hooks/usePostReview';
 import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import SelectDate from '../components/SelectDate';
 import PostercardWithTitle from '../components/PostercardWithTitle';
 import { Controller, useForm } from 'react-hook-form';
@@ -10,6 +10,8 @@ import ReactStars from 'react-rating-stars-component';
 import useMovieInfo from '../hooks/useMovieInfo';
 import BtnWithEvent from '../components/BtnWithEvent';
 import BtnWithLink from '../components/BtnWithLink';
+import { postReview } from '../redux/features/reviewSlice';
+import { useNavigate } from 'react-router-dom';
 
 const schema = yup
   .object({
@@ -21,6 +23,8 @@ const schema = yup
   .required();
 
 const MovieReviewPage = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   // movie id to get poster information
   const { id_title: idTitle } = useParams();
   const id = idTitle.split('_')[0];
@@ -29,19 +33,16 @@ const MovieReviewPage = () => {
     resolver: yupResolver(schema),
   });
 
-  const { review, error, isLoading } = usePostReview();
+  // const { review, error, isLoading } = usePostReview();
 
   // functions
   const onSubmit = async (data) => {
     const confirmBox = window.confirm('Do you want to save this review?');
     if (confirmBox === true) {
-      await review({ ...data, mediaId: id });
+      dispatch(postReview({ ...data, mediaId: id }));
+      navigate(`/movie/${id}`);
     }
   };
-
-  if (error) {
-    console.log(error);
-  }
 
   // custom hook to get movie info
   const movieInfo = useMovieInfo(id);
@@ -152,7 +153,7 @@ const MovieReviewPage = () => {
               <BtnWithEvent
                 text="Save"
                 className="btnStyle basicBtn"
-                disabled={isLoading}
+                // disabled={isLoading}
                 type="onSubmit"
               />
 

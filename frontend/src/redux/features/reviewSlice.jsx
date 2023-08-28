@@ -23,6 +23,7 @@ export const postReview = createAsyncThunk(
   'review/create',
   // promise
   async (review, { rejectWithValue }) => {
+    console.log(review);
     try {
       await axios.post(
         `${base}/review`,
@@ -39,7 +40,8 @@ export const postReview = createAsyncThunk(
           },
         }
       );
-      return;
+      const savedReview = { review };
+      return savedReview;
     } catch (error) {
       console.log(error);
       const errorMsg = error.response.data.error;
@@ -153,10 +155,11 @@ const reviewSlice = createSlice({
     // when loginUser function result is 'fullfilled'
     builder.addCase(postReview.fulfilled, (state, action) => {
       // if token exist
-
+      console.log(action);
       return {
         ...state,
         postReviewStatus: 'success',
+        reviews: action.payload.review,
       };
     });
     builder.addCase(postReview.rejected, (state, action) => {
