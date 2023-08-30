@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { apiEndpoint } from '../../constant/api';
 
@@ -145,7 +145,7 @@ const favouriteListSlice = createSlice({
       return {
         ...state,
         favouritedList: [...state.favouritedList, action.payload],
-        favouriteStatus: 'true',
+        favouriteStatus: true,
         favouriteLoaded: 'success',
       };
     });
@@ -166,15 +166,17 @@ const favouriteListSlice = createSlice({
       const deletedMediaId = action.payload;
       // Update state to remove the deleted review
       // current(state) : to modify the current state
-      const prevState = current(state);
+      // const prevState = current(state);
+      // console.log(prevState);
 
-      const updatedMedia = prevState.favouritedList.filter(
+      const updatedMedia = state.favouritedList.filter(
         (media) => media.mediaId !== deletedMediaId
       );
 
-      const updatedMovieData = prevState.movieData.filter(
-        (movie) => movie.mediaId !== deletedMediaId
+      const updatedMovieData = state.movieData.filter(
+        (movie) => movie.mediaId !== deletedMediaId || movie
       );
+
       return {
         ...state,
         favouritedList: updatedMedia,
@@ -221,7 +223,7 @@ const favouriteListSlice = createSlice({
     });
     // when loginUser function result is 'fullfilled'
     builder.addCase(loadFavouritedList.fulfilled, (state, action) => {
-      console.log(action.payload);
+      console.log('favourited list', action.payload);
       return {
         ...state,
         favouritedList: action.payload.favouritedList,

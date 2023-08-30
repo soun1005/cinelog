@@ -9,7 +9,7 @@ import { postFavouriteList } from '../redux/features/favouriteListSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import BtnWithEvent from '../components/BtnWithEvent';
 import { deleteFavourite } from '../redux/features/favouriteListSlice';
-import useFavouriteList from '../hooks/useFavouriteList';
+// import useFavouriteList from '../hooks/useFavouriteList';
 import { reviewStatus } from '../redux/features/reviewSlice';
 import { loadReviews } from '../redux/features/reviewSlice';
 
@@ -27,10 +27,10 @@ const MovieInfoPage = () => {
     dispatch(reviewStatus({ mediaId: id, userId: userId }));
     dispatch(favouriteStatus({ mediaId: id, userId: userId }));
     dispatch(loadReviews());
-  }, [dispatch, id, userId, favourited]);
+  }, [dispatch, id, userId, favourited, hasReview]);
 
-  const favouritedList = useFavouriteList();
-  console.log(favouritedList);
+  // const favouritedList = useFavouriteList();
+  // console.log(favouritedList);
 
   const handleFavourite = () => {
     dispatch(postFavouriteList({ mediaId: id, userId: userId }));

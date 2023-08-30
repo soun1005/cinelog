@@ -1,5 +1,5 @@
-// import { useEffect } from 'react';
-// import { loadReviews } from '../redux/features/reviewSlice';
+import { useEffect } from 'react';
+import { loadReviews } from '../redux/features/reviewSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import ReviewDetailComponent from '../components/ReviewDetailComponent';
@@ -14,6 +14,10 @@ const ReviewDetail = () => {
 
   const { reviews, movieData } = useSelector((state) => state.review);
   const { id } = useParams();
+
+  useEffect(() => {
+    dispatch(loadReviews());
+  }, [dispatch]);
 
   if (!reviews || !movieData) {
     return null;

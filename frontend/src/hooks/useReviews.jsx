@@ -1,8 +1,15 @@
-import { useSelector } from 'react-redux';
+// this hook is used to get all reviews of the user
+import { useEffect } from 'react';
+import { loadReviews } from '../redux/features/reviewSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 export const useReviews = () => {
+  const dispatch = useDispatch();
   // reviews = array
 
+  useEffect(() => {
+    dispatch(loadReviews());
+  }, [dispatch]);
   const { reviews, movieData } = useSelector((state) => state.review);
 
   if (!reviews || !movieData) {
