@@ -10,7 +10,7 @@ const Profile = () => {
   const reviews = useReviews();
   const favourite = useFavouriteList();
 
-  // console.log(favourite);
+  console.log(favourite);
 
   // // To dispatch loadUser reducer
   useEffect(() => {

@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { apiEndpoint } from '../../constant/api';
 
@@ -9,8 +9,10 @@ const loggedIn = !!localStorage.getItem('token');
 const initialState = {
   token: localStorage.getItem('token'),
   isUserLoggedIn: loggedIn,
+  reviewStatus: false,
+  statusLoaded: '',
   movieData: '',
-  reviews: '',
+  reviews: [],
   reviewUpdate: '',
   reviewError: '',
   postReviewStatus: '',
@@ -141,27 +143,59 @@ export const editReview = createAsyncThunk(
   }
 );
 
+export const reviewStatus = createAsyncThunk(
+  `review/status`,
+  async (review, { rejectWithValue }) => {
+    // promise
+    try {
+      const response = await axios.post(
+        `${base}/review/status`,
+        {
+          mediaId: review.mediaId,
+          userId: review.userId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      );
+      const data = response.data;
+      console.log(data);
+      return data;
+    } catch (error) {
+      console.log(error);
+      const errorMsg = error.response.data.error;
+      return rejectWithValue(errorMsg);
+    }
+  }
+);
+
 const reviewSlice = createSlice({
   name: 'review',
   initialState,
   reducers: {},
 
-  //   extra reducers to handle http request
+  /**********************CREATE review*****************/
   extraReducers: (builder) => {
-    // when loginUser function result is 'pending'
     builder.addCase(postReview.pending, (state, action) => {
       return { ...state, postReviewStatus: 'pending' };
     });
-    // when loginUser function result is 'fullfilled'
+
     builder.addCase(postReview.fulfilled, (state, action) => {
-      // if token exist
-      console.log(action);
+      // console.log('create review -> state.reviews', current(state));
+      console.log('create action.payload:', action.payload.review);
+      // console.log('state.reveiws:', state.reviews);
+      const prevReviews = current(state);
+      console.log('prevReviews:', prevReviews.reviews);
+
       return {
         ...state,
         postReviewStatus: 'success',
-        reviews: action.payload.review,
+        reviews: [action.payload, ...state.reviews],
       };
     });
+
     builder.addCase(postReview.rejected, (state, action) => {
       return {
         ...state,
@@ -170,7 +204,7 @@ const reviewSlice = createSlice({
       };
     });
 
-    //**********load reviews *************
+    /********************LOAD reviews ******************/
     builder.addCase(loadReviews.pending, (state, action) => {
       return { ...state, profileStatus: 'pending' };
     });
@@ -196,7 +230,7 @@ const reviewSlice = createSlice({
       };
     });
 
-    //*************delete review*************
+    /****************DELETE review****************/
     builder.addCase(deleteReview.pending, (state, action) => {
       return { ...state, deleteReviewStatus: 'pending' };
     });
@@ -205,11 +239,12 @@ const reviewSlice = createSlice({
       // console.log('action.payload', action.payload);
       const deletedReviewId = action.payload;
       // Update state to remove the deleted review
-      // console.log('initialState.reviews', state.reviews);
-      const updatedReviews = state.reviews.filter(
+
+      const prevState = current(state);
+      const updatedReviews = prevState.reviews.filter(
         (review) => review.mediaId !== deletedReviewId
       );
-      const updatedMovieData = state.movieData.filter(
+      const updatedMovieData = prevState.movieData.filter(
         (movie) => movie.mediaId !== deletedReviewId
       );
       return {
@@ -227,23 +262,36 @@ const reviewSlice = createSlice({
       };
     });
 
-    //*************edit review*************
+    /****************UPDATE review****************/
     builder.addCase(editReview.pending, (state, action) => {
       return { ...state, reviewUpdate: 'pending' };
     });
-    // when loginUser function result is 'fullfilled'
+
     builder.addCase(editReview.fulfilled, (state, action) => {
+      // 현재 state
+      const prevReviews = current(state);
+
       // console.log('redux action.payload', action.payload);
       const editedReviewId = action.payload.mediaId;
-      const updatedReview = state.reviews.filter(
-        (review) => review.mediaId === editedReviewId
+
+      // 기존의 리뷰에서, 수정된 리뷰를 빼버린다음에,
+      // 기존 리뷰에 action.payload를 다시 넣어서
+      // reviews에 넣기
+
+      const updatedReviewState = prevReviews.reviews.filter(
+        (review) => review.mediaId !== editedReviewId
       );
+      console.log(updatedReviewState);
+
+      const updatedReviews = updatedReviewState.concat([action.payload]);
+      console.log('did it work', updatedReviews);
+
       const updatedMovieData = state.movieData.filter(
         (movie) => movie.mediaId === editedReviewId
       );
       return {
         ...state,
-        reviews: updatedReview,
+        reviews: updatedReviews,
         movieData: updatedMovieData,
         deleteReviewStatus: 'success',
       };
@@ -253,6 +301,25 @@ const reviewSlice = createSlice({
         ...state,
         reviewError: action.payload,
         reviewUpdate: 'failed',
+      };
+    });
+
+    /***************review status****************/
+    builder.addCase(reviewStatus.pending, (state, action) => {
+      return { ...state, statusLoaded: 'pending' };
+    });
+    // when loginUser function result is 'fullfilled'
+    builder.addCase(reviewStatus.fulfilled, (state, action) => {
+      return {
+        ...state,
+        reviewStatus: action.payload,
+        statusLoaded: 'success',
+      };
+    });
+    builder.addCase(reviewStatus.rejected, (state, action) => {
+      return {
+        ...state,
+        statusLoaded: action.payload,
       };
     });
   },

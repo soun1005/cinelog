@@ -3,12 +3,11 @@ import ProfileList from '../components/ProfileList';
 
 const ReviewedMovieList = () => {
   const data = useReviews();
-
   if (!data) {
     // display loader here or error
     return null;
   }
-  // console.log(data);
+  console.log(data);
 
   return (
     <div className="review-list-page page">

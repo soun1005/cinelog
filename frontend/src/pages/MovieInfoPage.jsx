@@ -3,12 +3,15 @@ import { NavLink, useParams } from 'react-router-dom';
 import BtnWithLink from '../components/BtnWithLink';
 import useMovieInfo from '../hooks/useMovieInfo';
 import useToken from '../hooks/useToken';
-import useCheckStatus from '../hooks/useCheckStatus';
 import { loadUser } from '../redux/features/profileSlice';
 import { favouriteStatus } from '../redux/features/favouriteListSlice';
 import { postFavouriteList } from '../redux/features/favouriteListSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import BtnWithEvent from '../components/BtnWithEvent';
+import { deleteFavourite } from '../redux/features/favouriteListSlice';
+import useFavouriteList from '../hooks/useFavouriteList';
+import { reviewStatus } from '../redux/features/reviewSlice';
+import { loadReviews } from '../redux/features/reviewSlice';
 
 const MovieInfoPage = () => {
   const { id } = useParams();
@@ -17,18 +20,28 @@ const MovieInfoPage = () => {
   const dispatch = useDispatch();
   const { userId } = useSelector((state) => state.profile);
   const favourited = useSelector((state) => state.favourite.favouriteStatus);
+  const hasReview = useSelector((state) => state.review.reviewStatus.hasReview);
+
+  useEffect(() => {
+    dispatch(loadUser());
+    dispatch(reviewStatus({ mediaId: id, userId: userId }));
+    dispatch(favouriteStatus({ mediaId: id, userId: userId }));
+    dispatch(loadReviews());
+  }, [dispatch, id, userId, favourited]);
+
+  const favouritedList = useFavouriteList();
+  console.log(favouritedList);
 
   const handleFavourite = () => {
     dispatch(postFavouriteList({ mediaId: id, userId: userId }));
   };
 
-  useEffect(() => {
-    dispatch(loadUser());
-    dispatch(favouriteStatus({ mediaId: id, userId: userId }));
-  }, [dispatch, id, userId, favourited]);
-
-  const hasReview = useCheckStatus('review', id, userId).hasReview;
-  // console.log('hasReview?', hasReview);
+  const handleDeleteFavourite = () => {
+    const confirmBox = window.confirm('Do you really want to delete this?');
+    if (confirmBox === true) {
+      dispatch(deleteFavourite(id));
+    }
+  };
 
   if (!movieInfo) {
     // display loader here or error
@@ -136,12 +149,13 @@ const MovieInfoPage = () => {
             )}
 
             {token && favourited && (
-              <BtnWithLink
+              <BtnWithEvent
+                heartAdded={false}
                 heartIcon="favorite"
                 heartIconClass="material-symbols-outlined"
-                text="added"
+                text="Remove"
                 className=" main-wrap__btn specialBtn"
-                path={'/profile/favourites'}
+                onClick={handleDeleteFavourite}
               />
             )}
 
@@ -150,7 +164,7 @@ const MovieInfoPage = () => {
                 heartAdded={false}
                 text="Add"
                 heartIcon="favorite"
-                heartIconClass="material-symbols-outlined"
+                heartIconClass="material-symbols-outlined emptyHeart"
                 className="main-wrap__btn specialBtn"
                 onClick={handleFavourite}
               />

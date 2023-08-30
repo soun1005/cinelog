@@ -74,10 +74,12 @@ const loadFavouritedList = async (req, res) => {
     if (favourited) {
       // const reviews = res.status(200).json(review);
 
+      // get all media id of favourited lists
       const movieId = favourited.map((movie) => {
         return movie.mediaId;
       });
 
+      // by the mediaId, using resolver, load movie infos to display poster and information
       const movieDataPromises = movieId.map(
         async (movieId) => await fetchMovieInfoById(movieId)
       );

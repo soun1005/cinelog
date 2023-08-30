@@ -1,19 +1,22 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { apiEndpoint } from '../../constant/api';
 
 // initial state
 const initialState = {
   token: localStorage.getItem('token'),
-  favouriteError: '',
-  postFavouriteStatus: 'false',
-  favouriteStatus: '',
-  favouriteStatusError: '',
-  favouriteStatusLoaded: '',
+  // post
+  favouritePostError: '',
+  favouriteLoaded: '',
+  // load
   favouritedList: '',
-  favouritedListError: '',
-  favouritedListLoaded: '',
-  deleteFavouriteStatus: '',
+  favouriteListLoaded: false,
+  // status
+  favouriteStatus: false,
+  statusLoaded: false,
+  // delete
+  deleteStatus: '',
+  // etc
   movieData: '',
 };
 
@@ -25,7 +28,7 @@ export const postFavouriteList = createAsyncThunk(
   async (favourite, { rejectWithValue }) => {
     // console.log(review);
     try {
-      await axios.post(
+      const res = await axios.post(
         `${base}/favourite`,
         {
           mediaId: favourite.mediaId,
@@ -37,7 +40,9 @@ export const postFavouriteList = createAsyncThunk(
           },
         }
       );
-      return;
+      const savedFavouritedMovies = res.data;
+
+      return savedFavouritedMovies;
     } catch (error) {
       console.log(error);
       const errorMsg = error.response.data.error;
@@ -51,19 +56,18 @@ export const deleteFavourite = createAsyncThunk(
   `favourite/deleteFavourite`,
   // promise
   async (movieId, { rejectWithValue }) => {
-    // console.log(movieId);
     try {
       const token = localStorage.getItem('token');
       if (token) {
         await axios.delete(`${base}/favourite/${movieId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
+
         return movieId;
       }
     } catch (error) {
       console.log(error);
       const errorMsg = error.response.data.error;
-      // leads to 'builder.addcase rejected'
       return rejectWithValue(errorMsg);
     }
   }
@@ -112,12 +116,10 @@ export const loadFavouritedList = createAsyncThunk(
             headers: { Authorization: `Bearer ${token}` },
           }
         );
-        // console.log('slice response', res);
+
         const favouritedList = res.data.favouritedList;
         const movieData = res.data.movieData;
 
-        // will be saved in the 'action.payload'
-        // the data that is received by API -> to display on profile
         return { favouritedList, movieData };
       }
     } catch (error) {
@@ -132,80 +134,81 @@ const favouriteListSlice = createSlice({
   initialState,
   reducers: {},
 
-  //   extra reducers to handle http request
+  /*************CREATE favourit**************/
   extraReducers: (builder) => {
     // CREATE favourite
     builder.addCase(postFavouriteList.pending, (state, action) => {
-      return { ...state, postFavouriteStatus: 'pending' };
+      return { ...state, favouriteLoaded: 'pending' };
     });
     // when loginUser function result is 'fullfilled'
     builder.addCase(postFavouriteList.fulfilled, (state, action) => {
       return {
         ...state,
-        postFavouriteStatus: 'success',
+        favouritedList: [...state.favouritedList, action.payload],
         favouriteStatus: 'true',
+        favouriteLoaded: 'success',
       };
     });
     builder.addCase(postFavouriteList.rejected, (state, action) => {
       return {
         ...state,
-        reviewError: action.payload,
-        postFavouriteStatus: 'failed',
+        favouritePostError: action.payload,
       };
     });
 
-    //*************delete favourite*************
+    //*************DELETE favourite*************
     builder.addCase(deleteFavourite.pending, (state, action) => {
-      return { ...state, deleteFavouriteStatus: 'pending' };
+      return { ...state, deleteStatus: 'pending' };
     });
     // when loginUser function result is 'fullfilled'
     builder.addCase(deleteFavourite.fulfilled, (state, action) => {
-      // console.log('action.payload', action.payload);
+      // action.payload = meddiaId
       const deletedMediaId = action.payload;
       // Update state to remove the deleted review
-      // console.log('initialState.reviews', state.reviews);
-      const updatedMedia = state.favouritedList.filter(
+      // current(state) : to modify the current state
+      const prevState = current(state);
+
+      const updatedMedia = prevState.favouritedList.filter(
         (media) => media.mediaId !== deletedMediaId
       );
-      const updatedMovieData = state.movieData.filter(
+
+      const updatedMovieData = prevState.movieData.filter(
         (movie) => movie.mediaId !== deletedMediaId
       );
       return {
         ...state,
         favouritedList: updatedMedia,
         movieData: updatedMovieData,
-        deleteFavouriteStatus: 'success',
+        favouriteStatus: false,
+        deleteStatus: 'success',
       };
     });
     builder.addCase(deleteFavourite.rejected, (state, action) => {
       return {
         ...state,
-        reviewError: action.payload,
-        deleteFavouriteStatus: 'failed',
+        deleteStatus: action.payload,
       };
     });
 
     /************get favourite status*************/
-    // when loginUser function result is 'pending'
     builder.addCase(favouriteStatus.pending, (state, action) => {
       return {
         ...state,
-        favouriteStatusLoaded: 'pending',
+        statusLoaded: 'pending',
       };
     });
-    // when loginUser function result is 'fullfilled'
     builder.addCase(favouriteStatus.fulfilled, (state, action) => {
       return {
         ...state,
+        // action.payload : boolean
         favouriteStatus: action.payload,
-        favouriteStatusLoaded: 'success',
+        statusLoaded: 'success',
       };
     });
     builder.addCase(favouriteStatus.rejected, (state, action) => {
       return {
         ...state,
-        reviewError: action.payload,
-        favouriteStatusError: 'failed',
+        statusLoaded: action.payload,
       };
     });
 
@@ -213,24 +216,23 @@ const favouriteListSlice = createSlice({
     builder.addCase(loadFavouritedList.pending, (state, action) => {
       return {
         ...state,
-        favouritedListLoaded: 'pending',
+        favouriteListLoaded: 'pending',
       };
     });
     // when loginUser function result is 'fullfilled'
     builder.addCase(loadFavouritedList.fulfilled, (state, action) => {
-      // console.log(action.payload);
+      console.log(action.payload);
       return {
         ...state,
         favouritedList: action.payload.favouritedList,
         movieData: action.payload.movieData,
-        favouritedListLoaded: 'success',
+        favouriteListLoaded: 'success',
       };
     });
     builder.addCase(loadFavouritedList.rejected, (state, action) => {
       return {
         ...state,
-        favouritedListError: action.payload,
-        favouritedListLoaded: 'failed',
+        favouriteListLoaded: action.payload,
       };
     });
   },
