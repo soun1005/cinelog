@@ -11,7 +11,7 @@ const initialState = {
   isUserLoggedIn: loggedIn,
   reviewStatus: false,
   statusLoaded: '',
-  movieData: '',
+  movieData: [],
   reviews: [],
   reviewUpdate: '',
   reviewError: '',
@@ -42,8 +42,8 @@ export const postReview = createAsyncThunk(
           },
         }
       );
-      const savedReview = { review };
-      return savedReview;
+
+      return { review };
     } catch (error) {
       console.log(error);
       const errorMsg = error.response.data.error;
@@ -186,13 +186,13 @@ const reviewSlice = createSlice({
       // console.log('create review -> state.reviews', current(state));
       console.log('create action.payload:', action.payload.review);
       // console.log('state.reveiws:', state.reviews);
-      const prevReviews = current(state);
-      console.log('prevReviews:', prevReviews.reviews);
+      // const prevReviews = current(state);
+      // console.log('prevReviews:', prevReviews.reviews);
 
       return {
         ...state,
         postReviewStatus: 'success',
-        reviews: [action.payload, ...state.reviews],
+        reviews: [...state.reviews, action.payload],
       };
     });
 
@@ -211,7 +211,7 @@ const reviewSlice = createSlice({
 
     // when loadUser function result is 'fullfilled'
     builder.addCase(loadReviews.fulfilled, (state, action) => {
-      // console.log(action.payload);
+      console.log('loadReviews:', action.payload);
       if (action.payload) {
         return {
           ...state,
@@ -247,6 +247,7 @@ const reviewSlice = createSlice({
       const updatedMovieData = prevState.movieData.filter(
         (movie) => movie.mediaId !== deletedReviewId
       );
+
       return {
         ...state,
         reviews: updatedReviews,

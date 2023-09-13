@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { apiEndpoint } from '../../constant/api';
 
@@ -9,7 +9,7 @@ const initialState = {
   favouritePostError: '',
   favouriteLoaded: '',
   // load
-  favouritedList: '',
+  favouritedList: [],
   favouriteListLoaded: false,
   // status
   favouriteStatus: false,
@@ -17,7 +17,7 @@ const initialState = {
   // delete
   deleteStatus: '',
   // etc
-  movieData: '',
+  movieData: [],
 };
 
 const base = apiEndpoint;
@@ -142,9 +142,11 @@ const favouriteListSlice = createSlice({
     });
     // when loginUser function result is 'fullfilled'
     builder.addCase(postFavouriteList.fulfilled, (state, action) => {
+      console.log(action.payload);
       return {
         ...state,
         favouritedList: [...state.favouritedList, action.payload],
+        // favouritedList: action.payload,
         favouriteStatus: true,
         favouriteLoaded: 'success',
       };
@@ -162,29 +164,59 @@ const favouriteListSlice = createSlice({
     });
     // when loginUser function result is 'fullfilled'
     builder.addCase(deleteFavourite.fulfilled, (state, action) => {
-      // action.payload = meddiaId
+      // id of deleted movie
       const deletedMediaId = action.payload;
-      // Update state to remove the deleted review
-      // current(state) : to modify the current state
-      // const prevState = current(state);
-      // console.log(prevState);
-
-      const updatedMedia = state.favouritedList.filter(
+      const prevState = current(state);
+      console.log('favouritedList', prevState.favouritedList);
+      // 상태를 업데이트할 때, 삭제된 항목을 포함하지 않도록
+      const updatedList = prevState.favouritedList.filter(
         (media) => media.mediaId !== deletedMediaId
       );
 
-      const updatedMovieData = state.movieData.filter(
-        (movie) => movie.mediaId !== deletedMediaId || movie
-      );
+      const updatedMovieData = prevState.movieData.map((movie) => {
+        if (movie.mediaId === deletedMediaId) {
+          // 삭제된 항목을 movieData에서도 제거
+          return undefined; // 나중에 filter로 삭제된 것들을 제거
+        }
+        return movie;
+      });
 
       return {
         ...state,
-        favouritedList: updatedMedia,
-        movieData: updatedMovieData,
-        favouriteStatus: false,
+        favouritedList: updatedList,
+        // undefined 항목을 제거
+        movieData: updatedMovieData.filter(Boolean),
         deleteStatus: 'success',
+        favouriteStatus: false,
       };
     });
+
+    //   // action.payload = meddiaId
+    //   const deletedMediaId = action.payload;
+    //   // Update state to remove the deleted review
+    //   // current(state) : to modify the current state
+    //   // const prevState = current(state);
+    //   // console.log(prevState);
+
+    //   // this works
+    //   const prevState = current(state);
+    //   console.log('current state', prevState.favouritedList);
+    //   const updatedList = prevState.favouritedList.filter(
+    //     (media) => media.mediaId !== deletedMediaId
+    //   );
+
+    //   const updatedMovieData = prevState.movieData.filter(
+    //     (movie) => movie.mediaId !== deletedMediaId || movie
+    //   );
+
+    //   return {
+    //     ...state,
+    //     favouritedList: updatedList,
+    //     movieData: updatedMovieData,
+    //     // favouriteStatus: false,
+    //     deleteStatus: 'success',
+    //   };
+    // });
     builder.addCase(deleteFavourite.rejected, (state, action) => {
       return {
         ...state,
@@ -214,7 +246,7 @@ const favouriteListSlice = createSlice({
       };
     });
 
-    /************load favourited movies*************/
+    /************LOAD favourited movies*************/
     builder.addCase(loadFavouritedList.pending, (state, action) => {
       return {
         ...state,
@@ -223,18 +255,21 @@ const favouriteListSlice = createSlice({
     });
     // when loginUser function result is 'fullfilled'
     builder.addCase(loadFavouritedList.fulfilled, (state, action) => {
-      console.log('favourited list', action.payload);
-      return {
-        ...state,
-        favouritedList: action.payload.favouritedList,
-        movieData: action.payload.movieData,
-        favouriteListLoaded: 'success',
-      };
+      console.log('favourited list:', action.payload);
+      if (action.payload) {
+        return {
+          ...state,
+          favouritedList: action.payload.favouritedList,
+          movieData: action.payload.movieData,
+          favouriteListLoaded: 'success',
+        };
+      } else return state;
     });
     builder.addCase(loadFavouritedList.rejected, (state, action) => {
       return {
         ...state,
-        favouriteListLoaded: action.payload,
+        favouriteStatus: 'rejected',
+        // favouriteListLoaded: action.payload,
       };
     });
   },

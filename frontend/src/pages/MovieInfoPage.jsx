@@ -19,7 +19,9 @@ const MovieInfoPage = () => {
   const token = useToken();
   const dispatch = useDispatch();
   const { userId } = useSelector((state) => state.profile);
-  const favourited = useSelector((state) => state.favourite.favouriteStatus);
+  const favouritedStatus = useSelector(
+    (state) => state.favourite.favouriteStatus
+  );
   const hasReview = useSelector((state) => state.review.reviewStatus.hasReview);
 
   useEffect(() => {
@@ -27,10 +29,11 @@ const MovieInfoPage = () => {
     dispatch(reviewStatus({ mediaId: id, userId: userId }));
     dispatch(favouriteStatus({ mediaId: id, userId: userId }));
     dispatch(loadReviews());
-  }, [dispatch, id, userId, favourited, hasReview]);
+  }, [dispatch, id, userId, hasReview]);
 
   // const favouritedList = useFavouriteList();
-  // console.log(favouritedList);
+  // console.log('favourite from load favourite:', favouritedList);
+  console.log('favourite from redux state:', favouritedStatus);
 
   const handleFavourite = () => {
     dispatch(postFavouriteList({ mediaId: id, userId: userId }));
@@ -148,7 +151,7 @@ const MovieInfoPage = () => {
               />
             )}
 
-            {token && favourited && (
+            {token && favouritedStatus && (
               <BtnWithEvent
                 heartAdded={false}
                 heartIcon="favorite"
@@ -159,7 +162,7 @@ const MovieInfoPage = () => {
               />
             )}
 
-            {token && !favourited && (
+            {token && !favouritedStatus && (
               <BtnWithEvent
                 heartAdded={false}
                 text="Add"

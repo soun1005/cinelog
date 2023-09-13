@@ -3,6 +3,7 @@ import useFavouriteList from '../hooks/useFavouriteList';
 
 const FavouritedMovieList = () => {
   const favourite = useFavouriteList();
+  console.log('favourite data:', favourite);
   if (!favourite) {
     // display loader here or error
     return null;

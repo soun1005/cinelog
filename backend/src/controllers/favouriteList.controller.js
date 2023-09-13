@@ -62,8 +62,6 @@ const deleteFavourite = async (req, res) => {
   }
 };
 
-// load reviews and the movie info that matches the review by id
-// fetch movie information and credit here when it's called
 const loadFavouritedList = async (req, res) => {
   try {
     // grab token from request

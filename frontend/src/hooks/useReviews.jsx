@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 export const useReviews = () => {
   const dispatch = useDispatch();
-  // reviews = array
 
   useEffect(() => {
     dispatch(loadReviews());
   }, [dispatch]);
+
   const { reviews, movieData } = useSelector((state) => state.review);
 
   if (!reviews || !movieData) {
@@ -28,7 +28,7 @@ export const useReviews = () => {
 
     return movie;
   });
-  console.log(mergedData);
+  // console.log(mergedData);
   return mergedData;
 };
 
