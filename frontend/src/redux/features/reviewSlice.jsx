@@ -270,29 +270,24 @@ const reviewSlice = createSlice({
 
     builder.addCase(editReview.fulfilled, (state, action) => {
       // 현재 state
-      const prevReviews = current(state);
-
-      // console.log('redux action.payload', action.payload);
+      // const prevReviews = current(state);
       const editedReviewId = action.payload.mediaId;
 
-      // 기존의 리뷰에서, 수정된 리뷰를 빼버린다음에,
-      // 기존 리뷰에 action.payload를 다시 넣어서
-      // reviews에 넣기
+      // 기존에 있던 리뷰 중 수정된 리뷰를 제거 -> 이짓거리를 하면 안됐음
+      // const updatedReviewState = prevReviews.reviews.filter(
+      //   (review) => review.mediaId !== editedReviewId
+      // );
+      // console.log('updatedReviewState:', updatedReviewState);
 
-      const updatedReviewState = prevReviews.reviews.filter(
-        (review) => review.mediaId !== editedReviewId
-      );
-      console.log(updatedReviewState);
-
-      const updatedReviews = updatedReviewState.concat([action.payload]);
-      console.log('did it work', updatedReviews);
+      // 수정된 리뷰를 다시 넣어버림
+      // const updatedReviews = updatedReviewState.concat([action.payload]);
 
       const updatedMovieData = state.movieData.filter(
         (movie) => movie.mediaId === editedReviewId
       );
       return {
         ...state,
-        reviews: updatedReviews,
+        reviews: [action.payload],
         movieData: updatedMovieData,
         deleteReviewStatus: 'success',
       };
