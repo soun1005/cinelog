@@ -192,6 +192,7 @@ const reviewSlice = createSlice({
       return {
         ...state,
         postReviewStatus: 'success',
+        reviewStatus: true,
         reviews: [...state.reviews, action.payload],
       };
     });
@@ -306,6 +307,7 @@ const reviewSlice = createSlice({
     });
     // when loginUser function result is 'fullfilled'
     builder.addCase(reviewStatus.fulfilled, (state, action) => {
+      console.log('review status', action.payload);
       return {
         ...state,
         reviewStatus: action.payload,

@@ -19,13 +19,14 @@ import { combineReducers } from '@reduxjs/toolkit';
 
 const persistConfig = {
   key: 'root',
-  version: 1,
   storage,
+  whitelist: ['review', 'favourite'],
+  blacklist: ['profile', 'search', 'info', 'auth'],
 };
 
 const reducer = combineReducers({
-  // review: reviewSlice,
-  // favourite: favouriteListSlice,
+  review: reviewSlice,
+  favourite: favouriteListSlice,
   // profile: profileSlice,
   // search: movieResultSlice,
   // info: movieInfoSlice,
