@@ -12,6 +12,7 @@ import BtnWithEvent from '../components/BtnWithEvent';
 import BtnWithLink from '../components/BtnWithLink';
 import { postReview } from '../redux/features/reviewSlice';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 const schema = yup
   .object({
@@ -40,6 +41,16 @@ const MovieReviewPage = () => {
     const confirmBox = window.confirm('Do you want to save this review?');
     if (confirmBox === true) {
       dispatch(postReview({ ...data, mediaId: id }));
+      toast('Review is saved!', {
+        position: 'bottom-right',
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
       navigate(`/movie/${id}`);
     }
   };
@@ -163,11 +174,11 @@ const MovieReviewPage = () => {
                 path={`/movie/${id}`}
               />
             </div>
-
             {/* {loginStatus === 'rejected' ? <p>{loginError}</p> : null} */}
           </form>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

@@ -15,6 +15,7 @@ import EditReviewPage from './pages/EditReviewPage';
 import PrivateRoutes from './privateRoutes';
 import FavouritedMovieList from './pages/FavouritedMovieList';
 import Footer from './layouts/Footer';
+import { ToastContainer } from 'react-toastify';
 
 const App = () => {
   return (
@@ -43,6 +44,7 @@ const App = () => {
               />
             </Route>
           </Routes>
+          <ToastContainer />
           <Footer />
         </div>
       </BrowserRouter>

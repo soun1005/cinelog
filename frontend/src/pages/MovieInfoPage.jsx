@@ -9,9 +9,9 @@ import { postFavouriteList } from '../redux/features/favouriteListSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import BtnWithEvent from '../components/BtnWithEvent';
 import { deleteFavourite } from '../redux/features/favouriteListSlice';
-// import useFavouriteList from '../hooks/useFavouriteList';
 import { reviewStatus } from '../redux/features/reviewSlice';
 import { loadReviews } from '../redux/features/reviewSlice';
+import { ToastContainer, toast } from 'react-toastify';
 
 const MovieInfoPage = () => {
   const { id } = useParams();
@@ -37,12 +37,32 @@ const MovieInfoPage = () => {
 
   const handleFavourite = () => {
     dispatch(postFavouriteList({ mediaId: id, userId: userId }));
+    toast('Favourite added!', {
+      position: 'bottom-right',
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    });
   };
 
   const handleDeleteFavourite = () => {
     const confirmBox = window.confirm('Do you really want to delete this?');
     if (confirmBox === true) {
       dispatch(deleteFavourite(id));
+      toast('Favourite deleted!', {
+        position: 'bottom-right',
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
     }
   };
 
@@ -175,6 +195,7 @@ const MovieInfoPage = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

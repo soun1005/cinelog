@@ -12,6 +12,7 @@ import useReviews from '../hooks/useReviews';
 import { useDispatch } from 'react-redux';
 import { editReview } from '../redux/features/reviewSlice';
 import { useNavigate } from 'react-router';
+import { ToastContainer, toast } from 'react-toastify';
 
 const schema = yup
   .object({
@@ -51,6 +52,16 @@ const EditReview = ({ mediaId }) => {
     // here with new API to update both DB and redux with data
     // console.log('data:', data);
     dispatch(editReview({ data, mediaId: mediaId }));
+    toast('Review is edited!', {
+      position: 'bottom-right',
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    });
     navigate(`/profile/review/${mediaId}`);
   };
 
@@ -173,6 +184,7 @@ const EditReview = ({ mediaId }) => {
           </form>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

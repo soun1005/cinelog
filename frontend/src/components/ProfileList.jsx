@@ -6,6 +6,7 @@ import BtnWithEvent from '../components/BtnWithEvent';
 import { useDispatch } from 'react-redux';
 import { deleteReview } from '../redux/features/reviewSlice';
 import { deleteFavourite } from '../redux/features/favouriteListSlice';
+import { ToastContainer, toast } from 'react-toastify';
 
 const ProfileList = ({
   data,
@@ -33,6 +34,16 @@ const ProfileList = ({
       );
       if (confirmBox === true) {
         dispatch(deleteReview(movie.mediaId));
+        toast('Review deleted!', {
+          position: 'bottom-right',
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
       }
     };
 
@@ -40,6 +51,16 @@ const ProfileList = ({
       const confirmBox = window.confirm('Do you really want to delete this?');
       if (confirmBox === true) {
         dispatch(deleteFavourite(movie.mediaId));
+        toast('Favourite deleted!', {
+          position: 'bottom-right',
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
       }
     };
 
@@ -142,6 +163,7 @@ const ProfileList = ({
       ) : (
         <div className="profile-list__card-container">{cardsList}</div>
       )}
+      <ToastContainer />
     </div>
   );
 };
