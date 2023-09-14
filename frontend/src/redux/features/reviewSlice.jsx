@@ -183,11 +183,7 @@ const reviewSlice = createSlice({
     });
 
     builder.addCase(postReview.fulfilled, (state, action) => {
-      // console.log('create review -> state.reviews', current(state));
       console.log('create action.payload:', action.payload.review);
-      // console.log('state.reveiws:', state.reviews);
-      // const prevReviews = current(state);
-      // console.log('prevReviews:', prevReviews.reviews);
 
       return {
         ...state,

@@ -11,7 +11,7 @@ export const useReviews = () => {
   }, [dispatch]);
 
   const { reviews, movieData } = useSelector((state) => state.review);
-
+  console.log('reviews:', reviews);
   if (!reviews || !movieData) {
     return null;
   }

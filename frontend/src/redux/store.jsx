@@ -24,27 +24,19 @@ const persistConfig = {
   blacklist: ['profile', 'search', 'info', 'auth'],
 };
 
-const reducer = combineReducers({
+const rootReducer = combineReducers({
   review: reviewSlice,
   favourite: favouriteListSlice,
-  // profile: profileSlice,
-  // search: movieResultSlice,
-  // info: movieInfoSlice,
-  // auth: authSlice,
+  profile: profileSlice,
+  search: movieResultSlice,
+  info: movieInfoSlice,
+  auth: authSlice,
 });
 
-const persistedReducer = persistReducer(persistConfig, reducer);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
-  reducer: {
-    persistedReducer,
-    search: movieResultSlice,
-    info: movieInfoSlice,
-    auth: authSlice,
-    review: reviewSlice,
-    profile: profileSlice,
-    favourite: favouriteListSlice,
-  },
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
