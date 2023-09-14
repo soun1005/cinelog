@@ -13,8 +13,10 @@ const ReviewDetailComponent = ({ data }) => {
     title,
     date,
     poster,
+    mediaId,
   } = data;
 
+  console.log(data);
   const releasedYear = releasedDate.slice(0, 4);
 
   const updatedAtFormatted = dayjs(updatedAt).format('HH:MM DD/MM/YYYY'); // '25/01/2019'
@@ -22,7 +24,12 @@ const ReviewDetailComponent = ({ data }) => {
 
   return (
     <div className="review-detail__container">
-      <PostercardWithTitle poster={poster} title={title} date={releasedYear} />
+      <PostercardWithTitle
+        poster={poster}
+        title={title}
+        date={releasedYear}
+        path={`/movie/${mediaId}`}
+      />
       <div className="review-detail">
         <div className="review-detail__title-wrap detail-wrap">
           <span>Title</span>
