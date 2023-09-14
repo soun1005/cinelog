@@ -12,12 +12,16 @@ const ReviewDetail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { reviews, movieData } = useSelector((state) => state.review);
-  const { id } = useParams();
-
   useEffect(() => {
     dispatch(loadReviews());
   }, [dispatch]);
+
+  const { reviews, movieData } = useSelector((state) => state.review);
+  const { id } = useParams();
+  // const wtf = useSelector((state) => console.log(state.review));
+  // console.log(wtf);
+
+  console.log(reviews, movieData);
 
   if (!reviews || !movieData) {
     return null;
@@ -36,11 +40,11 @@ const ReviewDetail = () => {
     return movie;
   });
 
-  console.log('mergedData', mergedData);
+  // console.log('mergedData', mergedData);
 
   const matchedMedia = mergedData.find((obj) => obj.mediaId === id);
 
-  console.log(matchedMedia);
+  // console.log(matchedMedia);
 
   const handleDelete = () => {
     const confirmBox = window.confirm(
