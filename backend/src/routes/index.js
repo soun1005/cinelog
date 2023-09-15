@@ -7,6 +7,7 @@ import mainMoviesRoutes from './mainMovies.routes.js';
 import reviewRoutes from './reviews.routes.js';
 import profileRoutes from './profile.routes.js';
 import favouriteRoutes from './favouriteList.routes.js';
+import castRoutes from './cast.routes.js';
 
 const router = express.Router();
 
@@ -16,5 +17,6 @@ router.use(mainMoviesRoutes);
 router.use(reviewRoutes);
 router.use(profileRoutes);
 router.use(favouriteRoutes);
+router.use(castRoutes);
 
 export default router;
