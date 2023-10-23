@@ -1,4 +1,4 @@
-import { useSignup } from '../hooks/useSignup';
+import SignupService from '../api/signupService';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -43,7 +43,7 @@ const Signup = () => {
     resolver: yupResolver(schema),
   });
 
-  const { signup, error, isLoading } = useSignup();
+  const { signup, error, isLoading } = SignupService();
 
   const onSubmit = async (data) => {
     await signup(data);

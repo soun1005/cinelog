@@ -1,6 +1,7 @@
 import MainMovieDisplay from '../components/MainMovieDisplay';
-import useApiFetch from '../hooks/useApiFetch';
+import ApiFetchService from '../api/apiFetchService';
 import { apiEndpoint } from '../constant/api';
+import Loading from '../components/Loading';
 
 const Main = () => {
   const nowPlayingEndpoint = `${apiEndpoint}/movies/nowplaying`;
@@ -8,15 +9,20 @@ const Main = () => {
 
   // now playing
   // number of movies that I wanna display on second arguement
-  const nowPlayingRes = useApiFetch(nowPlayingEndpoint, 16);
+  const nowPlayingRes = ApiFetchService(nowPlayingEndpoint, 16);
   const nowPlayingData = nowPlayingRes.data;
+  const nowPlayingLoading = nowPlayingRes.loading;
+
+  console.log(nowPlayingLoading);
 
   // upcoming
-  const upcomingRes = useApiFetch(upcomingEndpoint, 16);
+  const upcomingRes = ApiFetchService(upcomingEndpoint, 16);
   const upcomingData = upcomingRes.data;
+  const upcomingLoading = upcomingRes.loading;
 
   return (
     <div className="page">
+      {nowPlayingLoading && upcomingLoading && <Loading />}
       {nowPlayingData && (
         <MainMovieDisplay
           data={nowPlayingData}

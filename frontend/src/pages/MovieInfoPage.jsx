@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import BtnWithLink from '../components/BtnWithLink';
-import useMovieInfo from '../hooks/useMovieInfo';
-import useToken from '../hooks/useToken';
+import MovieInfoService from '../api/movieInfoService';
+import TokenService from '../api/tokenService';
 import { loadUser } from '../redux/features/profileSlice';
 import { favouriteStatus } from '../redux/features/favouriteListSlice';
 import { postFavouriteList } from '../redux/features/favouriteListSlice';
@@ -15,8 +15,8 @@ import { ToastContainer, toast } from 'react-toastify';
 
 const MovieInfoPage = () => {
   const { id } = useParams();
-  const movieInfo = useMovieInfo(id);
-  const token = useToken();
+  const movieInfo = MovieInfoService(id);
+  const token = TokenService();
   const dispatch = useDispatch();
   const { userId } = useSelector((state) => state.profile);
   const favouritedStatus = useSelector(

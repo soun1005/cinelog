@@ -2,13 +2,13 @@ import { useEffect } from 'react';
 import { loadUser } from '../redux/features/profileSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import ProfileList from '../components/ProfileList';
-import useReviews from '../hooks/useReviews';
-import useFavouriteList from '../hooks/useFavouriteList';
+import ReviewService from '../api/reviewService';
+import FavouriteListService from '../api/favouriteListService';
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const reviews = useReviews();
-  const favourite = useFavouriteList();
+  const reviews = ReviewService();
+  const favourite = FavouriteListService();
 
   console.log(favourite);
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const useApiFetch = (endpoint, numberOfData) => {
+const ApiFetchService = (endpoint, numberOfData) => {
   const [data, setData] = useState(null);
   const [loading, setloading] = useState(true);
   const [error, seterror] = useState('');
@@ -10,7 +10,6 @@ const useApiFetch = (endpoint, numberOfData) => {
     axios(endpoint).then((res) => {
       seterror(res.error);
       setData(res.data.slice(0, numberOfData)); // 첫 N개 요소만 추출하여 저장
-      // setData(res.data);
       setloading(false);
     });
   }, [endpoint, numberOfData]);
@@ -18,4 +17,4 @@ const useApiFetch = (endpoint, numberOfData) => {
   return { data, loading, error };
 };
 
-export default useApiFetch;
+export default ApiFetchService;

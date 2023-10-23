@@ -1,8 +1,8 @@
 import ProfileList from '../components/ProfileList';
-import useFavouriteList from '../hooks/useFavouriteList';
+import FavouriteListService from '../api/favouriteListService';
 
 const FavouritedMovieList = () => {
-  const favourite = useFavouriteList();
+  const favourite = FavouriteListService();
   console.log('favourite data:', favourite);
   if (!favourite) {
     // display loader here or error

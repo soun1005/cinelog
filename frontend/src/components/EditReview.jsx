@@ -5,10 +5,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { string } from 'yup';
 import ReactStars from 'react-rating-stars-component';
-import useMovieInfo from '../hooks/useMovieInfo';
+import MovieInfoService from '../api/movieInfoService';
 import BtnWithEvent from '../components/BtnWithEvent';
 import BtnWithLink from '../components/BtnWithLink';
-import useReviews from '../hooks/useReviews';
+import ReviewService from '../api/reviewService';
 import { useDispatch } from 'react-redux';
 import { editReview } from '../redux/features/reviewSlice';
 import { useNavigate } from 'react-router';
@@ -33,8 +33,8 @@ const EditReview = ({ mediaId }) => {
   const navigate = useNavigate();
 
   // custom hooks to get redux states
-  const reviews = useReviews();
-  const movieInfo = useMovieInfo(mediaId);
+  const reviews = ReviewService();
+  const movieInfo = MovieInfoService(mediaId);
 
   if (!reviews || !movieInfo) {
     // display loader here or error

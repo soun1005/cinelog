@@ -7,7 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { string } from 'yup';
 import ReactStars from 'react-rating-stars-component';
-import useMovieInfo from '../hooks/useMovieInfo';
+import MovieInfoService from '../api/movieInfoService';
 import BtnWithEvent from '../components/BtnWithEvent';
 import BtnWithLink from '../components/BtnWithLink';
 import { postReview } from '../redux/features/reviewSlice';
@@ -56,7 +56,7 @@ const MovieReviewPage = () => {
   };
 
   // custom hook to get movie info
-  const movieInfo = useMovieInfo(id);
+  const movieInfo = MovieInfoService(id);
   if (!movieInfo) {
     // display loader here or error
     return null;

@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { movieInfo } from '../redux/features/movieInfoSlice';
 
-const useMovieInfo = (movieId) => {
+const MovieInfoService = (movieId) => {
   // to get movie id
   const dispatch = useDispatch();
 
@@ -52,4 +52,4 @@ const useMovieInfo = (movieId) => {
   };
 };
 
-export default useMovieInfo;
+export default MovieInfoService;

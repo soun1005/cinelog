@@ -1,5 +1,4 @@
 import './css/main.css';
-// import './css/normalize.css';
 import Navbar from './layouts/Navbar';
 import SearchResult from './pages/SearchResult';
 import Main from './pages/Main';

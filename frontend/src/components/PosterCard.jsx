@@ -4,8 +4,6 @@ import fallback from '../assets/fallback_img.png';
 
 // JSON data is passed in SearchResult.jsx
 export default function PosterCard({ data }) {
-  // map every data and return HTML dom with each data
-  // map les données et retourne le dom HTML avec chaque donnée
   const cardsList = data.map((movie) => {
     const { title, poster, id } = movie;
     const posterSrc = poster.includes('null') ? fallback : poster;

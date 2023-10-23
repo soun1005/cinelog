@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { loadReviews } from '../redux/features/reviewSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
-export const useReviews = () => {
+export const ReviewService = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -32,4 +32,4 @@ export const useReviews = () => {
   return mergedData;
 };
 
-export default useReviews;
+export default ReviewService;

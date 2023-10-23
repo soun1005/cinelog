@@ -1,8 +1,8 @@
-import useReviews from '../hooks/useReviews';
+import ReviewService from '../api/reviewService';
 import ProfileList from '../components/ProfileList';
 
 const ReviewedMovieList = () => {
-  const data = useReviews();
+  const data = ReviewService();
   if (!data) {
     // display loader here or error
     return null;

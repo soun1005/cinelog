@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { loadFavouritedList } from '../redux/features/favouriteListSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
-export const useFavouriteList = () => {
+export const FavouriteListService = () => {
   const dispatch = useDispatch();
   const { favouritedList, movieData } = useSelector((state) => state.favourite);
   console.log('favouritedList:', favouritedList);
@@ -33,4 +33,4 @@ export const useFavouriteList = () => {
   return mergedData;
 };
 
-export default useFavouriteList;
+export default FavouriteListService;

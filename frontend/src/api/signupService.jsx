@@ -3,11 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { apiEndpoint } from '../constant/api';
 
-export const useSignup = () => {
+export const SignupService = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
   const navigate = useNavigate();
-  //   const { dispatch } = useAuthContext()
 
   const base = apiEndpoint;
 
@@ -42,3 +41,5 @@ export const useSignup = () => {
 
   return { signup, isLoading, error };
 };
+
+export default SignupService;
