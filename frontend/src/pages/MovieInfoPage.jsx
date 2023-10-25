@@ -1,16 +1,25 @@
 import { useEffect } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
+
+// components
 import BtnWithLink from '../components/BtnWithLink';
-import MovieInfoService from '../api/movieInfoService';
-import TokenService from '../api/tokenService';
-import { loadUser } from '../redux/features/profileSlice';
-import { favouriteStatus } from '../redux/features/favouriteListSlice';
-import { postFavouriteList } from '../redux/features/favouriteListSlice';
-import { useDispatch, useSelector } from 'react-redux';
 import BtnWithEvent from '../components/BtnWithEvent';
+import Loading from '../components/Loading';
+
+// redux
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteFavourite } from '../redux/features/favouriteListSlice';
 import { reviewStatus } from '../redux/features/reviewSlice';
 import { loadReviews } from '../redux/features/reviewSlice';
+import { loadUser } from '../redux/features/profileSlice';
+import { favouriteStatus } from '../redux/features/favouriteListSlice';
+import { postFavouriteList } from '../redux/features/favouriteListSlice';
+
+// API
+import MovieInfoService from '../api/movieInfoService';
+import TokenService from '../api/tokenService';
+
+// toast
 import { ToastContainer, toast } from 'react-toastify';
 
 const MovieInfoPage = () => {
@@ -19,6 +28,11 @@ const MovieInfoPage = () => {
   const token = TokenService();
   const dispatch = useDispatch();
   const { userId } = useSelector((state) => state.profile);
+
+  const movieStatus = useSelector((state) => state.info.dataStatus);
+  const movieLoaded = !!movieStatus;
+  console.log('movieLoaded?', movieLoaded);
+
   const favouritedStatus = useSelector(
     (state) => state.favourite.favouriteStatus
   );
@@ -30,10 +44,6 @@ const MovieInfoPage = () => {
     dispatch(favouriteStatus({ mediaId: id, userId: userId }));
     dispatch(loadReviews());
   }, [dispatch, id, userId, hasReview]);
-
-  // const favouritedList = useFavouriteList();
-  // console.log('favourite from load favourite:', favouritedList);
-  console.log('favourite from redux state:', favouritedStatus);
 
   const handleFavourite = () => {
     dispatch(postFavouriteList({ mediaId: id, userId: userId }));
@@ -84,6 +94,7 @@ const MovieInfoPage = () => {
 
   return (
     <div className="info__container page">
+      {!movieLoaded ? <Loading /> : ''}
       <div className="info__wrap">
         <div className="poster-wrap">
           <img src={poster} alt={title} className="movieInfo-poster" />
@@ -110,7 +121,7 @@ const MovieInfoPage = () => {
               <span>
                 {movieCast.map((cast) => {
                   return (
-                    <NavLink to={'/'}>
+                    <NavLink to={'/'} key={cast.id}>
                       <span className="movieCast" key={cast.id}>
                         {cast.name}
                       </span>

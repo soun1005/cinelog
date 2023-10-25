@@ -13,8 +13,6 @@ const Main = () => {
   const nowPlayingData = nowPlayingRes.data;
   const nowPlayingLoading = nowPlayingRes.loading;
 
-  console.log(nowPlayingLoading);
-
   // upcoming
   const upcomingRes = ApiFetchService(upcomingEndpoint, 16);
   const upcomingData = upcomingRes.data;
