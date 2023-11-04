@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { deleteReview } from '../redux/features/reviewSlice';
 import { deleteFavourite } from '../redux/features/favouriteListSlice';
 import { ToastContainer, toast } from 'react-toastify';
+import FilterByRating from './filterData/FilterByRating';
 
 const ProfileList = ({
   data,
@@ -155,6 +156,10 @@ const ProfileList = ({
           {listTitle}
           {` (${dataLength})`}
         </span>
+
+        {/* filter */}
+        <FilterByRating />
+
         {data && moreBtn && (
           <NavLink to={pagePath}>
             <button>More</button>

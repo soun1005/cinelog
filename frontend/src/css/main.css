@@ -1026,3 +1026,35 @@ input:focus {
             transform: rotate(360deg);
   }
 }
+.ratingFilterWrap h2 {
+  font-size: 14px;
+}
+.ratingFilterWrap .hiddenMenu {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 14px;
+  background-color: #76c5e4;
+}
+.ratingFilterWrap .hiddenMenu p {
+  font-size: 12px;
+}
+.ratingFilterWrap .hiddenMenu button {
+  font-size: 14px;
+  font-weight: 600;
+  background-color: black;
+  color: white;
+  border-radius: 7px;
+  padding: 3px 10px;
+}
