@@ -10,8 +10,6 @@ const Profile = () => {
   const reviews = ReviewService();
   const favourite = FavouriteListService();
 
-  console.log(favourite);
-
   // // To dispatch loadUser reducer
   useEffect(() => {
     dispatch(loadUser());

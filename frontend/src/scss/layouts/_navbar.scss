@@ -21,8 +21,38 @@
   .linkwrap {
     display: flex;
     align-items: center;
+    gap: 2rem;
+
+    .profileWrap {
+      margin-right: 1rem;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .hiddenMenu {
+      position: absolute;
+      left: 0;
+      a {
+        display: inline-block;
+      }
+    }
+
     a {
       margin-right: 1rem;
+    }
+
+    // Nav hidden menu animation
+    .hiddenMenu {
+      opacity: 0;
+      /* Start offscreen */
+      transform: translateY(-10px);
+      transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+    }
+
+    .hiddenMenu.active {
+      opacity: 1;
+      /* Slide in */
+      transform: translateY(0);
     }
   }
 }

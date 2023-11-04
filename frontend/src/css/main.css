@@ -23,8 +23,12 @@ dd {
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
 ul[role=list],
-ol[role=list] {
+ol[role=list],
+ul,
+ol {
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 /* Set core root defaults */
@@ -508,9 +512,38 @@ input:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  gap: 2rem;
+}
+.nav-wrap .linkwrap .profileWrap {
+  margin-right: 1rem;
+  position: relative;
+  cursor: pointer;
+}
+.nav-wrap .linkwrap .hiddenMenu {
+  position: absolute;
+  left: 0;
+}
+.nav-wrap .linkwrap .hiddenMenu a {
+  display: inline-block;
 }
 .nav-wrap .linkwrap a {
   margin-right: 1rem;
+}
+.nav-wrap .linkwrap .hiddenMenu {
+  opacity: 0;
+  /* Start offscreen */
+  -webkit-transform: translateY(-10px);
+          transform: translateY(-10px);
+  -webkit-transition: opacity 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+}
+.nav-wrap .linkwrap .hiddenMenu.active {
+  opacity: 1;
+  /* Slide in */
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
 }
 
 .footer {

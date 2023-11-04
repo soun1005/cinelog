@@ -25,9 +25,7 @@ export const loginUser = createAsyncThunk(
         email: user.email,
         password: user.password,
       });
-      // console.log(res);
-      // token location : data.body.token(info in Swagger)
-      // console.log(res.data);
+
       const token = res.data.token;
       localStorage.setItem('token', token);
       console.log('logged in');
