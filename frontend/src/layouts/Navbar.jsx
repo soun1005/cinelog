@@ -20,8 +20,6 @@ const Navbar = () => {
   useEffect(() => {
     const handleOpenMenu = (e) => {
       // Update the state when the div loses focus
-      console.log('ssibal');
-      // setHiddenMenu(false);
       if (
         navHiddenMenu.current &&
         hiddenMenu &&

@@ -22,7 +22,9 @@ const Profile = () => {
     return null;
   }
 
-  // console.log('Data:', userName, data);
+  console.log(reviews.length);
+  const limitedReviews = reviews.slice(0, 5);
+  const limitedFavourite = favourite.slice(0, 5);
 
   return (
     <div className="profile-page page">
@@ -33,18 +35,20 @@ const Profile = () => {
         <ProfileList
           listTitle="My reviews"
           dateLabel="Revied on"
-          data={reviews}
+          data={limitedReviews}
           noDataMsg="No reviews yet!"
           pagePath={'/profile/reviews'}
+          dataLength={reviews.length}
         />
         <ProfileList
           listTitle="My favourites"
           dateLabel="Added on"
-          data={favourite}
+          data={limitedFavourite}
           noDataMsg="No favourited movies yet!"
           isReview={false}
           buttons={false}
           pagePath={'/profile/favourites'}
+          dataLength={favourite.length}
         />
       </div>
     </div>

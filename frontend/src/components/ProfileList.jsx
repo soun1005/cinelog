@@ -17,9 +17,9 @@ const ProfileList = ({
   isReview = true,
   moreBtn = true,
   buttons = false,
+  dataLength,
 }) => {
   const dispatch = useDispatch();
-  // console.log(data);
   const cardsList = data.map((movie) => {
     const { createdAt, ratings, poster, _id, title, releasedDate, mediaId } =
       movie;
@@ -151,7 +151,10 @@ const ProfileList = ({
   return (
     <div className="profile-list__container">
       <div className="profile-list__title-wrap">
-        <span>{listTitle}</span>
+        <span>
+          {listTitle}
+          {` (${dataLength})`}
+        </span>
         {data && moreBtn && (
           <NavLink to={pagePath}>
             <button>More</button>

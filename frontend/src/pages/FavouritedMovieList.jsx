@@ -17,6 +17,7 @@ const FavouritedMovieList = () => {
         buttons={true}
         moreBtn={false}
         isReview={false}
+        dataLength={favourite.length}
       />
     </div>
   );

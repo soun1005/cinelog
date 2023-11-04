@@ -17,6 +17,7 @@ const ReviewedMovieList = () => {
         noDataMsg="No reviews yet"
         buttons={true}
         moreBtn={false}
+        dataLength={data.length}
       />
     </div>
   );
