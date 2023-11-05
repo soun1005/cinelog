@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-// import axios from 'axios';
-// import { useDispatch, useSelector } from '@reduxjs/toolkit';
-// import { useSelector, useDispatch } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { moviesSearch } from '../redux/features/movieResultSlice';
 

@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import fallback from '../assets/fallback_img.png';
 import RatingStars from '../components/RatingStars';
@@ -8,7 +9,7 @@ import { deleteReview } from '../redux/features/reviewSlice';
 import { deleteFavourite } from '../redux/features/favouriteListSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import FilterByRating from './filterData/FilterByRating';
-import { useEffect, useState } from 'react';
+import FilterBySearchbar from './filterData/FilterBySearchbar';
 
 const ProfileList = ({
   data,
@@ -22,17 +23,23 @@ const ProfileList = ({
   dataLength,
 }) => {
   const [star, setStar] = useState(5);
+  const [searchKeyword, setSearchKeyword] = useState('');
   const [filteredData, setFilteredData] = useState(data);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(data);
-    const filtered = data.filter((d) => d.ratings <= star);
-    setFilteredData(filtered);
-  }, [data, star]);
+    // const filtered = data.filter((d) => d.ratings <= star);
+    // setFilteredData(filtered);
 
-  const reviewCount = star === 5 ? dataLength : filteredData.length;
+    const filtered = data.filter(
+      (d) => d.ratings <= star && d.title.toLowerCase().includes(searchKeyword)
+    );
+    setFilteredData(filtered);
+  }, [data, searchKeyword, star]);
+
+  const reviewCount =
+    star === 5 && searchKeyword === '' ? dataLength : filteredData.length;
 
   const cardsList = filteredData.map((movie) => {
     const { createdAt, ratings, poster, _id, title, releasedDate, mediaId } =
@@ -172,6 +179,7 @@ const ProfileList = ({
 
         {/* filter */}
         <FilterByRating setFilterStar={setStar} />
+        <FilterBySearchbar setSearch={setSearchKeyword} />
 
         {data && moreBtn && (
           <NavLink to={pagePath}>

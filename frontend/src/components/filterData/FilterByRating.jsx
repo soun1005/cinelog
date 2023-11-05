@@ -12,9 +12,6 @@ const FilterByRating = ({ setFilterStar }) => {
     setFilterStar(newRating);
   };
 
-  //   console.log(star);
-  // array.filter
-
   const resetStar = () => {
     ratingChanged(5);
   };

@@ -713,10 +713,10 @@ input:focus {
 }
 
 .search__input {
-  border-radius: 20px;
+  border-radius: 10px;
   border-color: transparent;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 11px;
-          box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 11px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px;
+          box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px;
   padding: 4px 5px 1px 10px;
   outline: none;
 }
