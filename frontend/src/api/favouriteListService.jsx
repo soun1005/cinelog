@@ -5,9 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 export const FavouriteListService = () => {
   const dispatch = useDispatch();
+
   const { favouritedList, movieData } = useSelector((state) => state.favourite);
   console.log('favouritedList:', favouritedList);
-  console.log('movieData:', movieData);
+  // console.log('movieData:', movieData);
 
   useEffect(() => {
     dispatch(loadFavouritedList());

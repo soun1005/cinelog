@@ -18,6 +18,7 @@ const FavouritedMovieList = () => {
         moreBtn={false}
         isReview={false}
         dataLength={favourite.length}
+        setSearchFilter={true}
       />
     </div>
   );

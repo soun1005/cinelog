@@ -21,6 +21,8 @@ const ProfileList = ({
   moreBtn = true,
   buttons = false,
   dataLength,
+  setRatingFilter = false,
+  setSearchFilter = false,
 }) => {
   const [star, setStar] = useState(5);
   const [searchKeyword, setSearchKeyword] = useState('');
@@ -28,15 +30,21 @@ const ProfileList = ({
 
   const dispatch = useDispatch();
 
+  // for filtering
   useEffect(() => {
-    // const filtered = data.filter((d) => d.ratings <= star);
-    // setFilteredData(filtered);
-
-    const filtered = data.filter(
-      (d) => d.ratings <= star && d.title.toLowerCase().includes(searchKeyword)
-    );
+    const filtered = data.filter((d) => {
+      if (d.ratings !== undefined) {
+        return (
+          d.ratings <= star && d.title.toLowerCase().includes(searchKeyword)
+        );
+      }
+      return d.title.toLowerCase().includes(searchKeyword);
+    });
     setFilteredData(filtered);
   }, [data, searchKeyword, star]);
+
+  // console.log(filteredData);
+  // console.log(data);
 
   const reviewCount =
     star === 5 && searchKeyword === '' ? dataLength : filteredData.length;
@@ -178,8 +186,8 @@ const ProfileList = ({
         </span>
 
         {/* filter */}
-        <FilterByRating setFilterStar={setStar} />
-        <FilterBySearchbar setSearch={setSearchKeyword} />
+        {setRatingFilter && <FilterByRating setFilterStar={setStar} />}
+        {setSearchFilter && <FilterBySearchbar setSearch={setSearchKeyword} />}
 
         {data && moreBtn && (
           <NavLink to={pagePath}>

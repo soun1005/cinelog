@@ -18,6 +18,8 @@ const ReviewedMovieList = () => {
         buttons={true}
         moreBtn={false}
         dataLength={data.length}
+        setSearchFilter={true}
+        setRatingFilter={true}
       />
     </div>
   );
