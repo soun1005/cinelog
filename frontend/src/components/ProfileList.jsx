@@ -8,6 +8,7 @@ import { deleteReview } from '../redux/features/reviewSlice';
 import { deleteFavourite } from '../redux/features/favouriteListSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import FilterByRating from './filterData/FilterByRating';
+import { useEffect, useState } from 'react';
 
 const ProfileList = ({
   data,
@@ -20,8 +21,20 @@ const ProfileList = ({
   buttons = false,
   dataLength,
 }) => {
+  const [star, setStar] = useState(5);
+  const [filteredData, setFilteredData] = useState(data);
+
   const dispatch = useDispatch();
-  const cardsList = data.map((movie) => {
+
+  useEffect(() => {
+    console.log(data);
+    const filtered = data.filter((d) => d.ratings <= star);
+    setFilteredData(filtered);
+  }, [data, star]);
+
+  const reviewCount = star === 5 ? dataLength : filteredData.length;
+
+  const cardsList = filteredData.map((movie) => {
     const { createdAt, ratings, poster, _id, title, releasedDate, mediaId } =
       movie;
     const posterSrc = poster.includes('null') ? fallback : poster;
@@ -154,11 +167,11 @@ const ProfileList = ({
       <div className="profile-list__title-wrap">
         <span>
           {listTitle}
-          {` (${dataLength})`}
+          {` (${reviewCount})`}
         </span>
 
         {/* filter */}
-        <FilterByRating />
+        <FilterByRating setFilterStar={setStar} />
 
         {data && moreBtn && (
           <NavLink to={pagePath}>

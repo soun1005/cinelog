@@ -2,17 +2,21 @@ import { useState, useRef } from 'react';
 import ReactStars from 'react-rating-stars-component';
 // import { IsEmpty, Map } from 'react-lodash';
 
-const FilterByRating = (data) => {
+const FilterByRating = ({ setFilterStar }) => {
   const ratingHiddenMenu = useRef(null);
-  const [star, setStar] = useState(0);
+  const [star, setStar] = useState(5);
   const [hiddenMenu, setHiddenMenu] = useState(false);
 
   const ratingChanged = (newRating) => {
     setStar(newRating);
+    setFilterStar(newRating);
   };
 
+  //   console.log(star);
+  // array.filter
+
   const resetStar = () => {
-    setStar(0);
+    ratingChanged(5);
   };
 
   return (
