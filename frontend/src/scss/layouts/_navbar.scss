@@ -22,24 +22,49 @@
     display: flex;
     align-items: center;
     gap: 2rem;
+    width: 100%;
+    height: 3rem;
+    // background-color: red;
 
     .profileWrap {
+      width: 6rem;
       margin-right: 1rem;
       position: relative;
       cursor: pointer;
+      display: flex;
+      justify-content: center;
+      height: 80%;
+      align-items: center;
+
+      &.active {
+        background-color: $transparentWhite;
+        border-radius: 10px 10px 0 0;
+      }
     }
 
     .hiddenMenu {
       position: absolute;
+      background-color: $transparentWhite;
       left: 0;
+      top: 2rem;
+      width: 100%;
+      border-radius: 0 0 10px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 10px;
       a {
         display: inline-block;
+        margin-bottom: 8px;
+        &:hover {
+          border-bottom: 0.3px solid $darkGray;
+        }
       }
     }
 
-    a {
-      margin-right: 1rem;
-    }
+    // a {
+    //   margin-right: 1rem;
+    // }
 
     // Nav hidden menu animation
     .hiddenMenu {
