@@ -14,6 +14,7 @@ const FavouritedMovieList = () => {
         data={favourite}
         listTitle="My favourites"
         noDataMsg="No favourited movies yet"
+        noMatchMsg="No favourited movies found"
         buttons={true}
         moreBtn={false}
         isReview={false}

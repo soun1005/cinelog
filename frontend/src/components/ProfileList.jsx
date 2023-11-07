@@ -15,6 +15,7 @@ const ProfileList = ({
   data,
   listTitle,
   noDataMsg,
+  noMatchMsg,
   dateLabel,
   pagePath,
   isReview = true,
@@ -198,11 +199,15 @@ const ProfileList = ({
           </NavLink>
         )}
       </div>
-      {data.length === 0 ? (
+
+      {data.length === 0 && filteredData.length === 0 ? (
         <p>{noDataMsg}</p>
+      ) : data.length > 0 && filteredData.length === 0 ? (
+        <p>{noMatchMsg}</p>
       ) : (
         <div className="profile-list__card-container">{cardsList}</div>
       )}
+
       <ToastContainer />
     </div>
   );
