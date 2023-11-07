@@ -15,6 +15,7 @@ const ReviewedMovieList = () => {
         data={data}
         listTitle="My reviews"
         noDataMsg="No reviews yet"
+        noMatchMsg="No matched review"
         buttons={true}
         moreBtn={false}
         dataLength={data.length}

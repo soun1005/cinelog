@@ -7,6 +7,9 @@
   align-items: center;
   justify-content: center;
   border-radius: 10px 10px 0 0;
+  .ratingFilterTitle {
+    cursor: pointer;
+  }
 
   &.active {
     background-color: $transparentWhite;
@@ -23,7 +26,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    // margin-top: 8px;
     background-color: $transparentWhite;
     border-radius: 10px;
     padding: 10px 12px;
@@ -43,4 +45,18 @@
       padding: 3px 10px;
     }
   }
+}
+
+//  hidden menu animation
+.hiddenMenu {
+  opacity: 0;
+  /* Start offscreen */
+  transform: translateY(-10px);
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.hiddenMenu.active {
+  opacity: 1;
+  /* Slide in */
+  transform: translateY(0);
 }

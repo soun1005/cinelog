@@ -4,15 +4,19 @@
 
 .profile__user-wrap {
   display: flex;
-  height: 13rem;
+  height: 10rem;
   align-items: center;
   justify-content: center;
-  // border-bottom: 0.5px solid #dbdbdb;
+  p {
+    padding: 10px 20px;
+    background-color: $transparentWhite;
+    border-radius: 10px;
+    box-shadow: $reviewDetailShadow;
+  }
 }
 
 .list__container {
   width: 100%;
-  //   background-color: red;
   display: flex;
   flex-basis: auto;
   gap: 4rem;

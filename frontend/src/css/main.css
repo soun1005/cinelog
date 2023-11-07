@@ -335,13 +335,20 @@ input:focus {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: 13rem;
+  height: 10rem;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+.profile__user-wrap p {
+  padding: 10px 20px;
+  background-color: rgba(240, 240, 240, 0.8);
+  border-radius: 10px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+          box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .list__container {
@@ -603,8 +610,8 @@ input:focus {
   color: #f1f1f1;
   margin-left: 2rem;
   margin-right: 1.4rem;
-  font-weight: 600;
-  font-size: 18px;
+  font-weight: 400;
+  font-size: 16px;
 }
 
 .postercard-title__container {
@@ -1091,6 +1098,9 @@ input:focus {
           justify-content: center;
   border-radius: 10px 10px 0 0;
 }
+.ratingFilterWrap .ratingFilterTitle {
+  cursor: pointer;
+}
 .ratingFilterWrap.active {
   background-color: rgba(240, 240, 240, 0.8);
 }
@@ -1131,4 +1141,22 @@ input:focus {
   color: white;
   border-radius: 7px;
   padding: 3px 10px;
+}
+
+.hiddenMenu {
+  opacity: 0;
+  /* Start offscreen */
+  -webkit-transform: translateY(-10px);
+          transform: translateY(-10px);
+  -webkit-transition: opacity 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+}
+
+.hiddenMenu.active {
+  opacity: 1;
+  /* Slide in */
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
 }
