@@ -954,7 +954,7 @@ input:focus {
   font-weight: 500;
   font-size: 20px;
 }
-.profile-list__title-wrap .filterWrap {
+.profile-list__title-wrap .filterContainer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1084,7 +1084,7 @@ input:focus {
             transform: rotate(360deg);
   }
 }
-.ratingFilterWrap {
+.filterWrap {
   position: relative;
   width: 10rem;
   display: -webkit-box;
@@ -1098,17 +1098,17 @@ input:focus {
           justify-content: center;
   border-radius: 10px 10px 0 0;
 }
-.ratingFilterWrap .ratingFilterTitle {
+.filterWrap .filterTitle {
   cursor: pointer;
 }
-.ratingFilterWrap.active {
+.filterWrap.active {
   background-color: rgba(240, 240, 240, 0.8);
 }
-.ratingFilterWrap h2 {
+.filterWrap h2 {
   font-size: 14px;
   z-index: 9999;
 }
-.ratingFilterWrap .hiddenMenu {
+.filterWrap .hiddenMenu {
   position: absolute;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1129,13 +1129,13 @@ input:focus {
   padding: 10px 12px;
   width: 100%;
 }
-.ratingFilterWrap .hiddenMenu p {
+.filterWrap .hiddenMenu p {
   font-size: 12px;
   margin-top: 10px;
 }
-.ratingFilterWrap .hiddenMenu button {
+.filterWrap .hiddenMenu button {
   margin-top: 1rem;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   background-color: black;
   color: white;

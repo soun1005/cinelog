@@ -10,6 +10,7 @@ import { deleteFavourite } from '../redux/features/favouriteListSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import FilterByRating from './filterData/FilterByRating';
 import FilterBySearchbar from './filterData/FilterBySearchbar';
+import SortByDate from './filterData/SortByDate';
 
 const ProfileList = ({
   data,
@@ -27,6 +28,7 @@ const ProfileList = ({
 }) => {
   const [star, setStar] = useState(5);
   const [searchKeyword, setSearchKeyword] = useState('');
+  const [sortBy, setSortBy] = useState('');
   const [filteredData, setFilteredData] = useState(data);
 
   const dispatch = useDispatch();
@@ -186,13 +188,15 @@ const ProfileList = ({
           {` (${reviewCount})`}
         </span>
 
-        {/* filter */}
-        <div className="filterWrap">
+        {/* filters and sort */}
+        <div className="filterContainer">
           {setRatingFilter && <FilterByRating setFilterStar={setStar} />}
+          <SortByDate setDate={setSortBy} />
           {setSearchFilter && (
             <FilterBySearchbar setSearch={setSearchKeyword} />
           )}
         </div>
+
         {data && moreBtn && (
           <NavLink to={pagePath}>
             <button>More</button>
