@@ -12,11 +12,12 @@ const Navbar = () => {
   const navHiddenMenu = useRef(null);
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
-  const { userName } = useSelector((state) => state.profile);
 
   useEffect(() => {
     dispatch(loadUser());
-  }, [dispatch]);
+  }, [dispatch, auth]);
+
+  const { userName } = useSelector((state) => state.profile);
 
   useEffect(() => {
     const handleOpenMenu = (e) => {
