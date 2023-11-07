@@ -12,6 +12,7 @@ const Navbar = () => {
   const navHiddenMenu = useRef(null);
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
+  const { userName } = useSelector((state) => state.profile);
 
   useEffect(() => {
     dispatch(loadUser());
@@ -41,12 +42,10 @@ const Navbar = () => {
     }
   }, [hiddenMenu]);
 
-  const { userName } = useSelector((state) => state.profile);
-
-  if (!userName) {
-    // display loader here or error
-    return null;
-  }
+  // if (!userName) {
+  //   // display loader here or error
+  //   return null;
+  // }
 
   const logIn = (
     <div className="linkwrap">
