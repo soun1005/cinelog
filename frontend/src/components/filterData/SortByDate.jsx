@@ -11,6 +11,8 @@ const SortByDate = ({ setDate }) => {
     setDate(e.target.innerText);
   };
 
+  console.log(sort);
+
   useEffect(() => {
     const handleOpenMenu = (e) => {
       // Update the state when the div loses focus
@@ -46,10 +48,10 @@ const SortByDate = ({ setDate }) => {
           className={`hiddenMenu ${menuAnimation ? 'active' : ''}`}
           ref={sortOptions}
         >
-          <button onClick={handleOnClick}>Reviewed date(asc)</button>
-          <button onClick={handleOnClick}>Reviewed date(des)</button>
-          <button onClick={handleOnClick}>Released date(asc)</button>
-          <button onClick={handleOnClick}>Released date(des)</button>
+          <button onClick={handleOnClick}>Added date ▽ </button>
+          <button onClick={handleOnClick}>Added date △</button>
+          <button onClick={handleOnClick}>Released date ▽</button>
+          <button onClick={handleOnClick}>Released date △</button>
         </div>
       ) : (
         ''

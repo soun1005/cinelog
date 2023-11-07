@@ -23,8 +23,10 @@ const ProfileList = ({
   moreBtn = true,
   buttons = false,
   dataLength,
+  // filters are added when true
   setRatingFilter = false,
   setSearchFilter = false,
+  setSortFilter = false,
 }) => {
   const [star, setStar] = useState(5);
   const [searchKeyword, setSearchKeyword] = useState('');
@@ -46,9 +48,46 @@ const ProfileList = ({
     setFilteredData(filtered);
   }, [data, searchKeyword, star]);
 
-  // console.log(filteredData);
+  console.log(filteredData);
   // console.log(data);
 
+  useEffect(() => {
+    // Update the filtered data whenever 'sortBy' changes
+    // Sorting function based on the 'sortBy' state
+    const sortData = () => {
+      let sortedData = [...filteredData];
+      switch (sortBy) {
+        case 'Added date ▽':
+          sortedData.sort(
+            (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+          );
+          break;
+        case 'Added date △':
+          sortedData.sort(
+            (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+          );
+          break;
+        case 'Released date ▽':
+          sortedData.sort(
+            (a, b) => new Date(b.releasedDate) - new Date(a.releasedDate)
+          );
+          break;
+        case 'Released date △':
+          sortedData.sort(
+            (a, b) => new Date(a.releasedDate) - new Date(b.releasedDate)
+          );
+          break;
+        default:
+          // No sorting
+          break;
+      }
+      setFilteredData(sortedData);
+    };
+    sortData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sortBy]);
+
+  // To manage review counts
   const reviewCount =
     star === 5 && searchKeyword === '' ? dataLength : filteredData.length;
 
@@ -191,7 +230,7 @@ const ProfileList = ({
         {/* filters and sort */}
         <div className="filterContainer">
           {setRatingFilter && <FilterByRating setFilterStar={setStar} />}
-          <SortByDate setDate={setSortBy} />
+          {setSortFilter && <SortByDate setDate={setSortBy} />}
           {setSearchFilter && (
             <FilterBySearchbar setSearch={setSearchKeyword} />
           )}

@@ -20,6 +20,7 @@ const FavouritedMovieList = () => {
         isReview={false}
         dataLength={favourite.length}
         setSearchFilter={true}
+        setSortFilter={true}
       />
     </div>
   );

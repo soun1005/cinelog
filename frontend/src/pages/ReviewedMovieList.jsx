@@ -21,6 +21,7 @@ const ReviewedMovieList = () => {
         dataLength={data.length}
         setSearchFilter={true}
         setRatingFilter={true}
+        setSortFilter={true}
       />
     </div>
   );
