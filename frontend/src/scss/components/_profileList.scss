@@ -1,5 +1,4 @@
 .profile-list__btn-container {
-  // background-color: rgb(72, 172, 222);
   margin-bottom: 1rem;
   width: 100%;
 }
@@ -10,12 +9,22 @@
 
 // 'Reviewed, more button' wrap
 .profile-list__title-wrap {
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 2rem 0;
+  padding-bottom: 1.2rem;
+  border-bottom: 0.5px solid $lightGray;
   span:first-of-type {
     font-weight: 500;
     font-size: 20px;
+  }
+  .filterWrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2rem;
   }
 }
 

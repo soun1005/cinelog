@@ -18,7 +18,7 @@ const FilterByRating = ({ setFilterStar }) => {
 
   return (
     <div
-      className="ratingFilterWrap"
+      className={`ratingFilterWrap ${hiddenMenu ? 'active' : ''}`}
       onClick={() => setHiddenMenu(!hiddenMenu)}
     >
       <h2 className="ratingFilterTitle">Filter by Ratings</h2>

@@ -186,9 +186,12 @@ const ProfileList = ({
         </span>
 
         {/* filter */}
-        {setRatingFilter && <FilterByRating setFilterStar={setStar} />}
-        {setSearchFilter && <FilterBySearchbar setSearch={setSearchKeyword} />}
-
+        <div className="filterWrap">
+          {setRatingFilter && <FilterByRating setFilterStar={setStar} />}
+          {setSearchFilter && (
+            <FilterBySearchbar setSearch={setSearchKeyword} />
+          )}
+        </div>
         {data && moreBtn && (
           <NavLink to={pagePath}>
             <button>More</button>
