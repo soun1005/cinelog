@@ -4,7 +4,7 @@ import footerLogo from '../assets/CinelogLogoFooter.png';
 const Footer = () => {
   return (
     <div className="footer">
-      <div className="page">
+      <div className="footerWrap page">
         <div className="logo-wrap">
           <img src={footerLogo} alt="logo" />
         </div>

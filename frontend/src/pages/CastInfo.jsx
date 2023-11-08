@@ -10,7 +10,7 @@ const CastInfo = () => {
   const getCastInfoFromApi = CastInfoService(id);
   //   console.log('castinfoservice called', castInfo);
   console.log(getCastInfoFromApi);
-  return <div>Hello</div>;
+  return <div className="page">Hello</div>;
 };
 
 export default CastInfo;

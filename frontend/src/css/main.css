@@ -178,8 +178,8 @@ input:focus {
   margin-bottom: 2rem;
 }
 
-.fullPage {
-  height: calc(100vh - 15rem);
+.page:not(.footerWrap) {
+  min-height: calc(100vh - 15rem);
 }
 
 .navbar,
