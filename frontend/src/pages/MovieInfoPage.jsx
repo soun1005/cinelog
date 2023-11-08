@@ -121,7 +121,7 @@ const MovieInfoPage = () => {
               <span>
                 {movieCast.map((cast) => {
                   return (
-                    <NavLink to={'/'} key={cast.id}>
+                    <NavLink to={`/cast/${cast.id}`} key={cast.id}>
                       <span className="movieCast" key={cast.id}>
                         {cast.name}
                       </span>

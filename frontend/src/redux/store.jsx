@@ -5,6 +5,7 @@ import authSlice from './features/authSlice';
 import reviewSlice from './features/reviewSlice';
 import profileSlice from './features/profileSlice';
 import favouriteListSlice from './features/favouriteListSlice';
+import castInfoSlice from './features/castInfoSlice';
 import storage from 'redux-persist/lib/storage';
 import {
   persistReducer,
@@ -21,7 +22,7 @@ const persistConfig = {
   key: 'root',
   storage,
   whitelist: ['review', 'favourite'],
-  blacklist: ['profile', 'search', 'info', 'auth'],
+  blacklist: ['profile', 'search', 'info', 'auth', 'cast'],
 };
 
 const rootReducer = combineReducers({
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
   search: movieResultSlice,
   info: movieInfoSlice,
   auth: authSlice,
+  cast: castInfoSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

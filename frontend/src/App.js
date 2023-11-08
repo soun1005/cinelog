@@ -15,6 +15,7 @@ import PrivateRoutes from './privateRoutes';
 import FavouritedMovieList from './pages/FavouritedMovieList';
 import Footer from './layouts/Footer';
 import { ToastContainer } from 'react-toastify';
+import CastInfo from './pages/CastInfo';
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
             <Route path="/signup" element={<Signup />} />
             <Route path="/search" element={<SearchResult />} />
             <Route path="/movie/:id" element={<MovieInfoPage />} />
+            <Route path="/cast/:id" element={<CastInfo />} />
             <Route element={<PrivateRoutes />}>
               <Route path="/review/:id_title" element={<MovieReviewPage />} />
               <Route path="/profile" element={<Profile />} />

@@ -16,10 +16,9 @@ export const movieInfo = createAsyncThunk(
   'movies/info',
   //   searchValue as paramaeter -> keyword given in SearchBar component
   async (id, { rejectWithValue }) => {
-    // console.log(searchValue);
     try {
       const response = await axios.get(`${base}/${id}`);
-      // console.log('response:', response);
+      console.log('response:', response);
       // two filtered data (cast, crew)
       const movieInfo = response.data.movieData;
       // cast data has all information
@@ -51,11 +50,9 @@ const movieInfoSlice = createSlice({
     });
 
     builder.addCase(movieInfo.fulfilled, (state, action) => {
-      // console.log('credit action.payload:', action.payload);
       if (action.payload) {
         return {
           ...state,
-          // movieCredit: action.payload.values,
           movieInfo: action.payload.movieInfo,
           // movieCast.id = actor/actress's id for their info page
           movieCast: action.payload.movieCast,
