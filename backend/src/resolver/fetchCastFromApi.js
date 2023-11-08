@@ -1,3 +1,4 @@
+// this resolver calls TMDB API to get actor's information and movie credits
 import axios from 'axios';
 
 const baseUrl = process.env.TMDB_BASE_URL;
@@ -18,12 +19,12 @@ const fetchCastFromApi = async (castId) => {
   }
 };
 
-const fetchCastImgFromApi = async (castId) => {
+const fetchCastCreditsFromApi = async (castId) => {
   try {
     const response = await axios.get(
-      `${baseUrl}/person/${castId}/images?api_key=${key}`
+      `${baseUrl}/person/${castId}/movie_credits?api_key=${key}`
     );
-    console.log('fetchCasting called');
+    console.log('fetchCasting credits called');
 
     // This will return the data received from the API
     return response.data;
@@ -33,4 +34,4 @@ const fetchCastImgFromApi = async (castId) => {
   }
 };
 
-export { fetchCastFromApi, fetchCastImgFromApi };
+export { fetchCastFromApi, fetchCastCreditsFromApi };

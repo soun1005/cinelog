@@ -13,10 +13,10 @@ const router = express.Router();
 
 router.use(searchMovieRoutes);
 router.use(userRoutes);
+router.use(castRoutes);
 router.use(mainMoviesRoutes);
 router.use(reviewRoutes);
 router.use(profileRoutes);
 router.use(favouriteRoutes);
-router.use(castRoutes);
 
 export default router;

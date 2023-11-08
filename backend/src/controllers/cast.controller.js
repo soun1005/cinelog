@@ -1,18 +1,17 @@
 import {
   fetchCastFromApi,
-  fetchCastImgFromApi,
+  // fetchCastImgFromApi,
+  fetchCastCreditsFromApi,
 } from '../resolver/fetchCastFromApi.js';
 import responseHandler from '../handlers/response.handler.js';
 
 const getCast = async (req, res) => {
   const castData = await fetchCastFromApi(req.params.id);
-  const castImg = await fetchCastImgFromApi(req.params.id);
-  // console.log('req.params', req.params.id);
+  const castCredits = await fetchCastCreditsFromApi(req.params.id);
 
-  console.log(castImg);
-
-  if (castData && castImg) {
-    res.json({ castData, castImg }); // Return the data as JSON response
+  if (castData && castCredits) {
+    // Return the data as JSON response
+    res.json({ castData, castCredits });
   } else {
     responseHandler.error(res);
   }
