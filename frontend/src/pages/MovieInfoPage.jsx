@@ -31,7 +31,7 @@ const MovieInfoPage = () => {
 
   const movieStatus = useSelector((state) => state.info.dataStatus);
   const movieLoaded = !!movieStatus;
-  console.log('movieLoaded?', movieLoaded);
+  // console.log('movieLoaded?', movieLoaded);
 
   const favouritedStatus = useSelector(
     (state) => state.favourite.favouriteStatus
@@ -87,7 +87,7 @@ const MovieInfoPage = () => {
     genre,
     poster,
     movieCast,
-    name,
+    movieCrew,
     overview,
     releasedDate,
   } = movieInfo;
@@ -109,9 +109,9 @@ const MovieInfoPage = () => {
             {/* movie infos */}
             {/* director */}
             <div className="main-wrap__info-subWrap subInfo">
-              <NavLink to={'/'}>
+              <NavLink to={`/cast/${movieCrew.id}`}>
                 <span>Directed by </span>
-                <span className="director">{name}</span>
+                <span className="director">{movieCrew.name}</span>
               </NavLink>
             </div>
 

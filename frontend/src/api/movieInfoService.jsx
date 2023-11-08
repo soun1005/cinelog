@@ -28,7 +28,7 @@ const MovieInfoService = (movieId) => {
   const { movieCast } = movieData;
 
   //   director name
-  const { name } = movieData.movieCrew;
+  const { movieCrew } = movieData;
 
   //   general movie info
   const { genre, id, overview, poster, releasedDate, title } =
@@ -48,7 +48,7 @@ const MovieInfoService = (movieId) => {
     genre,
     poster,
     movieCast,
-    name,
+    movieCrew,
   };
 };
 
