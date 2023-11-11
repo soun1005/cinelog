@@ -1,6 +1,6 @@
-.info__container {
-  background-color: pink;
-}
+// .info__container {
+//   background-color: pink;
+// }
 
 .info__wrap {
   display: flex;
@@ -76,4 +76,9 @@
       font-weight: $subTitleWeight;
     }
   }
+}
+
+.cast__titleWrap {
+  display: flex;
+  justify-content: space-between;
 }

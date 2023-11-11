@@ -22,11 +22,13 @@ import TokenService from '../api/tokenService';
 
 // toast
 import { ToastContainer, toast } from 'react-toastify';
-import CastCard from '../components/CastCard';
+import CastSection from '../components/CastSection';
+// import CastCard from '../components/CastCard';
 
 const MovieInfoPage = () => {
   // to open and close confirm modal
   const [confirmModal, setConfirmModal] = useState(false);
+  // const [moreCasts, setMoreCasts] = useState(false);
 
   const { id } = useParams();
   const movieInfo = MovieInfoService(id);
@@ -50,6 +52,7 @@ const MovieInfoPage = () => {
     dispatch(loadReviews());
   }, [dispatch, id, userId, hasReview]);
 
+  // button to add favourite
   const handleFavourite = () => {
     dispatch(postFavouriteList({ mediaId: id, userId: userId }));
     toast('Favourite added!', {
@@ -64,6 +67,7 @@ const MovieInfoPage = () => {
     });
   };
 
+  // button to delete favourite
   const handleDeleteFavourite = () => {
     dispatch(deleteFavourite(id));
     toast('Favourite deleted!', {
@@ -95,7 +99,8 @@ const MovieInfoPage = () => {
     allCasts,
   } = movieInfo;
 
-  console.log('movie info page allCasts:', allCasts);
+  // console.log('movie info page allCasts:', allCasts, 'movieCast:', movieCast);
+  const movieCastTop6 = allCasts.slice(0, 6);
 
   return (
     <div className="info__container page">
@@ -219,11 +224,32 @@ const MovieInfoPage = () => {
           </div>
         </div>
       </div>
-      <div className="cast__container">
-        {allCasts.map((cast) => {
-          return <CastCard castInfo={cast} />;
-        })}
-      </div>
+
+      {/************ casts ***********/}
+      <CastSection lessCast={movieCastTop6} moreCast={allCasts} />
+      {/* <div className="cast">
+        <div className="cast__titleWrap">
+          <p className="cast__titleWrap__title">Movie casts</p>
+          {!moreCasts ? (
+            <span onClick={() => setMoreCasts(true)}> View more</span>
+          ) : (
+            <span onClick={() => setMoreCasts(false)}> View less</span>
+          )}
+        </div>
+        <div
+          className={
+            !moreCasts ? 'cast__container' : 'cast__container fullList'
+          }
+        >
+          {!moreCasts
+            ? movieCastTop6.map((cast) => (
+                <CastCard castInfo={cast} key={cast.id} />
+              ))
+            : allCasts.map((cast) => (
+                <CastCard castInfo={cast} key={cast.id} />
+              ))}
+        </div>
+      </div> */}
       <ToastContainer />
     </div>
   );

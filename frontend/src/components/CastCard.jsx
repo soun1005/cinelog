@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import fallback from '../assets/fallback_img.png';
 
 const CastCard = ({ castInfo }) => {
   // cast info =>
@@ -15,16 +16,22 @@ const CastCard = ({ castInfo }) => {
 
   const castPhoto = `https://image.tmdb.org/t/p/w185/${castInfo.profile_path}`;
 
+  const posterSrc = castPhoto.includes('null') ? fallback : castPhoto;
+
   return (
-    <div className="castCardWrap">
+    <div className="cast-card">
       <NavLink
         to={`/cast/${castInfo.id}`}
-        className="castCardWrap"
+        className="cast-card__wrap"
         key={castInfo.key}
       >
-        <img src={castPhoto} alt={castInfo.name} className="castCardImg" />
-        <p>{castInfo.name}</p>
-        <p>/{castInfo.character}</p>
+        <div className="imgContainer">
+          <img src={posterSrc} alt={castInfo.name} className="castCardImg" />
+        </div>
+        <div className="name-container">
+          <p>{castInfo.name}</p>
+          <p>/{castInfo.character}</p>
+        </div>
       </NavLink>
     </div>
   );
