@@ -928,22 +928,25 @@ input:focus {
 .basicBtn {
   background-color: #0f0f0f;
   border: 1px solid none;
-}
-.basicBtn span {
+  border-radius: 5px;
   color: #f1f1f1;
 }
 
 .specialBtn {
   background-color: #f1f1f1;
   border: 1px solid #0f0f0f;
-}
-.specialBtn span {
-  color: #0f0f0f;
+  border-radius: 5px;
 }
 .specialBtn:hover {
   background-color: #0f0f0f;
-  color: #f1f1f1;
+  color: white;
   border: none;
+}
+.specialBtn:hover .btn-label {
+  color: #f1f1f1;
+}
+.specialBtn .btn-label:hover {
+  color: #f1f1f1;
 }
 
 .selectDate {
@@ -1255,10 +1258,4 @@ input:focus {
   cursor: pointer;
   padding: 6px 1.2rem;
   font-size: 14px;
-  border-radius: 10px;
-  border: 1px rgb(55, 55, 55) solid;
-}
-.btn-wrap p:nth-child(1) {
-  background-color: rgb(55, 55, 55);
-  color: #f1f1f1;
 }

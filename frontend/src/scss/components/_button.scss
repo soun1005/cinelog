@@ -39,15 +39,26 @@
 
 // for basic btns like save, confirm
 .basicBtn {
-  @include btnStyle($blackColor, none, $whiteColor);
+  @include btnStyle($blackColor, none);
+  color: $whiteColor;
 }
 
 // special btns like cancel, delete
 .specialBtn {
-  @include btnStyle($whiteColor, $blackColor, $blackColor);
+  @include btnStyle($whiteColor, $blackColor);
   &:hover {
     background-color: $blackColor;
-    color: $whiteColor;
+    color: white;
     border: none;
+
+    .btn-label {
+      color: $whiteColor;
+    }
+  }
+
+  .btn-label {
+    &:hover {
+      color: $whiteColor;
+    }
   }
 }

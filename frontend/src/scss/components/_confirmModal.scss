@@ -31,11 +31,5 @@
     cursor: pointer;
     padding: 6px 1.2rem;
     font-size: 14px;
-    border-radius: 10px;
-    border: 1px $darkGray solid;
-    &:nth-child(1) {
-      background-color: $darkGray;
-      color: $whiteColor;
-    }
   }
 }

@@ -9,12 +9,10 @@
   font-weight: 400;
 }
 
-@mixin btnStyle($bgColor, $borderColor, $fontColor) {
+@mixin btnStyle($bgColor, $borderColor) {
   background-color: $bgColor;
   border: 1px solid $borderColor;
-  span {
-    color: $fontColor;
-  }
+  border-radius: 5px;
 }
 
 @keyframes slideUp {

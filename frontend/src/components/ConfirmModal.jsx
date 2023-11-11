@@ -13,8 +13,12 @@ const ConfirmModal = ({ isModalOpen, closeModal, eventFunc }) => {
       <div className="confirm-window">
         <span>Do you really want to delete?</span>
         <div className="btn-wrap">
-          <p onClick={handleOnClick}>Yes</p>
-          <p onClick={handleOnClick}>No</p>
+          <p className="basicBtn" onClick={handleOnClick}>
+            Yes
+          </p>
+          <p className="specialBtn" onClick={handleOnClick}>
+            No
+          </p>
         </div>
       </div>
     </div>
