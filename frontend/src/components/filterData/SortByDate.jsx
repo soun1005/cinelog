@@ -39,13 +39,13 @@ const SortByDate = ({ setDate }) => {
 
   return (
     <div
-      className={`filterWrap ${menuAnimation ? 'active' : ''}`}
+      className={`filter-wrap ${menuAnimation ? 'active' : ''}`}
       onClick={() => setHiddenMenu(!hiddenMenu)}
     >
-      <h2 className="filterTitle">{sort}</h2>
+      <h2 className="filter-wrap__title">{sort}</h2>
       {hiddenMenu ? (
         <div
-          className={`hiddenMenu ${menuAnimation ? 'active' : ''}`}
+          className={`hidden-menu ${menuAnimation ? 'active' : ''}`}
           ref={sortOptions}
         >
           <button onClick={handleOnClick}>Added date ▽ </button>

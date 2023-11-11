@@ -77,7 +77,7 @@ const MovieReviewPage = () => {
         <div className="review-form">
           {/* <h2 className="form-title">Log in</h2> */}
           <form
-            className="review-form__wrap form-wrap"
+            className="review-form-wrap form-wrap"
             onSubmit={handleSubmit(onSubmit)}
           >
             <div>

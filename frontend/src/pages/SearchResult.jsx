@@ -5,16 +5,15 @@ import PosterCard from '../components/PosterCard';
 const SearchResult = () => {
   const searchResult = useSelector((state) => state.search.movieResults);
   const searchKeyword = useSelector((state) => state.search.searchedKeyword);
-  //   console.log(searchResult);
 
   return (
     <div className="page">
       {searchResult.length > 0 ? (
-        <span className="searchResultFor">
+        <span className="search-result-for">
           Search results for : "{searchKeyword}"
         </span>
       ) : (
-        <span className="searchResultFor">
+        <span className="search-result-for">
           No results for : "{searchKeyword}"
         </span>
       )}

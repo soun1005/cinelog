@@ -49,10 +49,10 @@ const Login = () => {
 
   return (
     <div className="login__container form page fullPage">
-      <div className="form-container">
+      <div className="form__container">
         <h2 className="form-title">Log in</h2>
         <form
-          className="login__form form-wrap"
+          className="login-form form-wrap"
           onSubmit={handleSubmit(onSubmit)}
         >
           <div>

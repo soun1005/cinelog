@@ -1,13 +1,11 @@
-@import '../abstracts/variables';
-
-.filterWrap {
+.filter-wrap {
   position: relative;
   width: 10rem;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 10px 10px 0 0;
-  .filterTitle {
+  &-title {
     cursor: pointer;
   }
 
@@ -19,7 +17,7 @@
     font-size: 14px;
     z-index: 9999;
   }
-  .hiddenMenu {
+  .hidden-menu {
     position: absolute;
     display: flex;
     top: 20px;
@@ -47,14 +45,14 @@
 }
 
 //  hidden menu animation
-.hiddenMenu {
+.hidden-menu {
   opacity: 0;
   /* Start offscreen */
   transform: translateY(-10px);
   transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
 
-.hiddenMenu.active {
+.hidden-menu.active {
   opacity: 1;
   /* Slide in */
   transform: translateY(0);

@@ -1,8 +1,4 @@
-// .info__container {
-//   background-color: pink;
-// }
-
-.info__wrap {
+.info-wrap {
   display: flex;
   margin-bottom: 5rem;
 
@@ -31,13 +27,13 @@
 
 // movie info main style
 .main-wrap__info {
-  .movieTitle {
+  .movie-title {
     @include movieTitle(1.5rem);
   }
-  .movieYear {
+  .movie-year {
     @include movieYear(12px);
   }
-  &-subWrap {
+  &-sub-wrap {
     margin-bottom: 5px;
     letter-spacing: $letterSpacing;
   }
@@ -52,13 +48,13 @@
   }
 
   // info without title(year)
-  .subInfo {
+  .sub-info {
     .director {
       &:hover {
         background-color: $yellowColor;
       }
     }
-    .movieCast {
+    .movie-cast {
       margin-right: 10px;
       &:hover {
         background-color: $yellowColor;
@@ -68,7 +64,7 @@
       margin-right: 7px;
     }
     // subInfo의 첫번째 span들
-    span:first-of-type:not(.movieCast) {
+    span:first-of-type:not(.movie-cast) {
       color: $darkGray;
       font-size: $xSmall;
     }
@@ -78,7 +74,7 @@
   }
 }
 
-.cast__titleWrap {
+.cast- title-wrap {
   display: flex;
   justify-content: space-between;
 }

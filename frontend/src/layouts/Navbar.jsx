@@ -49,26 +49,26 @@ const Navbar = () => {
   // }
 
   const logIn = (
-    <div className="linkwrap">
+    <div className="link-wrap">
       <NavLink to={'/login'}>Log in</NavLink>
       <NavLink to={'/signup'}>Sign up</NavLink>
-      <div className="linkwrap__input">
+      <div className="link-wrap__input">
         <SearchBar />
       </div>
     </div>
   );
 
   const logOut = (
-    <div className="linkwrap">
+    <div className="link-wrap">
       <div
-        className={`profileWrap ${menuAnimation ? 'active' : ''}`}
+        className={`profile-wrap ${menuAnimation ? 'active' : ''}`}
         onClick={() => setHiddenMenu(!hiddenMenu)}
       >
         {/* First nav menu is set to Username */}
         {userName}
         {hiddenMenu ? (
           <ul
-            className={`hiddenMenu ${menuAnimation ? 'active' : ''}`}
+            className={`hidden-menu ${menuAnimation ? 'active' : ''}`}
             ref={navHiddenMenu}
           >
             <NavLink to={`/profile`}>Profile</NavLink>

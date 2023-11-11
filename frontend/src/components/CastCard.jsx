@@ -22,13 +22,13 @@ const CastCard = ({ castInfo }) => {
     <div className="cast-card">
       <NavLink
         to={`/cast/${castInfo.id}`}
-        className="cast-card__wrap"
+        className="cast-card-wrap"
         key={castInfo.key}
       >
-        <div className="imgContainer">
-          <img src={posterSrc} alt={castInfo.name} className="castCardImg" />
+        <div className="img__container">
+          <img src={posterSrc} alt={castInfo.name} className="cast-card-img" />
         </div>
-        <div className="name-container">
+        <div className="name__container">
           <p>{castInfo.name}</p>
           <p>/{castInfo.character}</p>
         </div>

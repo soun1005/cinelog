@@ -16,14 +16,14 @@
     }
   }
 
-  .linkwrap {
+  .link-wrap {
     display: flex;
     align-items: center;
     gap: 2rem;
     width: 100%;
     height: 3rem;
 
-    .profileWrap {
+    .profile-wrap {
       width: 6rem;
       margin-right: 1rem;
       position: relative;
@@ -39,7 +39,7 @@
       }
     }
 
-    .hiddenMenu {
+    .hidden-menu {
       position: absolute;
       background-color: $transparentWhite;
       left: 0;
@@ -71,14 +71,14 @@
     }
 
     // Nav hidden menu animation
-    .hiddenMenu {
+    .hidden-menu {
       opacity: 0;
       /* Start offscreen */
       transform: translateY(-10px);
       transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
     }
 
-    .hiddenMenu.active {
+    .hidden-menu.active {
       opacity: 1;
       /* Slide in */
       transform: translateY(0);

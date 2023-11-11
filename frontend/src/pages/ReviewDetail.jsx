@@ -62,7 +62,7 @@ const ReviewDetail = () => {
   return (
     <div className="review-page page">
       <PreviousPageBtn />
-      <div className="review-page__wrap">
+      <div className="review-page-wrap">
         <ReviewDetailComponent data={matchedMedia} />
         <div className="btn-wrap">
           <BtnWithLink

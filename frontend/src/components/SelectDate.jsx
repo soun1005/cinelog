@@ -9,7 +9,7 @@ const SelectDate = ({ label, onChange, selected, filterDate, className }) => {
     <>
       <label className="form-label">{label}</label>
       <DatePicker
-        className={`selectDate ${className}`}
+        className={`select-date ${className}`}
         selected={selectedDate}
         dateFormat="dd/MM/yyyy"
         onChange={onChange}

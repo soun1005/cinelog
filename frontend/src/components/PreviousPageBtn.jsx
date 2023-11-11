@@ -5,7 +5,7 @@ const PreviousPageBtn = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="back-btn__wrap">
+    <div className="back-btn-wrap">
       <img
         src={leftArrow}
         alt="go back"

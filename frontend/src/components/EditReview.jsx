@@ -69,7 +69,7 @@ const EditReview = ({ mediaId }) => {
 
   return (
     <div>
-      <div className="posterContainer">
+      <div className="poster-container">
         <PostercardWithTitle
           poster={poster}
           title={title}

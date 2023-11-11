@@ -105,20 +105,20 @@ const MovieInfoPage = () => {
   return (
     <div className="info__container page">
       {!movieLoaded ? <Loading /> : ''}
-      <div className="info__wrap">
+      <div className="info-wrap">
         <div className="poster-wrap">
-          <img src={poster} alt={title} className="movieInfo-poster" />
+          <img src={poster} alt={title} className="movie-info-poster" />
         </div>
         <div className="main-wrap">
           <div className="main-wrap__info">
-            <div className="main-wrap__info-subWrap">
-              <span className="movieTitle">{title} </span>
-              <span className="movieYear">({releasedYear})</span>
+            <div className="main-wrap__info-sub-wrap">
+              <span className="movie-title">{title} </span>
+              <span className="movie-year">({releasedYear})</span>
             </div>
 
             {/* movie infos */}
             {/* director */}
-            <div className="main-wrap__info-subWrap subInfo">
+            <div className="main-wrap__info-sub-wrap sub-info">
               <NavLink to={`/cast/${movieCrew.id}`}>
                 <span>Directed by </span>
                 <span className="director">{movieCrew.name}</span>
@@ -126,13 +126,13 @@ const MovieInfoPage = () => {
             </div>
 
             {/* cast */}
-            <div className="main-wrap__info-subWrap subInfo">
+            <div className="main-wrap__info-sub-wrap sub-info">
               <span>Starring </span>
               <span>
                 {movieCast.map((cast) => {
                   return (
                     <NavLink to={`/cast/${cast.id}`} key={cast.id}>
-                      <span className="movieCast" key={cast.id}>
+                      <span className="movie-cast" key={cast.id}>
                         {cast.name}
                       </span>
                     </NavLink>
@@ -142,26 +142,26 @@ const MovieInfoPage = () => {
             </div>
 
             {/* genre */}
-            <div className="main-wrap__info-subWrap subInfo">
+            <div className="main-wrap__info-su-wrap sub-info">
               <span>Genre</span>
               <span> {genre}</span>
             </div>
 
             {/* releasedDate */}
-            <div className="main-wrap__info-subWrap subInfo">
+            <div className="main-wrap__info-sub-wrap sub-info">
               <span>Released Date</span>
               <span> {releasedDate}</span>
             </div>
 
             {/* overview */}
-            <div className="main-wrap__info-subWrap subInfo info-overview">
+            <div className="main-wrap__info-sub-wrap sub-info info-overview">
               <span>Overview</span>
               <span> {overview}</span>
             </div>
           </div>
-          <div className="main-wrap__buttonWrap">
+          <div className="main-wrap__button-wrap">
             {!token && (
-              <div className="main-wrap__buttonWrap">
+              <div className="main-wrap__button-wrap">
                 <BtnWithLink
                   text="Review this movie"
                   className="main-wrap__btn basicBtn"
@@ -228,8 +228,8 @@ const MovieInfoPage = () => {
       {/************ casts ***********/}
       <CastSection lessCast={movieCastTop6} moreCast={allCasts} />
       {/* <div className="cast">
-        <div className="cast__titleWrap">
-          <p className="cast__titleWrap__title">Movie casts</p>
+        <div className="cast-titleWrap">
+          <p className="cast-titleWrap__title">Movie casts</p>
           {!moreCasts ? (
             <span onClick={() => setMoreCasts(true)}> View more</span>
           ) : (

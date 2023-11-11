@@ -1,11 +1,9 @@
-@import '../abstracts/mixins';
-
 .form {
   width: 100%;
   padding-top: 4rem;
 }
 
-.form-container {
+.form__container {
   max-width: 400px;
   margin: 0px auto;
   padding: 20px;

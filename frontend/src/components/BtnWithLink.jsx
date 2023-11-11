@@ -11,7 +11,7 @@ const BtnWithLink = ({
 }) => {
   return (
     <NavLink to={path}>
-      <button className={`btnStyle ${className}`} disabled={disabled}>
+      <button className={`btn-style ${className}`} disabled={disabled}>
         {heartAdded ? (
           <div className="btn-label">
             <span className={heartIconClass}>{heartIcon}</span>

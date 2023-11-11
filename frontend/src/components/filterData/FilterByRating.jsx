@@ -42,13 +42,13 @@ const FilterByRating = ({ setFilterStar }) => {
 
   return (
     <div
-      className={`filterWrap ${menuAnimation ? 'active' : ''}`}
+      className={`filter-wrap ${menuAnimation ? 'active' : ''}`}
       onClick={() => setHiddenMenu(!hiddenMenu)}
     >
-      <h2 className="filterTitle">Filter by Ratings</h2>
+      <h2 className="filter-wrap__title">Filter by Ratings</h2>
       {hiddenMenu ? (
         <div
-          className={`hiddenMenu ${menuAnimation ? 'active' : ''}`}
+          className={`hidden-menu ${menuAnimation ? 'active' : ''}`}
           ref={ratingHiddenMenu}
           onClick={(e) => e.stopPropagation()}
         >
@@ -62,7 +62,7 @@ const FilterByRating = ({ setFilterStar }) => {
             value={star}
             classNames="ratingStars"
           />
-          <button onClick={resetStar} className="ratingFilterReset">
+          <button onClick={resetStar} className="rating-filter-reset">
             reset
           </button>
         </div>

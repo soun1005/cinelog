@@ -14,7 +14,7 @@ const MainMovieDisplay = ({ data, title }) => {
         key={id}
         className="main__movie-container__link poster__link"
       >
-        <div className="poster__wrap">
+        <div className="poster-wrap">
           <img className="poster__img" src={posterSrc} alt={title} />
         </div>
       </NavLink>

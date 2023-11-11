@@ -237,7 +237,7 @@ const ProfileList = ({
         </span>
 
         {/* filters and sort */}
-        <div className="filterContainer">
+        <div className="filter__container">
           {setRatingFilter && <FilterByRating setFilterStar={setStar} />}
           {setSortFilter && <SortByDate setDate={setSortBy} />}
           {setSearchFilter && (

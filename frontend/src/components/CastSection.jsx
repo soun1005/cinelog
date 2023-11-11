@@ -6,8 +6,8 @@ const CastSection = ({ lessCast, moreCast }) => {
   return (
     <>
       <div className="cast">
-        <div className="cast__titleWrap">
-          <p className="cast__titleWrap__title">Movie casts</p>
+        <div className="cast-title-wrap">
+          <p className="cast-title-wrap__title">Movie casts</p>
 
           {moreCast.length > 6 ? (
             !moreCasts ? (
@@ -31,7 +31,7 @@ const CastSection = ({ lessCast, moreCast }) => {
         </div>
         <div
           className={
-            !moreCasts ? 'cast__container' : 'cast__container fullList'
+            !moreCasts ? 'cast__container' : 'cast__container full-list'
           }
         >
           {!moreCasts

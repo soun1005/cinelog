@@ -10,7 +10,7 @@ const BtnWithEvent = ({
 }) => {
   return (
     <button
-      className={`btnStyle ${className}`}
+      className={`btn-style ${className}`}
       disabled={disabled}
       onClick={onClick}
       type={type}

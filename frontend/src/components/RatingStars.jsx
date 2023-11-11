@@ -12,7 +12,7 @@ export default function Ratings({ rating }) {
 
   const emptyStarIcons = [];
   for (let i = 0; i < numberOfEmptyStar; i++) {
-    emptyStarIcons.push(<StarIcon key={i} className="emptyStar" />);
+    emptyStarIcons.push(<StarIcon key={i} className="empty-star" />);
   }
 
   return (

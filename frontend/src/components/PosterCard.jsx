@@ -11,7 +11,7 @@ export default function PosterCard({ data }) {
     return (
       // each page's URL set to be 'movie/id'
       <NavLink to={`/movie/${id}`} key={id} className="poster__link">
-        <div className="poster__wrap">
+        <div className="poster-wrap">
           <img className="poster__img" src={posterSrc} alt={title} />
         </div>
       </NavLink>
