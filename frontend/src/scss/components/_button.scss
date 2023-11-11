@@ -17,8 +17,8 @@
   border-radius: 8px;
   height: 36px;
   cursor: pointer;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
-    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  // box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+  //   rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   span {
     font-size: 14px;
     font-weight: 800;
@@ -41,10 +41,10 @@
 
 // for basic btns like save, confirm
 .basicBtn {
-  @include btnStyle($blackColor, $whiteColor);
+  @include btnStyle($blackColor, none, $whiteColor);
 }
 
 // special btns like cancel, delete
 .specialBtn {
-  @include btnStyle($yellowColor, $blackColor);
+  @include btnStyle($whiteColor, $blackColor, $blackColor);
 }
