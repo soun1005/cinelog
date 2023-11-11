@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { string } from 'yup';
 
-const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
+const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
 const usernameRules = /^[a-zA-Z0-9]{1,15}$/;
 const nameRules = /^[A-Za-z]+$/;
 // min 5 characters, 1 upper case letter, 1 lower case letter, 1 numeric digit.
@@ -14,7 +14,7 @@ const schema = yup
     email: string().required('Required').email('This is not a validate email'),
     password: string().required('Required').matches(passwordRules, {
       message:
-        'Min 5 characters, 1 upper case letter, 1 lower case letter, 1 numeric digit.',
+        'Min 8characters, 1 upper case letter, 1 lower case letter, 1 numeric digit.',
     }),
     confirmPassword: string()
       .required('Required')
