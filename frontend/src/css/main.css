@@ -1194,3 +1194,52 @@ input:focus {
   width: 4rem;
   cursor: pointer;
 }
+
+.confirm-wrap {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(125, 125, 125, 0.8);
+}
+
+.confirm-window {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 22rem;
+  height: 9rem;
+  padding: 2rem 0 18px 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-color: #f1f1f1;
+  border-radius: 5px;
+}
+.confirm-window span {
+  font-weight: 600;
+}
+
+.btn-wrap p {
+  cursor: pointer;
+  padding: 6px 1.2rem;
+  font-size: 14px;
+  border-radius: 10px;
+  border: 1px rgb(55, 55, 55) solid;
+}
+.btn-wrap p:nth-child(1) {
+  background-color: rgb(55, 55, 55);
+  color: #f1f1f1;
+}

@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
 import ReactStars from 'react-rating-stars-component';
-// import { IsEmpty, Map } from 'react-lodash';
 
 const FilterByRating = ({ setFilterStar }) => {
   const ratingHiddenMenu = useRef(null);

@@ -76,7 +76,6 @@ const EditReview = ({ mediaId }) => {
           date={releasedYear}
         />
       </div>
-
       {/************ form ***********/}
       <div className="form">
         <div>

@@ -3,6 +3,7 @@ import { loadReviews } from '../redux/features/reviewSlice';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import EditReview from '../components/EditReview';
+import PreviousPageBtn from '../components/PreviousPageBtn';
 
 const EditReviewPage = () => {
   const dispatch = useDispatch();
@@ -14,10 +15,8 @@ const EditReviewPage = () => {
 
   return (
     <div className="review-edit-page page">
-      {/* <ReviewDetailComponent data={matchedMedia} /> */}
-      {/* <PostercardWithTitle poster={poster} title={title} date={releasedYear} /> */}
+      <PreviousPageBtn />
       <div>
-        review editor
         <EditReview mediaId={id} />
       </div>
     </div>

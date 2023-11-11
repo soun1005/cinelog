@@ -11,6 +11,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import FilterByRating from './filterData/FilterByRating';
 import FilterBySearchbar from './filterData/FilterBySearchbar';
 import SortByDate from './filterData/SortByDate';
+import ConfirmModal from './ConfirmModal';
 
 const ProfileList = ({
   data,
@@ -32,6 +33,8 @@ const ProfileList = ({
   const [searchKeyword, setSearchKeyword] = useState('');
   const [sortBy, setSortBy] = useState('');
   const [filteredData, setFilteredData] = useState(data);
+  // to open and close confirm modal
+  const [confirmModal, setConfirmModal] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -91,7 +94,7 @@ const ProfileList = ({
   const reviewCount =
     star === 5 && searchKeyword === '' ? dataLength : filteredData.length;
 
-  const cardsList = filteredData.map((movie) => {
+  const cardsList = filteredData.map((movie, index) => {
     const { createdAt, ratings, poster, _id, title, releasedDate, mediaId } =
       movie;
     const posterSrc = poster.includes('null') ? fallback : poster;
@@ -100,39 +103,32 @@ const ProfileList = ({
     const reviewedDate = createdAt.slice(0, 10);
 
     const handleDeleteReview = () => {
-      const confirmBox = window.confirm(
-        'Do you really want to delete this review?'
-      );
-      if (confirmBox === true) {
-        dispatch(deleteReview(movie.mediaId));
-        toast('Review deleted!', {
-          position: 'bottom-right',
-          autoClose: 1500,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'light',
-        });
-      }
+      // confirm modal
+      dispatch(deleteReview(movie.mediaId));
+      toast('Review deleted!', {
+        position: 'bottom-right',
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
     };
 
     const handleDeleteFavourite = () => {
-      const confirmBox = window.confirm('Do you really want to delete this?');
-      if (confirmBox === true) {
-        dispatch(deleteFavourite(movie.mediaId));
-        toast('Favourite deleted!', {
-          position: 'bottom-right',
-          autoClose: 1500,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'light',
-        });
-      }
+      dispatch(deleteFavourite(movie.mediaId));
+      toast('Favourite deleted!', {
+        position: 'bottom-right',
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
     };
 
     return (
@@ -204,16 +200,28 @@ const ProfileList = ({
             <BtnWithEvent
               text="Delete"
               className="btnStyle specialBtn reviewBtns"
-              onClick={handleDeleteReview}
+              onClick={() => setConfirmModal(index)}
+            />
+            <ConfirmModal
+              isModalOpen={confirmModal === index}
+              closeModal={() => setConfirmModal(null)}
+              eventFunc={handleDeleteReview}
             />
           </div>
         )}
         {buttons && !isReview && (
-          <BtnWithEvent
-            text="Delete"
-            className="btnStyle specialBtn reviewBtns"
-            onClick={handleDeleteFavourite}
-          />
+          <>
+            <BtnWithEvent
+              text="Delete"
+              className="btnStyle specialBtn reviewBtns"
+              onClick={() => setConfirmModal(index)}
+            />
+            <ConfirmModal
+              isModalOpen={confirmModal === index}
+              closeModal={() => setConfirmModal(null)}
+              eventFunc={handleDeleteFavourite}
+            />
+          </>
         )}
       </div>
     );

@@ -1,11 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 
 // components
 import BtnWithLink from '../components/BtnWithLink';
 import BtnWithEvent from '../components/BtnWithEvent';
 import Loading from '../components/Loading';
-// import CastCard from '../components/CastCard';
+import ConfirmModal from '../components/ConfirmModal';
 
 // redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -25,6 +25,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import CastCard from '../components/CastCard';
 
 const MovieInfoPage = () => {
+  // to open and close confirm modal
+  const [confirmModal, setConfirmModal] = useState(false);
+
   const { id } = useParams();
   const movieInfo = MovieInfoService(id);
   const token = TokenService();
@@ -62,20 +65,17 @@ const MovieInfoPage = () => {
   };
 
   const handleDeleteFavourite = () => {
-    const confirmBox = window.confirm('Do you really want to delete this?');
-    if (confirmBox === true) {
-      dispatch(deleteFavourite(id));
-      toast('Favourite deleted!', {
-        position: 'bottom-right',
-        autoClose: 1500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
-    }
+    dispatch(deleteFavourite(id));
+    toast('Favourite deleted!', {
+      position: 'bottom-right',
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    });
   };
 
   if (!movieInfo) {
@@ -188,14 +188,21 @@ const MovieInfoPage = () => {
             )}
 
             {token && favouritedStatus && (
-              <BtnWithEvent
-                heartAdded={false}
-                heartIcon="favorite"
-                heartIconClass="material-symbols-outlined"
-                text="Remove"
-                className=" main-wrap__btn specialBtn"
-                onClick={handleDeleteFavourite}
-              />
+              <>
+                <BtnWithEvent
+                  heartAdded={false}
+                  heartIcon="favorite"
+                  heartIconClass="material-symbols-outlined"
+                  text="Remove"
+                  className=" main-wrap__btn specialBtn"
+                  onClick={() => setConfirmModal(true)}
+                />
+                <ConfirmModal
+                  isModalOpen={confirmModal}
+                  closeModal={() => setConfirmModal(false)}
+                  eventFunc={handleDeleteFavourite}
+                />
+              </>
             )}
 
             {token && !favouritedStatus && (

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { loadReviews } from '../redux/features/reviewSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -8,10 +8,15 @@ import BtnWithLink from '../components/BtnWithLink';
 import { deleteReview } from '../redux/features/reviewSlice';
 import { useNavigate } from 'react-router-dom';
 import PreviousPageBtn from '../components/PreviousPageBtn';
+import ConfirmModal from '../components/ConfirmModal';
+import { ToastContainer, toast } from 'react-toastify';
 
 const ReviewDetail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  // to open and close confirm modal
+  const [confirmModal, setConfirmModal] = useState(false);
 
   useEffect(() => {
     dispatch(loadReviews());
@@ -40,13 +45,18 @@ const ReviewDetail = () => {
   const matchedMedia = mergedData.find((obj) => obj.mediaId === id);
 
   const handleDelete = () => {
-    const confirmBox = window.confirm(
-      'Do you really want to delete this review?'
-    );
-    if (confirmBox === true) {
-      dispatch(deleteReview(matchedMedia.mediaId));
-      navigate('/profile');
-    }
+    dispatch(deleteReview(matchedMedia.mediaId));
+    navigate('/profile');
+    toast('Review deleted!', {
+      position: 'bottom-right',
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    });
   };
 
   return (
@@ -63,10 +73,16 @@ const ReviewDetail = () => {
           <BtnWithEvent
             text="Delete"
             className="review-detail-btn btnStyle specialBtn"
-            onClick={handleDelete}
+            onClick={() => setConfirmModal(true)}
+          />
+          <ConfirmModal
+            isModalOpen={confirmModal}
+            closeModal={() => setConfirmModal(false)}
+            eventFunc={handleDelete}
           />
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

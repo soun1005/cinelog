@@ -5,7 +5,6 @@ const FilterBySearchbar = ({ setSearch }) => {
 
   const handleOnChange = (e) => {
     const lower = e.target.value.toLowerCase();
-    console.log(lower);
     setSearchTerm(lower);
     setSearch(lower);
   };
