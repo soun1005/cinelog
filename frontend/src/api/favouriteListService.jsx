@@ -21,6 +21,8 @@ export const FavouriteListService = () => {
       (data) => data.mediaId === movie.mediaId
     );
 
+    // console.log(mergedData);
+
     if (matchingData) {
       // If a matching review is found, create a new merged object
       return { ...movie, ...matchingData };

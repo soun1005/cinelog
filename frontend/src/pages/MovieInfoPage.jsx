@@ -201,6 +201,7 @@ const MovieInfoPage = () => {
                   isModalOpen={confirmModal}
                   closeModal={() => setConfirmModal(false)}
                   eventFunc={handleDeleteFavourite}
+                  warningMsg="Do you really want to remove from favourite?"
                 />
               </>
             )}

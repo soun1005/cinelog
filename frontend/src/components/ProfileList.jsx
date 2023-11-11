@@ -52,7 +52,6 @@ const ProfileList = ({
   }, [data, searchKeyword, star]);
 
   console.log(filteredData);
-  // console.log(data);
 
   useEffect(() => {
     // Update the filtered data whenever 'sortBy' changes
@@ -206,6 +205,7 @@ const ProfileList = ({
               isModalOpen={confirmModal === index}
               closeModal={() => setConfirmModal(null)}
               eventFunc={handleDeleteReview}
+              warningMsg="Do you really want to delete this review?"
             />
           </div>
         )}
@@ -220,6 +220,7 @@ const ProfileList = ({
               isModalOpen={confirmModal === index}
               closeModal={() => setConfirmModal(null)}
               eventFunc={handleDeleteFavourite}
+              warningMsg="Do you really want to remove from favourite?"
             />
           </>
         )}

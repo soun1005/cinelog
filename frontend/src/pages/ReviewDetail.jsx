@@ -79,6 +79,7 @@ const ReviewDetail = () => {
             isModalOpen={confirmModal}
             closeModal={() => setConfirmModal(false)}
             eventFunc={handleDelete}
+            warningMsg="Do you really want to delete this review?"
           />
         </div>
       </div>

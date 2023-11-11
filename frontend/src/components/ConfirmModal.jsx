@@ -1,4 +1,4 @@
-const ConfirmModal = ({ isModalOpen, closeModal, eventFunc }) => {
+const ConfirmModal = ({ isModalOpen, closeModal, eventFunc, warningMsg }) => {
   const handleOnClick = (e) => {
     if (e.target.innerText === 'Yes') {
       eventFunc();
@@ -11,7 +11,7 @@ const ConfirmModal = ({ isModalOpen, closeModal, eventFunc }) => {
   return (
     <div className="confirm-wrap">
       <div className="confirm-window">
-        <span>Do you really want to delete?</span>
+        <span>{warningMsg}</span>
         <div className="btn-wrap">
           <p className="basicBtn" onClick={handleOnClick}>
             Yes
