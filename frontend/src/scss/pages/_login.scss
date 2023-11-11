@@ -17,3 +17,14 @@
   color: $blackColor;
   box-shadow: none !important;
 }
+
+.input-wrap {
+  display: flex;
+  position: relative;
+  align-items: center;
+  img {
+    position: absolute;
+    width: 20px;
+    right: 6px;
+  }
+}

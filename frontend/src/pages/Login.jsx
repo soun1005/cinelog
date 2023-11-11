@@ -1,15 +1,16 @@
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { loginUser } from '../redux/features/authSlice';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { string } from 'yup';
 import BtnWithLink from '../components/BtnWithLink';
+import eyeOpen from '../assets/eyeIcon.png';
+import eyeClose from '../assets/eyeIconClosed.png';
 
-const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
-// min 5 characters, 1 upper case letter, 1 lower case letter, 1 numeric digit.
+const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
 
 const schema = yup
   .object({
@@ -21,6 +22,7 @@ const schema = yup
   .required();
 
 const Login = () => {
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -30,12 +32,8 @@ const Login = () => {
 
   const onSubmit = (data) => {
     dispatch(loginUser(data));
-    // console.log('data:', data);
   };
 
-  // console.log(watch('email')); // watch input value by passing the name of it
-
-  // 현재 auth의 state는 initial state
   const loginStatus = useSelector((state) => state.auth.loginStatus);
   const loginError = useSelector((state) => state.auth.loginError);
   const token = useSelector((state) => state.auth.token);
@@ -73,12 +71,19 @@ const Login = () => {
 
           <div>
             <label className="form-label">Password</label>
-            <input
-              type="password"
-              className="form-input"
-              {...register('password')}
-              placeholder="password"
-            />
+            <div className="input-wrap">
+              <input
+                type={!isPasswordVisible ? 'password' : 'text'}
+                className="form-input"
+                {...register('password')}
+                placeholder="password"
+              />
+              <img
+                src={isPasswordVisible ? eyeOpen : eyeClose}
+                alt="password-visible"
+                onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+              />
+            </div>
             <div className="error">
               {formState.errors.password?.message !== undefined
                 ? `${formState.errors.password?.message}`

@@ -408,6 +408,21 @@ input:focus {
           box-shadow: none !important;
 }
 
+.input-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.input-wrap img {
+  position: absolute;
+  width: 20px;
+  right: 6px;
+}
+
 .review-page {
   display: -webkit-box;
   display: -ms-flexbox;

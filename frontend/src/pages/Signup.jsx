@@ -3,11 +3,14 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { string } from 'yup';
+import { useState } from 'react';
+import eyeOpen from '../assets/eyeIcon.png';
+import eyeClose from '../assets/eyeIconClosed.png';
 
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
 const usernameRules = /^[a-zA-Z0-9]{1,15}$/;
 const nameRules = /^[A-Za-z]+$/;
-// min 5 characters, 1 upper case letter, 1 lower case letter, 1 numeric digit.
+// min 8characters, 1 upper case letter, 1 lower case letter, 1 numeric digit.
 
 const schema = yup
   .object({
@@ -38,6 +41,7 @@ const schema = yup
   .required();
 
 const Signup = () => {
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   // React hook form
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(schema),
@@ -67,8 +71,6 @@ const Signup = () => {
               type="Email"
               placeholder="email"
               {...register('email')}
-              // onChange={(e) => setEmail(e.target.value)}
-              // value={email}
             />
           </div>
           <div className="error">
@@ -79,14 +81,19 @@ const Signup = () => {
 
           <div>
             <label className="form-label">Password</label>
-            <input
-              className="form-input"
-              type="password"
-              placeholder="Password"
-              {...register('password')}
-              // onChange={(e) => setPassword(e.target.value)}
-              // value={password}
-            />
+            <div className="input-wrap">
+              <input
+                className="form-input"
+                type={!isPasswordVisible ? 'password' : 'text'}
+                placeholder="Password"
+                {...register('password')}
+              />
+              <img
+                src={isPasswordVisible ? eyeOpen : eyeClose}
+                alt="password-visible"
+                onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+              />
+            </div>
           </div>
           <div className="error">
             {formState.errors.password?.message !== undefined
@@ -96,13 +103,12 @@ const Signup = () => {
 
           <div>
             <label className="form-label">Confirm password</label>
+
             <input
               className="form-input"
-              type="password"
+              type={!isPasswordVisible ? 'password' : 'text'}
               placeholder="Confirm password"
               {...register('confirmPassword')}
-              // onChange={(e) => setPassword(e.target.value)}
-              // value={password}
             />
           </div>
           <div className="error">
@@ -118,8 +124,6 @@ const Signup = () => {
               className="form-input"
               placeholder="Username"
               {...register('username')}
-              // onChange={(e) => setUsername(e.target.value)}
-              // value={username}
             />
           </div>
           <div>
@@ -135,8 +139,6 @@ const Signup = () => {
               className="form-input"
               placeholder="Firstname"
               {...register('firstname')}
-              // onChange={(e) => setFirstname(e.target.value)}
-              // value={firstname}
             />
           </div>
           <div className="error">
