@@ -1202,6 +1202,9 @@ input:focus {
   font-size: 26px;
   font-weight: 600;
 }
+.cast__titleWrap .view-more-btn {
+  margin-right: 4rem;
+}
 
 .cast__container {
   display: grid;
