@@ -11,7 +11,7 @@ export const ReviewService = () => {
   }, [dispatch]);
 
   const { reviews, movieData } = useSelector((state) => state.review);
-  console.log('reviews:', reviews);
+
   if (!reviews || !movieData) {
     return null;
   }
@@ -28,7 +28,7 @@ export const ReviewService = () => {
 
     return movie;
   });
-  // console.log(mergedData);
+
   return mergedData;
 };
 
