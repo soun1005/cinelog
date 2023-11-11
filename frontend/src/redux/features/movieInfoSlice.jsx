@@ -6,6 +6,7 @@ import { apiEndpoint } from '../../constant/api';
 const initialState = {
   movieCrew: [],
   movieCast: [],
+  allCasts: [],
   movieInfo: [],
   dataStatus: null,
 };
@@ -23,11 +24,19 @@ export const movieInfo = createAsyncThunk(
       const movieInfo = response.data.movieData;
       // cast data has all information
       const movieCast = response.data.creditData.filteredCast;
+      const allMovieCasts = response.data.creditData.allCasts;
       const movieCrew = response.data.creditData.filteredCrew;
 
-      console.log('asyncThunk movieCast:', movieCast, 'movieCrew:', movieCrew);
+      console.log(
+        'asyncThunk movieCast:',
+        movieCast,
+        'movieCrew:',
+        movieCrew,
+        'allcasts:',
+        allMovieCasts
+      );
 
-      return { movieInfo, movieCast, movieCrew };
+      return { movieInfo, movieCast, movieCrew, allMovieCasts };
     } catch (error) {
       const errorMsg = error.response.data.message;
       // leads to 'builder.addcase rejected'
@@ -57,6 +66,7 @@ const movieInfoSlice = createSlice({
           // movieCast.id = actor/actress's id for their info page
           movieCast: action.payload.movieCast,
           movieCrew: action.payload.movieCrew[0],
+          allCasts: action.payload.allMovieCasts,
           dataStatus: 'success',
         };
       } else return state;

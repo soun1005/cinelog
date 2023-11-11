@@ -5,6 +5,7 @@ import { NavLink, useParams } from 'react-router-dom';
 import BtnWithLink from '../components/BtnWithLink';
 import BtnWithEvent from '../components/BtnWithEvent';
 import Loading from '../components/Loading';
+// import CastCard from '../components/CastCard';
 
 // redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -21,6 +22,7 @@ import TokenService from '../api/tokenService';
 
 // toast
 import { ToastContainer, toast } from 'react-toastify';
+import CastCard from '../components/CastCard';
 
 const MovieInfoPage = () => {
   const { id } = useParams();
@@ -90,7 +92,10 @@ const MovieInfoPage = () => {
     movieCrew,
     overview,
     releasedDate,
+    allCasts,
   } = movieInfo;
+
+  console.log('movie info page allCasts:', allCasts);
 
   return (
     <div className="info__container page">
@@ -205,6 +210,11 @@ const MovieInfoPage = () => {
             )}
           </div>
         </div>
+      </div>
+      <div className="cast__container">
+        {allCasts.map((cast) => {
+          return <CastCard castInfo={cast} />;
+        })}
       </div>
       <ToastContainer />
     </div>

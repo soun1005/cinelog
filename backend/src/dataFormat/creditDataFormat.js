@@ -4,10 +4,11 @@
 
 const creditDataFormat = (data) => {
   const filteredCast = [data.cast[0], data.cast[1], data.cast[2]];
+  const allCasts = data.cast;
   const filteredCrew = data.crew.filter((crew) => crew.job === 'Director');
 
   // returns first 3 actors and director data
-  return { filteredCast, filteredCrew };
+  return { filteredCast, filteredCrew, allCasts };
 };
 
 export default creditDataFormat;

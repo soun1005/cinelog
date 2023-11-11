@@ -1,13 +1,10 @@
 .info__container {
-  display: flex;
-  align-items: center;
-  height: $fullHeight;
+  background-color: pink;
 }
 
 .info__wrap {
   display: flex;
-  // height: 75%;
-  padding: 0 2rem;
+  margin-bottom: 5rem;
 
   .poster-wrap {
     width: 40%;

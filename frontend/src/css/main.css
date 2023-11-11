@@ -236,20 +236,14 @@ input:focus {
   }
 }
 .info__container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  height: calc(100vh - 15rem);
+  background-color: pink;
 }
 
 .info__wrap {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 0 2rem;
+  margin-bottom: 5rem;
 }
 .info__wrap .poster-wrap {
   width: 40%;
@@ -1159,4 +1153,17 @@ input:focus {
   /* Slide in */
   -webkit-transform: translateY(0);
           transform: translateY(0);
+}
+
+.castCardImg {
+  width: 40px;
+}
+
+.cast__container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  margin-top: 2rem;
 }
