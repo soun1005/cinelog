@@ -13,6 +13,7 @@ import BtnWithLink from '../components/BtnWithLink';
 import { postReview } from '../redux/features/reviewSlice';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import PreviousPageBtn from '../components/PreviousPageBtn';
 
 const schema = yup
   .object({
@@ -38,21 +39,18 @@ const MovieReviewPage = () => {
 
   // functions
   const onSubmit = async (data) => {
-    const confirmBox = window.confirm('Do you want to save this review?');
-    if (confirmBox === true) {
-      dispatch(postReview({ ...data, mediaId: id }));
-      toast('Review is saved!', {
-        position: 'bottom-right',
-        autoClose: 1500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
-      navigate(`/movie/${id}`);
-    }
+    dispatch(postReview({ ...data, mediaId: id }));
+    toast('Review is saved!', {
+      position: 'bottom-right',
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    });
+    navigate(`/movie/${id}`);
   };
 
   // custom hook to get movie info
@@ -65,6 +63,7 @@ const MovieReviewPage = () => {
 
   return (
     <div className="review-page page">
+      <PreviousPageBtn />
       <div className="posterContainer">
         <PostercardWithTitle
           poster={poster}
