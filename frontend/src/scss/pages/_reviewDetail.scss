@@ -1,11 +1,11 @@
 .review-page {
-  //   background-color: greenyellow;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
   margin-bottom: 2rem;
+  position: relative;
 
   &__wrap {
     width: 37rem;

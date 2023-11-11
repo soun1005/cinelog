@@ -7,6 +7,7 @@ import BtnWithEvent from '../components/BtnWithEvent';
 import BtnWithLink from '../components/BtnWithLink';
 import { deleteReview } from '../redux/features/reviewSlice';
 import { useNavigate } from 'react-router-dom';
+import PreviousPageBtn from '../components/PreviousPageBtn';
 
 const ReviewDetail = () => {
   const dispatch = useDispatch();
@@ -18,10 +19,6 @@ const ReviewDetail = () => {
 
   const { reviews, movieData } = useSelector((state) => state.review);
   const { id } = useParams();
-  // const wtf = useSelector((state) => console.log(state.review));
-  // console.log(wtf);
-
-  console.log(reviews, movieData);
 
   if (!reviews || !movieData) {
     return null;
@@ -40,11 +37,7 @@ const ReviewDetail = () => {
     return movie;
   });
 
-  // console.log('mergedData', mergedData);
-
   const matchedMedia = mergedData.find((obj) => obj.mediaId === id);
-
-  // console.log(matchedMedia);
 
   const handleDelete = () => {
     const confirmBox = window.confirm(
@@ -58,6 +51,7 @@ const ReviewDetail = () => {
 
   return (
     <div className="review-page page">
+      <PreviousPageBtn />
       <div className="review-page__wrap">
         <ReviewDetailComponent data={matchedMedia} />
         <div className="btn-wrap">
