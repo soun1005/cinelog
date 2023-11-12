@@ -5,7 +5,8 @@ const castInfoFormat = (data) => {
     profile_path: `https://image.tmdb.org/t/p/w185/${data.profile_path}`,
     id: data.id,
     name: data.name,
-    //not included: popularity, place of birth, known for department
+    placeOfBirth: data.placeOfBirth,
+    //not included: popularity, known for department
   };
 
   return formattedData;
