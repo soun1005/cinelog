@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import FilmoSection from '../components/FilmoSection';
 import CastInfoService from '../api/castInfoService';
 import dayjs from 'dayjs';
 
@@ -55,6 +56,10 @@ const CastInfo = () => {
           </div>
         </div>
       </div>
+      <FilmoSection
+        moreFilmos={castCredits.formattedCastData}
+        lessFilmos={top5Credits}
+      />
     </div>
   );
 };
