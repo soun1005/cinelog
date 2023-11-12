@@ -38,9 +38,9 @@ const fetchCastCreditsFromApi = async (castId) => {
       formattedCrewData: castsCreditsFormat(crewData),
     };
 
-    console.log(formattedData);
+    // console.log(formattedData);
 
-    return response.data;
+    return formattedData;
   } catch (error) {
     // responseHandler.error(res);
     console.log(error);
