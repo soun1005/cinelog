@@ -1180,6 +1180,7 @@ input:focus {
 }
 .cast-title-wrap .view-more-btn {
   margin-right: 2rem;
+  cursor: pointer;
 }
 
 .cast__container {
