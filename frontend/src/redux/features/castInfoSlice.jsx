@@ -15,8 +15,8 @@ export const castInfo = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const response = await axios.get(`${base}/cast/${id}`);
-      console.log(response);
-      const castData = response.data.castData;
+      console.log('redux response', response.data);
+      const castData = response.data.castInfo;
       const castCredits = response.data.castCredits;
       return { castData, castCredits };
     } catch (error) {

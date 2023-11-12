@@ -18,13 +18,12 @@ const CastInfoService = (id) => {
     return null;
   }
 
-  // need to refine data to display on 'castInfo page'
-  const { castInformation, castCredits } = castData;
-
-  console.log(castInformation, castCredits);
+  const { castInformation, castCredits, dataStatus } = castData;
 
   return {
-    castData,
+    castInformation,
+    castCredits,
+    dataStatus,
   };
 };
 

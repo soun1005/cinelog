@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import CastInfoService from '../api/castInfoService';
+import dayjs from 'dayjs';
 
 const CastInfo = () => {
   // id passed to API from MovieInfo to get informations to display
@@ -8,12 +9,54 @@ const CastInfo = () => {
 
   const getCastInfoFromApi = CastInfoService(id);
 
-  console.log(getCastInfoFromApi);
+  if (getCastInfoFromApi === null) {
+    return;
+  }
 
-  // !!!!!!
-  // Directors' filmography is in castCredits.crew
-  // Actors' filmography is in castCredits.cast
-  return <div className="page">Hello</div>;
+  const { castCredits, castInformation, dataStatus } = getCastInfoFromApi;
+
+  console.log(castInformation, dataStatus);
+
+  const { name, profile_path, biography, birthday, placeOfBirth, castId } =
+    castInformation;
+
+  const formattedBday = dayjs(birthday).format('DD/MM/YYYY');
+
+  // to display filmography
+  const top5Credits = castCredits.formattedCastData.slice(0, 5);
+  console.log(top5Credits);
+
+  return (
+    <div className="page">
+      <div className="info-wrap">
+        {castId}
+        <div className="poster-wrap">
+          <img src={profile_path} alt={name} className="movie-info-poster" />
+        </div>
+        <div className="main-wrap__info">
+          <div className="main-wrap__info-sub-wrap">
+            <span className="movie-title">{name} </span>
+          </div>
+          {/* genre */}
+          <div className="main-wrap__info-su-wrap sub-info">
+            <span>Birthday</span>
+            <span> {formattedBday}</span>
+          </div>
+
+          {/* releasedDate */}
+          <div className="main-wrap__info-sub-wrap sub-info">
+            <span>Birthplace</span>
+            <span> {placeOfBirth}</span>
+          </div>
+
+          {/* overview */}
+          <div className="main-wrap__info-sub-wrap sub-info info-overview">
+            <span> {biography}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default CastInfo;

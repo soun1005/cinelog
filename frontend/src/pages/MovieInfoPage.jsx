@@ -227,29 +227,6 @@ const MovieInfoPage = () => {
 
       {/************ casts ***********/}
       <CastSection lessCast={movieCastTop6} moreCast={allCasts} />
-      {/* <div className="cast">
-        <div className="cast-titleWrap">
-          <p className="cast-titleWrap__title">Movie casts</p>
-          {!moreCasts ? (
-            <span onClick={() => setMoreCasts(true)}> View more</span>
-          ) : (
-            <span onClick={() => setMoreCasts(false)}> View less</span>
-          )}
-        </div>
-        <div
-          className={
-            !moreCasts ? 'cast__container' : 'cast__container fullList'
-          }
-        >
-          {!moreCasts
-            ? movieCastTop6.map((cast) => (
-                <CastCard castInfo={cast} key={cast.id} />
-              ))
-            : allCasts.map((cast) => (
-                <CastCard castInfo={cast} key={cast.id} />
-              ))}
-        </div>
-      </div> */}
       <ToastContainer />
     </div>
   );
