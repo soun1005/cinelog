@@ -1,11 +1,11 @@
-import React from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import FilmoSection from '../components/FilmoSection';
 import CastInfoService from '../api/castInfoService';
 import dayjs from 'dayjs';
 
 const CastInfo = () => {
-  // id passed to API from MovieInfo to get informations to display
+  const [showLessBio, setShowLessBio] = useState(true);
   const { id } = useParams();
 
   const getCastInfoFromApi = CastInfoService(id);
@@ -18,10 +18,16 @@ const CastInfo = () => {
 
   console.log(castInformation, dataStatus);
 
-  const { name, profile_path, biography, birthday, placeOfBirth, castId } =
+  const { name, profile_path, biography, birthday, placeOfBirth } =
     castInformation;
 
   const formattedBday = dayjs(birthday).format('DD/MM/YYYY');
+
+  // to display less biography
+  const splited = biography.split(' ');
+  const first50Words = splited.slice(0, 50);
+  const lessBio = first50Words.join(' ');
+  // const lessBio = biography.slice(100, biography.length);
 
   // to display filmography
   const top5Credits = castCredits.formattedCastData.slice(0, 5);
@@ -29,8 +35,7 @@ const CastInfo = () => {
 
   return (
     <div className="page">
-      <div className="info-wrap">
-        {castId}
+      <div className="cast-info">
         <div className="poster-wrap">
           <img src={profile_path} alt={name} className="movie-info-poster" />
         </div>
@@ -52,7 +57,13 @@ const CastInfo = () => {
 
           {/* overview */}
           <div className="main-wrap__info-sub-wrap sub-info info-overview">
-            <span> {biography}</span>
+            {showLessBio ? <span>{lessBio}</span> : <span> {biography}</span>}
+            <p
+              className="cast-bio-btn"
+              onClick={() => setShowLessBio(!showLessBio)}
+            >
+              {showLessBio ? 'VIEW MORE' : 'VIEW LESS'}
+            </p>
           </div>
         </div>
       </div>

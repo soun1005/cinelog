@@ -15,7 +15,7 @@ const FilmoSection = ({ lessFilmos, moreFilmos }) => {
                 className="view-more-btn"
                 onClick={() => setMoreFilmo(true)}
               >
-                set VIEW MORE
+                VIEW MORE
               </span>
             ) : (
               <span
