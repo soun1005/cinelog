@@ -3,9 +3,9 @@ const castInfoFormat = (data) => {
     biography: data.biography,
     birthday: data.birthday,
     profile_path: `https://image.tmdb.org/t/p/w185/${data.profile_path}`,
-    id: data.id,
+    castId: data.id,
     name: data.name,
-    placeOfBirth: data.placeOfBirth,
+    placeOfBirth: data.place_of_birth,
     //not included: popularity, known for department
   };
 
