@@ -12,12 +12,13 @@ const Navbar = () => {
   const navHiddenMenu = useRef(null);
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
+  const { userName } = useSelector((state) => state.profile);
 
   useEffect(() => {
     dispatch(loadUser());
   }, [dispatch, auth]);
 
-  const { userName } = useSelector((state) => state.profile);
+  console.log(userName);
 
   useEffect(() => {
     const handleOpenMenu = (e) => {
@@ -42,11 +43,6 @@ const Navbar = () => {
       }, 300); // Adjust this delay to match your CSS transition duration
     }
   }, [hiddenMenu]);
-
-  // if (!userName) {
-  //   // display loader here or error
-  //   return null;
-  // }
 
   const logIn = (
     <div className="link-wrap">

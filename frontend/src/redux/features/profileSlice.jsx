@@ -31,7 +31,6 @@ export const loadUser = createAsyncThunk(
         // console.log(res.data);
         const userName = res.data.username;
         const userId = res.data.userId;
-        // const userId = res.data;
 
         // will be saved in the 'action.payload'
         // the data that is received by API -> to display on profile

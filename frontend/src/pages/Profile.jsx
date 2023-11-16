@@ -9,13 +9,12 @@ const Profile = () => {
   const dispatch = useDispatch();
   const reviews = ReviewService();
   const favourite = FavouriteListService();
-
+  const auth = useSelector((state) => state.auth);
+  const { userName } = useSelector((state) => state.profile);
   // // To dispatch loadUser reducer
   useEffect(() => {
     dispatch(loadUser());
-  }, [dispatch]);
-
-  const { userName } = useSelector((state) => state.profile);
+  }, [dispatch, auth]);
 
   if (!userName || !reviews || !favourite) {
     // display loader here or error
