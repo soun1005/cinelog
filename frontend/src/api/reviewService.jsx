@@ -6,11 +6,11 @@ import { useDispatch, useSelector } from 'react-redux';
 export const ReviewService = () => {
   const dispatch = useDispatch();
 
+  const { reviews, movieData } = useSelector((state) => state.review);
+
   useEffect(() => {
     dispatch(loadReviews());
   }, [dispatch]);
-
-  const { reviews, movieData } = useSelector((state) => state.review);
 
   if (!reviews || !movieData) {
     return null;
