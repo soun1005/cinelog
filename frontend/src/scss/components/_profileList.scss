@@ -1,6 +1,9 @@
 .profile-list__btn-container {
   margin-bottom: 1rem;
   width: 100%;
+  @include responsive(phone-only) {
+    flex-direction: column;
+  }
 }
 
 .profile-list__container {
@@ -16,6 +19,12 @@
   margin: 2rem 0;
   padding-bottom: 1.2rem;
   border-bottom: 0.5px solid $lightGray;
+
+  @include responsive(phone-only) {
+    flex-direction: column;
+    margin-top: 0;
+  }
+
   span:first-of-type {
     font-weight: 500;
     font-size: 20px;
@@ -25,6 +34,27 @@
     flex-direction: row;
     justify-content: space-between;
     gap: 2rem;
+
+    @include responsive(phone-only) {
+      margin-top: 1rem;
+      width: 100%;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .search-wrap {
+      @include responsive(phone-only) {
+        width: 100%;
+        margin-top: 10px;
+      }
+      input {
+        @include responsive(phone-only) {
+          width: 100%;
+        }
+      }
+    }
   }
 }
 
@@ -36,9 +66,15 @@
 .profile-list__card-wrap {
   width: 100%;
   display: flex;
+  @include responsive(phone-only) {
+    justify-content: space-between;
+  }
 
   &__poster {
     width: 10%;
+    @include responsive(phone-only) {
+      width: 20%;
+    }
   }
 
   &__info {
@@ -56,6 +92,10 @@
       width: 100%;
       &__button-wrap {
         display: flex;
+        @include responsive(phone-only) {
+          width: 100%;
+          background-color: red;
+        }
       }
       span {
         margin-right: 3px;

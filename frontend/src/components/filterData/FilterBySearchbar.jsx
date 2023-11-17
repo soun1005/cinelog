@@ -10,7 +10,7 @@ const FilterBySearchbar = ({ setSearch }) => {
   };
 
   return (
-    <div>
+    <div className="search-wrap">
       <input
         type="text"
         value={searchTerm}

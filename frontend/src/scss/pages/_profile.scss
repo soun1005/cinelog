@@ -4,14 +4,13 @@
 
 .profile__user-wrap {
   display: flex;
-  height: 10rem;
+  height: 8rem;
   align-items: center;
   justify-content: center;
   p {
     padding: 10px 20px;
     background-color: $transparentWhite;
     border-radius: 10px;
-    box-shadow: $reviewDetailShadow;
   }
 }
 
@@ -20,4 +19,7 @@
   display: flex;
   flex-basis: auto;
   gap: 4rem;
+  @include responsive(phone-only) {
+    flex-direction: column;
+  }
 }

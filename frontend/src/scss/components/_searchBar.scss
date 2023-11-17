@@ -3,6 +3,9 @@
   display: flex;
   align-items: center;
   margin-left: 10px;
+  @include responsive(phone-only) {
+    margin-left: 0;
+  }
 }
 
 .search__input {
