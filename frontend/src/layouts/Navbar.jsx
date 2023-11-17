@@ -8,23 +8,31 @@ import { loadUser } from '../redux/features/profileSlice';
 
 const Navbar = () => {
   const [hiddenMenu, setHiddenMenu] = useState(false);
-  const [menuAnimation, setMenuAnimation] = useState(false);
-  const [nav, openNav] = useState(false);
+  // hidden dropdown menu for desktop version
   const navHiddenMenu = useRef(null);
+  // hidden dropdown menu animation
+  const [menuAnimation, setMenuAnimation] = useState(false);
+
+  // side nav for mobile version
+  const [nav, openNav] = useState(false);
+  // nav side menu ref
+  const navSideMenu = useRef(null);
+
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   const { userName } = useSelector((state) => state.profile);
 
-  console.log(nav);
-
+  // dispatch auth slice
   useEffect(() => {
     dispatch(loadUser());
   }, [dispatch, auth]);
 
+  // handle dropdown menu
   useEffect(() => {
     const handleOpenMenu = (e) => {
       // Update the state when the div loses focus
       if (
+        // navHiddenMenu = ref of hiddenMenu
         navHiddenMenu.current &&
         hiddenMenu &&
         !navHiddenMenu.current.contains(e.target)
@@ -92,14 +100,14 @@ const Navbar = () => {
   );
 
   const mobileLogin = (
-    <div className="mobile-nav">
+    <div className="mobile-nav" ref={navSideMenu}>
       <NavLink to={'/login'}>Log in</NavLink>
       <NavLink to={'/signup'}>Sign up</NavLink>
     </div>
   );
 
   const mobileLogout = (
-    <div className="mobile-nav">
+    <div className="mobile-nav" ref={navSideMenu}>
       <NavLink to={`/profile`}> {userName}</NavLink>
       <NavLink to={`/profile/reviews`}>Reviews</NavLink>
       <NavLink to={`/profile/favourites`}>Favourites</NavLink>
@@ -124,12 +132,7 @@ const Navbar = () => {
           <SearchBar />
         </div>
         {/* responsive nav */}
-        <div
-          className="open-icon"
-          onClick={() => {
-            openNav(!nav);
-          }}
-        >
+        <div className="open-icon" onClick={() => openNav(!nav)}>
           <div className={nav ? 'side-nav' : 'open'}></div>
         </div>
         <div>{auth.token ? logOut : logIn}</div>
