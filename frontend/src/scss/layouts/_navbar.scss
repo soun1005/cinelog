@@ -3,12 +3,22 @@
   height: 13rem;
 }
 
+.responsiveNav,
+.openIcon {
+  display: none;
+}
+
 .nav-wrap {
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @include responsive(phone-only) {
+    flex-direction: column;
+    justify-content: center;
+  }
 
   .logo-wrap {
     img {
@@ -22,6 +32,18 @@
     gap: 2rem;
     width: 100%;
     height: 3rem;
+
+    // link-wrap doesn't display on mobile size
+    @include responsive(phone-only) {
+      display: none;
+    }
+    &__input {
+      display: none;
+      @include responsive(phone-only) {
+        display: block;
+        margin-top: 2rem;
+      }
+    }
 
     .profile-wrap {
       width: 6rem;
@@ -83,5 +105,128 @@
       /* Slide in */
       transform: translateY(0);
     }
+  }
+}
+
+.mobile-nav-wrap {
+  display: none;
+  @include responsive(phone-only) {
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .mobile-nav {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3rem;
+    padding-bottom: 3rem;
+    background-color: rgba($color: $whiteColor, $alpha: 0.5);
+    backdrop-filter: blur(20px);
+    a {
+      font-size: larger;
+      font-weight: bolder;
+    }
+  }
+}
+
+@media screen and (max-width: $phoneSize) {
+  .open-icon {
+    display: block;
+    position: fixed;
+    right: 18px;
+    top: 3px;
+    width: 45px;
+    height: 45px;
+    transition-duration: 0.5s;
+    z-index: 99999;
+    transition: 1s;
+  }
+  .open {
+    transition-duration: 0.5s;
+    position: absolute;
+    height: 3px;
+    width: 30px;
+    top: 30px;
+    background-color: $blackColor;
+    border-radius: 4px;
+    left: 15px;
+    z-index: 9999;
+  }
+  .open:before {
+    transition-duration: 0.5s;
+    position: absolute;
+    width: 30px;
+    height: 3px;
+    background-color: $blackColor;
+    content: '';
+    top: -10px;
+    border-radius: 4px;
+    z-index: 9999;
+  }
+  .open:after {
+    transition-duration: 0.5s;
+    position: absolute;
+    width: 30px;
+    height: 3px;
+    background-color: $blackColor;
+    content: '';
+    top: 10px;
+    border-radius: 4px;
+    z-index: 9999;
+  }
+
+  .side-nav {
+    transition-duration: 0.5s;
+    position: absolute;
+    height: 3px;
+    width: 30px;
+    top: 30px;
+    background: transparent;
+    border-radius: 4px;
+    left: 15px;
+    z-index: 9999;
+  }
+  .side-nav:before {
+    transition-duration: 0.5s;
+    position: absolute;
+    width: 28px;
+    height: 3px;
+    background-color: $blackColor;
+    content: '';
+    top: -10px;
+    border-radius: 4px;
+    z-index: 9999;
+    transform: rotateZ(45deg) scaleX(1.25) translate(6.5px, 6.5px);
+  }
+  .side-nav:after {
+    transition-duration: 0.5s;
+    position: absolute;
+    width: 28px;
+    height: 3px;
+    background-color: $blackColor;
+    content: '';
+    top: 10px;
+    border-radius: 4px;
+    z-index: 9999;
+    transform: rotateZ(-45deg) scaleX(1.25) translate(6px, -6px);
+  }
+}
+
+@keyframes sideNavOpen {
+  from {
+    opacity: 0;
+    transform: translateX(150px);
+  }
+  to {
+    opacity: 1;
   }
 }

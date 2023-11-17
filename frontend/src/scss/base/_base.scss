@@ -1,5 +1,6 @@
+@import '../abstracts/mixins';
+@import '../abstracts/responsiveMixin';
 @import '../abstracts/variables';
-
 // CSS reset
 /* Box sizing rules */
 *,
@@ -89,9 +90,6 @@ select {
 }
 
 body {
-  // max-width: 1600px;
-  // margin: 0 auto;
-  // padding: 0 2rem;
   box-sizing: border-box;
 }
 
@@ -152,11 +150,10 @@ input:focus {
 
 .page:not(.footer-wrap) {
   min-height: $fullHeight;
+  @include responsive(phone-only) {
+    min-height: $phoneFullHeight;
+  }
 }
-
-// .fullPage {
-//   height: $fullHeight;
-// }
 
 .navbar,
 .page {

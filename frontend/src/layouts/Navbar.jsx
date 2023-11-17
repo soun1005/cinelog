@@ -9,16 +9,17 @@ import { loadUser } from '../redux/features/profileSlice';
 const Navbar = () => {
   const [hiddenMenu, setHiddenMenu] = useState(false);
   const [menuAnimation, setMenuAnimation] = useState(false);
+  const [nav, openNav] = useState(false);
   const navHiddenMenu = useRef(null);
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   const { userName } = useSelector((state) => state.profile);
 
+  console.log(nav);
+
   useEffect(() => {
     dispatch(loadUser());
   }, [dispatch, auth]);
-
-  console.log(userName);
 
   useEffect(() => {
     const handleOpenMenu = (e) => {
@@ -84,9 +85,32 @@ const Navbar = () => {
       >
         Logout
       </NavLink>
-      <div className="linkwrap__input">
+      <div className="link-wrap__input">
         <SearchBar />
       </div>
+    </div>
+  );
+
+  const mobileLogin = (
+    <div className="mobile-nav">
+      <NavLink to={'/login'}>Log in</NavLink>
+      <NavLink to={'/signup'}>Sign up</NavLink>
+    </div>
+  );
+
+  const mobileLogout = (
+    <div className="mobile-nav">
+      <NavLink to={`/profile`}> {userName}</NavLink>
+      <NavLink to={`/profile/reviews`}>Reviews</NavLink>
+      <NavLink to={`/profile/favourites`}>Favourites</NavLink>
+      <NavLink
+        to={'/login'}
+        onClick={() => {
+          dispatch(logoutUser(null));
+        }}
+      >
+        Logout
+      </NavLink>
     </div>
   );
 
@@ -96,8 +120,24 @@ const Navbar = () => {
         <NavLink to={'/'} className="logo-wrap">
           <img src={logo} alt="logo" />
         </NavLink>
-
+        <div className="link-wrap__input mobile-ver">
+          <SearchBar />
+        </div>
+        {/* responsive nav */}
+        <div
+          className="open-icon"
+          onClick={() => {
+            openNav(!nav);
+          }}
+        >
+          <div className={nav ? 'side-nav' : 'open'}></div>
+        </div>
         <div>{auth.token ? logOut : logIn}</div>
+        {nav && (
+          <div className="mobile-nav-wrap">
+            {auth.token ? mobileLogout : mobileLogin}
+          </div>
+        )}
       </div>
     </div>
   );
