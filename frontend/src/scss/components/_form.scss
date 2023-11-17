@@ -40,9 +40,11 @@
 }
 
 .review-form {
-  // background-color: pink;
   width: 30rem;
   margin: 0 auto;
+  @include responsive(phone-only) {
+    width: 100%;
+  }
 }
 
 // comment input size

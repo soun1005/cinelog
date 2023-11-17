@@ -1037,6 +1037,11 @@ input:focus {
   width: 30rem;
   margin: 0 auto;
 }
+@media (max-width: 599px) {
+  .review-form {
+    width: 100%;
+  }
+}
 
 .comment-form {
   line-height: 2rem;
@@ -1567,6 +1572,11 @@ input:focus {
   position: absolute;
   left: 2rem;
   top: 0;
+}
+@media (max-width: 599px) {
+  .back-btn-wrap {
+    display: none;
+  }
 }
 
 .back-btn {

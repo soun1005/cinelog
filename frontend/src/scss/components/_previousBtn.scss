@@ -2,6 +2,9 @@
   position: absolute;
   left: 2rem;
   top: 0;
+  @include responsive(phone-only) {
+    display: none;
+  }
 }
 .back-btn {
   width: 4rem;
