@@ -128,7 +128,7 @@ const Navbar = () => {
         <NavLink to={'/'} className="logo-wrap">
           <img src={logo} alt="logo" />
         </NavLink>
-        <div className="link-wrap__input mobile-ver">
+        <div className="search-bar__mobile-ver">
           <SearchBar />
         </div>
         {/* responsive nav */}

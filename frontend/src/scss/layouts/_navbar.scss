@@ -18,6 +18,14 @@
   @include responsive(phone-only) {
     flex-direction: column;
     justify-content: center;
+    gap: 1rem;
+  }
+
+  .search-bar__mobile-ver {
+    display: none;
+    @include responsive(phone-only) {
+      display: block;
+    }
   }
 
   .logo-wrap {
@@ -41,8 +49,8 @@
       display: none;
     }
     // search bar
+
     &__input {
-      display: none;
       @include responsive(phone-only) {
         display: block;
         margin-top: 15px;
