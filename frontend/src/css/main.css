@@ -1011,6 +1011,11 @@ input:focus {
   height: fit-content;
   margin-top: 1rem;
 }
+@media (max-width: 599px) {
+  .main__movie-container__link {
+    width: 21%;
+  }
+}
 
 .form {
   width: 100%;

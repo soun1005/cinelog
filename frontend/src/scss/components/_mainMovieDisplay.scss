@@ -19,5 +19,8 @@
     width: 12%;
     height: fit-content;
     margin-top: 1rem;
+    @include responsive(phone-only) {
+      width: 21%;
+    }
   }
 }
