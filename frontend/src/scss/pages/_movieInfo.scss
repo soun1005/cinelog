@@ -2,9 +2,20 @@
   display: flex;
   margin-bottom: 5rem;
 
+  @include responsive(phone-only) {
+    margin-bottom: 3rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   .poster-wrap {
     width: 40%;
+    @include responsive(phone-only) {
+      margin-bottom: 2rem;
+    }
   }
+
   img {
     width: 100%;
     box-shadow: $basicShadow;
@@ -22,6 +33,11 @@
   &__btn {
     width: 12rem;
     margin-right: 1.5rem;
+  }
+
+  @include responsive(phone-only) {
+    margin-left: 0;
+    align-items: center;
   }
 }
 

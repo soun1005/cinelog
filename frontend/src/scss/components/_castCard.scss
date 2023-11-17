@@ -9,6 +9,9 @@
   .view-more-btn {
     margin-right: 2rem;
     cursor: pointer;
+    @include responsive(phone-only) {
+      margin-right: 0;
+    }
   }
 }
 
@@ -19,6 +22,9 @@
   grid-column-gap: 10px;
   grid-row-gap: 10px;
   margin-top: 2rem;
+  @include responsive(phone-only) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 
   .full-list {
     display: grid;
@@ -44,6 +50,10 @@
 .img__container {
   width: 8rem;
   height: 8rem;
+  @include responsive(phone-only) {
+    width: 4rem;
+    height: 4rem;
+  }
 
   img {
     width: 100%;

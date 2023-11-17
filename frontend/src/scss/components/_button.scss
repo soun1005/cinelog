@@ -34,6 +34,19 @@
 .main-wrap__button-wrap {
   display: flex;
   align-items: center;
+  @include responsive(phone-only) {
+    width: 100%;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  button,
+  a {
+    @include responsive(phone-only) {
+      width: 100%;
+      margin-right: 0;
+    }
+  }
 }
 
 // for basic btns like save, confirm
