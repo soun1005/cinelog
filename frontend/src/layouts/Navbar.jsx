@@ -57,9 +57,6 @@ const Navbar = () => {
     <div className="link-wrap">
       <NavLink to={'/login'}>Log in</NavLink>
       <NavLink to={'/signup'}>Sign up</NavLink>
-      <div className="link-wrap__input">
-        <SearchBar />
-      </div>
     </div>
   );
 
@@ -93,9 +90,6 @@ const Navbar = () => {
       >
         Logout
       </NavLink>
-      <div className="link-wrap__input">
-        <SearchBar />
-      </div>
     </div>
   );
 
@@ -128,9 +122,6 @@ const Navbar = () => {
         <NavLink to={'/'} className="logo-wrap">
           <img src={logo} alt="logo" />
         </NavLink>
-        <div className="search-bar__mobile-ver">
-          <SearchBar />
-        </div>
         {/* responsive nav */}
         <div className="open-icon" onClick={() => openNav(!nav)}>
           <div className={nav ? 'side-nav' : 'open'}></div>

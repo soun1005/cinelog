@@ -2,6 +2,7 @@ import MainMovieDisplay from '../components/MainMovieDisplay';
 import ApiFetchService from '../api/apiFetchService';
 import { apiEndpoint } from '../constant/api';
 import Loading from '../components/Loading';
+import SearchBar from '../components/SearchBar';
 
 const Main = () => {
   const nowPlayingEndpoint = `${apiEndpoint}/movies/nowplaying`;
@@ -20,6 +21,7 @@ const Main = () => {
 
   return (
     <div className="page">
+      <SearchBar />
       {nowPlayingLoading && upcomingLoading && <Loading />}
       {nowPlayingData && (
         <MainMovieDisplay

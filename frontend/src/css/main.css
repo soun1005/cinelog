@@ -659,12 +659,6 @@ input:focus {
     display: none;
   }
 }
-@media (max-width: 599px) {
-  .nav-wrap .link-wrap__input {
-    display: block;
-    margin-top: 15px;
-  }
-}
 .nav-wrap .link-wrap .profile-wrap {
   width: 6rem;
   margin-right: 1rem;
@@ -1021,6 +1015,11 @@ input:focus {
   width: 100%;
   padding-top: 4rem;
 }
+@media (max-width: 599px) {
+  .form {
+    padding-top: 2rem;
+  }
+}
 
 .form__container {
   max-width: 400px;
@@ -1081,7 +1080,12 @@ input:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-left: 10px;
+  width: 100%;
+  text-align: left;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin-bottom: 2rem;
 }
 @media (max-width: 599px) {
   .search-wrap {
@@ -1122,8 +1126,8 @@ input:focus {
   border: none;
   background: none;
   position: absolute;
-  right: 23px;
   top: 5px;
+  right: 6px;
   cursor: pointer;
 }
 .search__btn span {

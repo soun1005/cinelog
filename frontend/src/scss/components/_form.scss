@@ -1,6 +1,9 @@
 .form {
   width: 100%;
   padding-top: 4rem;
+  @include responsive(phone-only) {
+    padding-top: 2rem;
+  }
 }
 
 .form__container {

@@ -2,7 +2,10 @@
   position: relative;
   display: flex;
   align-items: center;
-  margin-left: 10px;
+  width: 100%;
+  text-align: left;
+  justify-content: flex-end;
+  margin-bottom: 2rem;
   @include responsive(phone-only) {
     margin-left: 0;
   }
@@ -24,8 +27,8 @@
   border: none;
   background: none;
   position: absolute;
-  right: 23px;
   top: 5px;
+  right: 6px;
   cursor: pointer;
   span {
     font-size: 22px;

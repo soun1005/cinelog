@@ -50,13 +50,6 @@
     }
     // search bar
 
-    &__input {
-      @include responsive(phone-only) {
-        display: block;
-        margin-top: 15px;
-      }
-    }
-
     .profile-wrap {
       width: 6rem;
       margin-right: 1rem;
