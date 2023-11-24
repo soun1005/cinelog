@@ -1,23 +1,22 @@
 import { useState, useEffect, useRef } from 'react';
 import logo from '../assets/cineloglogo.png';
 import { NavLink } from 'react-router-dom';
-import SearchBar from '../components/SearchBar';
 import { logoutUser } from '../redux/features/authSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadUser } from '../redux/features/profileSlice';
 
 const Navbar = () => {
-  const [hiddenMenu, setHiddenMenu] = useState(false);
   // hidden dropdown menu for desktop version
+  const [hiddenMenu, setHiddenMenu] = useState(false);
   const navHiddenMenu = useRef(null);
-  // hidden dropdown menu animation
   const [menuAnimation, setMenuAnimation] = useState(false);
 
   // side nav for mobile version
   const [nav, openNav] = useState(false);
-  // nav side menu ref
   const navSideMenu = useRef(null);
+  const mobileNav = useRef();
 
+  // redux
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   const { userName } = useSelector((state) => state.profile);
@@ -32,17 +31,20 @@ const Navbar = () => {
     const handleOpenMenu = (e) => {
       // Update the state when the div loses focus
       if (
-        // navHiddenMenu = ref of hiddenMenu
-        navHiddenMenu.current &&
         hiddenMenu &&
+        navHiddenMenu.current &&
         !navHiddenMenu.current.contains(e.target)
       ) {
         setHiddenMenu(false);
       }
     };
     document.addEventListener('mousedown', handleOpenMenu);
+    return () => {
+      document.removeEventListener('click', handleOpenMenu);
+    };
   }, [hiddenMenu]);
 
+  // dropdown menu animation
   useEffect(() => {
     if (hiddenMenu) {
       setMenuAnimation(true);
@@ -52,6 +54,25 @@ const Navbar = () => {
       }, 300); // Adjust this delay to match your CSS transition duration
     }
   }, [hiddenMenu]);
+
+  // mobile nav bar closing function
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      console.log(e.target);
+      if (
+        nav &&
+        mobileNav.current &&
+        !mobileNav.current.contains(e.target) &&
+        e.target.className !== 'x-btn'
+      ) {
+        openNav(false);
+      }
+    };
+    document.addEventListener('mousedown', checkIfClickedOutside);
+    return () => {
+      document.removeEventListener('click', checkIfClickedOutside);
+    };
+  }, [nav]);
 
   const logIn = (
     <div className="link-wrap">
@@ -123,12 +144,18 @@ const Navbar = () => {
           <img src={logo} alt="logo" />
         </NavLink>
         {/* responsive nav */}
-        <div className="open-icon" onClick={() => openNav(!nav)}>
-          <div className={nav ? 'side-nav' : 'open'}></div>
+        <div
+          className="burger-wrap"
+          // whenever button is clicked -> useState reverse the value
+          onClick={(e) => {
+            openNav(!nav);
+          }}
+        >
+          <div className={nav ? 'x-btn' : 'burger-btn'}></div>
         </div>
         <div>{auth.token ? logOut : logIn}</div>
         {nav && (
-          <div className="mobile-nav-wrap">
+          <div className="mobile-nav-wrap" ref={mobileNav}>
             {auth.token ? mobileLogout : mobileLogin}
           </div>
         )}
