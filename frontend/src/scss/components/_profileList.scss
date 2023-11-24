@@ -92,6 +92,21 @@
       width: 100%;
       &__button-wrap {
         display: flex;
+        justify-content: space-between;
+
+        button {
+          width: 45%;
+        }
+        a {
+          width: 45%;
+          display: inline-block;
+          // button inside 'Navlink' tag
+          button {
+            width: 100%;
+            margin-left: 0;
+          }
+        }
+
         @include responsive(phone-only) {
           width: 100%;
           background-color: red;

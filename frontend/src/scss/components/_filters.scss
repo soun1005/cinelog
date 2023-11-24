@@ -20,12 +20,12 @@
 
   h2 {
     font-size: 14px;
-    z-index: 9999;
+    z-index: 999;
   }
   .hidden-menu {
     position: absolute;
     display: flex;
-    top: 19px;
+    top: 30px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -34,6 +34,10 @@
     padding: 10px 12px;
     width: 100%;
     z-index: 99999;
+
+    @include responsive(phone-only) {
+      top: 19px;
+    }
     p {
       font-size: 12px;
       margin-top: 10px;

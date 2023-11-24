@@ -115,7 +115,6 @@
 }
 
 .mobile-nav-wrap {
-  display: none;
   @include responsive(phone-only) {
     display: block;
     position: fixed;
@@ -124,6 +123,7 @@
     bottom: 0;
     width: 40%;
     height: 100%;
+    z-index: 9999;
   }
   .mobile-nav {
     height: 100%;
@@ -145,7 +145,7 @@
 }
 
 @media screen and (max-width: $phoneSize) {
-  .open-icon {
+  .burger-wrap {
     display: block;
     position: fixed;
     right: 18px;
@@ -156,7 +156,7 @@
     z-index: 99999;
     transition: 1s;
   }
-  .open {
+  .burger-btn {
     transition-duration: 0.5s;
     position: absolute;
     height: 3px;
@@ -167,7 +167,7 @@
     left: 15px;
     z-index: 9999;
   }
-  .open:before {
+  .burger-btn:before {
     transition-duration: 0.5s;
     position: absolute;
     width: 30px;
@@ -178,7 +178,7 @@
     border-radius: 4px;
     z-index: 9999;
   }
-  .open:after {
+  .burger-btn:after {
     transition-duration: 0.5s;
     position: absolute;
     width: 30px;
@@ -190,7 +190,7 @@
     z-index: 9999;
   }
 
-  .side-nav {
+  .x-btn {
     transition-duration: 0.5s;
     position: absolute;
     height: 3px;
@@ -201,7 +201,7 @@
     left: 15px;
     z-index: 9999;
   }
-  .side-nav:before {
+  .x-btn:before {
     transition-duration: 0.5s;
     position: absolute;
     width: 28px;
@@ -213,7 +213,7 @@
     z-index: 9999;
     transform: rotateZ(45deg) scaleX(1.25) translate(6.5px, 6.5px);
   }
-  .side-nav:after {
+  .x-btn:after {
     transition-duration: 0.5s;
     position: absolute;
     width: 28px;
