@@ -16,7 +16,6 @@ const MovieInfoService = (movieId) => {
 
   // saved movie datas from redux by 'dispatch movieInfo'
   const movieData = useSelector((state) => {
-    // console.log('state:', state);
     return state.info;
   });
 

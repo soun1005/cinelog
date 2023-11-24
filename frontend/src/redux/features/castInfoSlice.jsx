@@ -36,7 +36,6 @@ const castInfoSlice = createSlice({
   extraReducers: (builder) => {
     // movie detail
     builder.addCase(castInfo.pending, (state, action) => {
-      // console.log('creditSlice = action.payload:', action.payload);
       return { ...state, dataStatus: 'pending' };
     });
 

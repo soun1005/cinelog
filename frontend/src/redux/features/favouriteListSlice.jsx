@@ -26,7 +26,6 @@ export const postFavouriteList = createAsyncThunk(
   'favouriteList/create',
   // promise
   async (favourite, { rejectWithValue }) => {
-    // console.log(review);
     try {
       const res = await axios.post(
         `${base}/favourite`,

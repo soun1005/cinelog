@@ -99,7 +99,6 @@ const MovieInfoPage = () => {
     allCasts,
   } = movieInfo;
 
-  // console.log('movie info page allCasts:', allCasts, 'movieCast:', movieCast);
   const movieCastTop6 = allCasts.slice(0, 6);
 
   return (

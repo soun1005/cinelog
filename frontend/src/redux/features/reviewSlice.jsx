@@ -89,7 +89,6 @@ export const deleteReview = createAsyncThunk(
   `review/deleteReview`,
   // promise
   async (reviewId, { rejectWithValue }) => {
-    // console.log(review);
     try {
       const token = localStorage.getItem('token');
       if (token) {
@@ -99,7 +98,6 @@ export const deleteReview = createAsyncThunk(
         return reviewId;
       }
     } catch (error) {
-      // console.log(error);
       const errorMsg = error.response.data.error;
       // leads to 'builder.addcase rejected'
       return rejectWithValue(errorMsg);
@@ -112,7 +110,6 @@ export const editReview = createAsyncThunk(
   'review/editReview',
   // promise
   async (review, { rejectWithValue }) => {
-    // console.log(review);
     try {
       const token = localStorage.getItem('token');
       if (token) {
@@ -136,7 +133,6 @@ export const editReview = createAsyncThunk(
         // return res;
       }
     } catch (error) {
-      // console.log(error);
       const errorMsg = error.response.data.message;
       return rejectWithValue(errorMsg);
     }
@@ -161,10 +157,9 @@ export const reviewStatus = createAsyncThunk(
         }
       );
       const data = response.data;
-      // console.log(data);
+
       return data;
     } catch (error) {
-      // console.log(error);
       const errorMsg = error.response.data.error;
       return rejectWithValue(errorMsg);
     }
@@ -183,8 +178,6 @@ const reviewSlice = createSlice({
     });
 
     builder.addCase(postReview.fulfilled, (state, action) => {
-      // console.log('create action.payload:', action.payload.review);
-
       return {
         ...state,
         postReviewStatus: 'success',
@@ -208,7 +201,6 @@ const reviewSlice = createSlice({
 
     // when loadUser function result is 'fullfilled'
     builder.addCase(loadReviews.fulfilled, (state, action) => {
-      // console.log('loadReviews:', action.payload);
       if (action.payload) {
         return {
           ...state,
@@ -233,7 +225,6 @@ const reviewSlice = createSlice({
     });
     // when loginUser function result is 'fullfilled'
     builder.addCase(deleteReview.fulfilled, (state, action) => {
-      // console.log('action.payload', action.payload);
       const deletedReviewId = action.payload;
       // Update state to remove the deleted review
 
@@ -274,7 +265,6 @@ const reviewSlice = createSlice({
       // const updatedReviewState = prevReviews.reviews.filter(
       //   (review) => review.mediaId !== editedReviewId
       // );
-      // console.log('updatedReviewState:', updatedReviewState);
 
       // 수정된 리뷰를 다시 넣어버림
       // const updatedReviews = updatedReviewState.concat([action.payload]);
@@ -303,7 +293,6 @@ const reviewSlice = createSlice({
     });
     // when loginUser function result is 'fullfilled'
     builder.addCase(reviewStatus.fulfilled, (state, action) => {
-      // console.log('review status', action.payload);
       return {
         ...state,
         reviewStatus: action.payload,

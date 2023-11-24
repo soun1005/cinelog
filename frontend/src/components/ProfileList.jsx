@@ -51,8 +51,6 @@ const ProfileList = ({
     setFilteredData(filtered);
   }, [data, searchKeyword, star]);
 
-  console.log(filteredData);
-
   useEffect(() => {
     // Update the filtered data whenever 'sortBy' changes
     // Sorting function based on the 'sortBy' state

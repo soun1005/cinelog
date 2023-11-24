@@ -11,8 +11,6 @@ const SortByDate = ({ setDate }) => {
     setDate(e.target.innerText);
   };
 
-  console.log(sort);
-
   useEffect(() => {
     const handleOpenMenu = (e) => {
       // Update the state when the div loses focus

@@ -16,7 +16,7 @@ const CastInfo = () => {
 
   const { castCredits, castInformation, dataStatus } = getCastInfoFromApi;
 
-  console.log(castInformation, dataStatus);
+  console.log(dataStatus);
 
   const { name, profile_path, biography, birthday, placeOfBirth } =
     castInformation;
@@ -27,11 +27,9 @@ const CastInfo = () => {
   const splited = biography.split(' ');
   const first50Words = splited.slice(0, 50);
   const lessBio = first50Words.join(' ');
-  // const lessBio = biography.slice(100, biography.length);
 
   // to display filmography
-  const top5Credits = castCredits.formattedCastData.slice(0, 5);
-  console.log(top5Credits);
+  const top6Credits = castCredits.formattedCastData.slice(0, 6);
 
   return (
     <div className="page">
@@ -69,7 +67,7 @@ const CastInfo = () => {
       </div>
       <FilmoSection
         moreFilmos={castCredits.formattedCastData}
-        lessFilmos={top5Credits}
+        lessFilmos={top6Credits}
       />
     </div>
   );

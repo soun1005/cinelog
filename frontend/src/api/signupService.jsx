@@ -28,7 +28,6 @@ export const SignupService = () => {
         }
       );
 
-      // console.log(response.data);
       if (response.status === 200) {
         navigate('/login');
         setIsLoading(false);

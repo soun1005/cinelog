@@ -58,8 +58,11 @@ const Navbar = () => {
   // mobile nav bar closing function
   useEffect(() => {
     const checkIfClickedOutside = (e) => {
-      console.log(e.target);
       if (
+        // close nav bar while useState is true,
+        // nav bar is opened,
+        // nav bar doesn't contain event target
+        // and event target isn't close button
         nav &&
         mobileNav.current &&
         !mobileNav.current.contains(e.target) &&
@@ -70,6 +73,7 @@ const Navbar = () => {
     };
     document.addEventListener('mousedown', checkIfClickedOutside);
     return () => {
+      // clean eventListener
       document.removeEventListener('click', checkIfClickedOutside);
     };
   }, [nav]);

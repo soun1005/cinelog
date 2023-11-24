@@ -7,7 +7,6 @@ const ReviewedMovieList = () => {
     // display loader here or error
     return null;
   }
-  console.log(data);
 
   return (
     <div className="review-list-page page">

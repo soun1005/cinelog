@@ -1,7 +1,5 @@
 import DatePicker from 'react-datepicker';
 
-// const dateFormat = (date) => date.toLocaleDateString('us-US');
-
 const SelectDate = ({ label, onChange, selected, filterDate, className }) => {
   const selectedDate = selected ? new Date(selected) : null;
 

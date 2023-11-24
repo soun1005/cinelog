@@ -16,7 +16,6 @@ const fetchCreditFromApi = async (idQuery) => {
       `${baseUrl}/movie/${idQuery}/credits?api_key=${key}`
     );
     console.log('fetchCreditFromApi called');
-    // console.log(response.data);
 
     // This will return the data that is formatted after receiving them from the TMDB API
     // return response.data;

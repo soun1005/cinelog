@@ -27,15 +27,6 @@ export const movieInfo = createAsyncThunk(
       const allMovieCasts = response.data.creditData.allCasts;
       const movieCrew = response.data.creditData.filteredCrew;
 
-      console.log(
-        'asyncThunk movieCast:',
-        movieCast,
-        'movieCrew:',
-        movieCrew,
-        'allcasts:',
-        allMovieCasts
-      );
-
       return { movieInfo, movieCast, movieCrew, allMovieCasts };
     } catch (error) {
       const errorMsg = error.response.data.message;
@@ -54,7 +45,6 @@ const movieInfoSlice = createSlice({
   extraReducers: (builder) => {
     // movie detail
     builder.addCase(movieInfo.pending, (state, action) => {
-      // console.log('creditSlice = action.payload:', action.payload);
       return { ...state, dataStatus: 'pending' };
     });
 

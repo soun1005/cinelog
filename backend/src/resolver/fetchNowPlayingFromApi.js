@@ -14,7 +14,6 @@ const fetchNowPlayingFromApi = async (query) => {
 
     // format data and pass formatted data to front
     const formattedMovieData = moviesDataFormat(response.data);
-    // console.log(formattedMovieData);
 
     // This will return the data received from the API
     return formattedMovieData;

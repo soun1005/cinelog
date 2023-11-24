@@ -44,13 +44,11 @@ const EditReview = ({ mediaId }) => {
   const movieReview = reviews.filter((review) => review.mediaId === mediaId);
 
   const { reviewTitle, date, comment, ratings } = movieReview[0];
-  //   console.log(date);
 
   // functions
   const onSubmit = (data) => {
     // await review({ ...data, mediaId: mediaId });
     // here with new API to update both DB and redux with data
-    // console.log('data:', data);
     dispatch(editReview({ data, mediaId: mediaId }));
     toast('Review is edited!', {
       position: 'bottom-right',

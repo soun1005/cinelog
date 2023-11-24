@@ -28,7 +28,6 @@ export const loadUser = createAsyncThunk(
             headers: { Authorization: `Bearer ${token}` },
           }
         );
-        // console.log(res.data);
         const userName = res.data.username;
         const userId = res.data.userId;
 
@@ -57,9 +56,7 @@ const profileSlice = createSlice({
 
     // when loadUser function result is 'fullfilled'
     builder.addCase(loadUser.fulfilled, (state, action) => {
-      // console.log(action.payload);
       if (action.payload) {
-        // console.log('action payload', action.payload);
         return {
           ...state,
           userName: action.payload.userName,

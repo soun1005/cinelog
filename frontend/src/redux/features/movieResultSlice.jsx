@@ -15,17 +15,14 @@ export const moviesSearch = createAsyncThunk(
   'movies/search',
   //   searchValue as paramaeter -> keyword given in SearchBar component
   async (searchValue, { rejectWithValue }) => {
-    // console.log(searchValue);
     try {
       // api call to backend with searched value as query
       const response = await axios.get(`${base}/search?query=${searchValue}`);
-      // console.log('response:', response);
       const values = response.data;
       const searchKeyword = searchValue;
 
       // return the data to use in extra reducers when fullfilled
       return { values, searchKeyword };
-      //   console.log('search data', values);
     } catch (error) {
       const errorMsg = error.response.data.message;
       // leads to 'builder.addcase rejected'

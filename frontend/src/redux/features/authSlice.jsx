@@ -19,7 +19,6 @@ export const loginUser = createAsyncThunk(
   'auth/loginUser',
   // promise
   async (user, { rejectWithValue }) => {
-    // console.log('hello');
     try {
       const res = await axios.post(`${base}/login`, {
         email: user.email,
