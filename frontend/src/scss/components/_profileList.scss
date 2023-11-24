@@ -109,14 +109,13 @@
 
         @include responsive(phone-only) {
           width: 100%;
-          background-color: red;
+          margin-top: 10px;
         }
       }
       span {
         margin-right: 3px;
       }
       &__title {
-        // background-color: red;
         span:first-of-type {
           font-weight: 600;
         }
@@ -127,7 +126,6 @@
       }
       // reviewed date wrap
       &__reviewDate {
-        // background-color: pink;
         span:first-of-type {
           font-weight: 300;
           color: $darkGray;

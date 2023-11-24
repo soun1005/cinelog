@@ -147,7 +147,8 @@ const Navbar = () => {
         <NavLink to={'/'} className="logo-wrap">
           <img src={logo} alt="logo" />
         </NavLink>
-        {/* responsive nav */}
+
+        {/* mobile version burger button */}
         <div
           className="burger-wrap"
           // whenever button is clicked -> useState reverse the value
@@ -157,7 +158,10 @@ const Navbar = () => {
         >
           <div className={nav ? 'x-btn' : 'burger-btn'}></div>
         </div>
+        {/* desktop nav */}
         <div>{auth.token ? logOut : logIn}</div>
+
+        {/* mobile nav */}
         {nav && (
           <div className="mobile-nav-wrap" ref={mobileNav}>
             {auth.token ? mobileLogout : mobileLogin}

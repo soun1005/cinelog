@@ -1139,6 +1139,15 @@ input:focus {
   grid-column-gap: 3.5rem;
   grid-row-gap: 6rem;
 }
+@media (max-width: 599px) {
+  .poster__container {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 1.5rem;
+    grid-row-gap: 1rem;
+  }
+}
 
 .poster__link {
   -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
@@ -1425,7 +1434,7 @@ input:focus {
 @media (max-width: 599px) {
   .profile-list__card-wrap__info-wrap__button-wrap {
     width: 100%;
-    background-color: red;
+    margin-top: 10px;
   }
 }
 .profile-list__card-wrap__info-wrap span {

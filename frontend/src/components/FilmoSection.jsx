@@ -40,6 +40,7 @@ const FilmoSection = ({ lessFilmos, moreFilmos }) => {
                   date={movie.release_date}
                   path={`/cast/${movie.id}`}
                   character={movie.character}
+                  key={movie.id}
                 />
               ))
             : moreFilmos.map((movie) => (
@@ -49,6 +50,7 @@ const FilmoSection = ({ lessFilmos, moreFilmos }) => {
                   date={movie.release_date}
                   path={`/cast/${movie.id}`}
                   character={movie.character}
+                  key={movie.id}
                 />
               ))}
         </div>
