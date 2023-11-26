@@ -15,7 +15,7 @@ const FilmoCard = ({ poster, title, date, path, character }) => {
           <span>({date})</span>
         </div>
         <div className="filmocard-info-wrap__credit">
-          <span>Credit:</span>
+          <span>Credit: </span>
           <span>{character}</span>
         </div>
       </div>
