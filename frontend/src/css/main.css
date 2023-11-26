@@ -434,36 +434,6 @@ input:focus {
   height: 25px;
 }
 
-.review-list-page {
-  min-height: calc(100vh - 15rem);
-}
-.review-list-page h3 {
-  text-align: right;
-  font-size: 15px;
-  font-weight: 400;
-}
-.review-list-page__pagination {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-.review-list-page__pagination button {
-  cursor: pointer;
-  margin: 1rem 10px;
-  padding: 5px 10px;
-  border-radius: 10px;
-}
-.review-list-page__pagination button:hover {
-  background-color: #76c5e4;
-}
-
 .profile-list__card-wrap__info-wrap__button-wrap {
   width: 30%;
 }
@@ -1849,4 +1819,32 @@ input:focus {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+.pagination-index {
+  text-align: right;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.pagination-display {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.pagination-display button {
+  cursor: pointer;
+  margin: 1rem 10px;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+.pagination-display button:hover {
+  background-color: #76c5e4;
 }

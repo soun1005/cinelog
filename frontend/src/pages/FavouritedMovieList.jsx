@@ -20,7 +20,7 @@ const FavouritedMovieList = () => {
 
   return (
     <div className="favourite-list-page page">
-      <h3>
+      <h3 className="pagination-index">
         Page of {pageNumber + 1} / {totalPages}
       </h3>
       <ProfileList
@@ -35,7 +35,7 @@ const FavouritedMovieList = () => {
         setSearchFilter={true}
         setSortFilter={true}
       />
-      <div className="favourite-list-page__pagination">
+      <div className="pagination-display">
         {pages.map((pageIndex) => (
           <button onClick={() => setPageNumber(pageIndex)}>
             {pageIndex + 1}
