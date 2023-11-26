@@ -27,18 +27,14 @@ const FilmoSection = ({ lessFilmos, moreFilmos }) => {
             )
           ) : null}
         </div>
-        <div
-          className={
-            !moreFilmo ? 'cast__container' : 'cast__container full-list'
-          }
-        >
+        <div className="filmo__container">
           {!moreFilmo
             ? lessFilmos.map((movie) => (
                 <FilmoCard
                   poster={movie.poster_path}
                   title={movie.title}
                   date={movie.release_date}
-                  path={`/cast/${movie.id}`}
+                  path={`/movie/${movie.id}`}
                   character={movie.character}
                   key={movie.id}
                 />
@@ -48,7 +44,7 @@ const FilmoSection = ({ lessFilmos, moreFilmos }) => {
                   poster={movie.poster_path}
                   title={movie.title}
                   date={movie.release_date}
-                  path={`/cast/${movie.id}`}
+                  path={`/movie/${movie.id}`}
                   character={movie.character}
                   key={movie.id}
                 />

@@ -29,11 +29,7 @@ const CastSection = ({ lessCast, moreCast }) => {
             )
           ) : null}
         </div>
-        <div
-          className={
-            !moreCasts ? 'cast__container' : 'cast__container full-list'
-          }
-        >
+        <div className="cast__container">
           {!moreCasts
             ? lessCast.map((cast) => <CastCard castInfo={cast} key={cast.id} />)
             : moreCast.map((cast) => (
