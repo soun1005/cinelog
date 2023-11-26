@@ -18,8 +18,6 @@ const getMovie = async (req, res) => {
   // first one for credit, second one for movie info
   const creditData = await fetchCreditFromApi(req.params.id);
   const movieData = await fetchMovieInfoById(req.params.id);
-  // console.log('movie id', req.params.id);
-  // console.log(creditData);
 
   if (creditData && movieData) {
     res.json({ creditData, movieData });

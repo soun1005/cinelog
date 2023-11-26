@@ -1,3 +1,20 @@
+.filmo {
+  width: 100%;
+}
+
+.filmo__container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  margin-top: 2rem;
+  width: 100%;
+  background-color: pink;
+  @include responsive(phone-only) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 .filmo-title-wrap {
   display: flex;
   align-items: center;

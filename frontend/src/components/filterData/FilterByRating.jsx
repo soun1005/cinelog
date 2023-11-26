@@ -16,6 +16,7 @@ const FilterByRating = ({ setFilterStar }) => {
     ratingChanged(5);
   };
 
+  // for dropdown and its animation
   useEffect(() => {
     const handleOpenMenu = (e) => {
       // Update the state when the div loses focus

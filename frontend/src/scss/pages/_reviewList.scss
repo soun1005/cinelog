@@ -11,7 +11,27 @@
 }
 
 .review-list-page {
+  h3 {
+    text-align: right;
+    font-size: 15px;
+    font-weight: 400;
+  }
   min-height: $fullHeight;
+  &__pagination {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    button {
+      cursor: pointer;
+      margin: 1rem 10px;
+      padding: 5px 10px;
+      border-radius: 10px;
+      &:hover {
+        background-color: $blueColor;
+      }
+    }
+  }
 }
 
 .profile-list__card-wrap__info-wrap__button-wrap {

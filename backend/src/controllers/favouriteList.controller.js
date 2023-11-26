@@ -44,8 +44,6 @@ const checkFavouriteStatus = async (req, res) => {
 
 // delete a favourite list
 const deleteFavourite = async (req, res) => {
-  //   console.log(typeof req.params.id);
-
   try {
     const { id: mediaId } = req.params;
     const result = await Favourite.deleteOne({ mediaId: mediaId });
@@ -68,7 +66,7 @@ const loadFavouritedList = async (req, res) => {
     const token = req.headers.authorization.split('Bearer')[1].trim();
     const decodedToken = jwt.decode(token);
     const favourited = await Favourite.find({ userId: decodedToken });
-    console.log(favourited);
+
     if (favourited) {
       // const reviews = res.status(200).json(review);
 

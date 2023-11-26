@@ -27,7 +27,6 @@ export const loginUser = createAsyncThunk(
 
       const token = res.data.token;
       localStorage.setItem('token', token);
-      console.log('logged in');
       // will be saved in the 'action.payload'
       return token;
     } catch (error) {

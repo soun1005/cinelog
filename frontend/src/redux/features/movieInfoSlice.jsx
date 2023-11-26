@@ -19,7 +19,7 @@ export const movieInfo = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const response = await axios.get(`${base}/${id}`);
-      console.log('response:', response);
+
       // two filtered data (cast, crew)
       const movieInfo = response.data.movieData;
       // cast data has all information
