@@ -14,7 +14,7 @@ export const ReviewService = (page) => {
     dispatch(loadReviews(page));
   }, [dispatch, page]);
 
-  if (!reviews || !movieData || !totalPages) {
+  if (!reviews || !movieData || !totalPages || !dataLength) {
     return null;
   }
 

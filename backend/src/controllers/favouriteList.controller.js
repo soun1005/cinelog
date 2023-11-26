@@ -61,19 +61,27 @@ const deleteFavourite = async (req, res) => {
 };
 
 const loadFavouritedList = async (req, res) => {
+  const page = parseInt(req.query.page || '0');
+  // 10 lists in each page
+  const PAGE_SIZE = 10;
+
   try {
     // grab token from request
     const token = req.headers.authorization.split('Bearer')[1].trim();
     const decodedToken = jwt.decode(token);
-    const favourited = await Favourite.find({ userId: decodedToken });
+    const favourited = await Favourite.find({ userId: decodedToken })
+      .limit(PAGE_SIZE)
+      .skip(PAGE_SIZE * page);
 
     if (favourited) {
-      // const reviews = res.status(200).json(review);
-
       // get all media id of favourited lists
       const movieId = favourited.map((movie) => {
         return movie.mediaId;
       });
+
+      const total = await Favourite.find({
+        userId: decodedToken,
+      }).countDocuments({});
 
       // by the mediaId, using resolver, load movie infos to display poster and information
       const movieDataPromises = movieId.map(
@@ -82,12 +90,16 @@ const loadFavouritedList = async (req, res) => {
 
       const movieData = await Promise.all(movieDataPromises);
 
-      return res.status(200).json({ favouritedList: favourited, movieData });
+      return res.status(200).json({
+        favouritedList: favourited,
+        movieData,
+        // total numbers of pages
+        total: Math.ceil(total / PAGE_SIZE),
+        dataLength: total,
+      });
     } else {
       res.status(404).json({ error: 'Favourited list not found' });
     }
-    // res.body = user.toObject()
-    // res.status(200).json({ userName });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

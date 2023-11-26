@@ -1,15 +1,28 @@
+import { useState } from 'react';
 import ProfileList from '../components/ProfileList';
 import FavouriteListService from '../api/favouriteListService';
 
 const FavouritedMovieList = () => {
-  const favourite = FavouriteListService();
+  const [pageNumber, setPageNumber] = useState(0);
+
+  const {
+    mergedData: favourite,
+    dataLength,
+    totalPages,
+  } = FavouriteListService(pageNumber);
 
   if (!favourite) {
     // display loader here or error
     return null;
   }
+
+  const pages = new Array(totalPages).fill(null).map((v, i) => i);
+
   return (
     <div className="favourite-list-page page">
+      <h3>
+        Page of {pageNumber + 1} / {totalPages}
+      </h3>
       <ProfileList
         data={favourite}
         listTitle="My favourites"
@@ -18,10 +31,17 @@ const FavouritedMovieList = () => {
         buttons={true}
         moreBtn={false}
         isReview={false}
-        dataLength={favourite.length}
+        dataLength={dataLength}
         setSearchFilter={true}
         setSortFilter={true}
       />
+      <div className="favourite-list-page__pagination">
+        {pages.map((pageIndex) => (
+          <button onClick={() => setPageNumber(pageIndex)}>
+            {pageIndex + 1}
+          </button>
+        ))}
+      </div>
     </div>
   );
 };

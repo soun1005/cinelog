@@ -3,16 +3,18 @@ import { useEffect } from 'react';
 import { loadFavouritedList } from '../redux/features/favouriteListSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
-export const FavouriteListService = () => {
+export const FavouriteListService = (page) => {
   const dispatch = useDispatch();
 
+  const { favouritedList, movieData, totalPages, dataLength } = useSelector(
+    (state) => state.favourite
+  );
+
   useEffect(() => {
-    dispatch(loadFavouritedList());
-  }, [dispatch]);
+    dispatch(loadFavouritedList(page));
+  }, [dispatch, page]);
 
-  const { favouritedList, movieData } = useSelector((state) => state.favourite);
-
-  if (!favouritedList || !movieData) {
+  if (!favouritedList || !movieData || !totalPages || !dataLength) {
     return null;
   }
 
@@ -29,7 +31,7 @@ export const FavouriteListService = () => {
     return movie;
   });
 
-  return mergedData;
+  return { mergedData, totalPages, dataLength };
 };
 
 export default FavouriteListService;

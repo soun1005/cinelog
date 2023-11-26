@@ -111,13 +111,14 @@ const editReview = async (req, res) => {
 // fetch movie information and credit here when it's called
 const loadReviews = async (req, res) => {
   const page = parseInt(req.query.page || '0');
+  // 5 reviews in each page
   const PAGE_SIZE = 5;
-  console.log(page);
+
   try {
     // grab token from request
     const token = req.headers.authorization.split('Bearer')[1].trim();
     const decodedToken = jwt.decode(token);
-    // pagenation : 10 reviews each page
+
     const review = await Review.find({ userId: decodedToken })
       .limit(PAGE_SIZE)
       .skip(PAGE_SIZE * page);

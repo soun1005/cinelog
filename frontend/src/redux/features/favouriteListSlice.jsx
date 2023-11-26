@@ -18,6 +18,8 @@ const initialState = {
   deleteStatus: '',
   // etc
   movieData: [],
+  totalPages: 0,
+  dataLength: 0,
 };
 
 const base = apiEndpoint;
@@ -103,12 +105,12 @@ export const favouriteStatus = createAsyncThunk(
 export const loadFavouritedList = createAsyncThunk(
   'favourite/loadReviews',
   // promise
-  async (_, { rejectWithValue }) => {
+  async (pageNum, { rejectWithValue }) => {
     try {
       const token = localStorage.getItem('token');
       if (token) {
         const res = await axios.post(
-          `${base}/favourites`,
+          `${base}/favourites?page=${pageNum}`,
           {},
           // the value that user send to DB by API
           {
@@ -118,8 +120,9 @@ export const loadFavouritedList = createAsyncThunk(
 
         const favouritedList = res.data.favouritedList;
         const movieData = res.data.movieData;
-
-        return { favouritedList, movieData };
+        const totalPages = res.data.total;
+        const dataLength = res.data.dataLength;
+        return { favouritedList, movieData, totalPages, dataLength };
       }
     } catch (error) {
       const errorMsg = error.response.data.message;
@@ -233,7 +236,6 @@ const favouriteListSlice = createSlice({
     builder.addCase(favouriteStatus.fulfilled, (state, action) => {
       return {
         ...state,
-        // action.payload : boolean
         favouriteStatus: action.payload,
         statusLoaded: 'success',
       };
@@ -260,6 +262,8 @@ const favouriteListSlice = createSlice({
           ...state,
           favouritedList: action.payload.favouritedList,
           movieData: action.payload.movieData,
+          totalPages: action.payload.totalPages,
+          dataLength: action.payload.dataLength,
           favouriteListLoaded: 'success',
         };
       } else return state;
@@ -268,7 +272,6 @@ const favouriteListSlice = createSlice({
       return {
         ...state,
         favouriteStatus: 'rejected',
-        // favouriteListLoaded: action.payload,
       };
     });
   },

@@ -10,6 +10,7 @@ const ReviewedMovieList = () => {
     dataLength,
     totalPages,
   } = ReviewService(pageNumber);
+
   if (!data) {
     // display loader here or error
     return null;
