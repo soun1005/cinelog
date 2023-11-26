@@ -3,18 +3,22 @@ import { useEffect } from 'react';
 import { loadReviews } from '../redux/features/reviewSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
-export const ReviewService = () => {
+export const ReviewService = (page) => {
   const dispatch = useDispatch();
 
-  const { reviews, movieData } = useSelector((state) => state.review);
+  const { reviews, movieData, totalPages, dataLength } = useSelector(
+    (state) => state.review
+  );
 
   useEffect(() => {
-    dispatch(loadReviews());
-  }, [dispatch]);
+    dispatch(loadReviews(page));
+  }, [dispatch, page]);
 
-  if (!reviews || !movieData) {
+  if (!reviews || !movieData || !totalPages) {
     return null;
   }
+
+  console.log(dataLength);
 
   const mergedData = movieData.map((movie) => {
     const matchingReview = reviews.find(
@@ -29,7 +33,7 @@ export const ReviewService = () => {
     return movie;
   });
 
-  return mergedData;
+  return { mergedData, totalPages, dataLength };
 };
 
 export default ReviewService;

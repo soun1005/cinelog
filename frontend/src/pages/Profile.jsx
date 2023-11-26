@@ -7,7 +7,7 @@ import FavouriteListService from '../api/favouriteListService';
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const reviews = ReviewService();
+  const { mergedData: reviews, dataLength } = ReviewService();
   const favourite = FavouriteListService();
   const auth = useSelector((state) => state.auth);
   const { userName } = useSelector((state) => state.profile);
@@ -21,7 +21,6 @@ const Profile = () => {
     return null;
   }
 
-  console.log(reviews.length);
   const limitedReviews = reviews.slice(0, 5);
   const limitedFavourite = favourite.slice(0, 5);
 
@@ -37,7 +36,7 @@ const Profile = () => {
           data={limitedReviews}
           noDataMsg="No reviews yet!"
           pagePath={'/profile/reviews'}
-          dataLength={reviews.length}
+          dataLength={dataLength}
         />
         <ProfileList
           listTitle="My favourites"

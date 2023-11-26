@@ -72,7 +72,7 @@ const checkReviewStatus = async (req, res) => {
 
 // delete a review
 const deleteReview = async (req, res) => {
-  console.log(typeof req.params.id);
+  // console.log(typeof req.params.id);
 
   try {
     const { id: mediaId } = req.params;
@@ -95,7 +95,7 @@ const editReview = async (req, res) => {
   try {
     // movie id
     const { id } = req.params;
-    console.log(id);
+    // console.log(id);
     const result = await Review.findOneAndUpdate({ mediaId: id }, req.body, {
       new: true,
     });
@@ -110,18 +110,26 @@ const editReview = async (req, res) => {
 // load reviews and the movie info that matches the review by id
 // fetch movie information and credit here when it's called
 const loadReviews = async (req, res) => {
+  const page = parseInt(req.query.page || '0');
+  const PAGE_SIZE = 5;
+  console.log(page);
   try {
     // grab token from request
     const token = req.headers.authorization.split('Bearer')[1].trim();
     const decodedToken = jwt.decode(token);
-    const review = await Review.find({ userId: decodedToken });
-    // console.log(review);
-    if (review) {
-      // const reviews = res.status(200).json(review);
+    // pagenation : 10 reviews each page
+    const review = await Review.find({ userId: decodedToken })
+      .limit(PAGE_SIZE)
+      .skip(PAGE_SIZE * page);
 
+    if (review) {
       const movieId = review.map((review) => {
         return review.mediaId;
       });
+
+      const total = await Review.find({ userId: decodedToken }).countDocuments(
+        {}
+      );
 
       const movieDataPromises = movieId.map(
         async (movieId) => await fetchMovieInfoById(movieId)
@@ -129,12 +137,16 @@ const loadReviews = async (req, res) => {
 
       const movieData = await Promise.all(movieDataPromises);
 
-      return res.status(200).json({ reviews: review, movieData });
+      return res.status(200).json({
+        reviews: review,
+        movieData,
+        // total numbers of pages
+        total: Math.ceil(total / PAGE_SIZE),
+        dataLength: total,
+      });
     } else {
       res.status(404).json({ error: 'Reviews not found' });
     }
-    // res.body = user.toObject()
-    // res.status(200).json({ userName });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

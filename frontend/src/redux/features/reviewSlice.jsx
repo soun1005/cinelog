@@ -17,6 +17,8 @@ const initialState = {
   reviewError: '',
   postReviewStatus: '',
   deleteReviewStatus: '',
+  totalPages: 0,
+  dataLength: 0,
 };
 
 const base = apiEndpoint;
@@ -54,16 +56,15 @@ export const postReview = createAsyncThunk(
 );
 
 // GET reviews
-// main function to call API to login
 export const loadReviews = createAsyncThunk(
   'review/loadReviews',
   // promise
-  async (_, { rejectWithValue }) => {
+  async (pageNum, { rejectWithValue }) => {
     try {
       const token = localStorage.getItem('token');
       if (token) {
         const res = await axios.post(
-          `${base}/profile/reviews`,
+          `${base}/profile/reviews?page=${pageNum}`,
           {},
           // the value that user send to DB by API
           {
@@ -72,10 +73,12 @@ export const loadReviews = createAsyncThunk(
         );
         const reviews = res.data.reviews;
         const movieData = res.data.movieData;
+        const totalPages = res.data.total;
+        const dataLength = res.data.dataLength;
 
         // will be saved in the 'action.payload'
         // the data that is received by API -> to display on profile
-        return { reviews, movieData };
+        return { reviews, movieData, totalPages, dataLength };
       }
     } catch (error) {
       const errorMsg = error.response.data.message;
@@ -201,11 +204,14 @@ const reviewSlice = createSlice({
 
     // when loadUser function result is 'fullfilled'
     builder.addCase(loadReviews.fulfilled, (state, action) => {
+      console.log(action.payload);
       if (action.payload) {
         return {
           ...state,
           reviews: action.payload.reviews,
           movieData: action.payload.movieData,
+          totalPages: action.payload.totalPages,
+          dataLength: action.payload.dataLength,
           profileStatus: 'success',
         };
       } else return state;
