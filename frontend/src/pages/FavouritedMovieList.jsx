@@ -11,7 +11,7 @@ const FavouritedMovieList = () => {
     totalPages,
   } = FavouriteListService(pageNumber);
 
-  if (!favourite) {
+  if (!favourite || !dataLength || !totalPages) {
     // display loader here or error
     return null;
   }
