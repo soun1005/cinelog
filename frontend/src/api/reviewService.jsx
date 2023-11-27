@@ -6,15 +6,15 @@ import { useDispatch, useSelector } from 'react-redux';
 export const ReviewService = (page) => {
   const dispatch = useDispatch();
 
-  const { reviews, movieData, totalPages, dataLength } = useSelector(
-    (state) => state.review
-  );
-
   useEffect(() => {
     dispatch(loadReviews(page));
   }, [dispatch, page]);
 
-  if (!reviews || !movieData || !totalPages || !dataLength) {
+  const { reviews, movieData, totalPages, dataLength } = useSelector(
+    (state) => state.review
+  );
+
+  if (!reviews || !movieData || !dataLength) {
     return null;
   }
 

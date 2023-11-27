@@ -6,17 +6,23 @@ import { useDispatch, useSelector } from 'react-redux';
 export const FavouriteListService = (page) => {
   const dispatch = useDispatch();
 
-  const { favouritedList, movieData, totalPages, dataLength } = useSelector(
-    (state) => state.favourite
-  );
-
+  // dispatch user's favourite list
   useEffect(() => {
     dispatch(loadFavouritedList(page));
   }, [dispatch, page]);
 
-  if (!favouritedList || !movieData || !totalPages || !dataLength) {
+  // get data from redux state
+  const { favouritedList, movieData, totalPages, dataLength } = useSelector(
+    (state) => state.favourite
+  );
+
+  // when there are no data, stop
+  if (!favouritedList || !movieData || !dataLength) {
     return null;
   }
+
+  console.log('favouritedList:', favouritedList);
+  console.log('favouritedList movieData:', movieData);
 
   const mergedData = movieData.map((movie) => {
     const matchingData = favouritedList.find(
@@ -30,7 +36,8 @@ export const FavouriteListService = (page) => {
 
     return movie;
   });
-
+  // this works
+  console.log('mergedData:', mergedData);
   return { mergedData, totalPages, dataLength };
 };
 

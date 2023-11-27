@@ -16,6 +16,8 @@ const FavouritedMovieList = () => {
     return null;
   }
 
+  console.log('favourite:', favourite);
+
   const pages = new Array(totalPages).fill(null).map((v, i) => i);
 
   return (
