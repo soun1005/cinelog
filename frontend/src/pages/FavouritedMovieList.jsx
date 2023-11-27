@@ -11,10 +11,10 @@ const FavouritedMovieList = () => {
     totalPages,
   } = FavouriteListService(pageNumber);
 
-  if (!favourite || !dataLength || !totalPages) {
-    // display loader here or error
-    return null;
-  }
+  // if (!favourite || !dataLength || !totalPages) {
+  //   // display loader here or error
+  //   return null;
+  // }
 
   console.log('favourite:', favourite);
 

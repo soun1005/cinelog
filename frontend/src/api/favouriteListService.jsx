@@ -18,9 +18,10 @@ export const FavouriteListService = (page) => {
 
   // when there are no data, stop
   if (!favouritedList || !movieData || !dataLength) {
-    return null;
+    return { mergedData: [], totalPages, dataLength };
   }
 
+  // doesnt work
   console.log('favouritedList:', favouritedList);
   console.log('favouritedList movieData:', movieData);
 
