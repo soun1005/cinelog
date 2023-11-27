@@ -21,10 +21,6 @@ export const FavouriteListService = (page) => {
     return { mergedData: [], totalPages, dataLength };
   }
 
-  // doesnt work
-  console.log('favouritedList:', favouritedList);
-  console.log('favouritedList movieData:', movieData);
-
   const mergedData = movieData.map((movie) => {
     const matchingData = favouritedList.find(
       (data) => data.mediaId === movie.mediaId
@@ -37,8 +33,7 @@ export const FavouriteListService = (page) => {
 
     return movie;
   });
-  // this works
-  console.log('mergedData:', mergedData);
+
   return { mergedData, totalPages, dataLength };
 };
 

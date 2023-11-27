@@ -11,10 +11,10 @@ const ReviewedMovieList = () => {
     totalPages,
   } = ReviewService(pageNumber);
 
-  if (!data || !dataLength || !totalPages) {
-    // display loader here or error
-    return null;
-  }
+  // if (!data || !dataLength || !totalPages) {
+  //   // display loader here or error
+  //   return null;
+  // }
 
   const pages = new Array(totalPages).fill(null).map((v, i) => i);
 

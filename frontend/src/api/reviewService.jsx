@@ -15,10 +15,8 @@ export const ReviewService = (page) => {
   );
 
   if (!reviews || !movieData || !dataLength) {
-    return null;
+    return { mergedData: [], totalPages, dataLength };
   }
-
-  console.log(dataLength);
 
   const mergedData = movieData.map((movie) => {
     const matchingReview = reviews.find(
