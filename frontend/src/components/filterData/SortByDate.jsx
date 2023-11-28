@@ -1,14 +1,16 @@
 import { useState, useRef, useEffect } from 'react';
 
 const SortByDate = ({ setDate }) => {
-  const [sort, setSort] = useState('Sort by');
+  const [sort, setSort] = useState({ sort: 'date', order: 'asc' });
   const [hiddenMenu, setHiddenMenu] = useState(false);
   const [menuAnimation, setMenuAnimation] = useState(false);
 
   const sortOptions = useRef(null);
-  const handleOnClick = (e) => {
-    setSort(e.target.innerText);
-    setDate(e.target.innerText);
+
+  const handleOnClick = (sortStr, order) => {
+    const sorting = { sort: sortStr, order };
+    setSort(sorting);
+    setDate(sorting);
   };
 
   useEffect(() => {
@@ -31,7 +33,7 @@ const SortByDate = ({ setDate }) => {
     } else {
       setTimeout(() => {
         setMenuAnimation(false);
-      }, 300); // Adjust this delay to match your CSS transition duration
+      }, 500);
     }
   }, [hiddenMenu]);
 
@@ -40,16 +42,27 @@ const SortByDate = ({ setDate }) => {
       className={`filter-wrap ${menuAnimation ? 'active' : ''}`}
       onClick={() => setHiddenMenu(!hiddenMenu)}
     >
-      <h2 className="filter-wrap__title">{sort}</h2>
+      <span>Sort by :&nbsp; </span>
+      <h2 className="filter-wrap__title">
+        {sort.sort} ({sort.order})
+      </h2>
       {hiddenMenu ? (
         <div
           className={`hidden-menu ${menuAnimation ? 'active' : ''}`}
           ref={sortOptions}
         >
-          <button onClick={handleOnClick}>Added date ▽ </button>
-          <button onClick={handleOnClick}>Added date △</button>
-          <button onClick={handleOnClick}>Released date ▽</button>
-          <button onClick={handleOnClick}>Released date △</button>
+          <button onClick={() => handleOnClick('date', 'asc')}>
+            Date (asc){' '}
+          </button>
+          <button onClick={() => handleOnClick('date', 'desc')}>
+            Date (desc){' '}
+          </button>
+          <button onClick={() => handleOnClick('ratings', 'asc')}>
+            Ratings (asc){' '}
+          </button>
+          <button onClick={() => handleOnClick('ratings', 'desc')}>
+            Ratings (desc){' '}
+          </button>
         </div>
       ) : (
         ''

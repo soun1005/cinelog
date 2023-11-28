@@ -1527,14 +1527,18 @@ input:focus {
       -ms-flex-pack: center;
           justify-content: center;
   border-radius: 10px 10px 0 0;
+  padding: 2px 0;
 }
 @media (max-width: 599px) {
   .filter-wrap {
     width: 8rem;
   }
 }
-.filter-wrap-title {
+.filter-wrap__title {
   cursor: pointer;
+}
+.filter-wrap__title::first-letter {
+  text-transform: uppercase;
 }
 .filter-wrap.active {
   background-color: rgba(240, 240, 240, 0.8);
@@ -1548,7 +1552,7 @@ input:focus {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  top: 30px;
+  top: 28px;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -1575,7 +1579,7 @@ input:focus {
   margin-top: 10px;
 }
 .filter-wrap .hidden-menu button {
-  margin-top: 1rem;
+  margin-top: 10px;
   font-size: 12px;
   font-weight: 600;
   background-color: black;

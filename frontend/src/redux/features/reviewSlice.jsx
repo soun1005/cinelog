@@ -59,23 +59,29 @@ export const postReview = createAsyncThunk(
 export const loadReviews = createAsyncThunk(
   'review/loadReviews',
   // promise
-  async (pageNum, { rejectWithValue }) => {
+  async ({ pageNum, sortBy, sortOrder }, { rejectWithValue }) => {
+    console.log(
+      `${base}/profile/reviews?page=${pageNum}&sortBy=${sortBy}&sortOrder=${sortOrder}`
+    );
     try {
       const token = localStorage.getItem('token');
       if (token) {
         const res = await axios.post(
-          `${base}/profile/reviews?page=${pageNum}`,
+          `${base}/profile/reviews?page=${pageNum}&sortBy=${sortBy}&sortOrder=${sortOrder}`,
           {},
           // the value that user send to DB by API
           {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
+        console.log(res);
+
         const reviews = res.data.reviews;
         const movieData = res.data.movieData;
         const totalPages = res.data.total;
         const dataLength = res.data.dataLength;
 
+        console.log(reviews);
         // will be saved in the 'action.payload'
         // the data that is received by API -> to display on profile
         return { reviews, movieData, totalPages, dataLength };
@@ -204,8 +210,8 @@ const reviewSlice = createSlice({
 
     // when loadUser function result is 'fullfilled'
     builder.addCase(loadReviews.fulfilled, (state, action) => {
-      console.log(action.payload);
       if (action.payload) {
+        console.log(action.payload);
         return {
           ...state,
           reviews: action.payload.reviews,

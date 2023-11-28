@@ -3,16 +3,19 @@ import { useEffect } from 'react';
 import { loadReviews } from '../redux/features/reviewSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
-export const ReviewService = (page) => {
+export const ReviewService = ({ pageNum, sortBy, sortOrder }) => {
   const dispatch = useDispatch();
 
+  // dispatch reduce to load review lists
   useEffect(() => {
-    dispatch(loadReviews(page));
-  }, [dispatch, page]);
+    dispatch(loadReviews({ pageNum, sortBy, sortOrder }));
+  }, [dispatch, pageNum, sortBy, sortOrder]);
 
   const { reviews, movieData, totalPages, dataLength } = useSelector(
     (state) => state.review
   );
+
+  console.log(totalPages);
 
   if (!reviews || !movieData || !dataLength) {
     return { mergedData: [], totalPages, dataLength };

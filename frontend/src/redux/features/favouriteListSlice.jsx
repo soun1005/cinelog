@@ -118,13 +118,10 @@ export const loadFavouritedList = createAsyncThunk(
           }
         );
 
-        console.log(res);
-
         const favouritedList = res.data.favouritedList;
         const movieData = res.data.movieData;
         const totalPages = res.data.total;
         const dataLength = res.data.dataLength;
-        console.log(favouritedList);
         return { favouritedList, movieData, totalPages, dataLength };
       }
     } catch (error) {

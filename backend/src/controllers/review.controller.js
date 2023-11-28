@@ -110,16 +110,23 @@ const editReview = async (req, res) => {
 // load reviews and the movie info that matches the review by id
 // fetch movie information and credit here when it's called
 const loadReviews = async (req, res) => {
-  const page = parseInt(req.query.page || '0');
-  // 5 reviews in each page
-  const PAGE_SIZE = 5;
-
   try {
     // grab token from request
     const token = req.headers.authorization.split('Bearer')[1].trim();
     const decodedToken = jwt.decode(token);
 
+    const page = parseInt(req.query.page || '0');
+    // 5 reviews in each page
+    const PAGE_SIZE = 5;
+    // front -> /loadReviews?page=1&sortBy=reviewDate&sortOrder=desc
+    const sortBy = req.query.sortBy || 'date'; // Default to sorting by reviewedDate
+    const sortOrder = req.query.sortOrder || 'desc'; // Default to descending order
+
+    const sortField = sortBy === 'date' ? 'date' : 'ratings';
+    const sortDirection = sortOrder === 'asc' ? 1 : -1;
+
     const review = await Review.find({ userId: decodedToken })
+      .sort({ [sortField]: sortDirection })
       .limit(PAGE_SIZE)
       .skip(PAGE_SIZE * page);
 
