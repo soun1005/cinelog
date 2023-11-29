@@ -33,7 +33,7 @@ const EditReview = ({ mediaId }) => {
   const navigate = useNavigate();
 
   // custom hooks to get redux states
-  const reviews = ReviewService();
+  const { mergedData: reviews } = ReviewService({});
   const movieInfo = MovieInfoService(mediaId);
 
   if (!reviews || !movieInfo) {
