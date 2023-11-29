@@ -11,7 +11,7 @@ const Profile = () => {
   const { mergedData: reviews, dataLength } = ReviewService({});
 
   const { mergedData: favourite, dataLength: favouriteDataLength } =
-    FavouriteListService();
+    FavouriteListService({});
 
   const auth = useSelector((state) => state.auth);
 

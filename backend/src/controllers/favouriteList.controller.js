@@ -61,15 +61,22 @@ const deleteFavourite = async (req, res) => {
 };
 
 const loadFavouritedList = async (req, res) => {
-  const page = parseInt(req.query.page || '0');
-  // 10 lists in each page
-  const PAGE_SIZE = 10;
-
   try {
     // grab token from request
     const token = req.headers.authorization.split('Bearer')[1].trim();
     const decodedToken = jwt.decode(token);
+
+    const page = parseInt(req.query.page || '0');
+    // 10 lists in each page
+    const PAGE_SIZE = 10;
+
+    // const sortBy = req.query.sortBy || 'date'; // Default to sorting by reviewedDate
+    const sortOrder = req.query.sortOrder || 'desc'; // Default to descending order
+
+    const sortDirection = sortOrder === 'asc' ? 1 : -1;
+
     const favourited = await Favourite.find({ userId: decodedToken })
+      .sort({ createdAt: sortDirection })
       .limit(PAGE_SIZE)
       .skip(PAGE_SIZE * page);
 

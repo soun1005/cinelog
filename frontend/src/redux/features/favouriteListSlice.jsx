@@ -105,12 +105,12 @@ export const favouriteStatus = createAsyncThunk(
 export const loadFavouritedList = createAsyncThunk(
   'favourite/loadReviews',
   // promise
-  async (pageNum, { rejectWithValue }) => {
+  async ({ pageNum, sortBy, sortOrder }, { rejectWithValue }) => {
     try {
       const token = localStorage.getItem('token');
       if (token) {
         const res = await axios.post(
-          `${base}/favourites?page=${pageNum}`,
+          `${base}/favourites?page=${pageNum}&sortBy=${sortBy}&sortOrder=${sortOrder}`,
           {},
           // the value that user send to DB by API
           {
@@ -122,6 +122,7 @@ export const loadFavouritedList = createAsyncThunk(
         const movieData = res.data.movieData;
         const totalPages = res.data.total;
         const dataLength = res.data.dataLength;
+
         return { favouritedList, movieData, totalPages, dataLength };
       }
     } catch (error) {

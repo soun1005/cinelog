@@ -20,11 +20,6 @@ const ReviewedMovieList = () => {
     sortOrder: sort.order,
   });
 
-  // if (!data || !dataLength || !totalPages) {
-  //   // display loader here or error
-  //   return null;
-  // }
-
   const pages = new Array(totalPages).fill(null).map((v, i) => i);
 
   return (
@@ -40,7 +35,7 @@ const ReviewedMovieList = () => {
 
       <div className="filter__container">
         {/* {setRatingFilter && <FilterByRating setFilterStar={setStar} />} */}
-        <SortByDate setDate={setSort} />
+        <SortByDate setDate={setSort} ratings={true} />
         {/* {setSearchFilter && <FilterBySearchbar setSearch={setSearchKeyword} />} */}
       </div>
 

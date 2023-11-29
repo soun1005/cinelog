@@ -15,8 +15,6 @@ export const ReviewService = ({ pageNum, sortBy, sortOrder }) => {
     (state) => state.review
   );
 
-  console.log(totalPages);
-
   if (!reviews || !movieData || !dataLength) {
     return { mergedData: [], totalPages, dataLength };
   }

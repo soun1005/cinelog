@@ -1,18 +1,24 @@
 import { useState } from 'react';
 import ProfileList from '../components/ProfileList';
 import FavouriteListService from '../api/favouriteListService';
+import SortByDate from '../components/filterData/SortByDate';
 import ListTitle from '../components/ListTitle';
 
 const FavouritedMovieList = () => {
   const [pageNumber, setPageNumber] = useState(0);
 
+  //sort order is passed to redux and used as endpoint
+  const [sort, setSort] = useState({ sort: 'date', order: 'asc' });
+
   const {
     mergedData: favourite,
     dataLength,
     totalPages,
-  } = FavouriteListService(pageNumber);
-
-  console.log('favourite:', favourite);
+  } = FavouriteListService({
+    pageNum: pageNumber,
+    sortBy: sort.sort,
+    sortOrder: sort.order,
+  });
 
   const pages = new Array(totalPages).fill(null).map((v, i) => i);
 
@@ -24,6 +30,15 @@ const FavouritedMovieList = () => {
       <h3 className="pagination-index">
         Page of {pageNumber + 1} / {totalPages}
       </h3>
+
+      {/* Filters */}
+
+      <div className="filter__container">
+        {/* {setRatingFilter && <FilterByRating setFilterStar={setStar} />} */}
+        <SortByDate setDate={setSort} />
+        {/* {setSearchFilter && <FilterBySearchbar setSearch={setSearchKeyword} />} */}
+      </div>
+
       <ProfileList
         data={favourite}
         listTitle={false}

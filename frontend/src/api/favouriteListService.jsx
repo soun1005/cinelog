@@ -3,13 +3,13 @@ import { useEffect } from 'react';
 import { loadFavouritedList } from '../redux/features/favouriteListSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
-export const FavouriteListService = (page) => {
+export const FavouriteListService = ({ pageNum, sortBy, sortOrder }) => {
   const dispatch = useDispatch();
 
   // dispatch user's favourite list
   useEffect(() => {
-    dispatch(loadFavouritedList(page));
-  }, [dispatch, page]);
+    dispatch(loadFavouritedList({ pageNum, sortBy, sortOrder }));
+  }, [dispatch, pageNum, sortBy, sortOrder]);
 
   // get data from redux state
   const { favouritedList, movieData, totalPages, dataLength } = useSelector(

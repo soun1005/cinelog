@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 
-const SortByDate = ({ setDate }) => {
+const SortByDate = ({ setDate, ratings = false }) => {
   const [sort, setSort] = useState({ sort: 'date', order: 'asc' });
   const [hiddenMenu, setHiddenMenu] = useState(false);
   const [menuAnimation, setMenuAnimation] = useState(false);
@@ -52,17 +52,21 @@ const SortByDate = ({ setDate }) => {
           ref={sortOptions}
         >
           <button onClick={() => handleOnClick('date', 'asc')}>
-            Date (asc){' '}
+            Added date (asc){' '}
           </button>
           <button onClick={() => handleOnClick('date', 'desc')}>
-            Date (desc){' '}
+            Added date (desc){' '}
           </button>
-          <button onClick={() => handleOnClick('ratings', 'asc')}>
-            Ratings (asc){' '}
-          </button>
-          <button onClick={() => handleOnClick('ratings', 'desc')}>
-            Ratings (desc){' '}
-          </button>
+          {ratings && (
+            <>
+              <button onClick={() => handleOnClick('ratings', 'asc')}>
+                Ratings (asc){' '}
+              </button>
+              <button onClick={() => handleOnClick('ratings', 'desc')}>
+                Ratings (desc){' '}
+              </button>
+            </>
+          )}
         </div>
       ) : (
         ''
