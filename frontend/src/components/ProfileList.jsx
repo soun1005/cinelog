@@ -15,7 +15,7 @@ import ConfirmModal from './ConfirmModal';
 
 const ProfileList = ({
   data,
-  // listTitle,
+  listTitle = true,
   noDataMsg,
   noMatchMsg,
   dateLabel,
@@ -23,7 +23,7 @@ const ProfileList = ({
   isReview = true,
   moreBtn = true,
   buttons = false,
-  // dataLength,
+  dataLength,
   // filters are added when true
   // setRatingFilter = false,
   // setSearchFilter = false,
@@ -228,14 +228,15 @@ const ProfileList = ({
 
   return (
     <div className="profile-list__container">
-      <div className="profile-list__title-wrap">
-        {/* review title and number of review */}
-        {/* <span>
-          {listTitle}
-          {` (${reviewCount})`}
-        </span> */}
+      {listTitle && (
+        <div className="profile-list__title-wrap">
+          {/* review title and number of review */}
+          <span>
+            {listTitle}
+            {` (${dataLength})`}
+          </span>
 
-        {/* filters and sort
+          {/* filters and sort
         <div className="filter__container">
           {setRatingFilter && <FilterByRating setFilterStar={setStar} />}
           {setSortFilter && <SortByDate setDate={setSortBy} />}
@@ -244,12 +245,13 @@ const ProfileList = ({
           )}
         </div> */}
 
-        {data && moreBtn && (
-          <NavLink to={pagePath}>
-            <button>More</button>
-          </NavLink>
-        )}
-      </div>
+          {data && moreBtn && (
+            <NavLink to={pagePath}>
+              <button>More</button>
+            </NavLink>
+          )}
+        </div>
+      )}
 
       {data.length === 0 && data.length === 0 ? (
         <p>{noDataMsg}</p>

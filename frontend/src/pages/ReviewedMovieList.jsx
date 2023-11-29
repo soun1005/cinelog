@@ -2,6 +2,7 @@ import { useState } from 'react';
 import ReviewService from '../api/reviewService';
 import ProfileList from '../components/ProfileList';
 import SortByDate from '../components/filterData/SortByDate';
+import ListTitle from '../components/ListTitle';
 
 const ReviewedMovieList = () => {
   const [pageNumber, setPageNumber] = useState(0);
@@ -28,9 +29,15 @@ const ReviewedMovieList = () => {
 
   return (
     <div className="review-list-page page">
+      <div className="review-list-page__title">
+        <ListTitle listTitle="Reviews" dataLength={dataLength} />
+      </div>
       <h3 className="pagination-index">
         Page of {pageNumber + 1} / {totalPages}
       </h3>
+
+      {/* Filters */}
+
       <div className="filter__container">
         {/* {setRatingFilter && <FilterByRating setFilterStar={setStar} />} */}
         <SortByDate setDate={setSort} />
@@ -39,12 +46,11 @@ const ReviewedMovieList = () => {
 
       <ProfileList
         data={data}
-        listTitle="My reviews"
+        listTitle={false}
         noDataMsg="No reviews yet"
         noMatchMsg="No matched review"
         buttons={true}
         moreBtn={false}
-        dataLength={dataLength}
       />
       <div className="pagination-display">
         {pages.map((pageIndex) => (
