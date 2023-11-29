@@ -170,7 +170,6 @@ const favouriteListSlice = createSlice({
       // id of deleted movie
       const deletedMediaId = action.payload;
       const prevState = current(state);
-      console.log('favouritedList', prevState.favouritedList);
       // 상태를 업데이트할 때, 삭제된 항목을 포함하지 않도록
       const updatedList = prevState.favouritedList.filter(
         (media) => media.mediaId !== deletedMediaId
@@ -191,6 +190,7 @@ const favouriteListSlice = createSlice({
         movieData: updatedMovieData.filter(Boolean),
         deleteStatus: 'success',
         favouriteStatus: false,
+        dataLength: state.dataLength - 1,
       };
     });
 

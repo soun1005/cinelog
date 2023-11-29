@@ -27,7 +27,6 @@ export const postReview = createAsyncThunk(
   'review/create',
   // promise
   async (review, { rejectWithValue }) => {
-    console.log(review);
     try {
       await axios.post(
         `${base}/review`,
@@ -81,7 +80,6 @@ export const loadReviews = createAsyncThunk(
         const totalPages = res.data.total;
         const dataLength = res.data.dataLength;
 
-        console.log(reviews);
         // will be saved in the 'action.payload'
         // the data that is received by API -> to display on profile
         return { reviews, movieData, totalPages, dataLength };
@@ -187,11 +185,13 @@ const reviewSlice = createSlice({
     });
 
     builder.addCase(postReview.fulfilled, (state, action) => {
+      const newReview = action.payload;
       return {
         ...state,
         postReviewStatus: 'success',
         reviewStatus: true,
-        reviews: [...state.reviews, action.payload],
+        reviews: [...state.reviews, newReview],
+        dataLength: state.dataLength + 1,
       };
     });
 
@@ -211,7 +211,6 @@ const reviewSlice = createSlice({
     // when loadUser function result is 'fullfilled'
     builder.addCase(loadReviews.fulfilled, (state, action) => {
       if (action.payload) {
-        console.log(action.payload);
         return {
           ...state,
           reviews: action.payload.reviews,
@@ -253,6 +252,7 @@ const reviewSlice = createSlice({
         reviews: updatedReviews,
         movieData: updatedMovieData,
         deleteReviewStatus: 'success',
+        dataLength: state.dataLength - 1,
       };
     });
     builder.addCase(deleteReview.rejected, (state, action) => {
