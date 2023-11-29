@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import ReviewService from '../api/reviewService';
 import ProfileList from '../components/ProfileList';
-import SortByDate from '../components/filterData/SortByDate';
+import Sorting from '../components/filterData/Sorting';
 import ListTitle from '../components/ListTitle';
 
 const ReviewedMovieList = () => {
   const [pageNumber, setPageNumber] = useState(0);
 
   //sort order is passed to redux and used as endpoint
-  const [sort, setSort] = useState({ sort: 'date', order: 'asc' });
+  const [sort, setSort] = useState({ sort: 'date', order: 'desc' });
 
   const {
     mergedData: data,
@@ -35,7 +35,7 @@ const ReviewedMovieList = () => {
 
       <div className="filter__container">
         {/* {setRatingFilter && <FilterByRating setFilterStar={setStar} />} */}
-        <SortByDate setDate={setSort} ratings={true} />
+        <Sorting setDate={setSort} ratings={true} />
         {/* {setSearchFilter && <FilterBySearchbar setSearch={setSearchKeyword} />} */}
       </div>
 

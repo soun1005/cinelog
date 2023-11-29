@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 
-const SortByDate = ({ setDate, ratings = false }) => {
-  const [sort, setSort] = useState({ sort: 'date', order: 'asc' });
+const Sorting = ({ setDate, ratings = false }) => {
+  const [sort, setSort] = useState({ sort: 'date', order: 'desc' });
   const [hiddenMenu, setHiddenMenu] = useState(false);
   const [menuAnimation, setMenuAnimation] = useState(false);
 
@@ -75,4 +75,4 @@ const SortByDate = ({ setDate, ratings = false }) => {
   );
 };
 
-export default SortByDate;
+export default Sorting;

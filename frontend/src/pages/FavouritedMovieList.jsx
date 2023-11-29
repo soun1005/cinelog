@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import ProfileList from '../components/ProfileList';
 import FavouriteListService from '../api/favouriteListService';
-import SortByDate from '../components/filterData/SortByDate';
+import Sorting from '../components/filterData/Sorting';
 import ListTitle from '../components/ListTitle';
 
 const FavouritedMovieList = () => {
   const [pageNumber, setPageNumber] = useState(0);
 
   //sort order is passed to redux and used as endpoint
-  const [sort, setSort] = useState({ sort: 'date', order: 'asc' });
+  const [sort, setSort] = useState({ sort: 'date', order: 'desc' });
 
   const {
     mergedData: favourite,
@@ -35,7 +35,7 @@ const FavouritedMovieList = () => {
 
       <div className="filter__container">
         {/* {setRatingFilter && <FilterByRating setFilterStar={setStar} />} */}
-        <SortByDate setDate={setSort} />
+        <Sorting setDate={setSort} />
         {/* {setSearchFilter && <FilterBySearchbar setSearch={setSearchKeyword} />} */}
       </div>
 

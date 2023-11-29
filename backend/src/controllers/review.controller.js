@@ -90,8 +90,6 @@ const deleteReview = async (req, res) => {
 
 // edit review
 const editReview = async (req, res) => {
-  // console.log(req.body);
-
   try {
     // movie id
     const { id } = req.params;
@@ -123,7 +121,7 @@ const loadReviews = async (req, res) => {
     const sortOrder = req.query.sortOrder || 'desc'; // Default to descending order
 
     const sortField = sortBy === 'date' ? 'date' : 'ratings';
-    const sortDirection = sortOrder === 'asc' ? 1 : -1;
+    const sortDirection = sortOrder === 'desc' ? -1 : 1;
 
     const review = await Review.find({ userId: decodedToken })
       .sort({ [sortField]: sortDirection })
