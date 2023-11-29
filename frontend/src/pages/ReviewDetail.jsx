@@ -25,9 +25,13 @@ const ReviewDetail = () => {
   const { reviews, movieData } = useSelector((state) => state.review);
   const { id } = useParams();
 
-  if (!reviews || !movieData) {
-    return null;
-  }
+  console.log(id);
+
+  console.log(reviews, movieData);
+
+  // if (!reviews || !movieData) {
+  //   return null;
+  // }
 
   // merge reviews and movieData from redux state
   const mergedData = movieData.map((movie) => {
@@ -46,7 +50,7 @@ const ReviewDetail = () => {
 
   const handleDelete = () => {
     dispatch(deleteReview(matchedMedia.mediaId));
-    navigate('/profile');
+    navigate('/profile/reviews');
     toast('Review deleted!', {
       position: 'bottom-right',
       autoClose: 1500,
