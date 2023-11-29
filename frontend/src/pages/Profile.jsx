@@ -7,11 +7,16 @@ import FavouriteListService from '../api/favouriteListService';
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const { mergedData: reviews, dataLength } = ReviewService();
+  // const { mergedData: reviews, dataLength } = ReviewService();
+  const { mergedData: reviews, dataLength } = ReviewService({});
+
   const { mergedData: favourite, dataLength: favouriteDataLength } =
     FavouriteListService();
+
   const auth = useSelector((state) => state.auth);
+
   const { userName } = useSelector((state) => state.profile);
+
   // // To dispatch loadUser reducer
   useEffect(() => {
     dispatch(loadUser());
