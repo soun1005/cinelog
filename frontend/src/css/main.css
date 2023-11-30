@@ -1638,7 +1638,6 @@ input:focus {
   grid-column-gap: 10px;
   grid-row-gap: 10px;
   margin-top: 2rem;
-  background-color: pink;
 }
 @media (max-width: 599px) {
   .cast__container {
@@ -1805,7 +1804,6 @@ input:focus {
   grid-row-gap: 10px;
   margin-top: 2rem;
   width: 100%;
-  background-color: pink;
 }
 @media (max-width: 599px) {
   .filmo__container {
