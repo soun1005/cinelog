@@ -19,7 +19,7 @@ const ReviewDetail = () => {
   const [confirmModal, setConfirmModal] = useState(false);
 
   useEffect(() => {
-    dispatch(loadReviews());
+    dispatch(loadReviews({}));
   }, [dispatch]);
 
   const { reviews, movieData } = useSelector((state) => state.review);
@@ -27,7 +27,7 @@ const ReviewDetail = () => {
 
   console.log(id);
 
-  console.log(reviews, movieData);
+  console.log('reviews:', reviews);
 
   // if (!reviews || !movieData) {
   //   return null;
