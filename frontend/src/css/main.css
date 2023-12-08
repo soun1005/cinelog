@@ -988,12 +988,13 @@ input:focus {
 .main__movie-container {
   width: 100%;
   margin-bottom: 5rem;
+  margin-top: 6rem;
 }
 .main__movie-container .section-title {
   font-size: 1.1rem;
 }
 .main__movie-container__link {
-  width: 12%;
+  width: 15%;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
@@ -1858,4 +1859,8 @@ input:focus {
   font-size: 1.5rem;
   font-weight: 500;
   text-align: center;
+}
+
+.thumb-wrap {
+  padding: 1rem 2rem;
 }
