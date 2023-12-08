@@ -9,19 +9,17 @@ const Main = () => {
   const upcomingEndpoint = `${apiEndpoint}/movies/upcoming`;
 
   // now playing
-  // number of movies that I wanna display on second arguement
-  const nowPlayingRes = ApiFetchService(nowPlayingEndpoint, 16);
-  const nowPlayingData = nowPlayingRes.data;
-  const nowPlayingLoading = nowPlayingRes.loading;
+  const nowPlayingRes = ApiFetchService(nowPlayingEndpoint);
+  const { data: nowPlayingData, loading: nowPlayingLoading } = nowPlayingRes;
 
   // upcoming
-  const upcomingRes = ApiFetchService(upcomingEndpoint, 16);
-  const upcomingData = upcomingRes.data;
-  const upcomingLoading = upcomingRes.loading;
+  const upcomingRes = ApiFetchService(upcomingEndpoint);
+  const { data: upcomingData, loading: upcomingLoading } = upcomingRes;
 
   return (
     <div className="page">
       <SearchBar />
+
       {nowPlayingLoading && upcomingLoading && <Loading />}
       {nowPlayingData && (
         <MainMovieDisplay
