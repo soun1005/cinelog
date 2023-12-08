@@ -12,6 +12,12 @@ const Carousel = ({ children, title }) => {
     speed: 3000,
     autoplaySpeed: 3000,
     cssEase: 'linear',
+    swipeToSlide: true,
+    afterChange: function (index) {
+      console.log(
+        `Slider Changed to: ${index + 1}, background: #222; color: #bada55`
+      );
+    },
   };
 
   return (

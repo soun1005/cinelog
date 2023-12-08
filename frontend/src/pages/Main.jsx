@@ -1,4 +1,4 @@
-// import MainMovieDisplay from '../components/MainMovieDisplay';
+import MainMovieDisplay from '../components/MainMovieDisplay';
 import ApiFetchService from '../api/apiFetchService';
 import { apiEndpoint } from '../constant/api';
 import Loading from '../components/Loading';
@@ -30,18 +30,18 @@ const Main = () => {
         title="Upcoming"
       />
 
-      <Carousel
+      {/* <Carousel
         children={CarouselCard({ data: nowPlayingData })}
         title="Now Playing"
-      />
+      /> */}
 
       {nowPlayingLoading && upcomingLoading && <Loading />}
-      {/* {nowPlayingData && (
+      {nowPlayingData && (
         <MainMovieDisplay
           data={nowPlayingData}
-          // title="Now Playing"
+          title="Now Playing"
         ></MainMovieDisplay>
-      )} */}
+      )}
       {/* {upcomingData && (
         <MainMovieDisplay
           data={upcomingData}
