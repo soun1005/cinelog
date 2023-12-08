@@ -4,7 +4,8 @@ import fetchNowPlayingFromApi from '../resolver/fetchNowPlayingFromApi.js';
 import fetchUpcomingFromApi from '../resolver/fetchUpcomingFromApi.js';
 
 const getNowPlaying = async (req, res) => {
-  const data = await fetchNowPlayingFromApi(req.query.query);
+  const allData = await fetchNowPlayingFromApi(req.query.query);
+  const data = allData.slice(0, 10);
 
   if (data) {
     res.json(data); // Return the data as JSON response
@@ -14,7 +15,8 @@ const getNowPlaying = async (req, res) => {
 };
 
 const getUpcoming = async (req, res) => {
-  const data = await fetchUpcomingFromApi(req.query.query);
+  const allData = await fetchUpcomingFromApi(req.query.query);
+  const data = allData.slice(0, 10);
 
   if (data) {
     res.json(data); // Return the data as JSON response
