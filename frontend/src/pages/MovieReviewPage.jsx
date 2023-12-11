@@ -35,8 +35,6 @@ const MovieReviewPage = () => {
     resolver: yupResolver(schema),
   });
 
-  // const { review, error, isLoading } = usePostReview();
-
   // functions
   const onSubmit = async (data) => {
     dispatch(postReview({ ...data, mediaId: id }));

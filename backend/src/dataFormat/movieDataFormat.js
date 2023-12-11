@@ -1,4 +1,5 @@
 export const moviesDataFormat = (data) => {
+  console.log(data);
   return data.results.map(
     ({ id, original_title, poster_path, release_date, overview }) => ({
       id: id,

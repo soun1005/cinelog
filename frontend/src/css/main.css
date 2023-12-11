@@ -764,7 +764,6 @@ input:focus {
 }
 .mobile-nav-wrap .mobile-nav a {
   font-size: larger;
-  font-weight: bolder;
 }
 
 @media screen and (max-width: 599px) {
@@ -1862,5 +1861,39 @@ input:focus {
 }
 
 .thumb-wrap {
+  width: 100%;
+  height: 55vh;
+  gap: 2rem;
+}
+@media (max-width: 599px) {
+  .thumb-wrap {
+    height: 60vh;
+  }
+}
+.thumb-wrap .thumb .thumb-img-wrap {
+  height: 100%;
+}
+.thumb-wrap .thumb .thumb-img-wrap img {
+  height: 100%;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  -o-object-fit: cover;
+     object-fit: cover;
+  aspect-ratio: 16/9;
   padding: 1rem 2rem;
+}
+
+.section-title {
+  font-size: 1.1rem;
+}
+
+@media (max-width: 599px) {
+  .slick-dots li {
+    width: 7px !important;
+    height: 7px !important;
+    margin: 0 5px;
+    padding: 0;
+    cursor: pointer;
+  }
 }

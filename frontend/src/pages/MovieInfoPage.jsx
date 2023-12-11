@@ -23,26 +23,25 @@ import TokenService from '../api/tokenService';
 // toast
 import { ToastContainer, toast } from 'react-toastify';
 import CastSection from '../components/CastSection';
-// import CastCard from '../components/CastCard';
 
 const MovieInfoPage = () => {
   // to open and close confirm modal
   const [confirmModal, setConfirmModal] = useState(false);
-  // const [moreCasts, setMoreCasts] = useState(false);
 
   const { id } = useParams();
   const movieInfo = MovieInfoService(id);
+
   const token = TokenService();
   const dispatch = useDispatch();
-  const { userId } = useSelector((state) => state.profile);
 
+  const { userId } = useSelector((state) => state.profile);
   const movieStatus = useSelector((state) => state.info.dataStatus);
   const movieLoaded = !!movieStatus;
-  // console.log('movieLoaded?', movieLoaded);
 
   const favouritedStatus = useSelector(
     (state) => state.favourite.favouriteStatus
   );
+
   const hasReview = useSelector((state) => state.review.reviewStatus.hasReview);
 
   useEffect(() => {
