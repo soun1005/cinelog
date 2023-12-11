@@ -16,7 +16,7 @@ const getNowPlaying = async (req, res) => {
 };
 
 const getUpcoming = async (req, res) => {
-  const dataLengthToFetch = 10;
+  const dataLengthToFetch = 12;
   const allData = await fetchUpcomingFromApi(req.query.query);
   const data = allData.slice(0, dataLengthToFetch);
 
