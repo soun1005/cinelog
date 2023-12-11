@@ -3,9 +3,11 @@ import ProfileList from '../components/ProfileList';
 import FavouriteListService from '../api/favouriteListService';
 import Sorting from '../components/filterData/Sorting';
 import ListTitle from '../components/ListTitle';
+import FilterBySearchbar from '../components/filterData/FilterBySearchbar';
 
 const FavouritedMovieList = () => {
   const [pageNumber, setPageNumber] = useState(0);
+  const [searchKeyword, setSearchKeyword] = useState('');
 
   //sort order is passed to redux and used as endpoint
   const [sort, setSort] = useState({ sort: 'date', order: 'desc' });
@@ -20,6 +22,13 @@ const FavouritedMovieList = () => {
     sortOrder: sort.order,
   });
 
+  const filteredData =
+    searchKeyword !== ''
+      ? favourite.filter((item) =>
+          item.title.toLowerCase().includes(searchKeyword)
+        )
+      : favourite;
+
   const pages = new Array(totalPages).fill(null).map((v, i) => i);
 
   return (
@@ -32,15 +41,13 @@ const FavouritedMovieList = () => {
       </h3>
 
       {/* Filters */}
-
       <div className="filter__container">
-        {/* {setRatingFilter && <FilterByRating setFilterStar={setStar} />} */}
         <Sorting setDate={setSort} />
-        {/* {setSearchFilter && <FilterBySearchbar setSearch={setSearchKeyword} />} */}
+        <FilterBySearchbar setSearch={setSearchKeyword} />
       </div>
 
       <ProfileList
-        data={favourite}
+        data={filteredData}
         listTitle={false}
         noDataMsg="No favourited movies yet"
         noMatchMsg="No matched favourited movies"
