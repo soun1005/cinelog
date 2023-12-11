@@ -1514,6 +1514,25 @@ input:focus {
             transform: rotate(360deg);
   }
 }
+.filter__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 2rem 0;
+}
+@media (max-width: 599px) {
+  .filter__container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    gap: 1rem;
+  }
+}
+
 .filter-wrap {
   position: relative;
   width: 10rem;
@@ -1531,7 +1550,7 @@ input:focus {
 }
 @media (max-width: 599px) {
   .filter-wrap {
-    width: 8rem;
+    width: 100%;
   }
 }
 .filter-wrap__title {
