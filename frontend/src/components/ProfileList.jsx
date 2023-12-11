@@ -8,9 +8,6 @@ import { useDispatch } from 'react-redux';
 import { deleteReview } from '../redux/features/reviewSlice';
 import { deleteFavourite } from '../redux/features/favouriteListSlice';
 import { ToastContainer, toast } from 'react-toastify';
-// import FilterByRating from './filterData/FilterByRating';
-// import FilterBySearchbar from './filterData/FilterBySearchbar';
-// import SortByDate from './filterData/SortByDate';
 import ConfirmModal from './ConfirmModal';
 
 const ProfileList = ({
@@ -24,72 +21,10 @@ const ProfileList = ({
   moreBtn = true,
   buttons = false,
   dataLength,
-  // filters are added when true
-  // setRatingFilter = false,
-  // setSearchFilter = false,
-  // setSortFilter = false,
 }) => {
-  // const [star, setStar] = useState(5);
-  // const [searchKeyword, setSearchKeyword] = useState('');
-  // const [sortBy, setSortBy] = useState('');
-  // const [filteredData, setFilteredData] = useState(data);
-  // to open and close confirm modal
   const [confirmModal, setConfirmModal] = useState(null);
 
   const dispatch = useDispatch();
-
-  // for filtering
-  // useEffect(() => {
-  //   const filtered = data.filter((d) => {
-  //     if (d.ratings !== undefined) {
-  //       return (
-  //         d.ratings <= star && d.title.toLowerCase().includes(searchKeyword)
-  //       );
-  //     }
-  //     return d.title.toLowerCase().includes(searchKeyword);
-  //   });
-  //   setFilteredData(filtered);
-  // }, [data, searchKeyword, star]);
-
-  // useEffect(() => {
-  //   // Update the filtered data whenever 'sortBy' changes
-  //   // Sorting function based on the 'sortBy' state
-  //   const sortData = () => {
-  //     let sortedData = [...filteredData];
-  //     switch (sortBy) {
-  //       case 'Added date ▽':
-  //         sortedData.sort(
-  //           (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-  //         );
-  //         break;
-  //       case 'Added date △':
-  //         sortedData.sort(
-  //           (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
-  //         );
-  //         break;
-  //       case 'Released date ▽':
-  //         sortedData.sort(
-  //           (a, b) => new Date(b.releasedDate) - new Date(a.releasedDate)
-  //         );
-  //         break;
-  //       case 'Released date △':
-  //         sortedData.sort(
-  //           (a, b) => new Date(a.releasedDate) - new Date(b.releasedDate)
-  //         );
-  //         break;
-  //       default:
-  //         // No sorting
-  //         break;
-  //     }
-  //     setFilteredData(sortedData);
-  //   };
-  //   sortData();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [sortBy]);
-
-  // To manage review counts
-  // const reviewCount =
-  //   star === 5 && searchKeyword === '' ? dataLength : filteredData.length;
 
   const cardsList = data.map((movie, index) => {
     const { createdAt, ratings, poster, _id, title, releasedDate, mediaId } =

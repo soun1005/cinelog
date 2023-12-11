@@ -3,9 +3,11 @@ import ReviewService from '../api/reviewService';
 import ProfileList from '../components/ProfileList';
 import Sorting from '../components/filterData/Sorting';
 import ListTitle from '../components/ListTitle';
+import FilterBySearchbar from '../components/filterData/FilterBySearchbar';
 
 const ReviewedMovieList = () => {
   const [pageNumber, setPageNumber] = useState(0);
+  const [searchKeyword, setSearchKeyword] = useState('');
 
   //sort order is passed to redux and used as endpoint
   const [sort, setSort] = useState({ sort: 'date', order: 'desc' });
@@ -19,6 +21,11 @@ const ReviewedMovieList = () => {
     sortBy: sort.sort,
     sortOrder: sort.order,
   });
+
+  const filteredData =
+    searchKeyword !== ''
+      ? data.filter((item) => item.title.toLowerCase().includes(searchKeyword))
+      : data;
 
   const pages = new Array(totalPages).fill(null).map((v, i) => i);
 
@@ -34,13 +41,12 @@ const ReviewedMovieList = () => {
       {/* Filters */}
 
       <div className="filter__container">
-        {/* {setRatingFilter && <FilterByRating setFilterStar={setStar} />} */}
         <Sorting setDate={setSort} ratings={true} />
-        {/* {setSearchFilter && <FilterBySearchbar setSearch={setSearchKeyword} />} */}
+        <FilterBySearchbar setSearch={setSearchKeyword} />
       </div>
 
       <ProfileList
-        data={data}
+        data={filteredData}
         listTitle={false}
         noDataMsg="No reviews yet"
         noMatchMsg="No matched review"

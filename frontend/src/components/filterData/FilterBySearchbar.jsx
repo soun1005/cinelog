@@ -10,7 +10,7 @@ const FilterBySearchbar = ({ setSearch }) => {
   };
 
   return (
-    <div className="search-wrap">
+    <>
       <input
         type="text"
         value={searchTerm}
@@ -18,7 +18,7 @@ const FilterBySearchbar = ({ setSearch }) => {
         className="search__input"
         placeholder="Search movie title"
       />
-    </div>
+    </>
   );
 };
 
