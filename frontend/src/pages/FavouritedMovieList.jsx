@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import ProfileList from '../components/ProfileList';
 import FavouriteListService from '../api/favouriteListService';
 import Sorting from '../components/filterData/Sorting';
@@ -11,23 +11,18 @@ const FavouritedMovieList = () => {
 
   //sort order is passed to redux and used as endpoint
   const [sort, setSort] = useState({ sort: 'date', order: 'desc' });
-
   const {
     mergedData: favourite,
-    dataLength,
     totalPages,
+    dataLength,
   } = FavouriteListService({
     pageNum: pageNumber,
     sortBy: sort.sort,
     sortOrder: sort.order,
+    title: searchKeyword,
   });
 
-  const filteredData =
-    searchKeyword !== ''
-      ? favourite.filter((item) =>
-          item.title.toLowerCase().includes(searchKeyword)
-        )
-      : favourite;
+  const isSearching = useMemo(() => searchKeyword !== '', [searchKeyword]);
 
   const pages = new Array(totalPages).fill(null).map((v, i) => i);
 
@@ -47,17 +42,16 @@ const FavouritedMovieList = () => {
       </div>
 
       <ProfileList
-        data={filteredData}
+        data={favourite}
         listTitle={false}
-        noDataMsg="No favourited movies yet"
-        noMatchMsg="No matched favourited movies"
+        noDataMsg={isSearching ? 'No matches' : 'No favourited movies yet'}
         buttons={true}
         moreBtn={false}
         isReview={false}
       />
       <div className="pagination-display">
         {pages.map((pageIndex) => (
-          <button onClick={() => setPageNumber(pageIndex)}>
+          <button onClick={() => setPageNumber(pageIndex)} key={pageIndex}>
             {pageIndex + 1}
           </button>
         ))}

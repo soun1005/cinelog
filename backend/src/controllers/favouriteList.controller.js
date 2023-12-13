@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 
 // create favourite list
 const createFavourite = async (req, res) => {
-  const { mediaId } = req.body;
+  const { mediaId, title } = req.body;
   const userId = req.user._id;
 
   // add data to db
@@ -12,11 +12,30 @@ const createFavourite = async (req, res) => {
     const favourite = await Favourite.create({
       mediaId,
       userId,
+      title,
     });
     res.status(200).json(favourite);
     console.log('posted movie as favourite');
   } catch (err) {
     res.status(400).json({ error: err.message });
+  }
+};
+
+// delete a favourite list
+const deleteFavourite = async (req, res) => {
+  try {
+    const { id: mediaId } = req.params;
+    const result = await Favourite.deleteOne({ mediaId: mediaId });
+
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ error: 'No favourited movie found' });
+    }
+
+    res
+      .status(200)
+      .json({ message: 'This movie is deleted from favourite list' });
+  } catch (error) {
+    res.status(404).json({ error: 'Cannot find favourite list of this movie' });
   }
 };
 
@@ -42,24 +61,6 @@ const checkFavouriteStatus = async (req, res) => {
   }
 };
 
-// delete a favourite list
-const deleteFavourite = async (req, res) => {
-  try {
-    const { id: mediaId } = req.params;
-    const result = await Favourite.deleteOne({ mediaId: mediaId });
-
-    if (result.deletedCount === 0) {
-      return res.status(404).json({ error: 'No favourited movie found' });
-    }
-
-    res
-      .status(200)
-      .json({ message: 'This movie is deleted from favourite list' });
-  } catch (error) {
-    res.status(404).json({ error: 'Cannot find favourite list of this movie' });
-  }
-};
-
 const loadFavouritedList = async (req, res) => {
   try {
     // grab token from request
@@ -75,7 +76,12 @@ const loadFavouritedList = async (req, res) => {
 
     const sortDirection = sortOrder === 'asc' ? 1 : -1;
 
-    const favourited = await Favourite.find({ userId: decodedToken })
+    const title = req.query.title || '';
+
+    const favourited = await Favourite.find({
+      userId: decodedToken,
+      title: { $regex: title, $options: 'i' },
+    })
       .sort({ createdAt: sortDirection })
       .limit(PAGE_SIZE)
       .skip(PAGE_SIZE * page);
@@ -86,9 +92,11 @@ const loadFavouritedList = async (req, res) => {
         return movie.mediaId;
       });
 
-      const total = await Favourite.find({
+      // Get total count of favorited items for the user
+      const totalCount = await Favourite.countDocuments({
         userId: decodedToken,
-      }).countDocuments({});
+        title: { $regex: title, $options: 'i' },
+      });
 
       // by the mediaId, using resolver, load movie infos to display poster and information
       const movieDataPromises = movieId.map(
@@ -101,8 +109,8 @@ const loadFavouritedList = async (req, res) => {
         favouritedList: favourited,
         movieData,
         // total numbers of pages
-        total: Math.ceil(total / PAGE_SIZE),
-        dataLength: total,
+        totalNumberOfPage: Math.ceil(totalCount / PAGE_SIZE),
+        totalCount,
       });
     } else {
       res.status(404).json({ error: 'Favourited list not found' });

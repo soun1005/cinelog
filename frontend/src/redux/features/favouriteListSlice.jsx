@@ -34,6 +34,7 @@ export const postFavouriteList = createAsyncThunk(
         {
           mediaId: favourite.mediaId,
           userId: favourite.userId,
+          title: favourite.title,
         },
         {
           headers: {
@@ -45,9 +46,39 @@ export const postFavouriteList = createAsyncThunk(
 
       return savedFavouritedMovies;
     } catch (error) {
-      console.log(error);
       const errorMsg = error.response.data.error;
       // leads to 'builder.addcase rejected'
+      return rejectWithValue(errorMsg);
+    }
+  }
+);
+
+/***********load movies that are favourited***********/
+export const loadFavouritedList = createAsyncThunk(
+  'favourite/loadReviews',
+  // promise
+  async ({ pageNum, sortBy, sortOrder, title = '' }, { rejectWithValue }) => {
+    try {
+      const token = localStorage.getItem('token');
+      if (token) {
+        const res = await axios.post(
+          `${base}/favourites?page=${pageNum}&sortBy=${sortBy}&sortOrder=${sortOrder}&title=${title}`,
+          {},
+          // the value that user send to DB by API
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+
+        const favouritedList = res.data.favouritedList;
+        const movieData = res.data.movieData;
+        const totalPages = res.data.totalNumberOfPage;
+        const dataLength = res.data.totalCount;
+
+        return { favouritedList, movieData, totalPages, dataLength };
+      }
+    } catch (error) {
+      const errorMsg = error.response.data.message;
       return rejectWithValue(errorMsg);
     }
   }
@@ -101,37 +132,6 @@ export const favouriteStatus = createAsyncThunk(
   }
 );
 
-/***********load movies that are favourited***********/
-export const loadFavouritedList = createAsyncThunk(
-  'favourite/loadReviews',
-  // promise
-  async ({ pageNum, sortBy, sortOrder }, { rejectWithValue }) => {
-    try {
-      const token = localStorage.getItem('token');
-      if (token) {
-        const res = await axios.post(
-          `${base}/favourites?page=${pageNum}&sortBy=${sortBy}&sortOrder=${sortOrder}`,
-          {},
-          // the value that user send to DB by API
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
-
-        const favouritedList = res.data.favouritedList;
-        const movieData = res.data.movieData;
-        const totalPages = res.data.total;
-        const dataLength = res.data.dataLength;
-
-        return { favouritedList, movieData, totalPages, dataLength };
-      }
-    } catch (error) {
-      const errorMsg = error.response.data.message;
-      return rejectWithValue(errorMsg);
-    }
-  }
-);
-
 const favouriteListSlice = createSlice({
   name: 'favourite',
   initialState,
@@ -149,7 +149,6 @@ const favouriteListSlice = createSlice({
       return {
         ...state,
         favouritedList: [...state.favouritedList, action.payload],
-        // favouritedList: action.payload,
         favouriteStatus: true,
         favouriteLoaded: 'success',
       };
@@ -257,14 +256,13 @@ const favouriteListSlice = createSlice({
     });
     // when loginUser function result is 'fullfilled'
     builder.addCase(loadFavouritedList.fulfilled, (state, action) => {
-      console.log('favourited list:', action.payload);
       if (action.payload) {
         return {
           ...state,
           favouritedList: action.payload.favouritedList,
           movieData: action.payload.movieData,
           totalPages: action.payload.totalPages,
-          dataLength: action.payload.dataLength,
+          totalCount: action.payload.totalCount,
           favouriteListLoaded: 'success',
         };
       } else return state;
