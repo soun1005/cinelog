@@ -4,7 +4,7 @@ import fetchMovieInfoById from '../resolver/fetchMovieInfoById.js';
 
 // create a review
 const createReview = async (req, res) => {
-  const { reviewTitle, date, comment, ratings, mediaId } = req.body;
+  const { reviewTitle, date, comment, ratings, mediaId, title } = req.body;
 
   const userId = req.user._id;
 
@@ -41,6 +41,7 @@ const createReview = async (req, res) => {
       ratings,
       mediaId,
       userId,
+      title,
     });
     res.status(200).json(review);
   } catch (err) {
@@ -66,7 +67,12 @@ const loadReviews = async (req, res) => {
     const sortField = sortBy === 'date' ? 'date' : 'ratings';
     const sortDirection = sortOrder === 'desc' ? -1 : 1;
 
-    const review = await Review.find({ userId: decodedToken })
+    const title = req.query.title || '';
+
+    const review = await Review.find({
+      userId: decodedToken,
+      title: { $regex: title, $options: 'i' },
+    })
       .sort({ [sortField]: sortDirection })
       .limit(PAGE_SIZE)
       .skip(PAGE_SIZE * page);
