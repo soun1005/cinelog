@@ -51,21 +51,6 @@ const MovieInfoPage = () => {
     dispatch(loadReviews());
   }, [dispatch, id, userId, hasReview]);
 
-  // button to add favourite
-  const handleFavourite = () => {
-    dispatch(postFavouriteList({ mediaId: id, userId: userId }));
-    toast('Favourite added!', {
-      position: 'bottom-right',
-      autoClose: 1500,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'light',
-    });
-  };
-
   // button to delete favourite
   const handleDeleteFavourite = () => {
     dispatch(deleteFavourite(id));
@@ -97,6 +82,21 @@ const MovieInfoPage = () => {
     releasedDate,
     allCasts,
   } = movieInfo;
+
+  // button to add favourite
+  const handleFavourite = () => {
+    dispatch(postFavouriteList({ mediaId: id, userId, title }));
+    toast('Favourite added!', {
+      position: 'bottom-right',
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    });
+  };
 
   const movieCastTop6 = allCasts.slice(0, 6);
 

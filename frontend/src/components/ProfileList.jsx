@@ -14,7 +14,6 @@ const ProfileList = ({
   data,
   listTitle = true,
   noDataMsg,
-  noMatchMsg,
   dateLabel,
   pagePath,
   isReview = true,
@@ -190,8 +189,6 @@ const ProfileList = ({
 
       {data.length === 0 && data.length === 0 ? (
         <p>{noDataMsg}</p>
-      ) : data.length > 0 && data.length === 0 ? (
-        <p>{noMatchMsg}</p>
       ) : (
         <div className="profile-list__card-container">{cardsList}</div>
       )}
