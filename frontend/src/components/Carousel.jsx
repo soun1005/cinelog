@@ -7,11 +7,11 @@ const Carousel = ({ children, title }) => {
     dots: true,
     infinite: true,
     slidesToShow: 4,
-    slidesToScroll: 4,
+    // slidesToScroll: 3,
     autoplay: true,
     speed: 1500,
-    autoplaySpeed: 4000,
-    cssEase: 'linear',
+    autoplaySpeed: 2000,
+    cssEase: 'ease-out',
     swipeToSlide: true,
     arrows: true,
     pauseOnHover: true,
@@ -44,10 +44,10 @@ const Carousel = ({ children, title }) => {
   };
 
   return (
-    <div>
+    <>
       <h2 className="section-title">{title}</h2>
       <Slider {...settings}>{children}</Slider>
-    </div>
+    </>
   );
 };
 

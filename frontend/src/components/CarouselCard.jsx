@@ -10,13 +10,11 @@ const CarouselCard = ({ data }) => {
 
     return (
       // each page's URL set to be 'movie/id'
-      <div className="thumb-wrap" key={id}>
-        <NavLink to={`movie/${id}`} className="thumb">
-          <div className="thumb-img-wrap">
-            <img className="poster__img" src={posterSrc} alt={title} />
-          </div>
+      <>
+        <NavLink to={`movie/${id}`} className="thumb" key={id}>
+          <img className="poster__img" src={posterSrc} alt={title} />
         </NavLink>
-      </div>
+      </>
     );
   });
 };
