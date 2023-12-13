@@ -14,9 +14,8 @@ const CastInfo = () => {
     return;
   }
 
-  const { castCredits, castInformation, dataStatus } = getCastInfoFromApi;
-
-  console.log(dataStatus);
+  // const { castCredits, castInformation, dataStatus } = getCastInfoFromApi;
+  const { castCredits, castInformation } = getCastInfoFromApi;
 
   const { name, profile_path, biography, birthday, placeOfBirth } =
     castInformation;
@@ -27,6 +26,8 @@ const CastInfo = () => {
   const splited = biography.split(' ');
   const first50Words = splited.slice(0, 50);
   const lessBio = first50Words.join(' ');
+  const bioLessThan50words = splited.length <= 50;
+  console.log(bioLessThan50words);
 
   // to display filmography
   const top6Credits = castCredits.formattedCastData.slice(0, 6);
@@ -54,15 +55,20 @@ const CastInfo = () => {
           </div>
 
           {/* overview */}
-          <div className="main-wrap__info-sub-wrap sub-info info-overview">
-            {showLessBio ? <span>{lessBio}</span> : <span> {biography}</span>}
-            <p
-              className="cast-bio-btn"
-              onClick={() => setShowLessBio(!showLessBio)}
-            >
-              {showLessBio ? 'VIEW MORE' : 'VIEW LESS'}
-            </p>
-          </div>
+          {biography.length !== 0 && (
+            <div className="main-wrap__info-sub-wrap sub-info info-overview">
+              {showLessBio ? <span>{lessBio}</span> : <span> {biography}</span>}
+
+              {!bioLessThan50words && (
+                <p
+                  className="cast-bio-btn"
+                  onClick={() => setShowLessBio(!showLessBio)}
+                >
+                  {showLessBio ? 'VIEW MORE' : 'VIEW LESS'}
+                </p>
+              )}
+            </div>
+          )}
         </div>
       </div>
       <FilmoSection
