@@ -14,18 +14,14 @@ const ReviewedMovieList = () => {
 
   const {
     mergedData: data,
-    dataLength,
     totalPages,
+    dataLength,
   } = ReviewService({
     pageNum: pageNumber,
     sortBy: sort.sort,
     sortOrder: sort.order,
+    title: searchKeyword,
   });
-
-  const filteredData =
-    searchKeyword !== ''
-      ? data.filter((item) => item.title.toLowerCase().includes(searchKeyword))
-      : data;
 
   const pages = new Array(totalPages).fill(null).map((v, i) => i);
 
@@ -34,9 +30,11 @@ const ReviewedMovieList = () => {
       <div className="review-list-page__title">
         <ListTitle listTitle="Reviews" dataLength={dataLength} />
       </div>
-      <h3 className="pagination-index">
-        Page of {pageNumber + 1} / {totalPages}
-      </h3>
+      {pageNumber !== 0 && (
+        <h3 className="pagination-index">
+          Page of {pageNumber + 1} / {totalPages}
+        </h3>
+      )}
 
       {/* Filters */}
 
@@ -46,16 +44,15 @@ const ReviewedMovieList = () => {
       </div>
 
       <ProfileList
-        data={filteredData}
+        data={data}
         listTitle={false}
-        noDataMsg="No reviews yet"
-        noMatchMsg="No matched review"
+        noDataMsg={searchKeyword ? 'No matches' : 'No reviews yet'}
         buttons={true}
         moreBtn={false}
       />
       <div className="pagination-display">
         {pages.map((pageIndex) => (
-          <button onClick={() => setPageNumber(pageIndex)}>
+          <button onClick={() => setPageNumber(pageIndex)} key={pageIndex}>
             {pageIndex + 1}
           </button>
         ))}

@@ -36,6 +36,7 @@ export const postReview = createAsyncThunk(
           comment: review.comment,
           ratings: review.ratings,
           mediaId: review.mediaId,
+          title: review.title,
         },
         {
           headers: {
@@ -58,27 +59,26 @@ export const postReview = createAsyncThunk(
 export const loadReviews = createAsyncThunk(
   'review/loadReviews',
   // promise
-  async ({ pageNum, sortBy, sortOrder }, { rejectWithValue }) => {
-    console.log(
-      `${base}/profile/reviews?page=${pageNum}&sortBy=${sortBy}&sortOrder=${sortOrder}`
-    );
+  async ({ pageNum, sortBy, sortOrder, title = '' }, { rejectWithValue }) => {
+    // console.log(
+    //   `${base}/profile/reviews?page=${pageNum}&sortBy=${sortBy}&sortOrder=${sortOrder}&title=${title}`
+    // );
     try {
       const token = localStorage.getItem('token');
       if (token) {
         const res = await axios.post(
-          `${base}/profile/reviews?page=${pageNum}&sortBy=${sortBy}&sortOrder=${sortOrder}`,
+          `${base}/profile/reviews?page=${pageNum}&sortBy=${sortBy}&sortOrder=${sortOrder}&title=${title}`,
           {},
           // the value that user send to DB by API
           {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
-        console.log(res);
 
         const reviews = res.data.reviews;
         const movieData = res.data.movieData;
-        const totalPages = res.data.total;
-        const dataLength = res.data.dataLength;
+        const totalPages = res.data.totalPages;
+        const dataLength = res.data.totalCount;
 
         // will be saved in the 'action.payload'
         // the data that is received by API -> to display on profile

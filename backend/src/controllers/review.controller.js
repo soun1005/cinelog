@@ -82,9 +82,10 @@ const loadReviews = async (req, res) => {
         return review.mediaId;
       });
 
-      const total = await Review.find({ userId: decodedToken }).countDocuments(
-        {}
-      );
+      const totalCount = await Review.countDocuments({
+        userId: decodedToken,
+        title: { $regex: title, $options: 'i' },
+      });
 
       const movieDataPromises = movieId.map(
         async (movieId) => await fetchMovieInfoById(movieId)
@@ -96,8 +97,8 @@ const loadReviews = async (req, res) => {
         reviews: review,
         movieData,
         // total numbers of pages
-        total: Math.ceil(total / PAGE_SIZE),
-        dataLength: total,
+        totalPages: Math.ceil(totalCount / PAGE_SIZE),
+        totalCount,
       });
     } else {
       res.status(404).json({ error: 'Reviews not found' });

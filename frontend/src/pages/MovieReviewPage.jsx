@@ -37,7 +37,8 @@ const MovieReviewPage = () => {
 
   // functions
   const onSubmit = async (data) => {
-    dispatch(postReview({ ...data, mediaId: id }));
+    // here add movie title!
+    dispatch(postReview({ ...data, mediaId: id, title }));
     toast('Review is saved!', {
       position: 'bottom-right',
       autoClose: 1500,
