@@ -6,25 +6,40 @@
   align-items: center;
   @include responsive(phone-only) {
     width: 100%;
-    height: 18rem;
+    height: auto;
   }
   &__poster-wrap {
     width: 100%;
     height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     @include responsive(phone-only) {
       height: 5rem;
       width: 3rem;
     }
     img {
-      width: 100%;
-      height: 100%;
+      width: 65%;
       object-fit: cover;
       margin: 10px 0;
+      aspect-ratio: auto;
+      @include responsive(phone-only) {
+        width: 100%;
+      }
     }
   }
 }
 .filmocard-info-wrap {
-  background-color: red;
-  width: 100%;
+  width: 70%;
   height: 100%;
+  font-size: 14px;
+  margin-top: 10px;
+  &__credit span:nth-child(1) {
+    font-weight: bolder;
+  }
+  @include responsive(phone-only) {
+    width: 80%;
+    font-size: 12px;
+  }
 }

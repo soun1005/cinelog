@@ -1785,12 +1785,21 @@ input:focus {
 @media (max-width: 599px) {
   .filmocard__container {
     width: 100%;
-    height: 18rem;
+    height: auto;
   }
 }
 .filmocard__container__poster-wrap {
   width: 100%;
   height: 70%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 @media (max-width: 599px) {
   .filmocard__container__poster-wrap {
@@ -1799,21 +1808,37 @@ input:focus {
   }
 }
 .filmocard__container__poster-wrap img {
-  width: 100%;
-  height: 100%;
+  width: 65%;
   -o-object-fit: cover;
      object-fit: cover;
   margin: 10px 0;
+  aspect-ratio: auto;
+}
+@media (max-width: 599px) {
+  .filmocard__container__poster-wrap img {
+    width: 100%;
+  }
 }
 
 .filmocard-info-wrap {
-  background-color: red;
-  width: 100%;
+  width: 70%;
   height: 100%;
+  font-size: 14px;
+  margin-top: 10px;
+}
+.filmocard-info-wrap__credit span:nth-child(1) {
+  font-weight: bolder;
+}
+@media (max-width: 599px) {
+  .filmocard-info-wrap {
+    width: 80%;
+    font-size: 12px;
+  }
 }
 
 .filmo {
   width: 100%;
+  margin-top: 2rem;
 }
 
 .filmo__container {
@@ -1879,28 +1904,21 @@ input:focus {
   text-align: center;
 }
 
-.thumb-wrap {
-  width: 100%;
-  height: 55vh;
-  gap: 2rem;
+.thumb {
+  display: block;
+  padding: 1rem;
 }
-@media (max-width: 599px) {
-  .thumb-wrap {
-    height: 60vh;
-  }
-}
-.thumb-wrap .thumb .thumb-img-wrap {
+.thumb .thumb-img-wrap {
   height: 100%;
 }
-.thumb-wrap .thumb .thumb-img-wrap img {
+.thumb .thumb-img-wrap img {
   height: 100%;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   -o-object-fit: cover;
      object-fit: cover;
-  aspect-ratio: 16/9;
-  padding: 1rem 2rem;
+  aspect-ratio: 6/9;
 }
 
 .section-title {
@@ -1915,4 +1933,18 @@ input:focus {
     padding: 0;
     cursor: pointer;
   }
+}
+
+.slick-list {
+  height: auto;
+}
+
+.slick-slider button {
+  color: rgb(55, 55, 55);
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.slick-slide div {
+  height: auto;
 }
