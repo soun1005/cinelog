@@ -1,9 +1,12 @@
-// import { useEffect } from 'react';
 import PostercardWithTitle from './PostercardWithTitle';
 import RatingStars from './RatingStars';
 import dayjs from 'dayjs';
 
 const ReviewDetailComponent = ({ data }) => {
+  if (!data) {
+    return null;
+  }
+
   const {
     comment,
     ratings,
