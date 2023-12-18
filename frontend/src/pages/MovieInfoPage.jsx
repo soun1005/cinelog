@@ -6,6 +6,7 @@ import BtnWithLink from '../components/BtnWithLink';
 import BtnWithEvent from '../components/BtnWithEvent';
 import Loading from '../components/Loading';
 import ConfirmModal from '../components/ConfirmModal';
+import FallbackPoster from '../components/FallbackPoster';
 
 // redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -83,6 +84,10 @@ const MovieInfoPage = () => {
     allCasts,
   } = movieInfo;
 
+  console.log(movieCast);
+
+  const posterSrc = FallbackPoster(poster);
+
   // button to add favourite
   const handleFavourite = () => {
     dispatch(postFavouriteList({ mediaId: id, userId, title }));
@@ -105,7 +110,7 @@ const MovieInfoPage = () => {
       {!movieLoaded ? <Loading /> : ''}
       <div className="info-wrap">
         <div className="poster-wrap">
-          <img src={poster} alt={title} className="movie-info-poster" />
+          <img src={posterSrc} alt={title} className="movie-info-poster" />
         </div>
         <div className="main-wrap">
           <div className="main-wrap__info">

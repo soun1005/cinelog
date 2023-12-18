@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import fallback from '../assets/fallback_img.png';
+import FallbackPoster from './FallbackPoster';
 
 const CastCard = ({ castInfo }) => {
   // cast info =>
@@ -15,8 +15,7 @@ const CastCard = ({ castInfo }) => {
   //   profile_path: '/80DH2zWgZiXHehH7TLe6HKDldyl.jpg';
 
   const castPhoto = `https://image.tmdb.org/t/p/w185/${castInfo.profile_path}`;
-
-  const posterSrc = castPhoto.includes('null') ? fallback : castPhoto;
+  const posterSrc = FallbackPoster(castPhoto);
 
   return (
     <div className="cast-card">

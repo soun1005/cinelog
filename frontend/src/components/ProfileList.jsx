@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import fallback from '../assets/fallback_img.png';
 import RatingStars from '../components/RatingStars';
 import BtnWithLink from '../components/BtnWithLink';
 import BtnWithEvent from '../components/BtnWithEvent';
@@ -9,6 +8,7 @@ import { deleteReview } from '../redux/features/reviewSlice';
 import { deleteFavourite } from '../redux/features/favouriteListSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import ConfirmModal from './ConfirmModal';
+import FallbackPoster from './FallbackPoster';
 
 const ProfileList = ({
   data,
@@ -28,8 +28,8 @@ const ProfileList = ({
   const cardsList = data.map((movie, index) => {
     const { createdAt, ratings, poster, _id, title, releasedDate, mediaId } =
       movie;
-    const posterSrc = poster.includes('null') ? fallback : poster;
 
+    const posterSrc = FallbackPoster(poster);
     const releasedYear = releasedDate.slice(0, 4);
     const reviewedDate = createdAt.slice(0, 10);
 

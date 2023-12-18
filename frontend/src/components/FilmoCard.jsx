@@ -1,10 +1,10 @@
 import { NavLink } from 'react-router-dom';
-import fallback from '../assets/fallback_img.png';
 import dayjs from 'dayjs';
+import FallbackPoster from './FallbackPoster';
 
 const FilmoCard = ({ poster, title, date, path, character }) => {
-  const posterSrc = poster.includes('null') ? fallback : poster;
   const formattedDate = dayjs(date).format('DD/MM/YYYY');
+  const posterSrc = FallbackPoster(poster);
 
   return (
     <NavLink to={path} className="filmocard__container">

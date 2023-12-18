@@ -98,7 +98,6 @@ export const deleteFavourite = createAsyncThunk(
         return movieId;
       }
     } catch (error) {
-      console.log(error);
       const errorMsg = error.response.data.error;
       return rejectWithValue(errorMsg);
     }
@@ -125,7 +124,6 @@ export const favouriteStatus = createAsyncThunk(
       const data = response.data.favourited;
       return data;
     } catch (error) {
-      console.log(error);
       const errorMsg = error.response.data.error;
       return rejectWithValue(errorMsg);
     }
@@ -145,7 +143,6 @@ const favouriteListSlice = createSlice({
     });
     // when loginUser function result is 'fullfilled'
     builder.addCase(postFavouriteList.fulfilled, (state, action) => {
-      console.log(action.payload);
       return {
         ...state,
         favouritedList: [...state.favouritedList, action.payload],

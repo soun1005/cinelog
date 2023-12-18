@@ -1,11 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import fallback from '../assets/fallback_img.png';
+import FallbackPoster from './FallbackPoster';
 
 const MainMovieDisplay = ({ data, title }) => {
   const moviePosters = data.map((movie) => {
     const { title, poster, id } = movie;
-    const posterSrc = poster.includes('null') ? fallback : poster;
+
+    const posterSrc = FallbackPoster(poster);
 
     return (
       // each page's URL set to be 'movie/id'
