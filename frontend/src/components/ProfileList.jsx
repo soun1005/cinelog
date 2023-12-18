@@ -63,7 +63,15 @@ const ProfileList = ({
     };
 
     return (
-      <div key={_id} className="profile-list__btn-container">
+      // if it's favourite list, it has one more classname for CSS
+      <div
+        key={_id}
+        className={
+          isReview
+            ? 'profile-list__btn-container'
+            : 'profile-list__btn-container favourite'
+        }
+      >
         {/* // each page's URL set to redirect to review page */}
         {isReview ? (
           <NavLink

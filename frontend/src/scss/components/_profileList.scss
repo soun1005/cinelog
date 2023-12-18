@@ -1,8 +1,16 @@
-.profile-list__btn-container {
+.profile-list__btn-container:not(.favourite) {
   margin-bottom: 1rem;
   width: 100%;
+
   @include responsive(phone-only) {
     flex-direction: column;
+  }
+}
+.favourite {
+  margin-bottom: 1rem;
+  @include responsive(phone-only) {
+    flex-direction: row;
+    margin-bottom: 10px;
   }
 }
 

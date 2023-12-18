@@ -214,11 +214,11 @@ input:focus {
   margin-bottom: 2rem;
 }
 
-.page:not(.footer-wrap) {
+.page:not(.footer-wrap, .search-wrap) {
   min-height: calc(100vh - 15rem);
 }
 @media (max-width: 599px) {
-  .page:not(.footer-wrap) {
+  .page:not(.footer-wrap, .search-wrap) {
     min-height: 80vh;
   }
 }
@@ -592,7 +592,13 @@ input:focus {
 
 .navbar {
   width: 100%;
-  height: 11rem;
+  height: 10rem;
+}
+@media (max-width: 599px) {
+  .navbar {
+    height: 5rem;
+    margin-top: 2rem;
+  }
 }
 
 .responsiveNav,
@@ -1080,6 +1086,10 @@ input:focus {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+  margin-bottom: 2rem;
+}
+.search-wrap .page {
+  height: auto;
 }
 @media (max-width: 599px) {
   .search-wrap {
@@ -1089,12 +1099,19 @@ input:focus {
 }
 
 .search__input {
+  position: relative;
+  display: block;
   border-radius: 10px;
   border-color: transparent;
   -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 2px;
           box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 2px;
   padding: 4px 5px 1px 10px;
   outline: none;
+}
+@media (max-width: 599px) {
+  .search__input {
+    width: 100%;
+  }
 }
 
 .search__input:focus::-webkit-input-placeholder {
@@ -1117,15 +1134,20 @@ input:focus {
   color: transparent;
 }
 
-.search__btn {
+.search__btn-wrap {
+  display: block;
   border: none;
   background: none;
   position: absolute;
   top: 5px;
-  right: 6px;
+  right: 36px;
   cursor: pointer;
 }
-.search__btn span {
+.search__btn-wrapWrap {
+  height: inherit;
+  width: inherit;
+}
+.search__btn-wrap span {
   font-size: 22px;
 }
 
@@ -1283,16 +1305,29 @@ input:focus {
   width: 100%;
 }
 
-.profile-list__btn-container {
+.profile-list__btn-container:not(.favourite) {
   margin-bottom: 1rem;
   width: 100%;
 }
 @media (max-width: 599px) {
-  .profile-list__btn-container {
+  .profile-list__btn-container:not(.favourite) {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+  }
+}
+
+.favourite {
+  margin-bottom: 1rem;
+}
+@media (max-width: 599px) {
+  .favourite {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    margin-bottom: 10px;
   }
 }
 
