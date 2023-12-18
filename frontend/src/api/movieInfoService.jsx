@@ -23,7 +23,7 @@ const MovieInfoService = (movieId) => {
     return null;
   }
 
-  //   2 main actors
+  //   3 main actors
   const { movieCast } = movieData;
 
   //   director name

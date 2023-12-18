@@ -85,6 +85,7 @@ const MovieInfoPage = () => {
   } = movieInfo;
 
   console.log(movieCast);
+  console.log('movieCrew', movieCrew);
 
   const posterSrc = FallbackPoster(poster);
 
@@ -122,10 +123,12 @@ const MovieInfoPage = () => {
             {/* movie infos */}
             {/* director */}
             <div className="main-wrap__info-sub-wrap sub-info">
-              <NavLink to={`/cast/${movieCrew.id}`}>
-                <span>Directed by </span>
-                <span className="director">{movieCrew.name}</span>
-              </NavLink>
+              {movieCrew !== undefined && (
+                <NavLink to={`/cast/${movieCrew.id}`}>
+                  <span>Directed by </span>
+                  <span className="director">{movieCrew.name}</span>
+                </NavLink>
+              )}
             </div>
 
             {/* cast */}
@@ -133,13 +136,14 @@ const MovieInfoPage = () => {
               <span>Starring </span>
               <span>
                 {movieCast.map((cast) => {
-                  return (
+                  // return only when cast is not null
+                  return cast !== null ? (
                     <NavLink to={`/cast/${cast.id}`} key={cast.id}>
                       <span className="movie-cast" key={cast.id}>
                         {cast.name}
                       </span>
                     </NavLink>
-                  );
+                  ) : null;
                 })}
               </span>
             </div>
