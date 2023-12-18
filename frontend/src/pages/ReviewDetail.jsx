@@ -25,14 +25,6 @@ const ReviewDetail = () => {
   const { reviews, movieData } = useSelector((state) => state.review);
   const { id } = useParams();
 
-  console.log(id);
-
-  console.log('reviews:', reviews);
-
-  // if (!reviews || !movieData) {
-  //   return null;
-  // }
-
   // merge reviews and movieData from redux state
   const mergedData = movieData.map((movie) => {
     const matchingReview = reviews.find(

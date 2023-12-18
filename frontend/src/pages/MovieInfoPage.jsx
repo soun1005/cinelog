@@ -84,9 +84,6 @@ const MovieInfoPage = () => {
     allCasts,
   } = movieInfo;
 
-  console.log(movieCast);
-  console.log('movieCrew', movieCrew);
-
   const posterSrc = FallbackPoster(poster);
 
   // button to add favourite

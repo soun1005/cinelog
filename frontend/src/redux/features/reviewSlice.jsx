@@ -273,17 +273,10 @@ const reviewSlice = createSlice({
       // const prevReviews = current(state);
       const editedReviewId = action.payload.mediaId;
 
-      // 기존에 있던 리뷰 중 수정된 리뷰를 제거 -> 이짓거리를 하면 안됐음
-      // const updatedReviewState = prevReviews.reviews.filter(
-      //   (review) => review.mediaId !== editedReviewId
-      // );
-
-      // 수정된 리뷰를 다시 넣어버림
-      // const updatedReviews = updatedReviewState.concat([action.payload]);
-
       const updatedMovieData = state.movieData.filter(
         (movie) => movie.mediaId === editedReviewId
       );
+
       return {
         ...state,
         reviews: [action.payload],
