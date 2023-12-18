@@ -30,8 +30,8 @@ const ProfileList = ({
       movie;
 
     const posterSrc = FallbackPoster(poster);
-    const releasedYear = releasedDate.slice(0, 4);
-    const reviewedDate = createdAt.slice(0, 10);
+    const releasedYear = releasedDate ? releasedDate.slice(0, 4) : '';
+    const reviewedDate = createdAt ? createdAt.slice(0, 10) : '';
 
     const handleDeleteReview = () => {
       // confirm modal

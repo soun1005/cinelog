@@ -23,6 +23,8 @@ const ReviewedMovieList = () => {
     title: searchKeyword,
   });
 
+  // if (!data) return null;
+
   const pages = new Array(totalPages).fill(null).map((v, i) => i);
 
   return (
