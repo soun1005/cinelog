@@ -14,6 +14,7 @@ import EditReviewPage from './pages/EditReviewPage';
 import PrivateRoutes from './privateRoutes';
 import FavouritedMovieList from './pages/FavouritedMovieList';
 import Footer from './layouts/Footer';
+import SearchBar from './components/SearchBar';
 import { ToastContainer } from 'react-toastify';
 import CastInfo from './pages/CastInfo';
 
@@ -23,6 +24,7 @@ const App = () => {
       <BrowserRouter>
         <div className="wrap">
           <Navbar />
+          <SearchBar />
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/login" element={<Login />} />

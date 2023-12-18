@@ -25,7 +25,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="search-wrap">
+    <div className="search-wrap page">
       <input
         type="text"
         value={searchTerm}
@@ -34,7 +34,7 @@ const SearchBar = () => {
         className="search__input"
         placeholder="Search movies"
       />
-      <NavLink to={'search'} className="search__btnWrap">
+      <NavLink to={'search'} className="search__btn-wrap">
         <button className="search__btn" onClick={handleSearch}>
           <span className="material-symbols-outlined">search</span>
         </button>

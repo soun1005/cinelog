@@ -2,7 +2,7 @@ import MainMovieDisplay from '../components/MainMovieDisplay';
 import ApiFetchService from '../api/apiFetchService';
 import { apiEndpoint } from '../constant/api';
 import Loading from '../components/Loading';
-import SearchBar from '../components/SearchBar';
+// import SearchBar from '../components/SearchBar';
 import Carousel from '../components/Carousel';
 import CarouselCard from '../components/CarouselCard';
 // import Slider from 'react-slick';
@@ -23,17 +23,12 @@ const Main = () => {
 
   return (
     <div className="page">
-      <SearchBar />
+      {/* <SearchBar /> */}
 
       <Carousel
         children={CarouselCard({ data: upcomingData })}
         title="Upcoming"
       />
-
-      {/* <Carousel
-        children={CarouselCard({ data: nowPlayingData })}
-        title="Now Playing"
-      /> */}
 
       {nowPlayingLoading && upcomingLoading && <Loading />}
       {nowPlayingData && (

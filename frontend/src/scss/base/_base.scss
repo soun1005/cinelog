@@ -148,7 +148,7 @@ input:focus {
   margin-bottom: 2rem;
 }
 
-.page:not(.footer-wrap) {
+.page:not(.footer-wrap, .search-wrap) {
   min-height: $fullHeight;
   @include responsive(phone-only) {
     min-height: $phoneFullHeight;
