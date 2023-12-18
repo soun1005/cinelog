@@ -66,7 +66,8 @@ const Navbar = () => {
         nav &&
         mobileNav.current &&
         !mobileNav.current.contains(e.target) &&
-        e.target.className !== 'x-btn'
+        e.target.className !== 'x-btn' &&
+        e.target.className !== 'nav-link'
       ) {
         openNav(false);
       }
@@ -80,7 +81,9 @@ const Navbar = () => {
 
   const logIn = (
     <div className="link-wrap">
-      <NavLink to={'/login'}>Log in</NavLink>
+      <NavLink to={'/login'} className="nav-link" onClick={() => openNav(!nav)}>
+        Log in
+      </NavLink>
       <NavLink to={'/signup'}>Sign up</NavLink>
     </div>
   );
@@ -120,22 +123,43 @@ const Navbar = () => {
 
   const mobileLogin = (
     <div className="mobile-nav" ref={navSideMenu}>
-      <NavLink to={'/login'}>Log in</NavLink>
-      <NavLink to={'/signup'}>Sign up</NavLink>
+      <NavLink to={'/login'} className="nav-link" onClick={() => openNav(!nav)}>
+        Log in
+      </NavLink>
+      <NavLink
+        to={'/signup'}
+        className="nav-link"
+        onClick={() => openNav(!nav)}
+      >
+        Sign up
+      </NavLink>
     </div>
   );
 
   const mobileLogout = (
     <div className="mobile-nav" ref={navSideMenu}>
-      <NavLink to={`/profile`}> {userName}</NavLink>
-      <NavLink to={`/profile/reviews`}>Reviews</NavLink>
-      <NavLink to={`/profile/favourites`}>Favourites</NavLink>
       <NavLink
-        to={'/login'}
-        onClick={() => {
-          dispatch(logoutUser(null));
-        }}
+        to={`/profile`}
+        className="nav-link"
+        onClick={() => openNav(!nav)}
       >
+        {userName}
+      </NavLink>
+      <NavLink
+        to={`/profile/reviews`}
+        className="nav-link"
+        onClick={() => openNav(!nav)}
+      >
+        Reviews
+      </NavLink>
+      <NavLink
+        to={`/profile/favourites`}
+        className="nav-link"
+        onClick={() => openNav(!nav)}
+      >
+        Favourites
+      </NavLink>
+      <NavLink className="nav-link" to={'/login'} onClick={() => openNav(!nav)}>
         Logout
       </NavLink>
     </div>
@@ -152,9 +176,7 @@ const Navbar = () => {
         <div
           className="burger-wrap"
           // whenever button is clicked -> useState reverse the value
-          onClick={(e) => {
-            openNav(!nav);
-          }}
+          onClick={() => openNav(!nav)}
         >
           <div className={nav ? 'x-btn' : 'burger-btn'}></div>
         </div>
