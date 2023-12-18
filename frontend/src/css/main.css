@@ -579,6 +579,8 @@ input:focus {
   margin-bottom: 6rem;
 }
 .cast-info .poster-wrap img {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+          box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
   width: 10rem;
 }
 
@@ -1683,6 +1685,7 @@ input:focus {
 .img__container {
   width: 8rem;
   height: 8rem;
+  margin-bottom: 1rem;
 }
 @media (max-width: 599px) {
   .img__container {
@@ -1694,6 +1697,8 @@ input:focus {
   width: 100%;
   height: 100%;
   border-radius: 50%;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+          box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
 .name__container {
@@ -1813,6 +1818,8 @@ input:focus {
      object-fit: cover;
   margin: 10px 0;
   aspect-ratio: auto;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+          box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 @media (max-width: 599px) {
   .filmocard__container__poster-wrap img {

@@ -15,7 +15,7 @@ const CastCard = ({ castInfo }) => {
         </div>
         <div className="name__container">
           <p>{name}</p>
-          {character !== '' && <p>/{character}</p>}
+          {character !== '' && <p> / {character}</p>}
         </div>
       </NavLink>
     </div>
