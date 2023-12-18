@@ -16,10 +16,12 @@ const FilmoCard = ({ poster, title, date, path, character }) => {
           <span>{title} </span>
           <span>({formattedDate})</span>
         </div>
-        <div className="filmocard-info-wrap__credit">
-          <span>Credit: </span>
-          <span>{character}</span>
-        </div>
+        {character !== '' && (
+          <div className="filmocard-info-wrap__credit">
+            <span>Credit: </span>
+            <span>{character}</span>
+          </div>
+        )}
       </div>
     </NavLink>
   );

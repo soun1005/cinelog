@@ -20,14 +20,14 @@ const CastInfo = () => {
   const { name, profile_path, biography, birthday, placeOfBirth } =
     castInformation;
 
-  const formattedBday = dayjs(birthday).format('DD/MM/YYYY');
+  const formattedBday =
+    birthday !== null && dayjs(birthday).format('DD/MM/YYYY');
 
   // to display less biography
   const splited = biography.split(' ');
   const first50Words = splited.slice(0, 50);
   const lessBio = first50Words.join(' ');
   const bioLessThan50words = splited.length <= 50;
-  console.log(bioLessThan50words);
 
   // to display filmography
   const top6Credits = castCredits.formattedCastData.slice(0, 6);
@@ -42,19 +42,20 @@ const CastInfo = () => {
           <div className="main-wrap__info-sub-wrap">
             <span className="movie-title">{name} </span>
           </div>
-          {/* genre */}
-          <div className="main-wrap__info-su-wrap sub-info">
-            <span>Birthday</span>
-            <span> {formattedBday}</span>
-          </div>
 
-          {/* releasedDate */}
-          <div className="main-wrap__info-sub-wrap sub-info">
-            <span>Birthplace</span>
-            <span> {placeOfBirth}</span>
-          </div>
+          {formattedBday && (
+            <div className="main-wrap__info-su-wrap sub-info">
+              <span>Birthday</span>
+              <span> {formattedBday}</span>
+            </div>
+          )}
+          {placeOfBirth !== null && (
+            <div className="main-wrap__info-sub-wrap sub-info">
+              <span>Birthplace</span>
+              <span> {placeOfBirth}</span>
+            </div>
+          )}
 
-          {/* overview */}
           {biography.length !== 0 && (
             <div className="main-wrap__info-sub-wrap sub-info info-overview">
               {showLessBio ? <span>{lessBio}</span> : <span> {biography}</span>}
