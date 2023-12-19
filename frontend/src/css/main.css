@@ -1851,7 +1851,7 @@ input:focus {
           align-items: center;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  width: 22rem;
+  width: 25rem;
   height: 9rem;
   padding: 2rem 0 18px 0;
   position: absolute;
