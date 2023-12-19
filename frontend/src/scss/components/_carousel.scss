@@ -1,12 +1,13 @@
 .thumb {
   display: block;
-  padding: 1rem;
+  height: 100%;
   .thumb-img-wrap {
     height: 100%;
+    width: 100%;
 
     img {
       height: 100%;
-      width: fit-content;
+      width: 100%;
       object-fit: cover;
       aspect-ratio: 6/9;
     }
@@ -27,16 +28,67 @@
   }
 }
 
-.slick-list {
-  height: auto;
+.slick-slider {
+  margin-top: 1rem;
+  display: flex !important;
+  align-items: center;
+
+  &:hover .material-symbols-outlined.arrow {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    font-size: 3rem;
+    color: white;
+    @include responsive(phone-only) {
+      font-size: 1.5rem;
+    }
+  }
+
+  // arrow buttons
+  button {
+    color: $darkGray;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .slick-list {
+    width: 100%;
+
+    .slick-track {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      .slick-slide {
+        box-sizing: border-box;
+        div {
+          height: 100%;
+          width: 100%;
+        }
+      }
+    }
+  }
 }
 
-.slick-slider button {
-  color: $darkGray;
-  width: 2.5rem;
-  height: 2.5rem;
+.slide-arrow-wrap {
+  position: absolute;
+  z-index: 10;
+  &.right-arrow {
+    right: 12px;
+  }
+  &.left-arrow {
+    left: 19px;
+  }
+  @include responsive(phone-only) {
+    display: none;
+  }
 }
 
-.slick-slide div {
-  height: auto;
+.material-symbols-outlined {
+  cursor: pointer;
+  &.arrow {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
 }

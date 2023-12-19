@@ -997,6 +997,12 @@ input:focus {
   margin-bottom: 5rem;
   margin-top: 6rem;
 }
+@media (max-width: 599px) {
+  .main__movie-container {
+    margin-bottom: 4rem;
+    margin-top: 4rem;
+  }
+}
 .main__movie-container .section-title {
   font-size: 1.1rem;
 }
@@ -1946,16 +1952,15 @@ input:focus {
 
 .thumb {
   display: block;
-  padding: 1rem;
+  height: 100%;
 }
 .thumb .thumb-img-wrap {
   height: 100%;
+  width: 100%;
 }
 .thumb .thumb-img-wrap img {
   height: 100%;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+  width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
   aspect-ratio: 6/9;
@@ -1975,16 +1980,76 @@ input:focus {
   }
 }
 
-.slick-list {
-  height: auto;
+.slick-slider {
+  margin-top: 1rem;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
-
+.slick-slider:hover .material-symbols-outlined.arrow {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
+  font-size: 3rem;
+  color: white;
+}
+@media (max-width: 599px) {
+  .slick-slider:hover .material-symbols-outlined.arrow {
+    font-size: 1.5rem;
+  }
+}
 .slick-slider button {
   color: rgb(55, 55, 55);
   width: 2.5rem;
   height: 2.5rem;
 }
+.slick-slider .slick-list {
+  width: 100%;
+}
+.slick-slider .slick-list .slick-track {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 20px;
+}
+.slick-slider .slick-list .slick-track .slick-slide {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.slick-slider .slick-list .slick-track .slick-slide div {
+  height: 100%;
+  width: 100%;
+}
 
-.slick-slide div {
-  height: auto;
+.slide-arrow-wrap {
+  position: absolute;
+  z-index: 10;
+}
+.slide-arrow-wrap.right-arrow {
+  right: 12px;
+}
+.slide-arrow-wrap.left-arrow {
+  left: 19px;
+}
+@media (max-width: 599px) {
+  .slide-arrow-wrap {
+    display: none;
+  }
+}
+
+.material-symbols-outlined {
+  cursor: pointer;
+}
+.material-symbols-outlined.arrow {
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease;
 }
