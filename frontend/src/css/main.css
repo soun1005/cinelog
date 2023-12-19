@@ -590,6 +590,7 @@ input:focus {
   font-size: clamp(7px, -0.5rem + 5vw, 12px);
   font-weight: 600;
   text-align: right;
+  cursor: pointer;
 }
 
 .error-container {
