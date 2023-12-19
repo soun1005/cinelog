@@ -17,7 +17,7 @@ const SearchBar = () => {
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && e.target.value !== '') {
       setSearchTerm(e.target.value);
       navigate('/search');
       handleSearch(searchTerm);
@@ -29,7 +29,11 @@ const SearchBar = () => {
       <input
         type="text"
         value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
+        onChange={(e) => {
+          if (e.target.value !== '') {
+            setSearchTerm(e.target.value);
+          }
+        }}
         onKeyDown={handleKeyDown}
         className="search__input"
         placeholder="Search movies"
