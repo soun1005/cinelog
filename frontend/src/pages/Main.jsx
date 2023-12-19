@@ -1,30 +1,32 @@
-import MainMovieDisplay from '../components/MainMovieDisplay';
+// API
 import ApiFetchService from '../api/apiFetchService';
 import { apiEndpoint } from '../constant/api';
+
+// components
 import Loading from '../components/Loading';
-// import SearchBar from '../components/SearchBar';
 import Carousel from '../components/Carousel';
+import MainMovieDisplay from '../components/MainMovieDisplay';
 import CarouselCard from '../components/CarouselCard';
-// import Slider from 'react-slick';
+
+// carousel
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const Main = () => {
+  // constants to fetch data
   const nowPlayingEndpoint = `${apiEndpoint}/movies/nowplaying`;
   const upcomingEndpoint = `${apiEndpoint}/movies/upcoming`;
 
-  // now playing
+  // data for now playing
   const nowPlayingRes = ApiFetchService(nowPlayingEndpoint);
   const { data: nowPlayingData, loading: nowPlayingLoading } = nowPlayingRes;
 
-  // upcoming
+  // data for upcoming
   const upcomingRes = ApiFetchService(upcomingEndpoint);
   const { data: upcomingData, loading: upcomingLoading } = upcomingRes;
 
   return (
     <div className="page">
-      {/* <SearchBar /> */}
-
       <Carousel
         children={CarouselCard({ data: upcomingData })}
         title="Upcoming"
@@ -37,12 +39,6 @@ const Main = () => {
           title="Now Playing"
         ></MainMovieDisplay>
       )}
-      {/* {upcomingData && (
-        <MainMovieDisplay
-          data={upcomingData}
-          // title="Upcoming"
-        ></MainMovieDisplay>
-      )} */}
     </div>
   );
 };
