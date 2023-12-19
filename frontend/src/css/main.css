@@ -1417,6 +1417,9 @@ input:focus {
   font-weight: 500;
   font-size: clamp(18px, -0.5rem + 5vw, 20px);
 }
+.profile-list__title-wrap .more-btn {
+  cursor: pointer;
+}
 .profile-list__title-wrap .filter__container {
   display: -webkit-box;
   display: -ms-flexbox;

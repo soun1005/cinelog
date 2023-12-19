@@ -37,6 +37,11 @@
     font-weight: 500;
     font-size: $smallTitle;
   }
+
+  .more-btn {
+    cursor: pointer;
+  }
+
   .filter__container {
     display: flex;
     flex-direction: row;

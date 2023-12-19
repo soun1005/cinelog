@@ -178,18 +178,9 @@ const ProfileList = ({
             {` (${dataLength})`}
           </span>
 
-          {/* filters and sort
-        <div className="filter__container">
-          {setRatingFilter && <FilterByRating setFilterStar={setStar} />}
-          {setSortFilter && <SortByDate setDate={setSortBy} />}
-          {setSearchFilter && (
-            <FilterBySearchbar setSearch={setSearchKeyword} />
-          )}
-        </div> */}
-
           {data && moreBtn && (
             <NavLink to={pagePath}>
-              <button>More</button>
+              <button className="more-btn">More</button>
             </NavLink>
           )}
         </div>
