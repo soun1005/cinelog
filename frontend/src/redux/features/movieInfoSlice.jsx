@@ -8,7 +8,7 @@ const initialState = {
   movieCast: [],
   allCasts: [],
   movieInfo: [],
-  dataStatus: null,
+  dataStatus: 'initial',
 };
 
 const base = apiEndpoint;
@@ -65,7 +65,7 @@ const movieInfoSlice = createSlice({
     builder.addCase(movieInfo.rejected, (state, action) => {
       return {
         ...state,
-        searchStatus: 'rejected',
+        dataStatus: 'rejected',
       };
     });
   },

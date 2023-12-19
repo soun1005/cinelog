@@ -5,10 +5,12 @@ import dayjs from 'dayjs';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { movieInfo } from '../redux/features/movieInfoSlice';
+import { useNavigate } from 'react-router-dom';
 
 const MovieInfoService = (movieId) => {
   // to get movie id
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(movieInfo(movieId));
@@ -19,7 +21,12 @@ const MovieInfoService = (movieId) => {
     return state.info;
   });
 
-  if (movieData.dataStatus !== 'success') {
+  if (['pending', 'initial'].includes(movieData.dataStatus)) {
+    return null;
+  }
+
+  if (movieData.dataStatus === 'rejected') {
+    navigate('/error');
     return null;
   }
 
