@@ -47,7 +47,6 @@ export const postReview = createAsyncThunk(
 
       return { review };
     } catch (error) {
-      console.log(error);
       const errorMsg = error.response.data.error;
       // leads to 'builder.addcase rejected'
       return rejectWithValue(errorMsg);
@@ -60,9 +59,6 @@ export const loadReviews = createAsyncThunk(
   'review/loadReviews',
   // promise
   async ({ pageNum, sortBy, sortOrder, title = '' }, { rejectWithValue }) => {
-    // console.log(
-    //   `${base}/profile/reviews?page=${pageNum}&sortBy=${sortBy}&sortOrder=${sortOrder}&title=${title}`
-    // );
     try {
       const token = localStorage.getItem('token');
       if (token) {

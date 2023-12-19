@@ -46,11 +46,8 @@ const movieSlice = createSlice({
     // when loadUser function result is 'fullfilled'
     builder.addCase(moviesSearch.fulfilled, (state, action) => {
       if (action.payload.values) {
-        // console.log('action.payload:', action.payload);
         return {
           ...state,
-          // movieResults : data
-          // searchedKeyword : searched keyword
           movieResults: action.payload.values,
           searchStatus: 'success',
           searchedKeyword: action.payload.searchKeyword,

@@ -30,7 +30,6 @@ export const loginUser = createAsyncThunk(
       // will be saved in the 'action.payload'
       return token;
     } catch (error) {
-      console.log(error);
       const errorMsg = error.response.data.error;
       // leads to 'builder.addcase rejected'
       return rejectWithValue(errorMsg);

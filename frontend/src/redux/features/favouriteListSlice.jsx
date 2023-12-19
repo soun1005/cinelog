@@ -190,32 +190,6 @@ const favouriteListSlice = createSlice({
       };
     });
 
-    //   // action.payload = meddiaId
-    //   const deletedMediaId = action.payload;
-    //   // Update state to remove the deleted review
-    //   // current(state) : to modify the current state
-    //   // const prevState = current(state);
-    //   // console.log(prevState);
-
-    //   // this works
-    //   const prevState = current(state);
-    //   console.log('current state', prevState.favouritedList);
-    //   const updatedList = prevState.favouritedList.filter(
-    //     (media) => media.mediaId !== deletedMediaId
-    //   );
-
-    //   const updatedMovieData = prevState.movieData.filter(
-    //     (movie) => movie.mediaId !== deletedMediaId || movie
-    //   );
-
-    //   return {
-    //     ...state,
-    //     favouritedList: updatedList,
-    //     movieData: updatedMovieData,
-    //     // favouriteStatus: false,
-    //     deleteStatus: 'success',
-    //   };
-    // });
     builder.addCase(deleteFavourite.rejected, (state, action) => {
       return {
         ...state,

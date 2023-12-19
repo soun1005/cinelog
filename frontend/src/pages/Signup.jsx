@@ -51,7 +51,6 @@ const Signup = () => {
 
   const onSubmit = async (data) => {
     await signup(data);
-    console.log('data:', data);
   };
 
   if (error) {

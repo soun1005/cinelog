@@ -150,7 +150,6 @@ const editReview = async (req, res) => {
   try {
     // movie id
     const { id } = req.params;
-    // console.log(id);
     const result = await Review.findOneAndUpdate({ mediaId: id }, req.body, {
       new: true,
     });
