@@ -42,16 +42,22 @@
   width: 8rem;
   height: 8rem;
   margin-bottom: 1rem;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: $basicShadow;
+
   @include responsive(phone-only) {
     width: 4rem;
     height: 4rem;
   }
 
   img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    box-shadow: $basicShadow;
+    box-sizing: border-box;
+    transition: 0.3s;
+    &:hover {
+      transform: scale(1.3);
+      transition: 0.3s;
+    }
   }
 }
 .name__container {

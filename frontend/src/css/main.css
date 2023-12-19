@@ -1772,6 +1772,10 @@ input:focus {
   width: 8rem;
   height: 8rem;
   margin-bottom: 1rem;
+  border-radius: 50%;
+  overflow: hidden;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+          box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 @media (max-width: 599px) {
   .img__container {
@@ -1780,11 +1784,16 @@ input:focus {
   }
 }
 .img__container img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-          box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+.img__container img:hover {
+  -webkit-transform: scale(1.3);
+          transform: scale(1.3);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
 .name__container {
@@ -1906,6 +1915,14 @@ input:focus {
   aspect-ratio: auto;
   -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
           box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+.filmocard__container__poster-wrap img:hover {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
 }
 @media (max-width: 599px) {
   .filmocard__container__poster-wrap img {

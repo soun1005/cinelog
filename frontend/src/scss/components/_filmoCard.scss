@@ -25,6 +25,11 @@
       margin: 10px 0;
       aspect-ratio: auto;
       box-shadow: $basicShadow;
+      transition: 0.3s;
+      &:hover {
+        transition: 0.3s;
+        transform: scale(1.2);
+      }
       @include responsive(phone-only) {
         width: 100%;
       }
