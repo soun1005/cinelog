@@ -1,0 +1,34 @@
+.error-container {
+  height: 70vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__message-wrap {
+    text-align: center;
+    .msg404 {
+      font-size: 40px;
+      font-weight: bolder;
+    }
+    .message {
+      font-style: italic;
+    }
+  }
+
+  a {
+    margin-top: 5rem;
+    cursor: pointer;
+    transition: 0.4s;
+    &:hover {
+      transition: 0.4s;
+      color: $whiteColor;
+      background-color: $transparentGray;
+      transform: scale(1.2);
+      border-radius: 20px;
+      padding: 2px 8px;
+      box-shadow: $formShadow;
+    }
+  }
+}

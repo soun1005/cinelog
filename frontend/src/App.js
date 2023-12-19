@@ -17,6 +17,7 @@ import Footer from './layouts/Footer';
 import SearchBar from './components/SearchBar';
 import { ToastContainer } from 'react-toastify';
 import CastInfo from './pages/CastInfo';
+import Error404 from './pages/Error404';
 
 const App = () => {
   return (
@@ -46,6 +47,7 @@ const App = () => {
                 element={<EditReviewPage />}
               />
             </Route>
+            <Route path="*" element={<Error404 />} />
           </Routes>
           <ToastContainer />
           <Footer />
