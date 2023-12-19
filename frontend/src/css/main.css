@@ -123,6 +123,7 @@ select {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   font-family: "Fira Sans", sans-serif;
+  font-size: clamp(12px, -0.5rem + 5vw, 16px);
 }
 
 body {
@@ -139,6 +140,7 @@ span,
 button {
   margin: 0;
   padding: 0;
+  font-size: clamp(12px, -0.5rem + 5vw, 16px);
 }
 
 .wrap {
@@ -323,12 +325,12 @@ input:focus {
 }
 
 .main-wrap__info .movie-title {
-  font-size: 1.5rem;
+  font-size: clamp(16px, -0.5rem + 5vw, 24px);
   letter-spacing: 0.8px;
   font-weight: 800;
 }
 .main-wrap__info .movie-year {
-  font-size: 12px;
+  font-size: clamp(7px, -0.5rem + 5vw, 12px);
   font-weight: 400;
 }
 .main-wrap__info-sub-wrap {
@@ -361,7 +363,7 @@ input:focus {
 }
 .main-wrap__info .sub-info span:first-of-type:not(.movie-cast) {
   color: rgb(55, 55, 55);
-  font-size: 13px;
+  font-size: clamp(8px, -0.5rem + 5vw, 13px);
 }
 .main-wrap__info .sub-info span:nth-child(2) {
   font-weight: 600;
@@ -458,7 +460,7 @@ input:focus {
 }
 
 .login-signup-btn {
-  font-size: 14px;
+  font-size: clamp(10px, -0.5rem + 5vw, 14px);
   text-decoration: underline;
   color: #0f0f0f;
   -webkit-box-shadow: none !important;
@@ -585,7 +587,7 @@ input:focus {
 }
 
 .cast-bio-btn {
-  font-size: 12px;
+  font-size: clamp(7px, -0.5rem + 5vw, 12px);
   font-weight: 600;
   text-align: right;
 }
@@ -611,7 +613,7 @@ input:focus {
   text-align: center;
 }
 .error-container__message-wrap .msg404 {
-  font-size: 40px;
+  font-size: clamp(35px, -0.5rem + 5vw, 48px);
   font-weight: bolder;
 }
 .error-container__message-wrap .message {
@@ -975,14 +977,13 @@ input:focus {
   margin-left: 2rem;
   margin-right: 1.4rem;
   font-weight: 400;
-  font-size: 16px;
+  font-size: clamp(15px, -0.5rem + 5vw, 18px);
 }
 @media (max-width: 599px) {
   .footer .page span {
     margin-left: 1rem;
     margin-right: 1.4rem;
     font-weight: 400;
-    font-size: 10px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1013,12 +1014,12 @@ input:focus {
   letter-spacing: 0.8px;
 }
 .postercard-title__container-info-wrap span:first-of-type {
-  font-size: 26px;
+  font-size: clamp(16px, -0.5rem + 5vw, 24px);
   font-weight: 800;
 }
 .postercard-title__container-info-wrap span:nth-child(2) {
   font-weight: 400;
-  font-size: 13px;
+  font-size: clamp(8px, -0.5rem + 5vw, 13px);
   color: rgb(55, 55, 55);
 }
 .postercard-title__container-poster-wrap img {
@@ -1050,7 +1051,7 @@ input:focus {
   }
 }
 .main__movie-container .section-title {
-  font-size: 1.1rem;
+  font-size: clamp(15px, -0.5rem + 5vw, 18px);
 }
 .main__movie-container__link {
   width: 15%;
@@ -1094,7 +1095,7 @@ input:focus {
 
 .form-label {
   display: block;
-  font-size: 13px;
+  font-size: clamp(8px, -0.5rem + 5vw, 13px);
   margin-top: 1rem;
   margin-bottom: 5px;
 }
@@ -1200,7 +1201,7 @@ input:focus {
   width: inherit;
 }
 .search__btn-wrap span {
-  font-size: 22px;
+  font-size: clamp(16px, -0.5rem + 5vw, 24px);
 }
 
 .poster__container {
@@ -1273,7 +1274,7 @@ input:focus {
   cursor: pointer;
 }
 .btn-style span {
-  font-size: 14px;
+  font-size: clamp(10px, -0.5rem + 5vw, 14px);
   font-weight: 800;
   letter-spacing: 1px;
   margin: 0;
@@ -1413,7 +1414,7 @@ input:focus {
 }
 .profile-list__title-wrap span:first-of-type {
   font-weight: 500;
-  font-size: 20px;
+  font-size: clamp(18px, -0.5rem + 5vw, 20px);
 }
 .profile-list__title-wrap .filter__container {
   display: -webkit-box;
@@ -1495,7 +1496,7 @@ input:focus {
   margin-left: 1rem;
 }
 .profile-list__card-wrap__info span {
-  font-size: 14px;
+  font-size: clamp(10px, -0.5rem + 5vw, 14px);
 }
 .profile-list__card-wrap__info-wrap {
   width: 100%;
@@ -1650,7 +1651,7 @@ input:focus {
   background-color: rgba(240, 240, 240, 0.8);
 }
 .filter-wrap h2 {
-  font-size: 14px;
+  font-size: clamp(10px, -0.5rem + 5vw, 14px);
   z-index: 999;
 }
 .filter-wrap .hidden-menu {
@@ -1681,12 +1682,12 @@ input:focus {
   }
 }
 .filter-wrap .hidden-menu p {
-  font-size: 12px;
+  font-size: clamp(7px, -0.5rem + 5vw, 12px);
   margin-top: 10px;
 }
 .filter-wrap .hidden-menu button {
   margin-top: 10px;
-  font-size: 12px;
+  font-size: clamp(7px, -0.5rem + 5vw, 12px);
   font-weight: 600;
   background-color: black;
   color: white;
@@ -1724,7 +1725,7 @@ input:focus {
           align-items: center;
 }
 .cast-title-wrap__title {
-  font-size: 26px;
+  font-size: clamp(16px, -0.5rem + 5vw, 24px);
   font-weight: 600;
 }
 .cast-title-wrap .view-more-btn {
@@ -1752,7 +1753,7 @@ input:focus {
 }
 
 .cast-card p {
-  font-size: 12px;
+  font-size: clamp(7px, -0.5rem + 5vw, 12px);
 }
 .cast-card-wrap {
   display: -webkit-box;
@@ -1855,7 +1856,7 @@ input:focus {
 .btn-wrap p {
   cursor: pointer;
   padding: 6px 1.2rem;
-  font-size: 14px;
+  font-size: clamp(10px, -0.5rem + 5vw, 14px);
 }
 
 .filmocard__container {
@@ -1915,7 +1916,7 @@ input:focus {
 .filmocard-info-wrap {
   width: 70%;
   height: 100%;
-  font-size: 14px;
+  font-size: clamp(10px, -0.5rem + 5vw, 14px);
   margin-top: 10px;
 }
 .filmocard-info-wrap__credit span:nth-child(1) {
@@ -1924,7 +1925,7 @@ input:focus {
 @media (max-width: 599px) {
   .filmocard-info-wrap {
     width: 80%;
-    font-size: 12px;
+    font-size: clamp(7px, -0.5rem + 5vw, 12px);
   }
 }
 
@@ -1961,7 +1962,7 @@ input:focus {
 
 .pagination-index {
   text-align: left;
-  font-size: 14px;
+  font-size: clamp(10px, -0.5rem + 5vw, 14px);
   font-weight: 400;
 }
 
@@ -1991,7 +1992,7 @@ input:focus {
   margin-bottom: 1rem;
 }
 .list-title-wrap h1 {
-  font-size: 1.5rem;
+  font-size: clamp(16px, -0.5rem + 5vw, 24px);
   font-weight: 500;
   text-align: center;
 }
@@ -2013,7 +2014,7 @@ input:focus {
 }
 
 .section-title {
-  font-size: 1.1rem;
+  font-size: clamp(15px, -0.5rem + 5vw, 18px);
 }
 
 @media (max-width: 599px) {
@@ -2040,12 +2041,12 @@ input:focus {
   opacity: 1;
   -webkit-transition: opacity 0.3s ease;
   transition: opacity 0.3s ease;
-  font-size: 3rem;
+  font-size: clamp(35px, -0.5rem + 5vw, 48px);
   color: white;
 }
 @media (max-width: 599px) {
   .slick-slider:hover .material-symbols-outlined.arrow {
-    font-size: 1.5rem;
+    font-size: clamp(16px, -0.5rem + 5vw, 24px);
   }
 }
 .slick-slider button {

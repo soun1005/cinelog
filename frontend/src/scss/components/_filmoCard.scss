@@ -34,13 +34,13 @@
 .filmocard-info-wrap {
   width: 70%;
   height: 100%;
-  font-size: 14px;
+  font-size: $smaller;
   margin-top: 10px;
   &__credit span:nth-child(1) {
     font-weight: bolder;
   }
   @include responsive(phone-only) {
     width: 80%;
-    font-size: 12px;
+    font-size: $xxSmall;
   }
 }

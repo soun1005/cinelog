@@ -34,7 +34,7 @@
   }
 
   h2 {
-    font-size: 14px;
+    font-size: $smaller;
     z-index: 999;
   }
   .hidden-menu {
@@ -54,12 +54,12 @@
       top: 19px;
     }
     p {
-      font-size: 12px;
+      font-size: $xxSmall;
       margin-top: 10px;
     }
     button {
       margin-top: 10px;
-      font-size: 12px;
+      font-size: $xxSmall;
       font-weight: 600;
       background-color: black;
       color: white;

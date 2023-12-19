@@ -35,7 +35,7 @@
 
   span:first-of-type {
     font-weight: 500;
-    font-size: 20px;
+    font-size: $smallTitle;
   }
   .filter__container {
     display: flex;
@@ -92,7 +92,7 @@
     justify-content: space-between;
     margin-left: 1rem;
     span {
-      font-size: 14px;
+      font-size: $smaller;
     }
 
     &-wrap {

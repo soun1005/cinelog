@@ -15,7 +15,7 @@
 }
 
 .section-title {
-  font-size: 1.1rem;
+  font-size: $bigger;
 }
 
 .slick-dots li {
@@ -37,10 +37,10 @@
     visibility: visible;
     opacity: 1;
     transition: opacity 0.3s ease;
-    font-size: 3rem;
+    font-size: $xLarge;
     color: white;
     @include responsive(phone-only) {
-      font-size: 1.5rem;
+      font-size: $title;
     }
   }
 

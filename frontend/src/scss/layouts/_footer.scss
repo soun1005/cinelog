@@ -26,12 +26,11 @@
       margin-left: 2rem;
       margin-right: 1.4rem;
       font-weight: 400;
-      font-size: 16px;
+      font-size: $bigger;
       @include responsive(phone-only) {
         margin-left: 1rem;
         margin-right: 1.4rem;
         font-weight: 400;
-        font-size: 10px;
         display: flex;
         flex-direction: column;
         align-items: center;

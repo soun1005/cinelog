@@ -19,11 +19,15 @@ $titleWeight: 800;
 $subTitleWeight: 600;
 
 // FONT SIZE
-$xSmall: 13px;
-$smaller: 14px;
-$bigger: 18px;
-$title: 26px;
-$bigTitle: 35px;
+$xxSmall: clamp(7px, -0.5rem + 5vw, 12px);
+$xSmall: clamp(8px, -0.5rem + 5vw, 13px);
+$smaller: clamp(10px, -0.5rem + 5vw, 14px);
+$basic: clamp(12px, -0.5rem + 5vw, 16px);
+$bigger: clamp(15px, -0.5rem + 5vw, 18px);
+$smallTitle: clamp(18px, -0.5rem + 5vw, 20px);
+$title: clamp(16px, -0.5rem + 5vw, 24px);
+$bigTitle: clamp(30px, -0.5rem + 5vw, 35px);
+$xLarge: clamp(35px, -0.5rem + 5vw, 48px);
 
 // PAGE FULL HEIGHT -> 100vh - nav bar height
 $fullHeight: calc(100vh - 15rem);

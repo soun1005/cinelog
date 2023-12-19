@@ -44,10 +44,10 @@
 // movie info main style
 .main-wrap__info {
   .movie-title {
-    @include movieTitle(1.5rem);
+    @include movieTitle($title);
   }
   .movie-year {
-    @include movieYear(12px);
+    @include movieYear($xxSmall);
   }
   &-sub-wrap {
     margin-bottom: 5px;
