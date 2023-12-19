@@ -88,6 +88,7 @@ const Signup = () => {
                 {...register('password')}
               />
               <img
+                className="eyes-icon"
                 src={isPasswordVisible ? eyeOpen : eyeClose}
                 alt="password-visible"
                 onClick={() => setIsPasswordVisible(!isPasswordVisible)}

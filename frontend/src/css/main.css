@@ -155,6 +155,7 @@ button {
 button {
   border: none;
   background: none;
+  cursor: pointer;
 }
 
 /* placeholder 텍스트 스타일 변경 */
@@ -230,6 +231,10 @@ input:focus {
   max-width: 1600px;
   margin: 0 auto;
   padding: 0 2rem;
+}
+
+.eyes-icon {
+  cursor: pointer;
 }
 
 .material-symbols-outlined.emptyHeart {

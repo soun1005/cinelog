@@ -79,6 +79,7 @@ const Login = () => {
                 placeholder="password"
               />
               <img
+                className="eyes-icon"
                 src={isPasswordVisible ? eyeOpen : eyeClose}
                 alt="password-visible"
                 onClick={() => setIsPasswordVisible(!isPasswordVisible)}
