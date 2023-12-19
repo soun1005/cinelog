@@ -166,7 +166,7 @@ const favouriteListSlice = createSlice({
       // id of deleted movie
       const deletedMediaId = action.payload;
       const prevState = current(state);
-      // 상태를 업데이트할 때, 삭제된 항목을 포함하지 않도록
+
       const updatedList = prevState.favouritedList.filter(
         (media) => media.mediaId !== deletedMediaId
       );
@@ -235,6 +235,7 @@ const favouriteListSlice = createSlice({
           totalPages: action.payload.totalPages,
           totalCount: action.payload.totalCount,
           favouriteListLoaded: 'success',
+          dataLength: action.payload.dataLength,
         };
       } else return state;
     });
