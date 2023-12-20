@@ -646,11 +646,11 @@ input:focus {
 
 .navbar {
   width: 100%;
-  height: 10rem;
+  height: 11rem;
 }
 @media (max-width: 599px) {
   .navbar {
-    height: 5rem;
+    height: 7rem;
     margin-top: 2rem;
   }
 }
