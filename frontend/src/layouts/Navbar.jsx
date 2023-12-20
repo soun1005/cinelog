@@ -81,7 +81,7 @@ const Navbar = () => {
 
   const logIn = (
     <div className="link-wrap">
-      <NavLink to={'/login'} className="nav-link" onClick={() => openNav(!nav)}>
+      <NavLink to={'/login'} className="nav-link">
         Log in
       </NavLink>
       <NavLink to={'/signup'}>Sign up</NavLink>
