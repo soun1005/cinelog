@@ -1,6 +1,7 @@
 import Review from '../models/review.model.js';
 import jwt from 'jsonwebtoken';
 import fetchMovieInfoById from '../resolver/fetchMovieInfoById.js';
+import responseHandler from '../handlers/response.handler.js';
 
 // create a review
 const createReview = async (req, res) => {
@@ -44,8 +45,9 @@ const createReview = async (req, res) => {
       title,
     });
     res.status(200).json(review);
-  } catch (err) {
-    res.status(400).json({ error: err.message });
+  } catch (error) {
+    responseHandler.badrequest(error, error.message);
+    // res.status(400).json({ error: err.message });
   }
 };
 
@@ -104,7 +106,8 @@ const loadReviews = async (req, res) => {
       res.status(404).json({ error: 'Reviews not found' });
     }
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    responseHandler.badrequest(error, error.message);
+    // res.status(400).json({ error: error.message });
   }
 };
 
@@ -124,8 +127,9 @@ const checkReviewStatus = async (req, res) => {
     } else {
       res.status(200).json({ hasReview: false });
     }
-  } catch (err) {
-    res.status(400).json({ error: err.message });
+  } catch (error) {
+    responseHandler.badrequest(error, error.message);
+    // res.status(400).json({ error: err.message });
   }
 };
 
@@ -141,7 +145,8 @@ const deleteReview = async (req, res) => {
 
     res.status(200).json({ message: 'Review deleted successfully' });
   } catch (error) {
-    res.status(404).json({ error: 'No such review' });
+    responseHandler.notfound(error);
+    // res.status(404).json({ error: 'No such review' });
   }
 };
 
@@ -156,8 +161,9 @@ const editReview = async (req, res) => {
     res.status(200).json(result);
     console.log('Update succeeded');
   } catch (error) {
-    res.status(404).json({ error: 'Review update failed' });
-    console.log(error);
+    responseHandler.notfound(error);
+    // res.status(404).json({ error: 'Review update failed' });
+    // console.log(error);
   }
 };
 

@@ -1,7 +1,7 @@
 // search movies and get a data
-import responseHandler from '../handlers/response.handler.js';
 import fetchNowPlayingFromApi from '../resolver/fetchNowPlayingFromApi.js';
 import fetchUpcomingFromApi from '../resolver/fetchUpcomingFromApi.js';
+import responseHandler from '../handlers/response.handler.js';
 
 const getNowPlaying = async (req, res) => {
   const dataLengthToFetch = 12;

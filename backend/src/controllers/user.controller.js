@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import User from '../models/user.model.js';
+import responseHandler from '../handlers/response.handler.js';
 
 const createToken = (_id) => {
   // create token!!!!
@@ -29,7 +30,8 @@ const signupUser = async (req, res) => {
 
     res.status(200).json({ email, token, username, firstname, lastname });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    responseHandler.badrequest(error, error.message);
+    // res.status(400).json({ error: error.message });
   }
 };
 
@@ -45,7 +47,8 @@ const loginUser = async (req, res) => {
     // when it succeed, set status as 200 and json data(which are email and user)
     res.status(200).json({ email, token });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    responseHandler.badrequest(error, error.message);
+    // res.status(400).json({ error: error.message });
   }
 };
 

@@ -1,6 +1,7 @@
 import Favourite from '../models/favourite.model.js';
 import fetchMovieInfoById from '../resolver/fetchMovieInfoById.js';
 import jwt from 'jsonwebtoken';
+import responseHandler from '../handlers/response.handler.js';
 
 // create favourite list
 const createFavourite = async (req, res) => {
@@ -16,8 +17,9 @@ const createFavourite = async (req, res) => {
     });
     res.status(200).json(favourite);
     console.log('posted movie as favourite');
-  } catch (err) {
-    res.status(400).json({ error: err.message });
+  } catch (error) {
+    responseHandler.badrequest(error, error.message);
+    // res.status(400).json({ error: err.message });
   }
 };
 
@@ -28,14 +30,16 @@ const deleteFavourite = async (req, res) => {
     const result = await Favourite.deleteOne({ mediaId: mediaId });
 
     if (result.deletedCount === 0) {
-      return res.status(404).json({ error: 'No favourited movie found' });
+      responseHandler.badrequest(error, error.message);
+      // return res.status(404).json({ error: 'No favourited movie found' });
     }
 
     res
       .status(200)
       .json({ message: 'This movie is deleted from favourite list' });
   } catch (error) {
-    res.status(404).json({ error: 'Cannot find favourite list of this movie' });
+    responseHandler.badrequest(error, error.message);
+    // res.status(404).json({ error: 'Cannot find favourite list of this movie' });
   }
 };
 
@@ -56,8 +60,9 @@ const checkFavouriteStatus = async (req, res) => {
     } else {
       res.status(200).json({ favourited: false });
     }
-  } catch (err) {
-    res.status(400).json({ error: err.message });
+  } catch (error) {
+    responseHandler.badrequest(error, error.message);
+    // res.status(400).json({ error: err.message });
   }
 };
 
@@ -113,10 +118,12 @@ const loadFavouritedList = async (req, res) => {
         totalCount,
       });
     } else {
-      res.status(404).json({ error: 'Favourited list not found' });
+      responseHandler.notfound(error);
+      // res.status(404).json({ error: 'Favourited list not found' });
     }
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    responseHandler.badrequest(error, error.message);
+    // res.status(400).json({ error: error.message });
   }
 };
 
