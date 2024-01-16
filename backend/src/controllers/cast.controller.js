@@ -11,7 +11,8 @@ const getCast = async (req, res) => {
 
   if (castInfo && castCredits) {
     // Return the data as JSON response
-    res.json({ castInfo, castCredits });
+    responseHandler.ok(res, { castInfo, castCredits });
+    // res.json({ castInfo, castCredits });
   } else {
     responseHandler.error(res);
   }

@@ -28,7 +28,8 @@ const signupUser = async (req, res) => {
 
     const token = createToken(user._id);
 
-    res.status(200).json({ email, token, username, firstname, lastname });
+    responseHandler.ok(res, { email, token, username, firstname, lastname });
+    // res.status(200).json({ email, token, username, firstname, lastname });
   } catch (error) {
     responseHandler.badrequest(error, error.message);
     // res.status(400).json({ error: error.message });
@@ -45,7 +46,8 @@ const loginUser = async (req, res) => {
     const token = createToken(user._id);
 
     // when it succeed, set status as 200 and json data(which are email and user)
-    res.status(200).json({ email, token });
+    responseHandler(res, { email, token });
+    // res.status(200).json({ email, token });
   } catch (error) {
     responseHandler.badrequest(error, error.message);
     // res.status(400).json({ error: error.message });

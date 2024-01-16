@@ -15,7 +15,8 @@ const createFavourite = async (req, res) => {
       userId,
       title,
     });
-    res.status(200).json(favourite);
+    // res.status(200).json(favourite);
+    responseHandler.ok(res, favourite);
     console.log('posted movie as favourite');
   } catch (error) {
     responseHandler.badrequest(error, error.message);
@@ -33,10 +34,12 @@ const deleteFavourite = async (req, res) => {
       responseHandler.badrequest(error, error.message);
       // return res.status(404).json({ error: 'No favourited movie found' });
     }
-
-    res
-      .status(200)
-      .json({ message: 'This movie is deleted from favourite list' });
+    responseHandler.ok(res, {
+      message: 'This movie is deleted from favourite list',
+    });
+    // res
+    //   .status(200)
+    //   .json({ message: 'This movie is deleted from favourite list' });
   } catch (error) {
     responseHandler.badrequest(error, error.message);
     // res.status(404).json({ error: 'Cannot find favourite list of this movie' });
@@ -56,9 +59,11 @@ const checkFavouriteStatus = async (req, res) => {
     });
 
     if (favourite) {
-      res.status(200).json({ favourited: true });
+      responseHandler.ok(res, { favourited: true });
+      // res.status(200).json({ favourited: true });
     } else {
-      res.status(200).json({ favourited: false });
+      responseHandler.ok(res, { favourited: false });
+      // res.status(200).json({ favourited: false });
     }
   } catch (error) {
     responseHandler.badrequest(error, error.message);
@@ -110,13 +115,21 @@ const loadFavouritedList = async (req, res) => {
 
       const movieData = await Promise.all(movieDataPromises);
 
-      return res.status(200).json({
+      return responseHandler.ok(res, {
         favouritedList: favourited,
         movieData,
         // total numbers of pages
         totalNumberOfPage: Math.ceil(totalCount / PAGE_SIZE),
         totalCount,
       });
+
+      // return res.status(200).json({
+      //   favouritedList: favourited,
+      //   movieData,
+      //   // total numbers of pages
+      //   totalNumberOfPage: Math.ceil(totalCount / PAGE_SIZE),
+      //   totalCount,
+      // });
     } else {
       responseHandler.notfound(error);
       // res.status(404).json({ error: 'Favourited list not found' });
