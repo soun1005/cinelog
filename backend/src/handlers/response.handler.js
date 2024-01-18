@@ -2,7 +2,8 @@
 const responseWithData = (res, statusCode, data) =>
   res.status(statusCode).json(data);
 
-const ok = (res, data) => responseWithData(res, 200, data);
+// const ok = (res, data) => responseWithData(res, 200, data);
+const ok = (data) => res.status.json(data);
 
 const created = (res, data) => responseWithData(res, 201, data);
 

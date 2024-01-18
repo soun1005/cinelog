@@ -46,8 +46,8 @@ const createReview = async (req, res) => {
     });
     res.status(200).json(review);
   } catch (error) {
-    responseHandler.badrequest(error, error.message);
-    // res.status(400).json({ error: err.message });
+    // responseHandler.badrequest(error, error.message);
+    res.status(400).json({ error: err.message });
   }
 };
 
@@ -95,28 +95,28 @@ const loadReviews = async (req, res) => {
 
       const movieData = await Promise.all(movieDataPromises);
 
-      return responseHandler(res, {
-        reviews: review,
-        movieData,
-        // total numbers of pages
-        totalPages: Math.ceil(totalCount / PAGE_SIZE),
-        totalCount,
-      });
-
-      // res.status(200).json({
+      // return responseHandler(res, {
       //   reviews: review,
       //   movieData,
       //   // total numbers of pages
       //   totalPages: Math.ceil(totalCount / PAGE_SIZE),
       //   totalCount,
       // });
+
+      res.status(200).json({
+        reviews: review,
+        movieData,
+        // total numbers of pages
+        totalPages: Math.ceil(totalCount / PAGE_SIZE),
+        totalCount,
+      });
     } else {
-      responseHandler.notfound(res);
-      // res.status(404).json({ error: 'Reviews not found' });
+      // responseHandler.notfound(res);
+      res.status(404).json({ error: 'Reviews not found' });
     }
   } catch (error) {
-    responseHandler.badrequest(error, error.message);
-    // res.status(400).json({ error: error.message });
+    // responseHandler.badrequest(error, error.message);
+    res.status(400).json({ error: error.message });
   }
 };
 
@@ -132,15 +132,15 @@ const checkReviewStatus = async (req, res) => {
     });
 
     if (review) {
-      responseHandler.ok(res, { hasReview: true });
-      // res.status(200).json({ hasReview: true });
+      // responseHandler.ok(res, { hasReview: true });
+      res.status(200).json({ hasReview: true });
     } else {
-      responseHandler.ok(res, { hasReview: false });
-      // res.status(200).json({ hasReview: false });
+      // responseHandler.ok(res, { hasReview: false });
+      res.status(200).json({ hasReview: false });
     }
   } catch (error) {
-    responseHandler.badrequest(error, error.message);
-    // res.status(400).json({ error: err.message });
+    // responseHandler.badrequest(error, error.message);
+    res.status(400).json({ error: err.message });
   }
 };
 
@@ -153,11 +153,11 @@ const deleteReview = async (req, res) => {
     if (result.deletedCount === 0) {
       return res.status(404).json({ error: 'No such review' });
     }
-    responseHandler.ok(res, { message: 'Review deleted successfully' });
-    // res.status(200).json({ message: 'Review deleted successfully' });
+    // responseHandler.ok(res, { message: 'Review deleted successfully' });
+    res.status(200).json({ message: 'Review deleted successfully' });
   } catch (error) {
-    responseHandler.notfound(error);
-    // res.status(404).json({ error: 'No such review' });
+    // responseHandler.notfound(error);
+    res.status(404).json({ error: 'No such review' });
   }
 };
 
@@ -169,12 +169,12 @@ const editReview = async (req, res) => {
     const result = await Review.findOneAndUpdate({ mediaId: id }, req.body, {
       new: true,
     });
-    responseHandler.ok(res, result);
-    // res.status(200).json(result);
+    // responseHandler.ok(res, result);
+    res.status(200).json(result);
     console.log('Update succeeded');
   } catch (error) {
-    responseHandler.notfound(error, error.message);
-    // res.status(404).json({ error: 'Review update failed' });
+    // responseHandler.notfound(error, error.message);
+    res.status(404).json({ error: 'Review update failed' });
     // console.log(error);
   }
 };

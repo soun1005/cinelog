@@ -15,12 +15,12 @@ const createFavourite = async (req, res) => {
       userId,
       title,
     });
-    // res.status(200).json(favourite);
-    responseHandler.ok(res, favourite);
+    res.status(200).json(favourite);
+    // responseHandler.ok(res, favourite);
     console.log('posted movie as favourite');
   } catch (error) {
-    responseHandler.badrequest(error, error.message);
-    // res.status(400).json({ error: err.message });
+    // responseHandler.badrequest(error, error.message);
+    res.status(400).json({ error: err.message });
   }
 };
 
@@ -59,15 +59,15 @@ const checkFavouriteStatus = async (req, res) => {
     });
 
     if (favourite) {
-      responseHandler.ok(res, { favourited: true });
-      // res.status(200).json({ favourited: true });
+      // responseHandler.ok(res, { favourited: true });
+      res.status(200).json({ favourited: true });
     } else {
-      responseHandler.ok(res, { favourited: false });
-      // res.status(200).json({ favourited: false });
+      // responseHandler.ok(res, { favourited: false });
+      res.status(200).json({ favourited: false });
     }
   } catch (error) {
-    responseHandler.badrequest(error, error.message);
-    // res.status(400).json({ error: err.message });
+    // responseHandler.badrequest(error, error.message);
+    res.status(400).json({ error: err.message });
   }
 };
 
@@ -131,12 +131,12 @@ const loadFavouritedList = async (req, res) => {
       //   totalCount,
       // });
     } else {
-      responseHandler.notfound(error);
-      // res.status(404).json({ error: 'Favourited list not found' });
+      // responseHandler.notfound(error);
+      res.status(404).json({ error: 'Favourited list not found' });
     }
   } catch (error) {
-    responseHandler.badrequest(error, error.message);
-    // res.status(400).json({ error: error.message });
+    // responseHandler.badrequest(error, error.message);
+    res.status(400).json({ error: error.message });
   }
 };
 

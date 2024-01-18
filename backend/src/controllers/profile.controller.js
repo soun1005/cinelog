@@ -12,15 +12,15 @@ const loadUser = async (req, res) => {
     if (user) {
       // userName
       // userName 반환 -> 프론트에서 가져가는 내용
-      responseHandler.ok(res, { username: user.username, userId: user._id });
-      // res.status(200).json({ username: user.username, userId: user._id });
+      // responseHandler.ok(res, { username: user.username, userId: user._id });
+      res.status(200).json({ username: user.username, userId: user._id });
     } else {
-      responseHandler.badrequest(error);
-      // res.status(404).json({ error: 'User not found' });
+      // responseHandler.badrequest(error);
+      res.status(404).json({ error: 'User not found' });
     }
   } catch (error) {
-    responseHandler.badrequest(error, error.message);
-    // res.status(400).json({ error: error.message });
+    // responseHandler.badrequest(error, error.message);
+    res.status(400).json({ error: error.message });
   }
 };
 

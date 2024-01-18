@@ -27,12 +27,12 @@ const signupUser = async (req, res) => {
     );
 
     const token = createToken(user._id);
-
-    responseHandler.ok(res, { email, token, username, firstname, lastname });
-    // res.status(200).json({ email, token, username, firstname, lastname });
+    // const response = { email, token, username, firstname, lastname };
+    // responseHandler.ok(res, response);
+    res.status(200).json({ email, token, username, firstname, lastname });
   } catch (error) {
-    responseHandler.badrequest(error, error.message);
-    // res.status(400).json({ error: error.message });
+    // responseHandler.badrequest(error, error.message);
+    res.status(400).json({ error: error.message });
   }
 };
 
@@ -45,12 +45,12 @@ const loginUser = async (req, res) => {
     const user = await User.login(email, password);
     const token = createToken(user._id);
 
+    // const response = { email, token };
     // when it succeed, set status as 200 and json data(which are email and user)
-    responseHandler(res, { email, token });
-    // res.status(200).json({ email, token });
+    res.status(200).json({ email, token });
   } catch (error) {
-    responseHandler.badrequest(error, error.message);
-    // res.status(400).json({ error: error.message });
+    // responseHandler.badrequest(error, error.message);
+    res.status(400).json({ error: error.message });
   }
 };
 
