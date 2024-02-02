@@ -34,15 +34,15 @@ const deleteFavourite = async (req, res) => {
       responseHandler.badrequest(error, error.message);
       // return res.status(404).json({ error: 'No favourited movie found' });
     }
-    responseHandler.ok(res, {
-      message: 'This movie is deleted from favourite list',
-    });
-    // res
-    //   .status(200)
-    //   .json({ message: 'This movie is deleted from favourite list' });
+    // responseHandler.ok(res, {
+    // message: 'This movie is deleted from favourite list',
+    // });
+    res
+      .status(200)
+      .json({ message: 'This movie is deleted from favourite list' });
   } catch (error) {
-    responseHandler.badrequest(error, error.message);
-    // res.status(404).json({ error: 'Cannot find favourite list of this movie' });
+    // responseHandler.badrequest(error, error.message);
+    res.status(404).json({ error: 'Cannot find favourite list of this movie' });
   }
 };
 
@@ -115,21 +115,21 @@ const loadFavouritedList = async (req, res) => {
 
       const movieData = await Promise.all(movieDataPromises);
 
-      return responseHandler.ok(res, {
-        favouritedList: favourited,
-        movieData,
-        // total numbers of pages
-        totalNumberOfPage: Math.ceil(totalCount / PAGE_SIZE),
-        totalCount,
-      });
-
-      // return res.status(200).json({
+      // return responseHandler.ok(res, {
       //   favouritedList: favourited,
       //   movieData,
       //   // total numbers of pages
       //   totalNumberOfPage: Math.ceil(totalCount / PAGE_SIZE),
       //   totalCount,
       // });
+
+      return res.status(200).json({
+        favouritedList: favourited,
+        movieData,
+        // total numbers of pages
+        totalNumberOfPage: Math.ceil(totalCount / PAGE_SIZE),
+        totalCount,
+      });
     } else {
       // responseHandler.notfound(error);
       res.status(404).json({ error: 'Favourited list not found' });
